@@ -70,7 +70,7 @@ bitmap.ShowBitmap(); // 預設呈現第一張 (index = 0)。
 
 ### void CMovingBitmap::UnshowBitmap()
 
-隱藏當前的 `CMovingBitmap`，若你有**動畫**的情況下，請使用 UnshowBitmap 來隱藏圖片，以避免資源耗盡。
+隱藏當前的 `CMovingBitmap`。
 
 ```cpp
 CMovingBitmap bitmap;
