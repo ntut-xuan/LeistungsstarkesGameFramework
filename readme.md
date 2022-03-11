@@ -89,7 +89,7 @@ bitmap.UnShowBitmap(); // 隱藏圖片。
 
 ### void  CMovingBitmap::SelectShowBitmap(int select)
 
-選擇要呈現的 `bitmap`。
+選擇要呈現的 `CMovingBitmap`。
 
 ```cpp
 CMovingBitmap bitmap;
