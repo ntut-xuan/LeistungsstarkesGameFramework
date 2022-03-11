@@ -64,7 +64,7 @@ bitmap.ShowBitmap();
 
 ```cpp
 CMovingBitmap bitmap;
-bitmap.LoadBitmap({"RES/bitmap1.bmp", "RES/bitmap2.bmp"});
+bitmap.LoadBitmap({"RES/bitmap1.bmp", "RES/bitmap2.bmp"}, RGB(255, 255, 255));
 bitmap.SetLeftRight(0, 0);
 
 # -- on show --
@@ -110,8 +110,6 @@ bitmap.showBitmap(); // 呈現第二張圖片
 
 
 
-
-
 ### void CMovingBitmap::SetAnimation(int delay, bool once)
 
 設定當前的 `CMovingBitmap` 為一個動畫。
@@ -126,6 +124,21 @@ bitmap.SetAnimation(5, false); // 無限循環呈現
 # -- on show --
 
 bitmap.showBitmap(); // 呈現第二張圖片
+```
+
+
+
+### void CInteger::ShowBitmap(bool leadingZero)
+
+顯示 `CInteger` 是否出現前導零。
+
+```cpp
+CInteger health = CInteger(4); //設定最大長度為 4，預設為 5。
+health.SetInteger(1000);
+health.SetTopLeft(312, 373);
+
+# -- on show --
+health.showBitmap(false); // 不顯示前導零
 ```
 
 
