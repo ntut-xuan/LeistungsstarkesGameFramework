@@ -17,12 +17,18 @@ LGF (Leistungsstarkes Game Framework) 是一款基於陳偉凱老師的 Game Fra
 
 ## Feature
 
+### 2022-03-06
+
 - 修正了 `CInteger` 的 Bug，現在可以正常呈現。
 - **半修正**了 `CMovingBitmap.showBitmap(double factor)` 的 Bug，當 `factor` 等於 `0` 時視為隱藏圖片。
 - 可以隱藏 `CMovingBitmap` 的圖片。
 - 可以讀入多個 `CMovingBitmap` 的圖片，並且選擇欲呈現的圖片。
 - 可以讀入多個 `CMovingBitmap` 的圖片，並且利用 `SetAnimation(int delay, bool once)` 來製作動畫。
 - 廢棄 `CAnimation` 的作法。
+
+### 2022-03-11
+
+- 讓 `CInteger` 可以自由顯示是否要顯示前導零。
 
 
 
