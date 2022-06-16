@@ -32,11 +32,13 @@ LGF (Leistungsstarkes Game Framework) 是一款基於陳偉凱老師的 Game Fra
 
 
 
-## Still Unsolve Bug
+### 2022-06-17
 
-- 在 `OnBeginState` 時，讀入不合法的（不存在的、不是圖片的）圖片會顯示 
-
-  `A bitmap must be loaded before ShowBitmap() is called !!!`
+- 【New Feature】修正了全螢幕時的黑邊問題，並且會將遊戲視窗絕對置中。
+- 【New Feature】將動畫每幀的延遲加上精準時間。
+- 【New Feature】支援以 `vector<string>` 讀取每幀的畫面。
+- 【New Feature】新增了 `CTextDraw` 類別，**畫上文字時請使用這個類別的函式，全螢幕的字位移才會正確**
+- 【Bug】修正了 CMovngBitmap 在執行動畫時會出現的小 bug。
 
 
 
@@ -143,14 +145,97 @@ health.showBitmap(false); // 不顯示前導零
 
 
 
-## Application
+### void CMovingBitmap::LoadBitmapByString(vector\<string> filename, COLORREF color)
+
+利用 `vector<string>` 讀取多張圖片，索引值從 `0` 開始。
+
+```cpp
+CMovingBitmap bitmap;
+bitmap.LoadBitmap({"RES/bitmap1.bmp", "RES/bitmap2.bmp"});
+bitmap.setLeftRight(0, 0);
+
+# -- on show --
+bitmap.showBitmap(); // 預設呈現第一張 (index = 0)。
+
+/* Do something... */
+
+bitmap.UnShowBitmap(); // 隱藏圖片。
+```
+
+
+
+### int CMovingBitmap::GetSelectShowBitmap()
+
+獲得目前呈現的圖片索引值。
+
+
+
+### bool CMovingBitmap::IsAnimationDone()
+
+確認動畫是否正在執行，僅限於動畫正在執行 `ToggleAnimation()`。
+
+
+
+### void  CMovingBitmap::ToggleAnimation()
+
+運行動畫一次，並且使得 `IsAnimationDone()` 可用。
+
+
+
+### int CMovingBitmap::GetMovingBitmapFrame()
+
+確認這個 `CMovingBitmap` 物件有多少幀動畫。
+
+
+
+### void CTextDraw::ChangeFontLog(CDC *pDC, int size, string fontName, int weight)
+
+更改文字的樣式、文字與粗體。
+
+```cpp
+CDC *pDC = CDDraw::GetBackCDC();
+CFont *fp;
+
+pDC->SetBkMode(TRANSPARENT);
+pDC->SetTextColor(RGB(255, 255, 255));
+
+/* 變更字體，weight = 800 為粗體，500 為一般 */
+CTextDraw::ChangeFontLog(pDC, fp, 40, "Noto Sans TC", 800);
+CTextDraw::Print(pDC, 50, 50, "Hello World!");
+```
+
+
+
+### void CTextDraw::Print(CDC *pDC, int x, int y, string str)
+
+將文字呈現在指定的座標上。
+
+```cpp
+CDC *pDC = CDDraw::GetBackCDC();
+CFont *fp;
+
+pDC->SetBkMode(TRANSPARENT);
+pDC->SetTextColor(RGB(255, 255, 255));
+
+/* 變更字體 */
+CTextDraw::ChangeFontLog(pDC, fp, 40, "Noto Sans TC");
+CTextDraw::Print(pDC, 50, 50, "Hello World!");
+```
+
+
+
+
+
+
+
+## Example
 
 ### 讓一個物件不停的動畫循環
 
 ```cpp
 CMovingBitmap bitmap;
 
-# -- onBeginState --
+# -- onInit --
 bitmap.LoadBitmap({"RES/bitmap1.bmp", "RES/bitmap2.bmp"});
 bitmap.SetTopLeft(0, 0);
 bitmap.SetAnimation(5, false);
@@ -167,17 +252,24 @@ bitmap.showBitmap();
 ```cpp
 CMovingBitmap bitmap;
 
-# -- onBeginState --
+# -- onInit --
 
 bitmap.LoadBitmap({"RES/bitmap1.bmp", "RES/bitmap2.bmp"});
 bitmap.SetTopLeft(0, 0);
+bitmap.SetAnimation(200, false);
 
-# -- onMove --
-bitmap.SetAnimation(5, false);
+# -- onEvent --
+bitmap.ToggleAnimation(1);
 
 # -- onShow --
 
-bitmap.showBitmap();
+if(bitmap.IsAnimationDone()){
+    if (hidden_code[current_stage][i][j] == 0) {
+		bitmap.showBitmap();
+    }
+}else{
+    bitmap.showBitmap();
+}
 ```
 
 
@@ -187,7 +279,7 @@ bitmap.showBitmap();
 ```cpp
 CMovingBitmap bitmap;
 
-# -- onBeginState --
+# -- onInit --
 
 bitmap.LoadBitmap({"RES/bitmap1.bmp", "RES/bitmap2.bmp"});
 bitmap.SetTopLeft(0, 0);
@@ -205,4 +297,6 @@ bitmap.showBitmap();
 
 ## 銘謝
 
-謝謝 國立臺北科技大學 陳偉凱教授 開發了這個遊戲框架，並且謝謝 國立臺北科技大學 陳碩漢教授 同意這個框架能夠公開使用。
+謝謝 國立臺北科技大學 陳偉凱教授 開發了這個遊戲框架
+
+並且謝謝 國立臺北科技大學 陳碩漢教授 同意這個框架能夠公開使用。

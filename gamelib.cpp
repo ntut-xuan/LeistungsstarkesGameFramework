@@ -1,117 +1,3 @@
-/*
- * gamelib.cpp: 本檔案儲存支援遊戲相關的class的implementation
- * Copyright (C) 2002-2012 Woei-Kae Chen <wkc@csie.ntut.edu.tw>
- *
- * This file is part of game, a free game development framework for windows.
- *
- * game is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * game is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
- * Known Problems:
- *   2005-9-29
- *      1. VC++.net is unable to add new event handlers for game (this is due
- *         to incompatibility of MFC files between VC++6.0 and VC++.net).
- *         Work around: I have added MOUSEMOVE handlers by using VC++6.0. Other
- *           event handlers are likely unnecessary.
- *      2. When ENABLE_GAME_PAUSE is false, it is possible for a minimized
- *           game to continue playing sounds.
- *
- *
- * History:
- *	 1999-09-24 V2.2
- *		1. Support playback of WAVE files with DirectSound.
- *		2. Use OnIdle to control the flow of the game.
- *	 2002-02-23 v3.0 (fullscreen)
- *		1. Support fullscreen mode.
- *		2. Support playback of both MIDI and WAVE files with DirectMusic.
- *		3. Fix surface lost bugs by restoring surfaces.
- *		4. Move CGame and CBall classes into mygame.cpp.
- *		5. Add CAnimation Class.
- *   2002-03-04 V3.1
- *      1. Add CMovingBitmap::ShowBitmap(CMovingBitmap &) to enable
- *         the operation of blitting from one bitmap into another bitmap.
- *		2. Fix a CheckDDError() bug (incorrect number of errors).
- *      3. Revise delay codes for CSpecialEffect::Delay() and
- *		   CSpecialEffect::DelayFromSetCurrentTime().
- *		4. Support ENABLE_AUDIO flag.
- *   2004-03-01 V4.0
- *      1. Enhance CAudio to support pause and resume.
- *   2004-03-08 V4.1
- *      1. Add KeyDown & KeyUp handler and remove auto-repeat for key
- *         down.
- *      2. Fix a surface lost bug due to suspend of windows.
- *      3. The Game Engine is now closer to a framework.
- *   2005-07-28 V4.2
- *      1  GAME_ASSERT is used to enforce correctness of operations for
- *         CMovingBitamp (make sure bitmap is loaded first).
- *      2. Change the constructor of CAudio to eliminate the compiling
- *         error with VC++.net.
- *      3. Make SurfaceID unsigned to eliminate warning with VC++.net.
- *   2005-09-08
- *      1. Fix a bug that handles CLR_INVALID incorrectly during
- *         SetColorKey(), BltBitmapToBack(), and BltBitmapToBitmap().
- *      2. Eliminate the use of CSpecialEffect::Abort() from BltBitmapToBack.
- *         Use GAME_ASSERT instead.
- *   2005-09-20 V4.2Beta1.
- *   2005-09-29 V4.2Beta2.
- *      1. Add MOUSEMOVE Handler for CGame and CGameState.
- *      2. Add _TRACE preprocessor flag for VC++.net.
- *   2006-02-08 V4.2
- *      1. Fix bugs: make CAnimation::Top() and CAnimation::Left() return y and x.
- *      2. Enhance CAnimation to support SetDelayCount(), Reset(), and IsFinalBitmap().
- *      3. Remove CAnimation::GetLocation() and CMovingBitmap::GetLocation().
- *      4. Bitmap coordinate can no longer be set by CMovingBitmap::LoadBitmap();
- *         defauts to (0,0).
- *   2006-09-09 V4.3
- *      1. Rename Move() and Show() as OnMove and OnShow() to emphasize that they are
- *         event driven.
- *      2. Fix bug: audio is now correctly recovered after a sleep or suspension of windows.
- *      3. Support ENABLE_GAME_PAUSE.
- *   2008-02-15 V4.4
- *      1. Add setup project for Visual studio 2005.
- *      2. Support bitmap scaling when ShowBitmap(scale) is called.
- *      3. Add namespace game_framework.
- *      4. Make the class CGame a singleton so that MFC can access it easily.
- *      5. Support loading of bitmap from bmp file.
- *      6. Support ShowInitProgress(percent) to display loading progress.
- *   2010-02-23 V4.5
- *      1. Remove #define INITGUID to work with VS2008
- *   2010-03-23 V4.6
- *      1. Fix bug: when AUDIO device is not available, CGame::OnInit() returned too early.
- *      2. Rewrite CAudio with MCI commands to eliminate dependency with DirectMusic.
- *      3. Supprt MP3 audio playback.
- *   2012-03-21 V4.7
- *      1. Add SetCapture in CGameView::OnLButtonDown() and RelaseCapture in
- *         CGameView::OnLButtonUp() so that Mouse Events (OnLButtonUp and OnMouseMove)
- *         will be called even if the cursor is outside of the window.
- *   2012-05-13 V4.8
- *      1. Change release mode WINVER to 0x500 so that release mode can be correctly complied
- *         with VS 2010 (project->Game Properties->C/C++->Preprocessor Definitions->WINVER=0x500).
- *      2. Add comments to CGameState::ShowInitProgress() - remind students not to copy
- *         	CDDraw::BltBackToPrimary().
- *      3. Fix Ctrl-Q display bug. Add Invalidate() at the end of CGameView::OnKillFocus.
- *      4. Move CAudio header and implementations into new audio.h and audio.cpp files.
- *      5. Use a thread to execute all MCI commands so that when a sound is played, the
- *         main game thread is not slowed down by MCI commands. According to students, the
- *         slow down is more obvious in Win7 64 bit version; in WinXP, the slow down cannot
- *         be observed.
- *      6. Remove UnitTest folder and configurations.
- *      7. Move header and cpp files into Source sub-directory.
- *   2016-02-26 V4.9
- *      1.Fixed program crash in change display mode to fullscreen
-*/
-
 //#define	 INITGUID
 #include "stdafx.h"
 #include "game.h"
@@ -127,6 +13,7 @@
 #include "mygame.h"
 #include <filesystem>
 #include <experimental/filesystem> // Header file for pre-standard implementation
+#include <comdef.h>
 using namespace std::experimental::filesystem::v1;
 
 namespace game_framework {
@@ -381,16 +268,18 @@ namespace game_framework {
 		location.bottom = ny + bitmapSize.bmHeight;
 		SurfaceID.push_back(CDDraw::RegisterBitmap(filename, color));
 		isBitmapLoaded = true;
+
+		bmp->DeleteObject();
 	}
 
 	void CMovingBitmap::LoadBitmap(vector<char*> filename, COLORREF color)
 	{
 
-		for (int i = 0; i < (int) filename.size(); i++) {
+		for (int i = 0; i < (int)filename.size(); i++) {
 			const int nx = 0;
 			const int ny = 0;
 
-			HBITMAP hbitmap = (HBITMAP) LoadImage(NULL, filename[i], IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+			HBITMAP hbitmap = (HBITMAP)LoadImage(NULL, filename[i], IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
 			if (hbitmap == NULL) {
 				char error_msg[300];
 				sprintf(error_msg, "Loading bitmap from file \"%s\" failed !!!", filename[i]);
@@ -404,6 +293,34 @@ namespace game_framework {
 			location.bottom = ny + bitmapSize.bmHeight;
 			SurfaceID.push_back(CDDraw::RegisterBitmap(filename[i], color));
 			isBitmapLoaded = true;
+
+			bmp->DeleteObject();
+		}
+	}
+
+	void CMovingBitmap::LoadBitmapByString(vector<string> filename, COLORREF color)
+	{
+
+		for (int i = 0; i < (int) filename.size(); i++) {
+			const int nx = 0;
+			const int ny = 0;
+
+			HBITMAP hbitmap = (HBITMAP) LoadImage(NULL, (char*)filename[i].c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+			if (hbitmap == NULL) {
+				char error_msg[300];
+				sprintf(error_msg, "Loading bitmap from file \"%s\" failed !!!", (char*)filename[i].c_str());
+				GAME_ASSERT(false, error_msg);
+			}
+			CBitmap *bmp = CBitmap::FromHandle(hbitmap); // memory will be deleted automatically
+			BITMAP bitmapSize;
+			bmp->GetBitmap(&bitmapSize);
+			location.left = nx; location.top = ny;
+			location.right = nx + bitmapSize.bmWidth;
+			location.bottom = ny + bitmapSize.bmHeight;
+			SurfaceID.push_back(CDDraw::RegisterBitmap((char*)filename[i].c_str(), color));
+			isBitmapLoaded = true;
+
+			bmp->DeleteObject();
 		}
 	}
 
@@ -425,24 +342,29 @@ namespace game_framework {
 		location.bottom -= dy;
 	}
 
-	void CMovingBitmap::SetAnimation(int delay, bool once) {
-		isAnimation = true;
-		infiniteShowAnimation = !once;
+	void CMovingBitmap::SetAnimation(int delay, bool _once) {
+		if(!_once) isAnimation = true;
+		once = _once;
 		delayCount = delay;
-		tempDelayCount = delay;
 	}
 
 	void CMovingBitmap::ShowBitmap()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
 		CDDraw::BltBitmapToBack(SurfaceID[selector], location.left, location.top);
-		if (isAnimation == true && --tempDelayCount <= 0) {
+		if (isAnimation == true && clock() - last_time >= delayCount) {
 			selector += 1;
-			tempDelayCount = delayCount;
-			selector %= SurfaceID.size();
-			if (infiniteShowAnimation == false) {
-				isAnimation = false;
+			last_time = clock();
+			if (selector == SurfaceID.size() && animationCount > 0) {
+				animationCount -= 1;
 			}
+			if (selector == SurfaceID.size() && (once || animationCount == 0)) {
+				isAnimation = false;
+				isAnimationDone = true;
+				selector = SurfaceID.size() - 1;
+				return;
+			}
+			selector = selector % SurfaceID.size();
 		}
 	}
 
@@ -450,19 +372,29 @@ namespace game_framework {
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
 		CDDraw::BltBitmapToBack(SurfaceID[selector], location.left, location.top, factor);
-		if (isAnimation == true && --tempDelayCount <= 0) {
+		if (isAnimation == true && clock() - last_time >= delayCount) {
 			selector += 1;
-			tempDelayCount = delayCount;
-			selector %= SurfaceID.size();
-			if (infiniteShowAnimation == false) {
-				isAnimation = false;
+			last_time = clock();
+			if (selector == SurfaceID.size() && animationCount > 0) {
+				animationCount -= 1;
 			}
+			if (selector == SurfaceID.size() && (once || animationCount == 0)) {
+				isAnimation = false;
+				isAnimationDone = true;
+				selector = SurfaceID.size() - 1;
+				return;
+			}
+			selector = selector % SurfaceID.size();
 		}
 	}
 
 	void CMovingBitmap::SelectShowBitmap(int _select) {
 		GAME_ASSERT(_select < (int) SurfaceID.size(), "選擇圖片時索引出界");
 		selector = _select;
+	}
+
+	int CMovingBitmap::GetSelectShowBitmap() {
+		return selector;
 	}
 
 	int CMovingBitmap::Top()
@@ -475,6 +407,20 @@ namespace game_framework {
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Width() is called !!!");
 		return location.right - location.left;
+	}
+
+	void CMovingBitmap::ToggleAnimation() {
+		selector = 0;
+		isAnimation = true;
+		isAnimationDone = false;
+	}
+
+	bool CMovingBitmap::IsAnimationDone() {
+		return isAnimationDone;
+	}
+
+	int CMovingBitmap::GetMovingBitmapFrame() {
+		return (int) SurfaceID.size();
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -491,7 +437,7 @@ namespace game_framework {
 		game->SetGameState(state);
 	}
 
-	void CGameState::ShowInitProgress(int percent)
+	void CGameState::ShowInitProgress(int percent, string message)
 	{
 		if (!SHOW_LOAD_PROGRESS)
 			return;
@@ -509,10 +455,12 @@ namespace game_framework {
 		const int progress_y2 = y2 - pen_width;
 
 		CDDraw::BltBackColor(DEFAULT_BG_COLOR);		// 將 Back Plain 塗上預設的顏色
+
 		CMovingBitmap loading;						// 貼上loading圖示
-		loading.LoadBitmap(IDB_LOADING, RGB(0, 0, 0));
-		loading.SetTopLeft((SIZE_X - loading.Width()) / 2, y1 - 2 * loading.Height());
+		loading.LoadBitmap({"RES/loading.bmp"});
+		loading.SetTopLeft(0, 0);
 		loading.ShowBitmap();
+
 		//
 		// 以下為CDC的用法
 		//
@@ -520,7 +468,7 @@ namespace game_framework {
 		CPen *pp, p(PS_NULL, 0, RGB(0, 0, 0));		// 清除pen
 		pp = pDC->SelectObject(&p);
 
-		CBrush *pb, b(RGB(0, 255, 0));				// 畫綠色 progress框
+		CBrush *pb, b(RGB(155, 155, 155));				// 畫綠色 progress框
 		pb = pDC->SelectObject(&b);
 		pDC->Rectangle(x1, y1, x2, y2);
 
@@ -528,12 +476,28 @@ namespace game_framework {
 		pDC->SelectObject(&b1);
 		pDC->Rectangle(progress_x1, progress_y1, progress_x2_end, progress_y2);
 
-		CBrush b2(RGB(255, 255, 0));					// 畫黃色 progrss進度
+		CBrush b2(RGB(255, 255, 255));					// 畫黃色 progrss進度
 		pDC->SelectObject(&b2);
 		pDC->Rectangle(progress_x1, progress_y1, progress_x2, progress_y2);
 
 		pDC->SelectObject(pp);						// 釋放 pen
 		pDC->SelectObject(pb);						// 釋放 brush
+
+		CFont *fp;
+
+		pDC->SetBkMode(TRANSPARENT);
+		pDC->SetTextColor(RGB(255, 255, 255));
+		LOGFONT lf;
+		CFont f;
+		memset(&lf, 0, sizeof(lf));
+		lf.lfHeight = 30;
+		lf.lfWeight = 500;
+		strcpy(lf.lfFaceName, "微軟正黑體");
+		f.CreateFontIndirect(&lf);
+		fp = pDC->SelectObject(&f);
+
+		CTextDraw::Print(pDC, 250, 425, message.c_str());
+
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 		//
 		// 如果是別的地方用到CDC的話，不要抄以下這行，否則螢幕會閃爍
@@ -709,8 +673,9 @@ namespace game_framework {
 
 	void CGame::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		if (running)
+		if (running) {
 			gameState->OnLButtonDown(nFlags, point);
+		}
 	}
 
 	void CGame::OnRButtonDown(UINT nFlags, CPoint point)
@@ -901,6 +866,8 @@ namespace game_framework {
 
 	void CDDraw::BltBitmapToBack(unsigned SurfaceID, int x, int y)
 	{
+		x = CDDraw::IsFullScreen() ? x + (RESOLUTION_X - SIZE_X)/2 : x;
+		y = CDDraw::IsFullScreen() ? y + (RESOLUTION_Y - SIZE_Y)/2 : y;
 		GAME_ASSERT(lpDDSBack && (SurfaceID < lpDDS.size()) && lpDDS[SurfaceID], "Internal Error: Incorrect SurfaceID in BltBitmapToBack");
 		CRect TargetRect;
 		TargetRect.left = x;
@@ -986,14 +953,18 @@ namespace game_framework {
 				LoadBitmap(i, (char *)BitmapName[i].c_str()); // from file
 			SetColorKey(i, BitmapColorKey[i]);
 		}
+		
 		return true;
 	}
 
 	bool CDDraw::CreateSurfaceFullScreen()
 	{
+
 		ddrval = lpDD->SetCooperativeLevel(AfxGetMainWnd()->m_hWnd, DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN);
 		CheckDDFail("Can not SetCooperativeLevel Exclusive");
-		ddrval = lpDD->SetDisplayMode(size_x, size_y, 32, 0, 0);
+
+		ddrval = lpDD->SetDisplayMode(RESOLUTION_X, RESOLUTION_Y, 32, 0, 0);
+
 		if (ddrval != DD_OK) {
 			ddrval = lpDD->SetCooperativeLevel(AfxGetMainWnd()->m_hWnd, DDSCL_NORMAL);
 			CheckDDFail("Can not SetCooperativeLevel Normal");
@@ -1047,11 +1018,13 @@ namespace game_framework {
 
 		BltBackColor(RGB(0, 0, 0));
 		BltBackToPrimary();
+
 		return true;
 	}
 
 	bool CDDraw::CreateSurfaceWindowed()
 	{
+
 		ddrval = lpDD->SetCooperativeLevel(AfxGetMainWnd()->m_hWnd, DDSCL_NORMAL);
 		CheckDDFail("Can not SetCooperativeLevel ");
 
@@ -1103,6 +1076,9 @@ namespace game_framework {
 		lpClipperBack->Release();
 
 		BltBackColor(RGB(0, 0, 0));
+
+		SetWindowPos(AfxGetMainWnd()->m_hWnd, HWND_TOP, 0, 0, size_x, size_y, SWP_NOZORDER);
+
 		return true;
 	}
 
@@ -1114,7 +1090,7 @@ namespace game_framework {
 	void CDDraw::Init(int sx, int sy)
 	{
 		// set target screen size
-		size_x = sx, size_y = sy;
+		size_x = RESOLUTION_X, size_y = RESOLUTION_Y;
 		// init lpDD
 		LPDIRECTDRAW lpDD0;
 		ddrval = DirectDrawCreate(NULL, &lpDD0, NULL);
@@ -1186,7 +1162,7 @@ namespace game_framework {
 		ZeroMemory(&ddsd, sizeof(ddsd));
 		ddsd.dwSize = sizeof(ddsd);
 		ddsd.dwFlags = DDSD_CAPS | DDSD_HEIGHT | DDSD_WIDTH;
-		ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN;
+		ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN;	
 		BitmapRect[i].bottom = ddsd.dwHeight = bitmapSize.bmHeight;
 		BitmapRect[i].right = ddsd.dwWidth = bitmapSize.bmWidth;
 		ddrval = lpDD->CreateSurface(&ddsd, &lpDDS[i], NULL);
@@ -1418,4 +1394,21 @@ namespace game_framework {
 		}
 	}
 
-}
+	void CTextDraw::Print(CDC *pDC, int x, int y, string str) {
+		x = CDDraw::IsFullScreen() ? x + (RESOLUTION_X - SIZE_X) / 2 : x;
+		y = CDDraw::IsFullScreen() ? y + (RESOLUTION_Y - SIZE_Y) / 2 : y;
+		pDC->TextOut(x, y, str.c_str());
+	}
+
+	void CTextDraw::ChangeFontLog(CDC* pDC, CFont* &fp, int size, string fontName, int weight) {
+		LOGFONT lf;
+		CFont f;
+		memset(&lf, 0, sizeof(lf));
+		lf.lfHeight = size;
+		lf.lfWeight = weight;
+		strcpy(lf.lfFaceName, fontName.c_str());
+		f.CreateFontIndirect(&lf);
+		fp = pDC->SelectObject(&f);
+	}
+
+}         
