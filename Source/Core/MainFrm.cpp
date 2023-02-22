@@ -35,7 +35,9 @@
 #include <ddraw.h>
 #include <direct.h>
 #include <string.h>
-#include "gamelib.h"
+#include "../Library/gameutil.h"
+#include "../Library/gamecore.h"
+#include "../Game/config.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -126,7 +128,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.ShowWindow(SW_SHOW);
 	// SetMenu(NULL);
 
-	SetWindowText(_T("Giraffe Adventure"));
+	SetWindowText(_T(GAME_TITLE));
 
 	// 如果是Full Screen的話，隱藏ToolBar, StatusBar, Menu
 	//

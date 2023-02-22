@@ -42,6 +42,18 @@ LGF (Leistungsstarkes Game Framework) 是一款基於陳偉凱老師的 Game Fra
 
 
 
+### 2023-02-22
+
+- 創立了純淨版（Purified）的 Leistungsstarkes Game Framework 專案，可直接建置方案並執行。
+- 修改了檔案架構，從原先將所有的 `.cpp` 放入 `Source` 資料夾，改為在 `Source` 建立一個資料夾架構來存放 `.cpp` 檔案。
+- 修改了檔案架構，將 `/RES` 重新命名為 `Resources` 來釐清名稱。
+- 創立 `GAME_TITLE` 的定義（`#define`），使框架使用者能夠變更遊戲標題。
+- 將 `mygame.cpp` 分割成三個不同的檔案，分別實作 `GameStateInit`、`GameStateRun` 與 `GameStateOver` 的類別。
+- 重構了部分的 code 使得重複的 code 出現的次數減少。
+- 抽離遊戲設定參數至 `config.cpp`，讓使用者不須也不應更改 `/Library` 與 `/Core` 的程式碼。
+
+
+
 ## Documents
 
 ### void CMovingBitmap::LoadBitmap(char* , COLORREF)
