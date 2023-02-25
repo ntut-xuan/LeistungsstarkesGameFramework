@@ -688,6 +688,41 @@ namespace game_framework {
 		bmp->DeleteObject();
 	}
 
+	void CDDraw::LoadBitmapFromExistHBITMAP(int i, HBITMAP hbitmap)
+	{
+
+		GAME_ASSERT(hbitmap != NULL, "Load bitmap failed !!! Please check bitmap ID (IDB_XXX).");
+		CBitmap *bmp = CBitmap::FromHandle(hbitmap); // will be deleted automatically
+		CDC mDC;
+		mDC.CreateCompatibleDC(NULL);
+		CBitmap* pOldBitmap = mDC.SelectObject(bmp);
+		BITMAP bitmapSize;
+		bmp->GetBitmap(&bitmapSize);
+		DDSURFACEDESC ddsd;
+		ZeroMemory(&ddsd, sizeof(ddsd));
+		ddsd.dwSize = sizeof(ddsd);
+		ddsd.dwFlags = DDSD_CAPS | DDSD_HEIGHT | DDSD_WIDTH;
+		ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN;
+		BitmapRect[i].bottom = ddsd.dwHeight = bitmapSize.bmHeight;
+		BitmapRect[i].right = ddsd.dwWidth = bitmapSize.bmWidth;
+		ddrval = lpDD->CreateSurface(&ddsd, &lpDDS[i], NULL);
+		CheckDDFail("Create Bitmap Surface Failed");
+		HDC hdc;
+		ddrval = lpDDS[i]->GetDC(&hdc);
+		CheckDDFail("Get surface HDC failed");
+		CDC cdc;
+		cdc.Attach(hdc);
+		cdc.BitBlt(0, 0, bitmapSize.bmWidth, bitmapSize.bmHeight, &mDC, 0, 0, SRCCOPY);
+		cdc.Detach();
+		lpDDS[i]->ReleaseDC(hdc);
+		// avoid memory leak
+		// According to spec, mDC should delete itself automatically.  However,
+		// it appears that we have to do it explictly.
+		mDC.SelectObject(&pOldBitmap);
+		mDC.DeleteDC();
+		bmp->DeleteObject();
+	}
+
 	DWORD CDDraw::MatchColorKey(LPDIRECTDRAWSURFACE lpDDSurface, COLORREF color)
 	{
 		DDSURFACEDESC ddsd;
@@ -763,6 +798,22 @@ namespace game_framework {
 		lpDDS.push_back(NULL);
 		LoadBitmap(i, filename);
 		SetColorKey(i, ColorKey);
+		return i;
+	}
+
+	int CDDraw::RegisterBitmapWithHBITMAP(HBITMAP bitmap)
+	{
+		unsigned i = BitmapName.size();
+		//
+		// Enlarge the size of vectors
+		//
+		BitmapID.push_back(-1);
+		BitmapName.push_back("");
+		BitmapColorKey.push_back(CLR_INVALID);
+		BitmapRect.push_back(CRect(0, 0, 0, 0));
+		lpDDS.push_back(NULL);
+		LoadBitmapFromExistHBITMAP(i, bitmap);
+		SetColorKey(i, CLR_INVALID);
 		return i;
 	}
 
