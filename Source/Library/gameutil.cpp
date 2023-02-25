@@ -100,6 +100,34 @@ namespace game_framework {
 		}
 	}
 
+	void CMovingBitmap::LoadEmptyBitmap(int height, int width) {
+		const int nx = 0;
+		const int ny = 0;
+
+		HBITMAP hbitmap = CreateBitmap(width, height, 1, 32, NULL);
+
+		/* Fill white color to bitmap */
+		HDC hdc = CreateCompatibleDC(NULL);
+		HBITMAP hOldBitmap = (HBITMAP)SelectObject(hdc, hbitmap);
+		PatBlt(hdc, 0, 0, width, height, WHITENESS);
+		SelectObject(hdc, hOldBitmap);
+		DeleteDC(hdc);
+
+		CBitmap *bmp = CBitmap::FromHandle(hbitmap); // memory will be deleted automatically
+		BITMAP bitmapSize;
+		bmp->GetBitmap(&bitmapSize);
+
+		location.left = nx; 
+		location.top = ny;
+		location.right = nx + width;
+		location.bottom = ny + height;
+
+		SurfaceID.push_back(CDDraw::RegisterBitmapWithHBITMAP(hbitmap));
+		isBitmapLoaded = true;
+
+		bmp->DeleteObject();
+	}
+
 	void CMovingBitmap::UnshowBitmap()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before SetTopLeft() is called !!!");

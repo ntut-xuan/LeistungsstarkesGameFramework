@@ -99,6 +99,7 @@ namespace game_framework {
 		int   Width();						// 取得圖形的寬度
 		bool  IsAnimationDone();
 		int   GetMovingBitmapFrame();
+		void  LoadEmptyBitmap(int height, int weight);
 	protected:
 		int selector = 0;
 		int delayCount = 10;
