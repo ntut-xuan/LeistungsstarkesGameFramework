@@ -122,17 +122,26 @@ namespace game_framework {
 		void  ToggleAnimation();
 
 	protected:
+		//! 當前幀的索引值。
 		int frameIndex = 0;
+		//! 當前幀切換的延遲。
 		int delayCount = 10;
+		//! 儲存當前動畫的次數。
 		int animationCount = -1;
+		//! 儲存物件是否為動畫。
 		bool isAnimation = false;
+		//! 儲存物件動畫是否已結束
 		bool isAnimationDone = true;
+		//! 儲存圖片是否已讀取
 		bool isBitmapLoaded = false;	// whether a bitmap has been loaded
+		//! 儲存物件動畫是否為單次動畫
 		bool isOnce = false;
 		CRect    location;			// location of the bitmap
 		vector<unsigned> surfaceID;
 		clock_t last_time = clock();
+		//! 儲存物件讀取的圖片路徑
 		string   imageFileName = "";
+		//! 儲存物件過濾的圖片顏色
 		COLORREF filterColor = CLR_INVALID;
 
 	private:
