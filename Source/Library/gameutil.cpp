@@ -21,8 +21,8 @@ namespace game_framework {
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CMovingBitmap: Moving Bitmap class
-	// ³o­Ó class ´£¨Ñ¥i¥H²¾°Êªº¹Ï§Î
-	// ­nÀ´±o«ç»ò©I¥s(¹B¥Î)¨ä¦UºØ¯à¤O¡A¦ı¬O¥i¥H¤£À´¤U¦Cªºµ{¦¡¬O¤°»ò·N«ä
+	// é€™å€‹ class æä¾›å¯ä»¥ç§»å‹•çš„åœ–å½¢
+	// è¦æ‡‚å¾—æ€éº¼å‘¼å«(é‹ç”¨)å…¶å„ç¨®èƒ½åŠ›ï¼Œä½†æ˜¯å¯ä»¥ä¸æ‡‚ä¸‹åˆ—çš„ç¨‹å¼æ˜¯ä»€éº¼æ„æ€
 	/////////////////////////////////////////////////////////////////////////////
 
 	CMovingBitmap::CMovingBitmap()
@@ -157,7 +157,7 @@ namespace game_framework {
 	}
 
 	void CMovingBitmap::SetFrameIndexOfBitmap(int frameIndex) {
-		GAME_ASSERT(frameIndex < (int) surfaceID.size(), "¿ï¾Ü¹Ï¤ù®É¯Á¤Ş¥X¬É");
+		GAME_ASSERT(frameIndex < (int) surfaceID.size(), "é¸æ“‡åœ–ç‰‡æ™‚ç´¢å¼•å‡ºç•Œ");
 		this->frameIndex = frameIndex;
 	}
 
@@ -246,8 +246,8 @@ namespace game_framework {
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CTextDraw: The class provide the ability to draw the text.
-	// ³o­Ó class ´£¨Ñ¤å¦rªº§e²{
-	// ­nÀ´±o«ç»ò©I¥s(¹B¥Î)¨ä¦UºØ¯à¤O¡A¦ı¬O¥i¥H¤£À´¤U¦Cªºµ{¦¡¬O¤°»ò·N«ä
+	// é€™å€‹ class æä¾›æ–‡å­—çš„å‘ˆç¾
+	// è¦æ‡‚å¾—æ€éº¼å‘¼å«(é‹ç”¨)å…¶å„ç¨®èƒ½åŠ›ï¼Œä½†æ˜¯å¯ä»¥ä¸æ‡‚ä¸‹åˆ—çš„ç¨‹å¼æ˜¯ä»€éº¼æ„æ€
 	/////////////////////////////////////////////////////////////////////////////
 
 	void CTextDraw::Print(CDC *pDC, int x, int y, string str) {
