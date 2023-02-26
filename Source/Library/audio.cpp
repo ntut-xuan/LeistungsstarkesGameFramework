@@ -1,5 +1,5 @@
 /*
- * gamelib.cpp: ¥»ÀÉ®×Àx¦s¤ä´©¹CÀ¸¬ÛÃöªºclassªºimplementation
+ * gamelib.cpp: æœ¬æª”æ¡ˆå„²å­˜æ”¯æ´éŠæˆ²ç›¸é—œçš„classçš„implementation
  * Copyright (C) 2002-2012 Woei-Kae Chen <wkc@csie.ntut.edu.tw>
  *
  * This file is part of game, a free game development framework for windows.
@@ -67,8 +67,8 @@ namespace game_framework {
 
 /////////////////////////////////////////////////////////////////////////////
 // CAudio
-// ³o­Óclass´£¨Ñ­µ®Ä(Wave¤ÎMIDI)
-// ­nÀ´±o«ç»ò©I¥s(¹B¥Î)¨ä¦UºØ¯à¤O¡A¦ı¬O¥i¥H¤£À´¤U¦Cªºµ{¦¡¬O¤°»ò·N«ä
+// é€™å€‹classæä¾›éŸ³æ•ˆ(WaveåŠMIDI)
+// è¦æ‡‚å¾—æ€éº¼å‘¼å«(é‹ç”¨)å…¶å„ç¨®èƒ½åŠ›ï¼Œä½†æ˜¯å¯ä»¥ä¸æ‡‚ä¸‹åˆ—çš„ç¨‹å¼æ˜¯ä»€éº¼æ„æ€
 // Note: The following memebers of CAudio are designed to be graceful so
 //    that the game does not break down, when NO audio device is ready.
 /////////////////////////////////////////////////////////////////////////////

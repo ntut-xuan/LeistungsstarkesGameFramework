@@ -1,5 +1,5 @@
 /*
- * gamelib.h: ¥»ÀÉ®×Àx¹CÀ¸¬ÛÃöªºclassªºinterface
+ * gamelib.h: æœ¬æª”æ¡ˆå„²éŠæˆ²ç›¸é—œçš„classçš„interface
  * Copyright (C) 2002-2008 Woei-Kae Chen <wkc@csie.ntut.edu.tw>
  *
  * This file is part of game, a free game development framework for windows.
@@ -74,8 +74,8 @@ using namespace std;
 namespace game_framework {
 
 	/////////////////////////////////////////////////////////////////////////////
-	// ³o­Óclass´£¨Ñ°ÊºA(¥i¥H²¾°Ê)ªº¹Ï§Î
-	// ¨C­ÓPublic Interfaceªº¥Îªk³£­nÀ´¡AImplementation¥i¥H¤£À´
+	// é€™å€‹classæä¾›å‹•æ…‹(å¯ä»¥ç§»å‹•)çš„åœ–å½¢
+	// æ¯å€‹Public Interfaceçš„ç”¨æ³•éƒ½è¦æ‡‚ï¼ŒImplementationå¯ä»¥ä¸æ‡‚
 	/////////////////////////////////////////////////////////////////////////////
 
 	class CMovingBitmap {
@@ -83,10 +83,10 @@ namespace game_framework {
 		CMovingBitmap();
 
 		/* The function for loading the bitmap. */
-		void  LoadBitmap(int, COLORREF = CLR_INVALID);		// ¸ü¤J¹Ï¡A«ü©w¹Ïªº½s¸¹(resource)¤Î³z©ú¦â
-		void  LoadBitmap(char*, COLORREF = CLR_INVALID);	// ¸ü¤J¹Ï¡A«ü©w¹ÏªºÀÉ¦W¤Î³z©ú¦â
-		void  LoadBitmap(vector<char*>, COLORREF = CLR_INVALID);	// ¸ü¤J¹Ï¡A«ü©w¹ÏªºÀÉ¦W¤Î³z©ú¦â
-		void  LoadBitmapByString(vector<string>, COLORREF = CLR_INVALID);	// ¸ü¤J¹Ï¡A«ü©w¹ÏªºÀÉ¦W¤Î³z©ú¦â
+		void  LoadBitmap(int, COLORREF = CLR_INVALID);		// è¼‰å…¥åœ–ï¼ŒæŒ‡å®šåœ–çš„ç·¨è™Ÿ(resource)åŠé€æ˜è‰²
+		void  LoadBitmap(char*, COLORREF = CLR_INVALID);	// è¼‰å…¥åœ–ï¼ŒæŒ‡å®šåœ–çš„æª”ååŠé€æ˜è‰²
+		void  LoadBitmap(vector<char*>, COLORREF = CLR_INVALID);	// è¼‰å…¥åœ–ï¼ŒæŒ‡å®šåœ–çš„æª”ååŠé€æ˜è‰²
+		void  LoadBitmapByString(vector<string>, COLORREF = CLR_INVALID);	// è¼‰å…¥åœ–ï¼ŒæŒ‡å®šåœ–çš„æª”ååŠé€æ˜è‰²
 		void  LoadEmptyBitmap(int height, int weight);
 		
 		/* Unshow the bitmap. */
@@ -95,11 +95,11 @@ namespace game_framework {
 		/* Setter */
 		void  SetAnimation(int delay, bool _once);
 		void  SetFrameIndexOfBitmap(int frame);
-		void  SetTopLeft(int, int);			// ±N¹Ïªº¥ª¤W¨¤®y¼Ğ²¾¦Ü (x,y)
+		void  SetTopLeft(int, int);			// å°‡åœ–çš„å·¦ä¸Šè§’åº§æ¨™ç§»è‡³ (x,y)
 
 		/* Show the bitmap with or without factor. */
-		void  ShowBitmap();					// ±N¹Ï¶K¨ì¿Ã¹õ
-		void  ShowBitmap(double factor);	// ±N¹Ï¶K¨ì¿Ã¹õ factor < 1®ÉÁY¤p¡A>1®É©ñ¤j¡Cª`·N¡G»İ­nVGA¥dµwÅéªº¤ä´©¡A§_«h·|«ÜºC
+		void  ShowBitmap();					// å°‡åœ–è²¼åˆ°è¢å¹•
+		void  ShowBitmap(double factor);	// å°‡åœ–è²¼åˆ°è¢å¹• factor < 1æ™‚ç¸®å°ï¼Œ>1æ™‚æ”¾å¤§ã€‚æ³¨æ„ï¼šéœ€è¦VGAå¡ç¡¬é«”çš„æ”¯æ´ï¼Œå¦å‰‡æœƒå¾ˆæ…¢
 		
 		/* Getter */
 		int   GetFrameIndexOfBitmap();

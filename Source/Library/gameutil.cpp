@@ -25,11 +25,20 @@ namespace game_framework {
 	// 要懂得怎麼呼叫(運用)其各種能力，但是可以不懂下列的程式是什麼意思
 	/////////////////////////////////////////////////////////////////////////////
 
+	//! CMovingBitmap 建構子
+	/*! 
+		用於創立一個尚未讀取圖片的物件。
+	*/
 	CMovingBitmap::CMovingBitmap()
 	{
 		isBitmapLoaded = false;
 	}
 
+	//! 取得 CMovingBitmap 物件的圖片高度。
+	/*!
+		需要先載入圖片。
+		\return 圖片高度，以像素為單位。
+	*/
 	int CMovingBitmap::GetHeight()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Height() is called !!!");
