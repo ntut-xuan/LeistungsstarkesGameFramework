@@ -30,13 +30,13 @@ namespace game_framework {
 		isBitmapLoaded = false;
 	}
 
-	int CMovingBitmap::Height()
+	int CMovingBitmap::GetHeight()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Height() is called !!!");
 		return location.bottom - location.top;
 	}
 
-	int CMovingBitmap::Left()
+	int CMovingBitmap::GetLeft()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Left() is called !!!");
 		return location.left;
@@ -44,42 +44,38 @@ namespace game_framework {
 
 	void CMovingBitmap::LoadBitmap(int IDB_BITMAP, COLORREF color)
 	{
-		const int nx = 0;
-		const int ny = 0;
-
-		GAME_ASSERT(!isBitmapLoaded, "A bitmap has been loaded. You can not load another bitmap !!!");
 		CBitmap bitmap;
 		BOOL rval = bitmap.LoadBitmap(IDB_BITMAP);
 		GAME_ASSERT(rval, "Load bitmap failed !!! Please check bitmap ID (IDB_XXX).");
 		BITMAP bitmapSize;
 		bitmap.GetBitmap(&bitmapSize);
-		location.left = nx; location.top = ny;
-		location.right = nx + bitmapSize.bmWidth;
-		location.bottom = ny + bitmapSize.bmHeight;
-		SurfaceID.push_back(CDDraw::RegisterBitmap(IDB_BITMAP, color));
+		
+		InitializeRectByBITMAP(bitmapSize);
+
+		surfaceID.push_back(CDDraw::RegisterBitmap(IDB_BITMAP, color));
+		filterColor = color;
 		isBitmapLoaded = true;
 	}
 
 	void CMovingBitmap::LoadBitmap(char *filename, COLORREF color)
 	{
-		const int nx = 0;
-		const int ny = 0;
-
-		GAME_ASSERT(!isBitmapLoaded, "A bitmap has been loaded. You can not load another bitmap !!!");
-
 		HBITMAP hbitmap = (HBITMAP)LoadImage(NULL, filename, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+
 		if (hbitmap == NULL) {
 			char error_msg[300];
 			sprintf(error_msg, "Loading bitmap	from file \"%s\" failed !!!", filename);
 			GAME_ASSERT(false, error_msg);
 		}
+
 		CBitmap *bmp = CBitmap::FromHandle(hbitmap); // memory will be deleted automatically
 		BITMAP bitmapSize;
 		bmp->GetBitmap(&bitmapSize);
-		location.left = nx; location.top = ny;
-		location.right = nx + bitmapSize.bmWidth;
-		location.bottom = ny + bitmapSize.bmHeight;
-		SurfaceID.push_back(CDDraw::RegisterBitmap(filename, color));
+
+		InitializeRectByBITMAP(bitmapSize);
+
+		surfaceID.push_back(CDDraw::RegisterBitmap(filename, color));
+		imageFileName = string(filename);
+		filterColor = color;
 		isBitmapLoaded = true;
 
 		bmp->DeleteObject();
@@ -101,10 +97,8 @@ namespace game_framework {
 	}
 
 	void CMovingBitmap::LoadEmptyBitmap(int height, int width) {
-		const int nx = 0;
-		const int ny = 0;
-
 		HBITMAP hbitmap = CreateBitmap(width, height, 1, 32, NULL);
+		CBitmap *bmp = CBitmap::FromHandle(hbitmap); // memory will be deleted automatically
 
 		/* Fill white color to bitmap */
 		HDC hdc = CreateCompatibleDC(NULL);
@@ -113,16 +107,12 @@ namespace game_framework {
 		SelectObject(hdc, hOldBitmap);
 		DeleteDC(hdc);
 
-		CBitmap *bmp = CBitmap::FromHandle(hbitmap); // memory will be deleted automatically
 		BITMAP bitmapSize;
 		bmp->GetBitmap(&bitmapSize);
 
-		location.left = nx; 
-		location.top = ny;
-		location.right = nx + width;
-		location.bottom = ny + height;
+		InitializeRectByBITMAP(bitmapSize);
 
-		SurfaceID.push_back(CDDraw::RegisterBitmapWithHBITMAP(hbitmap));
+		surfaceID.push_back(CDDraw::RegisterBitmapWithHBITMAP(hbitmap));
 		isBitmapLoaded = true;
 
 		bmp->DeleteObject();
@@ -146,85 +136,112 @@ namespace game_framework {
 		location.bottom -= dy;
 	}
 
-	void CMovingBitmap::SetAnimation(int delay, bool _once) {
-		if(!_once) isAnimation = true;
-		once = _once;
+	void CMovingBitmap::SetAnimation(int delay, bool once) {
+		if(!once) isAnimation = true;
+		isOnce = once;
 		delayCount = delay;
 	}
 
 	void CMovingBitmap::ShowBitmap()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
-		CDDraw::BltBitmapToBack(SurfaceID[selector], location.left, location.top);
-		if (isAnimation == true && clock() - last_time >= delayCount) {
-			selector += 1;
-			last_time = clock();
-			if (selector == SurfaceID.size() && animationCount > 0) {
-				animationCount -= 1;
-			}
-			if (selector == SurfaceID.size() && (once || animationCount == 0)) {
-				isAnimation = false;
-				isAnimationDone = true;
-				selector = SurfaceID.size() - 1;
-				return;
-			}
-			selector = selector % SurfaceID.size();
-		}
+		CDDraw::BltBitmapToBack(surfaceID[frameIndex], location.left, location.top);
+		ShowBitmapBySetting();
 	}
 
 	void CMovingBitmap::ShowBitmap(double factor)
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
-		CDDraw::BltBitmapToBack(SurfaceID[selector], location.left, location.top, factor);
-		if (isAnimation == true && clock() - last_time >= delayCount) {
-			selector += 1;
-			last_time = clock();
-			if (selector == SurfaceID.size() && animationCount > 0) {
-				animationCount -= 1;
-			}
-			if (selector == SurfaceID.size() && (once || animationCount == 0)) {
-				isAnimation = false;
-				isAnimationDone = true;
-				selector = SurfaceID.size() - 1;
-				return;
-			}
-			selector = selector % SurfaceID.size();
-		}
+		CDDraw::BltBitmapToBack(surfaceID[frameIndex], location.left, location.top, factor);
+		ShowBitmapBySetting();
 	}
 
-	void CMovingBitmap::SelectShowBitmap(int _select) {
-		GAME_ASSERT(_select < (int) SurfaceID.size(), "選擇圖片時索引出界");
-		selector = _select;
+	void CMovingBitmap::SetFrameIndexOfBitmap(int frameIndex) {
+		GAME_ASSERT(frameIndex < (int) surfaceID.size(), "選擇圖片時索引出界");
+		this->frameIndex = frameIndex;
 	}
 
-	int CMovingBitmap::GetSelectShowBitmap() {
-		return selector;
+	int CMovingBitmap::GetFrameIndexOfBitmap() {
+		return frameIndex;
 	}
 
-	int CMovingBitmap::Top()
+	int CMovingBitmap::GetTop()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Top() is called !!!");
 		return location.top;
 	}
 
-	int CMovingBitmap::Width()
+	int CMovingBitmap::GetWidth()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Width() is called !!!");
 		return location.right - location.left;
 	}
 
 	void CMovingBitmap::ToggleAnimation() {
-		selector = 0;
+		frameIndex = 0;
 		isAnimation = true;
 		isAnimationDone = false;
+	}
+
+	bool CMovingBitmap::IsAnimation() {
+		return isAnimation;
 	}
 
 	bool CMovingBitmap::IsAnimationDone() {
 		return isAnimationDone;
 	}
 
-	int CMovingBitmap::GetMovingBitmapFrame() {
-		return (int) SurfaceID.size();
+	bool CMovingBitmap::IsOnceAnimation() {
+		return isOnce;
+	}
+
+	bool CMovingBitmap::IsBitmapLoaded() {
+		return isBitmapLoaded;
+	}
+
+	int CMovingBitmap::GetFrameSizeOfBitmap() {
+		return (int) surfaceID.size();
+	}
+
+	void CMovingBitmap::InitializeRectByBITMAP(BITMAP bitmapSize) {
+		const unsigned NX = 0;
+		const unsigned NY = 0;
+
+		location.left = NX;
+		location.top = NY;
+		location.right = NX + bitmapSize.bmWidth;
+		location.bottom = NY + bitmapSize.bmHeight;
+	}
+
+	void CMovingBitmap::ShowBitmapBySetting() {
+		if (isAnimation == true && clock() - last_time >= delayCount) {
+			frameIndex += 1;
+			last_time = clock();
+			if (frameIndex == surfaceID.size() && animationCount > 0) {
+				animationCount -= 1;
+			}
+			if (frameIndex == surfaceID.size() && (isOnce || animationCount == 0)) {
+				isAnimation = false;
+				isAnimationDone = true;
+				frameIndex = surfaceID.size() - 1;
+				return;
+			}
+			frameIndex = frameIndex % surfaceID.size();
+		}
+	}
+
+	string CMovingBitmap::GetImageFileName() {
+		return imageFileName;
+	}
+
+	COLORREF CMovingBitmap::GetFilterColor() {
+		return filterColor;
+	}
+
+	bool CMovingBitmap::IsOverlap(CMovingBitmap bmp1, CMovingBitmap bmp2) {
+		CRect rect;
+		BOOL isOverlap = rect.IntersectRect(bmp1.location, bmp2.location);
+		return isOverlap;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -239,13 +256,15 @@ namespace game_framework {
 		pDC->TextOut(x, y, str.c_str());
 	}
 
-	void CTextDraw::ChangeFontLog(CDC* pDC, CFont* &fp, int size, string fontName, int weight) {
+	void CTextDraw::ChangeFontLog(CDC *pDC, int size, string fontName, COLORREF fontColor, int weight) {
+		CFont* fp;
+
 		pDC->SetBkMode(TRANSPARENT);
-		pDC->SetTextColor(RGB(255, 255, 255));
+		pDC->SetTextColor(fontColor);
 		LOGFONT lf;
 		CFont f;
 		memset(&lf, 0, sizeof(lf));
-		lf.lfHeight = size;
+		lf.lfHeight = -MulDiv(size, GetDeviceCaps(pDC->GetSafeHdc(), LOGPIXELSY), 96);
 		lf.lfWeight = weight;
 		strcpy(lf.lfFaceName, fontName.c_str());
 		f.CreateFontIndirect(&lf);
