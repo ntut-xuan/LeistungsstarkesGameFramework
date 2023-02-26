@@ -81,42 +81,69 @@ namespace game_framework {
 	class CMovingBitmap {
 	public:
 		CMovingBitmap();
-		int   Height();						// 取得圖形的高度
-		int   Left();						// 取得圖形的左上角的 x 座標
-		void  SetAnimation(int delay, bool _once);
+
+		/* The function for loading the bitmap. */
 		void  LoadBitmap(int, COLORREF = CLR_INVALID);		// 載入圖，指定圖的編號(resource)及透明色
 		void  LoadBitmap(char*, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
 		void  LoadBitmap(vector<char*>, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
 		void  LoadBitmapByString(vector<string>, COLORREF = CLR_INVALID);	// 載入圖，指定圖的檔名及透明色
+		void  LoadEmptyBitmap(int height, int weight);
+		
+		/* Unshow the bitmap. */
 		void  UnshowBitmap();
+
+		/* Setter */
+		void  SetAnimation(int delay, bool _once);
+		void  SetFrameIndexOfBitmap(int frame);
 		void  SetTopLeft(int, int);			// 將圖的左上角座標移至 (x,y)
+
+		/* Show the bitmap with or without factor. */
 		void  ShowBitmap();					// 將圖貼到螢幕
 		void  ShowBitmap(double factor);	// 將圖貼到螢幕 factor < 1時縮小，>1時放大。注意：需要VGA卡硬體的支援，否則會很慢
-		void  SelectShowBitmap(int select);
-		int   GetSelectShowBitmap();
-		void  ToggleAnimation();
-		int   Top();						// 取得圖形的左上角的 y 座標
-		int   Width();						// 取得圖形的寬度
+		
+		/* Getter */
+		int   GetFrameIndexOfBitmap();
+		int   GetFrameSizeOfBitmap();
+		int   GetTop();
+		int   GetLeft();
+		int   GetHeight();
+		int   GetWidth();
+		string GetImageFileName();
+		COLORREF GetFilterColor();
+
+		/* Is function */
+		bool  IsAnimation();
 		bool  IsAnimationDone();
-		int   GetMovingBitmapFrame();
-		void  LoadEmptyBitmap(int height, int weight);
+		bool  IsBitmapLoaded();
+		bool  IsOnceAnimation();
+		static bool IsOverlap(CMovingBitmap bmp1, CMovingBitmap bmp2);
+		
+		/* Toggle function */
+		void  ToggleAnimation();
+
 	protected:
-		int selector = 0;
+		int frameIndex = 0;
 		int delayCount = 10;
 		int animationCount = -1;
-		clock_t last_time = clock();
 		bool isAnimation = false;
 		bool isAnimationDone = true;
-		bool once = false;
-		vector<unsigned> SurfaceID;
-		bool     isBitmapLoaded = false;	// whether a bitmap has been loaded
+		bool isBitmapLoaded = false;	// whether a bitmap has been loaded
+		bool isOnce = false;
 		CRect    location;			// location of the bitmap
+		vector<unsigned> surfaceID;
+		clock_t last_time = clock();
+		string   imageFileName = "";
+		COLORREF filterColor = CLR_INVALID;
+
+	private:
+		void InitializeRectByBITMAP(BITMAP bitmap);
+		void ShowBitmapBySetting();
 	};
 
 	class CTextDraw {
 	public:
-		void static Print(CDC *pDC, int x, int y, string str);
-		void static ChangeFontLog(CDC* pDC, CFont* &fp, int size, string fontName, int weight = 500);
+		void static Print(CDC *pdc, int x, int y, string str);
+		void static ChangeFontLog(CDC *pdc, int size, string fontName, COLORREF fontColor, int weight = 500);
 	};
 
 }
