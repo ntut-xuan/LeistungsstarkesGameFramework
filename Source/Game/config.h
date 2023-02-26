@@ -1,19 +1,33 @@
 /////////////////////////////////////////////////////////////////////////////
-// ©w¸q¹CÀ¸¥i³]©wªºÀô¹Ò»P±ø¥ó
+// å®šç¾©éŠæˆ²å¯è¨­å®šçš„ç’°å¢ƒèˆ‡æ¢ä»¶
 /////////////////////////////////////////////////////////////////////////////
 
 #define GAME_TITLE           "Game"
-#define SIZE_X				 1400		// ³]©w¹CÀ¸µe­±ªº¸ÑªR«×¬°640x480
-#define SIZE_Y				 900		// µù¡G­Y¤£¨Ï¥Î¼Ğ·Çªº¸ÑªR«×¡A«h¤£¯à¤Á´«¨ì¥ş¿Ã¹õ
-#define OPEN_AS_FULLSCREEN	 false		// ¬O§_¥H¥ş¿Ã¹õ¤è¦¡¶}±Ò¹CÀ¸
-#define SHOW_LOAD_PROGRESS   true		// ¬O§_Åã¥Üloading(OnInit)ªº¶i«×
-#define DEFAULT_BG_COLOR	 RGB(0, 0, 0)	// ¹CÀ¸µe­±¹w³]ªº­I´ºÃC¦â(¶Â¦â)
-#define GAME_CYCLE_TIME		 15		    // ¨C33ms¶]¤@¦¸Move¤ÎShow(¨C¬í30¦¸)
-#define SHOW_GAME_CYCLE_TIME false		// ¬O§_¦bdebug modeÅã¥Ücycle time
-#define ENABLE_GAME_PAUSE	 false		// ¬O§_¤¹³\¥H Ctrl-Q ¼È°±¹CÀ¸
-#define ENABLE_AUDIO		 true		// ±Ò°Ê­µ®Ä¤¶­±
-#define ENABLE_TOOLBAR       false      // ¬O§_Ãö³¬ toolbar
-#define ENABLE_MENU          false      // ¬O§_Ãö³¬ menu
-#define ENABLE_STATUSBAR     false      // ¬O§_Ãö³¬ statusbar
-#define RESOLUTION_X     1920           // ¥ş¿Ã¹õ¥Î¡A½Ğ³]©w¦¨¥Ø«eµøµ¡ªº¸ÑªR«× (width)¡C
-#define RESOLUTION_Y     1080           // ¥ş¿Ã¹õ¥Î¡A½Ğ³]©w¦¨¥Ø«eµøµ¡ªº¸ÑªR«× (height)¡C
+//! è¨­å®šéŠæˆ²ç•«é¢çš„è§£æåº¦ï¼ˆå¯¬åº¦ï¼‰
+#define SIZE_X				 1400	
+//! è¨­å®šéŠæˆ²ç•«é¢çš„è§£æåº¦ï¼ˆé«˜åº¦ï¼‰
+#define SIZE_Y				 900
+//! æ˜¯å¦ä»¥å…¨è¢å¹•æ–¹å¼é–‹å•ŸéŠæˆ²
+#define OPEN_AS_FULLSCREEN	 false		
+//! æ˜¯å¦é¡¯ç¤ºloading(OnInit)çš„é€²åº¦
+#define SHOW_LOAD_PROGRESS   true		
+// éŠæˆ²ç•«é¢é è¨­çš„èƒŒæ™¯é¡è‰²(é»‘è‰²)
+#define DEFAULT_BG_COLOR	 RGB(0, 0, 0)	
+//! æ¯33msè·‘ä¸€æ¬¡MoveåŠShow(æ¯ç§’30æ¬¡)
+#define GAME_CYCLE_TIME		 15		    
+//! æ˜¯å¦åœ¨debug modeé¡¯ç¤ºcycle time
+#define SHOW_GAME_CYCLE_TIME false		
+//! æ˜¯å¦å…è¨±ä»¥ Ctrl-Q æš«åœéŠæˆ²
+#define ENABLE_GAME_PAUSE	 false		
+//! å•Ÿå‹•éŸ³æ•ˆä»‹é¢
+#define ENABLE_AUDIO		 true		
+ //! æ˜¯å¦é—œé–‰ toolbar
+#define ENABLE_TOOLBAR       false     
+//! æ˜¯å¦é—œé–‰ menu
+#define ENABLE_MENU          false      
+//! æ˜¯å¦é—œé–‰ statusbar
+#define ENABLE_STATUSBAR     false      
+//! å…¨è¢å¹•ç”¨ï¼Œè«‹è¨­å®šæˆç›®å‰è¦–çª—çš„è§£æåº¦ (width)ã€‚
+#define RESOLUTION_X     1920           
+//! å…¨è¢å¹•ç”¨ï¼Œè«‹è¨­å®šæˆç›®å‰è¦–çª—çš„è§£æåº¦ (height)ã€‚
+#define RESOLUTION_Y     1080          
