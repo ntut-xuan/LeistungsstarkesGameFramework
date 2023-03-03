@@ -12,15 +12,21 @@ enum DamageType
 class Throwable : public GameObject
 {
 private:
-    pair<float, float> moveDirection;
-    float speed = 0;
-    float existTime = 0;
-    float damage = 0;
-    int maxPop = 0;
-    int poped = 0;
-    DamageType damageType;
+    pair<float, float> _moveDirection;
+    float _speed = 0;
+    float _existTime = 0;
+    float _damage = 0;
+    int _maxPop = 0;
+    int _poped = 0;
+    DamageType _damageType;
 
 public:
+    Throwable()
+    {
+        _moveDirection.first = 1;
+        _moveDirection.second = 1;
+    }
+
     pair<float, float> GetMoveDirection();
     void Update() override; //override
     void Move();

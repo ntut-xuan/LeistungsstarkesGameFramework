@@ -6,18 +6,24 @@ void Throwable::Update()
 {
     if (GetActive())
     {
-        Move();
+        // Move();
     }
 }
 
 float Throwable::GetSpeed()
 {
-    return speed;
+    return _speed;
 }
+
+pair<float, float> Throwable::GetMoveDirection()
+{
+    return _moveDirection;
+}
+
 
 void Throwable::Move()
 {
-    pair<float, float> moveDirection = GetMoveDirection();
+    std::pair<float, float> moveDirection = GetMoveDirection();
     float speed = GetSpeed();
     pair<float, float> dletaMove;
     dletaMove.first = moveDirection.first * speed;
