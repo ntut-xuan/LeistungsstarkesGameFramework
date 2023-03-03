@@ -22,7 +22,7 @@ private:
 
 public:
     pair<float, float> GetMoveDirection();
-    void Update();
+    void Update() override; //override
     void Move();
     float GetSpeed();
 };

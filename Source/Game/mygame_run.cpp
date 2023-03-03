@@ -68,3 +68,12 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動
 void CGameStateRun::OnShow()
 {
 }
+void CGameStateRun::UnitTest()
+{
+	switch (unitTestState)
+	{
+	case throwable:
+		break;
+	}
+}
+

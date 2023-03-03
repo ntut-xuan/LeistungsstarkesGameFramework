@@ -26,3 +26,5 @@ void Throwable::Move()
     int left = GetLeft() + static_cast<int>(dletaMove.first);
     SetTopLeft(left, top);
 }
+
+//TODO check touch baloon

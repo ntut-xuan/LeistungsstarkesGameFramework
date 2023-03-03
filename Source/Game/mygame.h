@@ -49,6 +49,11 @@ namespace game_framework {
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
 	};
+	enum UnitTestState
+	{
+		throwable,
+		
+	};
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
@@ -73,6 +78,7 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
+	//this is game manager
 	class CGameStateRun : public CGameState {
 	public:
 		CGameStateRun(CGame *g);
@@ -86,6 +92,8 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		UnitTestState unitTestState= throwable;
+		void UnitTest();
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
