@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Library/gameutil.h"
 
-namespace btd
+namespace Btd
 {
     class GameObject : public game_framework::CMovingBitmap
     {
@@ -10,7 +10,8 @@ namespace btd
         string _tag = "default";
 
     public:
-        void Update(); //todo virtual
+        virtual ~GameObject() = default;
+        virtual void Update() = 0;
         void SetActive(bool active);
         bool GetActive();
         void SetTag(string tag);

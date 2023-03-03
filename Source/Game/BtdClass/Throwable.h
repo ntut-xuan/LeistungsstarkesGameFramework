@@ -2,13 +2,13 @@
 #include "GameObject.h"
 #include "../../Library/gameutil.h"
 
-namespace btd
+namespace Btd
 {
     enum DamageType
     {
-        ice,
-        boom,
-        normal
+        Ice,
+        Boom,
+        Normal
     };
 
     class Throwable : public GameObject
@@ -25,7 +25,7 @@ namespace btd
     public:
         pair<float, float> GetMoveDirection();
 
-        void Update()
+        void Update() override
         {
             if (GetActive())
             {

@@ -38,7 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
-
+#pragma once
 #include "BtdClass/Throwable.h"
 
 namespace game_framework
@@ -102,8 +102,8 @@ namespace game_framework
         void OnMouseMove(UINT nFlags, CPoint point) override; // 處理滑鼠的動作 
         void OnRButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
-        UnitTestState unitTestState = UnitTestState::throwable;
-        btd::Throwable throwable;
+        UnitTestState UNIT_TEST_STATE = UnitTestState::throwable;
+        Btd::Throwable THROWABLE;
         void UnitTest();
         void UnitInit();
         void UnitShow();

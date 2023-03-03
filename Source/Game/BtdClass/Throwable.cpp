@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Throwable.h"
 
-namespace btd
+namespace Btd
 {
     // void Throwable::SetSpeed(float speed) {
     //     _speed = speed;

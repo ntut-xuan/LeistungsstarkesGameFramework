@@ -69,23 +69,24 @@ void CGameStateRun::OnShow()
 
 void CGameStateRun::UnitInit()
 {
-    switch (unitTestState)
+    switch (UNIT_TEST_STATE)
     {
     case UnitTestState::throwable:
-        throwable.LoadEmptyBitmap(100, 100);
-        throwable.SetTopLeft(0, 0);
-        throwable.SetSpeed(1);
-        throwable.SetMoveDirection(1, 1);
+        THROWABLE.LoadEmptyBitmap(100, 100);
+        THROWABLE.SetTopLeft(0, 0);
+        THROWABLE.SetSpeed(1);
+        THROWABLE.SetMoveDirection(1, 1);
         break;
     case dart:
         break;
-    default: ;
+    default:
+        break;
     }
 }
 
 void CGameStateRun::UnitTest()
 {
-    switch (unitTestState)
+    switch (UNIT_TEST_STATE)
     {
     case UnitTestState::throwable:
         // throwable.Move();
@@ -98,13 +99,14 @@ void CGameStateRun::UnitTest()
 
 void CGameStateRun::UnitShow()
 {
-    switch (unitTestState)
+    switch (UNIT_TEST_STATE)
     {
     case UnitTestState::throwable:
-        throwable.ShowBitmap();
+        THROWABLE.ShowBitmap();
         break;
     case dart:
         break;
-    default: ;
+    default:
+        break;
     }
 }

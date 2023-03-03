@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
-namespace btd
+namespace Btd
 {
     void GameObject::SetActive(bool active)
     {
