@@ -13,7 +13,7 @@ using namespace game_framework;
 // 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateRun::CGameStateRun(CGame *g) : CGameState(g)
+CGameStateRun::CGameStateRun(CGame* g) : CGameState(g)
 {
 }
 
@@ -25,55 +25,86 @@ void CGameStateRun::OnBeginState()
 {
 }
 
-void CGameStateRun::OnMove()							// 移動遊戲元素
+void CGameStateRun::OnMove() // 移動遊戲元素
 {
-	
 }
 
-void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
+void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-	
+    UnitInit();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	
 }
 
-void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
 }
 
-void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
 }
 
-void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
 }
 
-void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
+void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
 }
 
-void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
+void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
 }
 
 void CGameStateRun::OnShow()
 {
-}
-void CGameStateRun::UnitTest()
-{
-	switch (unitTestState)
-	{
-	case throwable:
-		break;
-	}
+    UnitShow();
 }
 
+void CGameStateRun::UnitInit()
+{
+    switch (unitTestState)
+    {
+    case UnitTestState::throwable:
+        throwable.LoadEmptyBitmap(100, 100);
+        throwable.SetTopLeft(0, 0);
+        throwable.SetSpeed(1);
+        throwable.SetMoveDirection(1, 1);
+        break;
+    case dart:
+        break;
+    default: ;
+    }
+}
+
+void CGameStateRun::UnitTest()
+{
+    switch (unitTestState)
+    {
+    case UnitTestState::throwable:
+        // throwable.Move();
+        break;
+    case dart:
+        break;
+    default: ;
+    }
+}
+
+void CGameStateRun::UnitShow()
+{
+    switch (unitTestState)
+    {
+    case UnitTestState::throwable:
+        throwable.ShowBitmap();
+        break;
+    case dart:
+        break;
+    default: ;
+    }
+}
