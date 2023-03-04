@@ -65,8 +65,23 @@ void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 }
 
+void showInfoText() {
+	CDC *pDC = CDDraw::GetBackCDC();
+	CTextDraw::ChangeFontLog(pDC, 26, "Courier New", RGB(255, 255, 255), 620);
+	CTextDraw::Print(pDC, 749, 25, "Round:   1");
+	CTextDraw::Print(pDC, 749, 61, "Money: 650");
+	CTextDraw::Print(pDC, 749, 97, "Lives:  40");
+
+	CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
+	CTextDraw::Print(pDC, 749, 152, "Build Towers");
+	CTextDraw::Print(pDC, 749, 152, "____________");
+
+	CDDraw::ReleaseBackCDC();
+}
+
 void CGameStateInit::OnShow()
 {
 	background.ShowBitmap();
 	startButton.ShowBitmap();
+	showInfoText();
 }
