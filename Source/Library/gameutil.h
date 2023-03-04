@@ -66,6 +66,8 @@
 // Header for STL (Standard Template Library)
 /////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
 #include <list>
 #include <vector>
 #include <map>
@@ -116,7 +118,6 @@ namespace game_framework {
 		bool  IsAnimationDone();
 		bool  IsBitmapLoaded();
 		bool  IsOnceAnimation();
-		bool  IsClicked();
 		static bool IsOverlap(CMovingBitmap bmp1, CMovingBitmap bmp2);
 		
 		/* Toggle function */

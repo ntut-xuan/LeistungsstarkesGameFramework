@@ -33,7 +33,7 @@ void CGameStateInit::OnInit()
 	background.LoadBitmapByString({ "resources/map.bmp" });
 	background.SetTopLeft(0, 0);
 	startButton.LoadBitmapByString({ "resources/start_button.bmp" });
-	startButton.SetTopLeft(809, 667);
+	startButton.SetTopLeft(742, 620);
 }
 
 void CGameStateInit::OnBeginState()
@@ -44,9 +44,23 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 }
 
+bool isPointInBmp(POINT p, CMovingBitmap target) 
+{
+	if (target.GetLeft() <= p.x && p.x <= target.GetLeft() + target.GetWidth() &&
+		target.GetTop() <= p.y && p.y <= target.GetTop() + target.GetHeight()) {
+		return true;
+	}
+	return false;
+}
+
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	if (startButton.IsClicked()) {
+	POINT p;
+	GetCursorPos(&p);
+	HWND hwnd = FindWindowA(NULL, "Game");
+	ScreenToClient(hwnd, &p);
+
+	if (isPointInBmp(p, startButton)) {
 		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
 	}
 }
