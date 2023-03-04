@@ -48,7 +48,7 @@
  *         slow down is more obvious in Win7 64 bit version; in WinXP, the slow down cannot
  *         be observed.
 */
-
+#pragma once
 #include "stdafx.h"
 #include "../Core/Game.h"
 #include "../Core/gameDoc.h"
