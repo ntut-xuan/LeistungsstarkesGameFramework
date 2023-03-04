@@ -365,6 +365,18 @@ namespace game_framework {
 		return filterColor;
 	}
 
+	bool CMovingBitmap::IsClicked() {
+		POINT p;
+		GetCursorPos(&p);
+		HWND hwnd = FindWindowA(NULL, "Game");
+		ScreenToClient(hwnd, &p);
+		if (GetLeft() <= p.x && p.x <= GetLeft() + GetWidth() &&
+			GetTop() <= p.y && p.y <= GetTop() + GetHeight()) {
+			return true;
+		}
+		return false;
+	}
+
 	//! 兩物件是否交疊。
 	/*!
 		\param bmp1 第一個 CMovingBitmap 物件
