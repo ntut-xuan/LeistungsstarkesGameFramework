@@ -14,7 +14,7 @@ namespace Btd
     class Throwable : public GameObject
     {
     private:
-        pair<float, float> _moveDirection;
+        Vector2 _moveDirection;
         float _speed = 0;
         float _existTime = 0;
         float _damage = 0;
@@ -23,7 +23,7 @@ namespace Btd
         DamageType _damageType;
 
     public:
-        pair<float, float> GetMoveDirection();
+        Vector2 GetMoveDirection() const;
 
         void Update() override
         {

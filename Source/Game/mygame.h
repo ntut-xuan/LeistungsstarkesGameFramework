@@ -60,7 +60,7 @@ namespace game_framework
     enum UnitTestState
     {
         throwable,
-        dart
+        dart,
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -102,8 +102,9 @@ namespace game_framework
         void OnMouseMove(UINT nFlags, CPoint point) override; // 處理滑鼠的動作 
         void OnRButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
-        UnitTestState UNIT_TEST_STATE = UnitTestState::throwable;
+        UnitTestState UNIT_TEST_STATE = throwable;
         Btd::Throwable THROWABLE;
+        // std::vector<Btd::Bloon> bloonList;
         void UnitTest();
         void UnitInit();
         void UnitShow();

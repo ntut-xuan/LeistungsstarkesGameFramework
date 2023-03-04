@@ -27,6 +27,7 @@ void CGameStateRun::OnBeginState()
 
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
+    UnitTest();
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
@@ -71,14 +72,14 @@ void CGameStateRun::UnitInit()
 {
     switch (UNIT_TEST_STATE)
     {
-    case UnitTestState::throwable:
+    case throwable:
         THROWABLE.LoadEmptyBitmap(100, 100);
         THROWABLE.SetTopLeft(0, 0);
-        THROWABLE.SetSpeed(1);
+        THROWABLE.SetSpeed(2);
         THROWABLE.SetMoveDirection(1, 1);
-        break;
+    // break;
     case dart:
-        break;
+    // break;
     default:
         break;
     }
@@ -88,8 +89,8 @@ void CGameStateRun::UnitTest()
 {
     switch (UNIT_TEST_STATE)
     {
-    case UnitTestState::throwable:
-        // throwable.Move();
+    case throwable:
+        THROWABLE.Move();
         break;
     case dart:
         break;
@@ -101,7 +102,7 @@ void CGameStateRun::UnitShow()
 {
     switch (UNIT_TEST_STATE)
     {
-    case UnitTestState::throwable:
+    case throwable:
         THROWABLE.ShowBitmap();
         break;
     case dart:

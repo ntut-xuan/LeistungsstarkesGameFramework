@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Throwable.h"
 
+#include "BtdUtil.h"
+
 namespace Btd
 {
     // void Throwable::SetSpeed(float speed) {
@@ -14,24 +16,25 @@ namespace Btd
 
     void Throwable::SetMoveDirection(float x, float y)
     {
-        // _moveDirection = {x, y};
+        _moveDirection = Normailize(x, y);
     }
 
 
-    pair<float, float> Throwable::GetMoveDirection()
+    Vector2 Throwable::GetMoveDirection() const
     {
         return _moveDirection;
     }
 
+    /**
+     * \brief  if speed set 1 iw wont move
+     */
     void Throwable::Move()
     {
-        pair<float, float> moveDirection = GetMoveDirection();
+        Vector2 moveDirection = GetMoveDirection();
         float speed = GetSpeed();
-        pair<float, float> dletaMove;
-        dletaMove.first = moveDirection.first * speed;
-        dletaMove.second = moveDirection.second * speed;
-        int top = GetTop() + static_cast<int>(dletaMove.second);
-        int left = GetLeft() + static_cast<int>(dletaMove.first);
+        Vector2 deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
+        int top = GetTop() + static_cast<int>(deltaMove.Y);
+        int left = GetLeft() + static_cast<int>(deltaMove.X);
         SetTopLeft(left, top);
     }
 

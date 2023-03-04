@@ -261,6 +261,7 @@
     <ClInclude Include="Source\Core\MainFrm.h" />
     <ClInclude Include="Source\Core\Resource.h" />
     <ClInclude Include="Source\Core\StdAfx.h" />
+    <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
     <ClInclude Include="Source\Game\config.h" />
