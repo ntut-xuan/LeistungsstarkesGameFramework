@@ -76,3 +76,12 @@ void CGameStateRun::OnShow()
 	background.ShowBitmap();
 	test.ShowBitmap();
 }
+void CGameStateRun::UnitTest()
+{
+	switch (unitTestState)
+	{
+	case throwable:
+		break;
+	}
+}
+
