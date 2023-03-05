@@ -8,7 +8,8 @@ private:
     string _tag ="default";
 
 public:
-    virtual void Update();
+    //virtual void Update();
+	void Update();
     void SetActive(bool active);
     bool GetActive();
     void SetTag(string tag);

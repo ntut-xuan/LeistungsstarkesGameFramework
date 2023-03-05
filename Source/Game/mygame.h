@@ -38,6 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
+#include "BtdClass/GameObject.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -73,6 +74,8 @@ namespace game_framework {
 		CMovingBitmap logo;								// csie的logo
 		CMovingBitmap background;
 		CMovingBitmap startButton;
+		vector<GameObject> road;
+		void initRoad();
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

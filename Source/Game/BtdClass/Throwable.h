@@ -28,7 +28,7 @@ public:
     }
 
     pair<float, float> GetMoveDirection();
-    void Update() override; //override
+    void Update(); //override
     void Move();
     float GetSpeed();
 };

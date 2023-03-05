@@ -34,7 +34,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
 	background.LoadBitmapByString({ "resources/map.bmp" });
 	background.SetTopLeft(0, 0);
-	test.LoadBitmapByString({"resources/testRed.bmp"}, RGB(255, 255, 255));
+	test.LoadBitmapByString({"resources/tower_monkey.bmp"}, RGB(255, 255, 255));
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
