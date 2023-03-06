@@ -7,6 +7,7 @@
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 #include "mygame.h"
+#include "BtdClass/BtdUtil.h"
 
 using namespace game_framework;
 /////////////////////////////////////////////////////////////////////////////
@@ -95,25 +96,16 @@ void CGameStateInit::initRoad()
 {
 	char buff[100];
 	string roadFileName;
+	vector<Btd::Vector2> location{{0, 320}, {105, 124}, {170, 124},
+									{285, 190}, {285, 390}, {43, 510},
+									{43, 575}, {110, 636}, {620, 426},
+									{429, 428}, {429, 249}, {496, 249},
+									{622, 46}, {368, 48}, {368, 0}};
 	for (int i = 0; i < 15; i++) {
 		Btd::GameObject tmpRoad;
-		sprintf(buff, "resources/road_%d.bmp", i+1);
+		sprintf(buff, "resources/roads/road_%d.bmp", i+1);
 		tmpRoad.LoadBitmapByString({ buff });
+		tmpRoad.SetTopLeft((int)location[i].X, (int)location[i].Y);
 		road.push_back(tmpRoad);
 	}
-	road[0].SetTopLeft(0, 320);
-	road[1].SetTopLeft(105, 124);
-	road[2].SetTopLeft(170, 124);
-	road[3].SetTopLeft(285, 190);
-	road[4].SetTopLeft(285, 390);
-	road[5].SetTopLeft(43, 510);
-	road[6].SetTopLeft(43, 575);
-	road[7].SetTopLeft(110, 636);
-	road[8].SetTopLeft(620, 426);
-	road[9].SetTopLeft(429, 428);
-	road[10].SetTopLeft(429, 249);
-	road[11].SetTopLeft(496, 249);
-	road[12].SetTopLeft(622, 46);
-	road[13].SetTopLeft(368, 48);
-	road[14].SetTopLeft(368, 0);
 }
