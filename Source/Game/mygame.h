@@ -38,6 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
+#include "BtdClass/GameObject.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -48,6 +49,11 @@ namespace game_framework {
 		AUDIO_DING,				// 0
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
+	};
+	enum UnitTestState
+	{
+		throwable,
+		
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -66,6 +72,10 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap logo;								// csie的logo
+		CMovingBitmap background;
+		CMovingBitmap startButton;
+		vector<GameObject> road;
+		void initRoad();
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -73,6 +83,7 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
+	//this is game manager
 	class CGameStateRun : public CGameState {
 	public:
 		CGameStateRun(CGame *g);
@@ -86,9 +97,14 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		UnitTestState unitTestState= throwable;
+		void UnitTest();
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+	private:
+		CMovingBitmap background;
+		CMovingBitmap test;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
