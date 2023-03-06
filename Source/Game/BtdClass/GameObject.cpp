@@ -3,6 +3,10 @@
 
 namespace Btd
 {
+    void GameObject::Update()
+    {
+    }
+
     void GameObject::SetActive(bool active)
     {
         _isActive = active;
