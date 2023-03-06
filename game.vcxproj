@@ -243,8 +243,11 @@
     <ClCompile Include="Source\Core\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Game\BtdClass\BtdTime.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\tower.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
     <ClCompile Include="Source\Game\mygame_run.cpp" />
@@ -261,9 +264,12 @@
     <ClInclude Include="Source\Core\MainFrm.h" />
     <ClInclude Include="Source\Core\Resource.h" />
     <ClInclude Include="Source\Core\StdAfx.h" />
+    <ClInclude Include="Source\Game\BtdClass\BtdTime.h" />
     <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
+    <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
+    <ClInclude Include="Source\Game\BtdClass\tower.h" />
     <ClInclude Include="Source\Game\config.h" />
     <ClInclude Include="Source\Game\mygame.h" />
     <ClInclude Include="Source\Library\audio.h" />

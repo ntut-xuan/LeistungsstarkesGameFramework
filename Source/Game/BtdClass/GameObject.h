@@ -3,12 +3,6 @@
 
 namespace Btd
 {
-    struct Vector2
-    {
-        float X;
-        float Y;
-    };
-
     class GameObject : public game_framework::CMovingBitmap
     {
     private:
@@ -17,7 +11,7 @@ namespace Btd
 
     public:
         virtual ~GameObject() = default;
-        virtual void Update() = 0;
+        virtual void Update() ;
         void SetActive(bool active);
         bool GetActive();
         void SetTag(string tag);

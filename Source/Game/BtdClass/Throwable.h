@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "../../Library/gameutil.h"
+#include "BtdUtil.h"
 
 namespace Btd
 {
@@ -25,13 +25,13 @@ namespace Btd
     public:
         Vector2 GetMoveDirection() const;
 
-        void Update() override
-        {
-            if (GetActive())
-            {
-                Move();
-            }
-        }
+        // void Update()
+        // {
+        //     if (GetActive())
+        //     {
+        //         Move();
+        //     }
+        // }
 
         void Move();
 

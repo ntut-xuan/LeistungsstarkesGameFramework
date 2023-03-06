@@ -2,6 +2,7 @@
 #include "../Core/Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include "BtdClass/GameObject.h"
 #include "../Library/audio.h"
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
@@ -95,7 +96,7 @@ void CGameStateInit::initRoad()
 	char buff[100];
 	string roadFileName;
 	for (int i = 0; i < 15; i++) {
-		GameObject tmpRoad;
+		Btd::GameObject tmpRoad;
 		sprintf(buff, "resources/road_%d.bmp", i+1);
 		tmpRoad.LoadBitmapByString({ buff });
 		road.push_back(tmpRoad);
