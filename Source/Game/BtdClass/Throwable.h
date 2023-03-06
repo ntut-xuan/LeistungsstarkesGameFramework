@@ -2,33 +2,46 @@
 #include "GameObject.h"
 #include "../../Library/gameutil.h"
 
-enum DamageType
+namespace Btd
 {
-    ice,
-    boom,
-    normal
-};
-
-class Throwable : public GameObject
-{
-private:
-    pair<float, float> _moveDirection;
-    float _speed = 0;
-    float _existTime = 0;
-    float _damage = 0;
-    int _maxPop = 0;
-    int _poped = 0;
-    DamageType _damageType;
-
-public:
-    Throwable()
+    enum DamageType
     {
-        _moveDirection.first = 1;
-        _moveDirection.second = 1;
-    }
+        Ice,
+        Boom,
+        Normal
+    };
 
-    pair<float, float> GetMoveDirection();
-    void Update(); //override
-    void Move();
-    float GetSpeed();
-};
+    class Throwable : public GameObject
+    {
+    private:
+        Vector2 _moveDirection;
+        float _speed = 0;
+        float _existTime = 0;
+        float _damage = 0;
+        int _maxPop = 0;
+        int _poped = 0;
+        DamageType _damageType;
+
+    public:
+        Vector2 GetMoveDirection() const;
+
+        void Update() override
+        {
+            if (GetActive())
+            {
+                Move();
+            }
+        }
+
+        void Move();
+
+        void SetSpeed(float speed)
+        {
+            _speed = speed;
+        }
+
+        float GetSpeed();
+
+        void SetMoveDirection(float x, float y);
+    };
+}
