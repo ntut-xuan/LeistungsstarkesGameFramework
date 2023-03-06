@@ -38,6 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
+#include "BtdClass/GameObject.h"
 #pragma once
 #include "BtdClass/Throwable.h"
 
@@ -80,6 +81,10 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         CMovingBitmap logo; // csie的logo
+		CMovingBitmap background;
+		CMovingBitmap startButton;
+		vector<GameObject> road;
+		void initRoad();
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -112,6 +117,9 @@ namespace game_framework
     protected:
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
+	private:
+		CMovingBitmap background;
+		CMovingBitmap test;
     };
 
     /////////////////////////////////////////////////////////////////////////////

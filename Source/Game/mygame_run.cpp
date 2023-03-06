@@ -32,6 +32,9 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
+	background.LoadBitmapByString({ "resources/map.bmp" });
+	background.SetTopLeft(0, 0);
+	test.LoadBitmapByString({"resources/tower_monkey.bmp"}, RGB(255, 255, 255));
     UnitInit();
 }
 
@@ -53,6 +56,11 @@ void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
+	POINT p;
+	GetCursorPos(&p);
+	HWND hwnd = FindWindowA(NULL, "Game");
+	ScreenToClient(hwnd, &p);
+	test.SetTopLeft(p.x, p.y);
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -65,6 +73,8 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
+	background.ShowBitmap();
+	test.ShowBitmap();
     UnitShow();
 }
 
