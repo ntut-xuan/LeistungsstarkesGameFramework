@@ -85,11 +85,11 @@ void showInfoText() {
 void CGameStateInit::OnShow()
 {
 	background.ShowBitmap();
-	startButton.ShowBitmap();
-	showInfoText();
 	for (int i = 0; i < 15; i++) {
 		road[i].ShowBitmap();
 	}
+	startButton.ShowBitmap();
+	showInfoText();
 }
 
 void CGameStateInit::initRoad()
@@ -106,6 +106,7 @@ void CGameStateInit::initRoad()
 		sprintf(buff, "resources/roads/road_%d.bmp", i+1);
 		tmpRoad.LoadBitmapByString({ buff });
 		tmpRoad.SetTopLeft((int)location[i].X, (int)location[i].Y);
+		tmpRoad.SetTag("road");
 		road.push_back(tmpRoad);
 	}
 }

@@ -121,6 +121,8 @@ namespace game_framework
 	private:
 		CMovingBitmap background;
 		CMovingBitmap test;
+		std::vector<Btd::GameObject> road;
+		void initRoad();
     };
 
     /////////////////////////////////////////////////////////////////////////////

@@ -36,6 +36,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 	background.SetTopLeft(0, 0);
 	test.LoadBitmapByString({"resources/tower_monkey.bmp"}, RGB(255, 255, 255));
     UnitInit();
+	initRoad();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -74,6 +75,9 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 void CGameStateRun::OnShow()
 {
 	background.ShowBitmap();
+	for (int i = 0; i < 15; i++) {
+		road[i].ShowBitmap();
+	}
 	test.ShowBitmap();
     UnitShow();
 }
@@ -120,4 +124,23 @@ void CGameStateRun::UnitShow()
     default:
         break;
     }
+}
+
+void CGameStateRun::initRoad()
+{
+	char buff[100];
+	string roadFileName;
+	vector<Btd::Vector2> location{{0, 320}, {105, 124}, {170, 124},
+									{285, 190}, {285, 390}, {43, 510},
+									{43, 575}, {110, 636}, {620, 426},
+									{429, 428}, {429, 249}, {496, 249},
+									{622, 46}, {368, 48}, {368, 0}};
+	for (int i = 0; i < 15; i++) {
+		Btd::GameObject tmpRoad;
+		sprintf(buff, "resources/roads/road_%d.bmp", i+1);
+		tmpRoad.LoadBitmapByString({ buff });
+		tmpRoad.SetTopLeft((int)location[i].X, (int)location[i].Y);
+		tmpRoad.SetTag("road");
+		road.push_back(tmpRoad);
+	}
 }
