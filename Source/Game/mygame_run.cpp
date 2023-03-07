@@ -104,7 +104,8 @@ void CGameStateRun::UnitInit()
         BALLON.SetActive(false);
         BALLON.SetNowRouteTarget(0);
         BALLON.Setspeed(3);
-        break;
+    case baloonVectorMove:
+        BALLONS.push_back(&BALLON);
     default:
         break;
     }
@@ -127,8 +128,21 @@ void CGameStateRun::UnitTest()
     case baloonMove:
 
         BALLON.Move({{500, 500}});
+        if (BALLON.GetTop() > 30)
+        {
+            UNIT_TEST_STATE = baloonVectorMove;
+        }
         break;
-    case bloonfactory:
+    case baloonVectorMove:
+
+
+        BALLONS[0]->Move({{500, 500}});
+        if (BALLON.GetLeft() < 30)
+        {
+            UNIT_TEST_STATE = baloonfactory;
+        }
+        break;
+    case baloonfactory:
         if (BALLON_FACTORY.BallonVector.size() < 10)
         {
             BALLON_FACTORY.MakeBallon("a");
@@ -156,7 +170,10 @@ void CGameStateRun::UnitShow()
     case baloonMove:
         BALLON.ShowBitmap();
         break;
-    case bloonfactory:
+    case baloonVectorMove:
+        BALLON.ShowBitmap();
+        break;
+    case baloonfactory:
         for (Btd::Ballon ballon : BALLON_FACTORY.BallonVector)
         {
             ballon.ShowBitmap();

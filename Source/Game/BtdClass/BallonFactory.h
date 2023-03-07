@@ -27,6 +27,7 @@ namespace Btd
                 BallonPool.push(tmpBallon);
             }
             auto next = BallonPool.front();
+            BallonPool.pop();
             next.SetActive(true);
             BallonVector.push_back(next);
         }
