@@ -32,11 +32,11 @@ void CGameStateRun::OnMove() // 移動遊戲元素
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-	background.LoadBitmapByString({ "resources/map.bmp" });
-	background.SetTopLeft(0, 0);
-	test.LoadBitmapByString({"resources/tower_monkey.bmp"}, RGB(255, 255, 255));
+    background.LoadBitmapByString({"resources/map.bmp"});
+    background.SetTopLeft(0, 0);
+    test.LoadBitmapByString({"resources/tower_monkey.bmp"}, RGB(255, 255, 255));
     UnitInit();
-	initRoad();
+    initRoad();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -57,11 +57,11 @@ void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-	POINT p;
-	GetCursorPos(&p);
-	HWND hwnd = FindWindowA(NULL, "Game");
-	ScreenToClient(hwnd, &p);
-	test.SetTopLeft(p.x, p.y);
+    POINT p;
+    GetCursorPos(&p);
+    HWND hwnd = FindWindowA(nullptr, "Game");
+    ScreenToClient(hwnd, &p);
+    test.SetTopLeft(p.x, p.y);
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -74,11 +74,12 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
-	background.ShowBitmap();
-	for (int i = 0; i < 15; i++) {
-		road[i].ShowBitmap();
-	}
-	test.ShowBitmap();
+    background.ShowBitmap();
+    for (int i = 0; i < 15; i++)
+    {
+        road[i].ShowBitmap();
+    }
+    test.ShowBitmap();
     UnitShow();
 }
 
@@ -93,9 +94,9 @@ void CGameStateRun::UnitInit()
         THROWABLE.SetMoveDirection(1, 1);
     // break;
     case dartMonkey:
-        DARTMONKEY.LoadEmptyBitmap(50,50);
-        DARTMONKEY.SetTopLeft(100,100);
-        DARTMONKEY.SetThrowableName("dart");
+        DARTMONKEY.LoadEmptyBitmap(50, 50);
+        DARTMONKEY.SetTopLeft(100, 100);
+    // DARTMONKEY.SetThrowableName("dart");
     // break;
     default:
         break;
@@ -108,7 +109,8 @@ void CGameStateRun::UnitTest()
     {
     case throwable:
         THROWABLE.Move();
-        if(THROWABLE.GetTop()>50){
+        if (THROWABLE.GetTop() > 50)
+        {
             UNIT_TEST_STATE = dartMonkey;
         }
         break;
@@ -136,19 +138,22 @@ void CGameStateRun::UnitShow()
 
 void CGameStateRun::initRoad()
 {
-	char buff[100];
-	string roadFileName;
-	vector<Btd::Vector2> location{{0, 320}, {105, 124}, {170, 124},
-									{285, 190}, {285, 390}, {43, 510},
-									{43, 575}, {110, 636}, {620, 426},
-									{429, 428}, {429, 249}, {496, 249},
-									{622, 46}, {368, 48}, {368, 0}};
-	for (int i = 0; i < 15; i++) {
-		Btd::GameObject tmpRoad;
-		sprintf(buff, "resources/roads/road_%d.bmp", i+1);
-		tmpRoad.LoadBitmapByString({ buff });
-		tmpRoad.SetTopLeft((int)location[i].X, (int)location[i].Y);
-		tmpRoad.SetTag("road");
-		road.push_back(tmpRoad);
-	}
+    char buff[100];
+    string roadFileName;
+    vector<Btd::Vector2> location{
+        {0, 320}, {105, 124}, {170, 124},
+        {285, 190}, {285, 390}, {43, 510},
+        {43, 575}, {110, 636}, {620, 426},
+        {429, 428}, {429, 249}, {496, 249},
+        {622, 46}, {368, 48}, {368, 0}
+    };
+    for (int i = 0; i < 15; i++)
+    {
+        Btd::GameObject tmpRoad;
+        sprintf(buff, "resources/roads/road_%d.bmp", i + 1);
+        tmpRoad.LoadBitmapByString({buff});
+        tmpRoad.SetTopLeft(static_cast<int>(location[i].X), static_cast<int>(location[i].Y));
+        tmpRoad.SetTag("road");
+        road.push_back(tmpRoad);
+    }
 }
