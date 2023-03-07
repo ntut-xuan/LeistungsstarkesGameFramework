@@ -2,6 +2,8 @@
 #include "../Core/Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include <string>
+
 #include "../Library/audio.h"
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
@@ -30,17 +32,35 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     UnitTest();
 }
 
+vector<string> generatePath (string initPath)
+{
+	vector<string> path;
+    string tmp_path;
+	for (int i=1; i<=8; i++)
+	{
+		tmp_path = initPath + std::to_string(i) + ".bmp";
+		path.push_back(tmp_path);
+	}
+	return  path;
+}
+
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
 	background.LoadBitmapByString({ "resources/map.bmp" });
 	background.SetTopLeft(0, 0);
-	test.LoadBitmapByString({"resources/tower_monkey.bmp"}, RGB(255, 255, 255));
+	// test.LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp", "resources/towers/monkey/tower_monkey_3.bmp"}, RGB(0, 0, 0));
+	test.LoadBitmapByString({{generatePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
     UnitInit();
 	initRoad();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	if (nChar == VK_F1)
+	{
+		int index = (test.GetFrameIndexOfBitmap() + 1) % 8;
+		test.SetFrameIndexOfBitmap(index);
+	}
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
