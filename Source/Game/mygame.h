@@ -83,7 +83,6 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         CMovingBitmap logo; // csie的logo
-		CMovingBitmap background;
 		CMovingBitmap startButton;
         Btd::Map map;
     };
@@ -119,7 +118,6 @@ namespace game_framework
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
 	private:
-		CMovingBitmap background;
 		Btd::GameObject test;
         Btd::Map map;
     };

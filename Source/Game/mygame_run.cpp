@@ -45,12 +45,10 @@ vector<string> generatePath (string initPath)
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-	background.LoadBitmapByString({ "resources/map.bmp" });
-	background.SetTopLeft(0, 0);
-	// test.LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp", "resources/towers/monkey/tower_monkey_3.bmp"}, RGB(0, 0, 0));
 	test.LoadBitmapByString({{generatePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
     UnitInit();
 	map.InitRoad();
+    map.initBackground();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -93,7 +91,7 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
-	background.ShowBitmap();
+    map.showBackground();
 	map.ShowRoad();
 	test.ShowBitmap();
     UnitShow();

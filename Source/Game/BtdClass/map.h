@@ -15,8 +15,11 @@ namespace Btd
         const int InitLives = 40;
         void InitRoad();
         void ShowRoad();
+        void initBackground();
+        void showBackground();
     private:
         std::vector<GameObject> _road;
+        GameObject _background;
     };
 }
 

@@ -35,4 +35,17 @@ namespace Btd
 		}	
 	}
 
+	void Map::initBackground()
+	{
+		_background.LoadBitmapByString({ "resources/map.bmp" });
+		_background.SetTopLeft(0, 0);
+	}
+
+	void Map::showBackground()
+	{
+		_background.ShowBitmap();
+	}
+
+
+
 }
