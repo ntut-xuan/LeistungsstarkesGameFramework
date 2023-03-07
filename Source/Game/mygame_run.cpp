@@ -40,12 +40,12 @@ vector<string> generatePath (string initPath)
 		string tmpPath = initPath + std::to_string(i) + ".bmp";
 		path.push_back(tmpPath);
 	}
-	return  path;
+	return path;
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-	test.LoadBitmapByString({{generatePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
+	monkey.LoadBitmapByString({{generatePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
     UnitInit();
 	map.InitRoad();
     map.initBackground();
@@ -55,8 +55,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	if (nChar == VK_F1)
 	{
-		int index = (test.GetFrameIndexOfBitmap() + 1) % 8;
-		test.SetFrameIndexOfBitmap(index);
+		int index = (monkey.GetFrameIndexOfBitmap() + 1) % 8;
+		monkey.SetFrameIndexOfBitmap(index);
 	}
 }
 
@@ -66,6 +66,10 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
+    if (monkey.IsMovable())
+    {
+        monkey.SetNotMove();
+    }
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -74,11 +78,14 @@ void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-	POINT p;
-	GetCursorPos(&p);
-	HWND hwnd = FindWindowA(NULL, "Game");
-	ScreenToClient(hwnd, &p);
-	test.SetCenter(p.x, p.y);
+    if (monkey.IsMovable())
+    {
+        POINT p;
+        GetCursorPos(&p);
+        HWND hwnd = FindWindowA(NULL, "Game");
+        ScreenToClient(hwnd, &p);
+        monkey.SetCenter(p.x, p.y);
+    }
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -93,7 +100,7 @@ void CGameStateRun::OnShow()
 {
     map.showBackground();
 	map.ShowRoad();
-	test.ShowBitmap();
+	monkey.ShowBitmap();
     UnitShow();
 }
 

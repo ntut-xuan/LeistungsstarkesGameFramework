@@ -44,6 +44,8 @@
 #include "BtdClass/GameObject.h"
 #include <vector>
 
+#include "BtdClass/tower.h"
+
 namespace game_framework
 {
     /////////////////////////////////////////////////////////////////////////////
@@ -118,7 +120,7 @@ namespace game_framework
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
 	private:
-		Btd::GameObject test;
+		Btd::Tower monkey;
         Btd::Map map;
     };
 
