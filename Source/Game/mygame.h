@@ -39,6 +39,7 @@
 */
 
 #pragma once
+#include "BtdClass/DartMonkey.h"
 #include "BtdClass/Throwable.h"
 #include "BtdClass/GameObject.h"
 #include <vector>
@@ -62,7 +63,7 @@ namespace game_framework
     enum UnitTestState
     {
         throwable,
-        dart,
+        dartMonkey,
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -110,6 +111,7 @@ namespace game_framework
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         UnitTestState UNIT_TEST_STATE = throwable;
         Btd::Throwable THROWABLE;
+        Btd::DartMonkey DARTMONKEY;
         // std::vector<Btd::Bloon> bloonList;
         void UnitTest();
         void UnitInit();

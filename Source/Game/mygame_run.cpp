@@ -92,7 +92,10 @@ void CGameStateRun::UnitInit()
         THROWABLE.SetSpeed(2);
         THROWABLE.SetMoveDirection(1, 1);
     // break;
-    case dart:
+    case dartMonkey:
+        DARTMONKEY.LoadEmptyBitmap(50,50);
+        DARTMONKEY.SetTopLeft(100,100);
+        DARTMONKEY.SetThrowableName("dart");
     // break;
     default:
         break;
@@ -105,8 +108,12 @@ void CGameStateRun::UnitTest()
     {
     case throwable:
         THROWABLE.Move();
+        if(THROWABLE.GetTop()>50){
+            UNIT_TEST_STATE = dartMonkey;
+        }
         break;
-    case dart:
+    case dartMonkey:
+        //shoot test
         break;
     default: ;
     }
@@ -119,7 +126,8 @@ void CGameStateRun::UnitShow()
     case throwable:
         THROWABLE.ShowBitmap();
         break;
-    case dart:
+    case dartMonkey:
+        DARTMONKEY.ShowBitmap();
         break;
     default:
         break;
