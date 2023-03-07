@@ -23,28 +23,9 @@ private:
 	void SetThrowableName(string name){
 		throwableName = name;
 	}
-
-	void Shoot(){
-		if(throwablePool.isEmpty()||throwablePool.front().GetActive())	
-		{
-			PushThrowablePool(true);
-		}else{
-			auto next = throwablePool.front();
-			next.SetActive(true);
-			next.setTopLeft(throwLocal.X,throwLocal.Y);
-			throwablePool.enqueue(throwablePool.dequeue());
-		}
-	}
-	//todo when push can set top left
-	void PushThrowablePool(bool active){
-		//var throwable = MakeThrowable();
-		//throwable.SetActive(active);
-		//throwablePool.enqueue(throwable);
-	}
-
-	void MakeThrowable(){
-		// return throwableFactory.MakeThrowable(throwableName);
-	}
+	void Shoot();
+	void PushThrowablePool(bool active);
+	void MakeThrowable();
 };
 
 #endif
