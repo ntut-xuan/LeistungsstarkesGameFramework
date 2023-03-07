@@ -12,7 +12,11 @@ namespace Btd {
         //todo idk should new or not 
 
         Ballon MakeBallon(string type){
-            return  Ballon();
+            Ballon tmpBallon;
+            tmpBallon.LoadEmptyBitmap(30, 30);
+            tmpBallon.SetTopLeft(10,10);
+            BallonPool.enqueue(tmpBallon);
+            return  tmpBallon;
         }
 
     }
