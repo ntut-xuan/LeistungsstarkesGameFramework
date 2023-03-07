@@ -80,7 +80,7 @@ void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動
 	GetCursorPos(&p);
 	HWND hwnd = FindWindowA(NULL, "Game");
 	ScreenToClient(hwnd, &p);
-	test.SetTopLeft(p.x, p.y);
+	test.SetCenter(p.x, p.y);
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作

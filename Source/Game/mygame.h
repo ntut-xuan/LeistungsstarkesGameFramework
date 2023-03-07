@@ -120,7 +120,7 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap background;
-		CMovingBitmap test;
+		Btd::GameObject test;
         Btd::Map map;
     };
 
