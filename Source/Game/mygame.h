@@ -44,6 +44,8 @@
 #include "BtdClass/GameObject.h"
 #include <vector>
 
+#include "BtdClass/BallonFactory.h"
+
 namespace game_framework
 {
     /////////////////////////////////////////////////////////////////////////////
@@ -64,6 +66,7 @@ namespace game_framework
     {
         throwable,
         dartMonkey,
+        bloonfactory,
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -83,10 +86,10 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         CMovingBitmap logo; // csie的logo
-		CMovingBitmap background;
-		CMovingBitmap startButton;
-		std::vector<Btd::GameObject> road;
-		void initRoad();
+        CMovingBitmap background;
+        CMovingBitmap startButton;
+        std::vector<Btd::GameObject> road;
+        void initRoad();
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -112,6 +115,7 @@ namespace game_framework
         UnitTestState UNIT_TEST_STATE = throwable;
         Btd::Throwable THROWABLE;
         Btd::DartMonkey DARTMONKEY;
+        Btd::BallonFactory BALLON_FACTORY;
         // std::vector<Btd::Bloon> bloonList;
         void UnitTest();
         void UnitInit();
@@ -120,11 +124,11 @@ namespace game_framework
     protected:
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
-	private:
-		CMovingBitmap background;
-		CMovingBitmap test;
-		std::vector<Btd::GameObject> road;
-		void initRoad();
+    private:
+        CMovingBitmap background;
+        CMovingBitmap test;
+        std::vector<Btd::GameObject> road;
+        void initRoad();
     };
 
     /////////////////////////////////////////////////////////////////////////////

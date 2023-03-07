@@ -266,6 +266,7 @@
     <ClInclude Include="Source\Core\StdAfx.h" />
     <ClInclude Include="Source\Game\BtdClass\Ballon.h" />
     <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
+    <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
     <ClInclude Include="Source\Game\BtdClass\BtdTime.h" />
     <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
