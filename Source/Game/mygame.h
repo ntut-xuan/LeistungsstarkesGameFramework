@@ -67,6 +67,7 @@ namespace game_framework
         throwable,
         dartMonkey,
         bloonfactory,
+        baloonMove,
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -116,6 +117,7 @@ namespace game_framework
         Btd::Throwable THROWABLE;
         Btd::DartMonkey DARTMONKEY;
         Btd::BallonFactory BALLON_FACTORY;
+        Btd::Ballon BALLON;
         // std::vector<Btd::Bloon> bloonList;
         void UnitTest();
         void UnitInit();

@@ -98,6 +98,13 @@ void CGameStateRun::UnitInit()
         DARTMONKEY.SetTopLeft(100, 100);
     // DARTMONKEY.SetThrowableName("dart");
     // break;
+    case baloonMove:
+        BALLON.LoadEmptyBitmap(30, 30);
+        BALLON.SetTopLeft(10, 10);
+        BALLON.SetActive(false);
+        BALLON.SetNowRouteTarget(0);
+        BALLON.Setspeed(3);
+        break;
     default:
         break;
     }
@@ -111,11 +118,15 @@ void CGameStateRun::UnitTest()
         THROWABLE.Move();
         if (THROWABLE.GetTop() > 10)
         {
-            UNIT_TEST_STATE = bloonfactory;
+            UNIT_TEST_STATE = baloonMove;
         }
         break;
     case dartMonkey:
         //shoot test
+        break;
+    case baloonMove:
+
+        BALLON.Move({{500, 500}});
         break;
     case bloonfactory:
         if (BALLON_FACTORY.BallonVector.size() < 10)
@@ -141,6 +152,9 @@ void CGameStateRun::UnitShow()
         break;
     case dartMonkey:
         DARTMONKEY.ShowBitmap();
+        break;
+    case baloonMove:
+        BALLON.ShowBitmap();
         break;
     case bloonfactory:
         for (Btd::Ballon ballon : BALLON_FACTORY.BallonVector)

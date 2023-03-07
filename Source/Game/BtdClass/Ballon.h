@@ -25,7 +25,7 @@ namespace Btd
         {
             if (GetActive())
             {
-                //todo if pop (layer==0) setactive(false)    
+                //todo if pop (layer==0) setactive(false)
             }
         }
 
@@ -34,6 +34,7 @@ namespace Btd
             return _speed;
         }
 
+        //todo move target now is no - ,need to - to get right direction
         void Move(vector<Vector2> route)
         {
             Vector2 nowLocal;
@@ -42,12 +43,14 @@ namespace Btd
             Vector2 moveDirection;
             if (CompareVector2(route[nowRouteTarget], nowLocal))
             {
-                moveDirection = Normailize(route[++nowRouteTarget]);
+                if (nowRouteTarget != static_cast<int>(route.size()) - 1)
+                    nowRouteTarget++;
+                else
+                {
+                    //todo setactive false
+                }
             }
-            else
-            {
-                moveDirection = Normailize(route[nowRouteTarget]);
-            }
+            moveDirection = Normailize(route[nowRouteTarget]);
             float speed = GetSpeed();
             Vector2 deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
             int top = GetTop() + static_cast<int>(deltaMove.Y);
