@@ -40,6 +40,7 @@
 
 #pragma once
 #include "BtdClass/Throwable.h"
+#include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
 #include <vector>
 
@@ -84,8 +85,7 @@ namespace game_framework
         CMovingBitmap logo; // csie的logo
 		CMovingBitmap background;
 		CMovingBitmap startButton;
-		std::vector<Btd::GameObject> road;
-		void initRoad();
+        Btd::Map map;
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -121,8 +121,7 @@ namespace game_framework
 	private:
 		CMovingBitmap background;
 		CMovingBitmap test;
-		std::vector<Btd::GameObject> road;
-		void initRoad();
+        Btd::Map map;
     };
 
     /////////////////////////////////////////////////////////////////////////////
