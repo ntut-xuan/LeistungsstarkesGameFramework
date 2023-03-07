@@ -87,25 +87,25 @@ void CGameStateRun::UnitInit()
 {
     switch (UNIT_TEST_STATE)
     {
-    case throwable:
+    case Throwable:
         THROWABLE.LoadEmptyBitmap(100, 100);
         THROWABLE.SetTopLeft(0, 0);
         THROWABLE.SetSpeed(2);
         THROWABLE.SetMoveDirection(1, 1);
     // break;
-    case dartMonkey:
-        DARTMONKEY.LoadEmptyBitmap(50, 50);
-        DARTMONKEY.SetTopLeft(100, 100);
+    case DartMonkey:
+        DART_MONKEY.LoadEmptyBitmap(50, 50);
+        DART_MONKEY.SetTopLeft(100, 100);
     // DARTMONKEY.SetThrowableName("dart");
     // break;
-    case baloonMove:
-        BALLON.LoadEmptyBitmap(30, 30);
-        BALLON.SetTopLeft(10, 10);
-        BALLON.SetActive(false);
-        BALLON.SetNowRouteTarget(0);
-        BALLON.Setspeed(3);
-    case baloonVectorMove:
-        BALLONS.push_back(&BALLON);
+    case BalloonMove:
+        BALLOON.LoadEmptyBitmap(30, 30);
+        BALLOON.SetTopLeft(10, 10);
+        BALLOON.SetActive(false);
+        BALLOON.SetNowRouteTarget(0);
+        BALLOON.Setspeed(3);
+    case BalloonVectorMove:
+        BALLOONS.push_back(BALLOON);
     default:
         break;
     }
@@ -115,39 +115,39 @@ void CGameStateRun::UnitTest()
 {
     switch (UNIT_TEST_STATE)
     {
-    case throwable:
+    case Throwable:
         THROWABLE.Move();
         if (THROWABLE.GetTop() > 10)
         {
-            UNIT_TEST_STATE = baloonMove;
+            UNIT_TEST_STATE = BalloonMove;
         }
         break;
-    case dartMonkey:
+    case DartMonkey:
         //shoot test
         break;
-    case baloonMove:
+    case BalloonMove:
 
-        BALLON.Move({{500, 500}});
-        if (BALLON.GetTop() > 30)
+        BALLOON.Move({{500, 500}});
+        if (BALLOON.GetTop() > 30)
         {
-            UNIT_TEST_STATE = baloonVectorMove;
+            UNIT_TEST_STATE = BalloonVectorMove;
         }
         break;
-    case baloonVectorMove:
+    case BalloonVectorMove:
 
 
-        BALLONS[0]->Move({{500, 500}});
-        if (BALLON.GetLeft() < 30)
+        BALLOONS[0].Move({{500, 500}});
+        if (BALLOONS[0].GetLeft() > 100)
         {
-            UNIT_TEST_STATE = baloonfactory;
+            UNIT_TEST_STATE = BalloonFactory;
         }
         break;
-    case baloonfactory:
-        if (BALLON_FACTORY.BallonVector.size() < 10)
+    case BalloonFactory:
+        if (BALLOON_FACTORY.BallonVector.size() < 10)
         {
-            BALLON_FACTORY.MakeBallon("a");
+            BALLOON_FACTORY.MakeBallon("a");
         }
-        for (Btd::Ballon ballon : BALLON_FACTORY.BallonVector)
+        for (auto& ballon : BALLOON_FACTORY.BallonVector)
         {
             ballon.Move({{500, 500}});
         }
@@ -161,20 +161,20 @@ void CGameStateRun::UnitShow()
 {
     switch (UNIT_TEST_STATE)
     {
-    case throwable:
+    case Throwable:
         THROWABLE.ShowBitmap();
         break;
-    case dartMonkey:
-        DARTMONKEY.ShowBitmap();
+    case DartMonkey:
+        DART_MONKEY.ShowBitmap();
         break;
-    case baloonMove:
-        BALLON.ShowBitmap();
+    case BalloonMove:
+        BALLOON.ShowBitmap();
         break;
-    case baloonVectorMove:
-        BALLON.ShowBitmap();
+    case BalloonVectorMove:
+        BALLOONS[0].ShowBitmap();
         break;
-    case baloonfactory:
-        for (Btd::Ballon ballon : BALLON_FACTORY.BallonVector)
+    case BalloonFactory:
+        for (auto& ballon : BALLOON_FACTORY.BallonVector)
         {
             ballon.ShowBitmap();
         }

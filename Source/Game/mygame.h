@@ -64,11 +64,11 @@ namespace game_framework
 
     enum UnitTestState
     {
-        throwable,
-        dartMonkey,
-        baloonfactory,
-        baloonMove,
-        baloonVectorMove,
+        Throwable,
+        DartMonkey,
+        BalloonFactory,
+        BalloonMove,
+        BalloonVectorMove,
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -114,12 +114,12 @@ namespace game_framework
         void OnMouseMove(UINT nFlags, CPoint point) override; // 處理滑鼠的動作 
         void OnRButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
-        UnitTestState UNIT_TEST_STATE = throwable;
+        UnitTestState UNIT_TEST_STATE = Throwable;
         Btd::Throwable THROWABLE;
-        Btd::DartMonkey DARTMONKEY;
-        Btd::BallonFactory BALLON_FACTORY;
-        Btd::Ballon BALLON;
-        vector<Btd::Ballon*> BALLONS;
+        Btd::DartMonkey DART_MONKEY;
+        Btd::BallonFactory BALLOON_FACTORY;
+        Btd::Ballon BALLOON;
+        vector<Btd::Ballon> BALLOONS;
         // std::vector<Btd::Bloon> bloonList;
         void UnitTest();
         void UnitInit();
