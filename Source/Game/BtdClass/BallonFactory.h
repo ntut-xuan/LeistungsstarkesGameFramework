@@ -4,6 +4,7 @@
 #include <queue>
 
 #include "Ballon.h"
+#include "map.h"
 
 namespace Btd
 {
@@ -19,8 +20,9 @@ namespace Btd
             if (BallonPool.empty())
             {
                 Ballon tmpBallon;
-                tmpBallon.LoadEmptyBitmap(30, 30);
-                tmpBallon.SetTopLeft(10, 10);
+                tmpBallon.LoadBitmapByString({"Resources/bloon/bloon_red.bmp"},RGB(0, 0, 0));
+                Vector2 startPosition = Map::GetStartPosition();
+                tmpBallon.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
                 tmpBallon.SetActive(false);
                 tmpBallon.SetNowRouteTarget(0);
                 tmpBallon.Setspeed(3);
@@ -31,8 +33,11 @@ namespace Btd
             next.SetActive(true);
             BallonVector.push_back(next);
         }
-        void UpdateBloon(){
-            for(Ballon &b :BallonVector){
+
+        static void UpdateBloon()
+        {
+            for (Ballon& b : BallonVector)
+            {
                 b.Update();
             }
         }

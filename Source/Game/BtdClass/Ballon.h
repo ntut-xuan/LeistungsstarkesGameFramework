@@ -12,11 +12,15 @@ namespace Btd
     private:
         int nowRouteTarget = 0;
         float _speed = 3;
-        int _layer=1;
+        int _layer = 1;
 
     public:
         Ballon() = default;
-        Ballon(int layer):_layer(layer){};
+
+        Ballon(int layer): _layer(layer)
+        {
+        }
+
         static map<DamageType, bool> resistDamegeMap;
         void SetNowRouteTarget(int target);
 
@@ -29,9 +33,11 @@ namespace Btd
 
         void Move(vector<Vector2> route);
 
-        void Pop(int damege,DamageType type){
-            if(resistDamegeMap[type]){
-                _layer-=damege;
+        void Pop(int damege, DamageType type)
+        {
+            if (resistDamegeMap[type])
+            {
+                _layer -= damege;
             }
             SetFrameIndexOfBitmap(_layer);
         }

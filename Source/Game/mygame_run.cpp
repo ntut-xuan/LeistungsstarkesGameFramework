@@ -25,6 +25,9 @@ CGameStateRun::~CGameStateRun()
 
 void CGameStateRun::OnBeginState()
 {
+    map.SetStartPosition({
+        static_cast<float>(map.GetBackground().GetWidth()), static_cast<float>(map.GetBackground().GetHeight()) / 2
+    });
 }
 
 void CGameStateRun::OnMove() // 移動遊戲元素
@@ -32,32 +35,32 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     UnitTest();
 }
 
-vector<string> generatePath (string initPath)
+vector<string> GeneratePath(string initPath)
 {
-	vector<string> path;
-	for (int i=1; i<=8; i++)
-	{
-		string tmpPath = initPath + std::to_string(i) + ".bmp";
-		path.push_back(tmpPath);
-	}
-	return path;
+    vector<string> path;
+    for (int i = 1; i <= 8; i++)
+    {
+        string tmpPath = initPath + std::to_string(i) + ".bmp";
+        path.push_back(tmpPath);
+    }
+    return path;
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-	monkey.LoadBitmapByString({{generatePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
+    monkey.LoadBitmapByString({{GeneratePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
     UnitInit();
-	map.InitRoad();
-    map.initBackground();
+    map.InitRoad();
+    map.InitBackground();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	if (nChar == VK_F1)
-	{
-		int index = (monkey.GetFrameIndexOfBitmap() + 1) % 8;
-		monkey.SetFrameIndexOfBitmap(index);
-	}
+    if (nChar == VK_F1)
+    {
+        int index = (monkey.GetFrameIndexOfBitmap() + 1) % 8;
+        monkey.SetFrameIndexOfBitmap(index);
+    }
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -82,7 +85,7 @@ void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動
     {
         POINT p;
         GetCursorPos(&p);
-        HWND hwnd = FindWindowA(NULL, "Game");
+        HWND hwnd = FindWindowA(nullptr, "Game");
         ScreenToClient(hwnd, &p);
         monkey.SetCenter(p.x, p.y);
     }
@@ -98,9 +101,9 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
-    map.showBackground();
-	map.ShowRoad();
-	monkey.ShowBitmap();
+    map.ShowBackground();
+    map.ShowRoad();
+    monkey.ShowBitmap();
     UnitShow();
 }
 
@@ -168,10 +171,7 @@ void CGameStateRun::UnitTest()
         {
             BALLOON_FACTORY.MakeBallon("a");
         }
-        for (auto& ballon : BALLOON_FACTORY.BallonVector)
-        {
-            ballon.Move({{500, 500}});
-        }
+        BALLOON_FACTORY.UpdateBloon();
 
         break;
     default: ;
