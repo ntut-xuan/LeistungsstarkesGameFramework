@@ -4,6 +4,7 @@
 #include <chrono>
 namespace Btd
 {
+    //todo delayCount() is Time.deltaTime
     class BtdTime
     {
         static long long _deltaTime ;

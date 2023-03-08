@@ -1,61 +1,37 @@
 #include "GameObject.h"
 #include "BtdUtil.h"
+#include "Throwable.h"
 #include <list>
+#include <map>
 
 namespace Btd
 {
+    // ballon pop will not appear many bloon
     class Ballon : public GameObject
     {
     private:
         int nowRouteTarget = 0;
         float _speed = 3;
+        int _layer=1;
 
     public:
-        void SetNowRouteTarget(int target)
-        {
-            nowRouteTarget = target;
-        }
+        static map<DamageType, bool> resistDamegeMap;
+        void SetNowRouteTarget(int target);
 
-        void Setspeed(float speed)
-        {
-            _speed = speed;
-        }
+        void Setspeed(float speed);
 
-        void Update() override
-        {
-            if (GetActive())
-            {
-                //todo if pop (layer==0) setactive(false)
+
+        void Update() override;
+
+        float GetSpeed();
+
+        void Move(vector<Vector2> route);
+
+        void Pop(int damege,DamageType type){
+            if(resistDamegeMap[type]){
+                _layer-=damege;
             }
-        }
-
-        float GetSpeed()
-        {
-            return _speed;
-        }
-
-        //todo move target now is no - ,need to - to get right direction
-        void Move(vector<Vector2> route)
-        {
-            Vector2 nowLocal;
-            nowLocal.X = static_cast<float>(GetLeft());
-            nowLocal.Y = static_cast<float>(GetTop());
-            Vector2 moveDirection;
-            if (CompareVector2(route[nowRouteTarget], nowLocal))
-            {
-                if (nowRouteTarget != static_cast<int>(route.size()) - 1)
-                    nowRouteTarget++;
-                else
-                {
-                    //todo setactive false
-                }
-            }
-            moveDirection = Normailize(route[nowRouteTarget]);
-            float speed = GetSpeed();
-            Vector2 deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
-            int top = GetTop() + static_cast<int>(deltaMove.Y);
-            int left = GetLeft() + static_cast<int>(deltaMove.X);
-            SetTopLeft(left, top);
+            SetFrameIndexOfBitmap(_layer);
         }
     };
 }
