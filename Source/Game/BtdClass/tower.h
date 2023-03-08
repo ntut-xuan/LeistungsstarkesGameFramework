@@ -7,34 +7,45 @@
 #include <queue>
 #include <string>
 
-class Tower : public game_framework::CMovingBitmap
-{
-public:
-    void setUpdate(int level);
-    static string throwableName;
-
-    void SetThrowableName(string name)
+namespace Btd {
+    class Tower : public GameObject
     {
-        throwableName = name;
-    }
+    public:
+        Tower();
+        ~Tower() = default;
+        void SetUpgrade(int level);
+        bool IsMovable();
+        void SetNotMove();
+        Vector2 getLocation();
+        int getRange();
+        void setUpdate(int level);
+        static string throwableName;
 
-    void SetThrowableLocal(Btd::Vector2 local)
-    {
-        throwLocal = local;
-    }
+        void SetThrowableName(string name)
+        {
+            throwableName = name;
+        }
 
-private:
-    bool _isUpdate[2];
-    int _speed;
-    int _range;
-    int _buyMoney;
-    int _sellMoney;
-    Btd::GameObject throwableFactory;
-    std::queue<Btd::Throwable> throwablePool;
-    Btd::Vector2 throwLocal;
-    void Shoot();
-    void PushThrowablePool(bool active);
-    void MakeThrowable();
-};
+        void SetThrowableLocal(Btd::Vector2 local)
+        {
+            throwLocal = local;
+        }
 
+    private:
+        bool _isUpgrade[2];
+        bool _isMovable;
+        int _speed;
+        int _range;
+        int _buyMoney;
+        int _sellMoney;
+        Vector2 _location;
+        GameObject throwableFactory;
+        queue<Btd::Throwable> throwablePool;
+        Vector2 throwLocal;
+        void Shoot();
+        void PushThrowablePool(bool active);
+        void MakeThrowable();
+    };
+
+}
 #endif

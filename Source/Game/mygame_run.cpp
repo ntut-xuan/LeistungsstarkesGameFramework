@@ -2,6 +2,8 @@
 #include "../Core/Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include <string>
+
 #include "../Library/audio.h"
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
@@ -30,17 +32,32 @@ void CGameStateRun::OnMove() // 移動遊戲元素
     UnitTest();
 }
 
+vector<string> generatePath (string initPath)
+{
+	vector<string> path;
+	for (int i=1; i<=8; i++)
+	{
+		string tmpPath = initPath + std::to_string(i) + ".bmp";
+		path.push_back(tmpPath);
+	}
+	return path;
+}
+
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-    background.LoadBitmapByString({"resources/map.bmp"});
-    background.SetTopLeft(0, 0);
-    test.LoadBitmapByString({"resources/tower_monkey.bmp"}, RGB(255, 255, 255));
+	monkey.LoadBitmapByString({{generatePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
     UnitInit();
-    initRoad();
+	map.InitRoad();
+    map.initBackground();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	if (nChar == VK_F1)
+	{
+		int index = (monkey.GetFrameIndexOfBitmap() + 1) % 8;
+		monkey.SetFrameIndexOfBitmap(index);
+	}
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -49,6 +66,10 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
+    if (monkey.IsMovable())
+    {
+        monkey.SetNotMove();
+    }
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -57,11 +78,14 @@ void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-    POINT p;
-    GetCursorPos(&p);
-    HWND hwnd = FindWindowA(nullptr, "Game");
-    ScreenToClient(hwnd, &p);
-    test.SetTopLeft(p.x, p.y);
+    if (monkey.IsMovable())
+    {
+        POINT p;
+        GetCursorPos(&p);
+        HWND hwnd = FindWindowA(NULL, "Game");
+        ScreenToClient(hwnd, &p);
+        monkey.SetCenter(p.x, p.y);
+    }
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -74,12 +98,9 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
-    background.ShowBitmap();
-    for (int i = 0; i < 15; i++)
-    {
-        road[i].ShowBitmap();
-    }
-    test.ShowBitmap();
+    map.showBackground();
+	map.ShowRoad();
+	monkey.ShowBitmap();
     UnitShow();
 }
 
@@ -182,27 +203,5 @@ void CGameStateRun::UnitShow()
         break;
     default:
         break;
-    }
-}
-
-void CGameStateRun::initRoad()
-{
-    char buff[100];
-    string roadFileName;
-    vector<Btd::Vector2> location{
-        {0, 320}, {105, 124}, {170, 124},
-        {285, 190}, {285, 390}, {43, 510},
-        {43, 575}, {110, 636}, {620, 426},
-        {429, 428}, {429, 249}, {496, 249},
-        {622, 46}, {368, 48}, {368, 0}
-    };
-    for (int i = 0; i < 15; i++)
-    {
-        Btd::GameObject tmpRoad;
-        sprintf(buff, "resources/roads/road_%d.bmp", i + 1);
-        tmpRoad.LoadBitmapByString({buff});
-        tmpRoad.SetTopLeft(static_cast<int>(location[i].X), static_cast<int>(location[i].Y));
-        tmpRoad.SetTag("road");
-        road.push_back(tmpRoad);
     }
 }

@@ -246,6 +246,7 @@
     <ClCompile Include="Source\Game\BtdClass\BtdTime.cpp" />
     <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\map.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
     <ClCompile Include="Source\Game\BtdClass\tower.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
@@ -272,6 +273,7 @@
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
     <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
+    <ClInclude Include="Source\Game\BtdClass\map.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
     <ClInclude Include="Source\Game\BtdClass\tower.h" />
     <ClInclude Include="Source\Game\config.h" />

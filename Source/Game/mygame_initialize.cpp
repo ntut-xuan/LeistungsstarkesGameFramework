@@ -32,11 +32,10 @@ void CGameStateInit::OnInit()
 	//
 	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
 	//
-	background.LoadBitmapByString({ "resources/map.bmp" });
-	background.SetTopLeft(0, 0);
 	startButton.LoadBitmapByString({ "resources/start_button.bmp" });
 	startButton.SetTopLeft(742, 620);
-	initRoad();
+	map.InitRoad();
+	map.initBackground();
 }
 
 void CGameStateInit::OnBeginState()
@@ -84,29 +83,8 @@ void showInfoText() {
 
 void CGameStateInit::OnShow()
 {
-	background.ShowBitmap();
-	for (int i = 0; i < 15; i++) {
-		road[i].ShowBitmap();
-	}
+	map.showBackground();
+	map.ShowRoad();
 	startButton.ShowBitmap();
 	showInfoText();
-}
-
-void CGameStateInit::initRoad()
-{
-	char buff[100];
-	string roadFileName;
-	vector<Btd::Vector2> location{{0, 320}, {105, 124}, {170, 124},
-									{285, 190}, {285, 390}, {43, 510},
-									{43, 575}, {110, 636}, {620, 426},
-									{429, 428}, {429, 249}, {496, 249},
-									{622, 46}, {368, 48}, {368, 0}};
-	for (int i = 0; i < 15; i++) {
-		Btd::GameObject tmpRoad;
-		sprintf(buff, "resources/roads/road_%d.bmp", i+1);
-		tmpRoad.LoadBitmapByString({ buff });
-		tmpRoad.SetTopLeft((int)location[i].X, (int)location[i].Y);
-		tmpRoad.SetTag("road");
-		road.push_back(tmpRoad);
-	}
 }

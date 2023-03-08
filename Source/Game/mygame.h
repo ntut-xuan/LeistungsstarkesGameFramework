@@ -41,10 +41,12 @@
 #pragma once
 #include "BtdClass/DartMonkey.h"
 #include "BtdClass/Throwable.h"
+#include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
 #include <vector>
 
 #include "BtdClass/BallonFactory.h"
+#include "BtdClass/tower.h"
 
 namespace game_framework
 {
@@ -88,10 +90,8 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         CMovingBitmap logo; // csie的logo
-        CMovingBitmap background;
-        CMovingBitmap startButton;
-        std::vector<Btd::GameObject> road;
-        void initRoad();
+		CMovingBitmap startButton;
+        Btd::Map map;
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -128,11 +128,9 @@ namespace game_framework
     protected:
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
-    private:
-        CMovingBitmap background;
-        CMovingBitmap test;
-        std::vector<Btd::GameObject> road;
-        void initRoad();
+	private:
+		Btd::Tower monkey;
+        Btd::Map map;
     };
 
     /////////////////////////////////////////////////////////////////////////////
