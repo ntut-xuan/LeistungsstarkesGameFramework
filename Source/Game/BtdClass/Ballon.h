@@ -15,6 +15,8 @@ namespace Btd
         int _layer=1;
 
     public:
+        Ballon() = default;
+        Ballon(int layer):_layer(layer){};
         static map<DamageType, bool> resistDamegeMap;
         void SetNowRouteTarget(int target);
 
