@@ -26,4 +26,10 @@ namespace Btd
     {
         return _tag;
     }
+
+    void GameObject::SetCenter(int x, int y)
+    {
+        SetTopLeft(x - GetWidth()/2, y - GetHeight()/2);
+    }
+
 }
