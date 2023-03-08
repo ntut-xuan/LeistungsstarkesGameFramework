@@ -15,4 +15,10 @@ namespace Btd
     bool CompareVector2(Vector2 a,Vector2 b){
         return a.X == b.X && a.Y==b.Y;
     }
+    Vector2 Vector2Add(Vector2 a,Vector2 b){
+        return {a.X + b.X ,a.Y+b.Y};
+    }
+    Vector2 Vector2Sub(Vector2 a,Vector2 b){
+        return {a.X - b.X ,a.Y-b.Y};
+    }
 }
