@@ -31,5 +31,10 @@ namespace Btd
             next.SetActive(true);
             BallonVector.push_back(next);
         }
+        void UpdateBloon(){
+            for(Ballon &b :BallonVector){
+                b.Update();
+            }
+        }
     };
 }
