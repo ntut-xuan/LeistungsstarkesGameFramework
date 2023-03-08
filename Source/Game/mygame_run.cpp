@@ -108,14 +108,25 @@ void CGameStateRun::UnitInit()
 {
     switch (UNIT_TEST_STATE)
     {
-    case throwable:
+    case Throwable:
         THROWABLE.LoadEmptyBitmap(100, 100);
         THROWABLE.SetTopLeft(0, 0);
         THROWABLE.SetSpeed(2);
         THROWABLE.SetMoveDirection(1, 1);
     // break;
-    case dart:
+    case DartMonkey:
+        DART_MONKEY.LoadEmptyBitmap(50, 50);
+        DART_MONKEY.SetTopLeft(100, 100);
+    // DARTMONKEY.SetThrowableName("dart");
     // break;
+    case BalloonMove:
+        BALLOON.LoadEmptyBitmap(30, 30);
+        BALLOON.SetTopLeft(10, 10);
+        BALLOON.SetActive(false);
+        BALLOON.SetNowRouteTarget(0);
+        BALLOON.Setspeed(3);
+    case BalloonVectorMove:
+        BALLOONS.push_back(BALLOON);
     default:
         break;
     }
@@ -125,10 +136,43 @@ void CGameStateRun::UnitTest()
 {
     switch (UNIT_TEST_STATE)
     {
-    case throwable:
+    case Throwable:
         THROWABLE.Move();
+        if (THROWABLE.GetTop() > 10)
+        {
+            UNIT_TEST_STATE = BalloonMove;
+        }
         break;
-    case dart:
+    case DartMonkey:
+        //shoot test
+        break;
+    case BalloonMove:
+
+        BALLOON.Move({{500, 500}});
+        if (BALLOON.GetTop() > 30)
+        {
+            UNIT_TEST_STATE = BalloonVectorMove;
+        }
+        break;
+    case BalloonVectorMove:
+
+
+        BALLOONS[0].Move({{500, 500}});
+        if (BALLOONS[0].GetLeft() > 100)
+        {
+            UNIT_TEST_STATE = BalloonFactory;
+        }
+        break;
+    case BalloonFactory:
+        if (BALLOON_FACTORY.BallonVector.size() < 10)
+        {
+            BALLOON_FACTORY.MakeBallon("a");
+        }
+        for (auto& ballon : BALLOON_FACTORY.BallonVector)
+        {
+            ballon.Move({{500, 500}});
+        }
+
         break;
     default: ;
     }
@@ -138,10 +182,24 @@ void CGameStateRun::UnitShow()
 {
     switch (UNIT_TEST_STATE)
     {
-    case throwable:
+    case Throwable:
         THROWABLE.ShowBitmap();
         break;
-    case dart:
+    case DartMonkey:
+        DART_MONKEY.ShowBitmap();
+        break;
+    case BalloonMove:
+        BALLOON.ShowBitmap();
+        break;
+    case BalloonVectorMove:
+        BALLOONS[0].ShowBitmap();
+        break;
+    case BalloonFactory:
+        for (auto& ballon : BALLOON_FACTORY.BallonVector)
+        {
+            ballon.ShowBitmap();
+        }
+
         break;
     default:
         break;

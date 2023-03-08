@@ -39,11 +39,13 @@
 */
 
 #pragma once
+#include "BtdClass/DartMonkey.h"
 #include "BtdClass/Throwable.h"
 #include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
 #include <vector>
 
+#include "BtdClass/BallonFactory.h"
 #include "BtdClass/tower.h"
 
 namespace game_framework
@@ -64,8 +66,11 @@ namespace game_framework
 
     enum UnitTestState
     {
-        throwable,
-        dart,
+        Throwable,
+        DartMonkey,
+        BalloonFactory,
+        BalloonMove,
+        BalloonVectorMove,
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -109,8 +114,12 @@ namespace game_framework
         void OnMouseMove(UINT nFlags, CPoint point) override; // 處理滑鼠的動作 
         void OnRButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
-        UnitTestState UNIT_TEST_STATE = throwable;
+        UnitTestState UNIT_TEST_STATE = Throwable;
         Btd::Throwable THROWABLE;
+        Btd::DartMonkey DART_MONKEY;
+        Btd::BallonFactory BALLOON_FACTORY;
+        Btd::Ballon BALLOON;
+        vector<Btd::Ballon> BALLOONS;
         // std::vector<Btd::Bloon> bloonList;
         void UnitTest();
         void UnitInit();

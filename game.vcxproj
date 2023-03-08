@@ -265,9 +265,13 @@
     <ClInclude Include="Source\Core\MainFrm.h" />
     <ClInclude Include="Source\Core\Resource.h" />
     <ClInclude Include="Source\Core\StdAfx.h" />
+    <ClInclude Include="Source\Game\BtdClass\Ballon.h" />
+    <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
+    <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
     <ClInclude Include="Source\Game\BtdClass\BtdTime.h" />
     <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
+    <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
     <ClInclude Include="Source\Game\BtdClass\map.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
@@ -280,6 +284,34 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\Core\game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\bomb.bmp" />
+    <Content Include="Resources\GAME.ICO" />
+    <Content Include="Resources\GAME.RC2" />
+    <Content Include="Resources\gamecurs.cur" />
+    <Content Include="Resources\gameDoc.ico" />
+    <Content Include="Resources\map.bmp" />
+    <Content Include="Resources\roads\road_1.bmp" />
+    <Content Include="Resources\roads\road_10.bmp" />
+    <Content Include="Resources\roads\road_11.bmp" />
+    <Content Include="Resources\roads\road_12.bmp" />
+    <Content Include="Resources\roads\road_13.bmp" />
+    <Content Include="Resources\roads\road_14.bmp" />
+    <Content Include="Resources\roads\road_15.bmp" />
+    <Content Include="Resources\roads\road_2.bmp" />
+    <Content Include="Resources\roads\road_3.bmp" />
+    <Content Include="Resources\roads\road_4.bmp" />
+    <Content Include="Resources\roads\road_5.bmp" />
+    <Content Include="Resources\roads\road_6.bmp" />
+    <Content Include="Resources\roads\road_7.bmp" />
+    <Content Include="Resources\roads\road_8.bmp" />
+    <Content Include="Resources\roads\road_9.bmp" />
+    <Content Include="Resources\start_button.bmp" />
+    <Content Include="Resources\testRed.bmp" />
+    <Content Include="Resources\Toolbar.bmp" />
+    <Content Include="Resources\tower_monkey.bmp" />
+    <Content Include="Resources\tower_nail.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
