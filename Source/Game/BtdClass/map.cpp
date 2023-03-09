@@ -61,6 +61,11 @@ namespace Btd
         return _route;
     }
 
+    void Map::SetRoute(vector<Vector2> route)
+    {
+        _route = route;
+    };
+
     Vector2 Map::_startPosition = {0, 0};
 
     void Map::SetStartPosition(Vector2 StartPosition)

@@ -25,8 +25,15 @@ CGameStateRun::~CGameStateRun()
 
 void CGameStateRun::OnBeginState()
 {
+    Btd::Vector2 mapSize = {
+        static_cast<float>(map.GetBackground().GetWidth()), static_cast<float>(map.GetBackground().GetHeight())
+    };
     map.SetStartPosition({
-        static_cast<float>(map.GetBackground().GetWidth()), static_cast<float>(map.GetBackground().GetHeight()) / 2
+        static_cast<float>(0), mapSize.Y / 2
+    });
+    map.SetRoute({
+        {mapSize.X / 10, mapSize.Y / 2}, {mapSize.X / 10, mapSize.Y / 4},
+        {mapSize.X / 5, mapSize.Y / 4}, {mapSize.X * 0.4F, mapSize.Y / 2},
     });
 }
 

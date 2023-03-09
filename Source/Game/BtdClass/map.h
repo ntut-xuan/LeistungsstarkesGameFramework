@@ -21,6 +21,7 @@ namespace Btd
         static vector<Vector2> GetRoute();
         static Vector2 GetStartPosition();
         static void SetStartPosition(Vector2);
+        static void SetRoute(vector<Vector2>);
 
     private:
         std::vector<GameObject> _road;
