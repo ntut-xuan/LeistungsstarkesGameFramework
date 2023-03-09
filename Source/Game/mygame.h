@@ -46,7 +46,7 @@
 #include <vector>
 
 #include "BtdClass/BallonFactory.h"
-#include "BtdClass/tower.h"
+#include "BtdClass/Tower.h"
 
 namespace game_framework
 {
