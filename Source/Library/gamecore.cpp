@@ -373,24 +373,7 @@ namespace game_framework {
 	{
 		x = CDDraw::IsFullScreen() ? x + (RESOLUTION_X - SIZE_X) / 2 : x;
 		y = CDDraw::IsFullScreen() ? y + (RESOLUTION_Y - SIZE_Y) / 2 : y;
-		GAME_ASSERT(lpDDSBack && (SurfaceID < lpDDS.size()) && lpDDS[SurfaceID], "Internal Error: Incorrect SurfaceID in BltBitmapToBack");
-		CRect TargetRect;
-		TargetRect.left = x;
-		TargetRect.top = y;
-		TargetRect.right = x + BitmapRect[SurfaceID].right - BitmapRect[SurfaceID].left;
-		TargetRect.bottom = y + BitmapRect[SurfaceID].bottom - BitmapRect[SurfaceID].top;
-		int blt_flag;
-		if (BitmapColorKey[SurfaceID] != CLR_INVALID)
-			blt_flag = DDBLT_WAIT | DDBLT_KEYSRC;
-		else
-			blt_flag = DDBLT_WAIT;
-		if (lpDDSBack->IsLost())
-			RestoreSurface();
-		if (lpDDS[SurfaceID]->IsLost())
-			RestoreSurface();
-
-		ddrval = lpDDSBack->Blt(TargetRect, lpDDS[SurfaceID], NULL, blt_flag, NULL);
-		CheckDDFail("Blt Bitmap to Back Failed");
+		BltBitmapToBack(SurfaceID, x, y, 1);
 	}
 
 	void CDDraw::BltBitmapToBack(unsigned SurfaceID, int x, int y, double factor)
