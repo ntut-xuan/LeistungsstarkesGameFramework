@@ -43,7 +43,7 @@ namespace Btd
         nowLocal.X = static_cast<float>(GetLeft());
         nowLocal.Y = static_cast<float>(GetTop());
         Vector2 target=route[nowRouteTarget];
-        if (CompareVector2(target, nowLocal))
+        if((int)target.X==(int)nowLocal.X&& (int)target.Y==(int)nowLocal.Y)
         {
             if (nowRouteTarget != static_cast<int>(route.size()) - 1)
                 nowRouteTarget++;
@@ -60,7 +60,7 @@ namespace Btd
         deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
         int left = GetLeft() + static_cast<int>(deltaMove.X);
         int top = GetTop() + static_cast<int>(deltaMove.Y);
-        if(Vector2Distance({(float )left,(float )top},target)<1.5)
+        if(Vector2Distance({(float )left,(float )top},target)<speed*2/3)
         {
             left=(int)target.X;
             top =(int) target.Y;
