@@ -9,6 +9,14 @@ namespace Btd
         float X;
         float Y;
     };
+    enum Attribute
+    {
+        dart,
+        nail,
+        ice,
+        bomb,
+        super
+    };
 
     Vector2 Normailize(float x, float y);
     Vector2 Normailize(Vector2);
