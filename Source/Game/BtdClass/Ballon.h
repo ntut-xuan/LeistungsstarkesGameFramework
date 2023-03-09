@@ -41,5 +41,8 @@ namespace Btd
             }
             SetFrameIndexOfBitmap(_layer);
         }
+        int GetNowRouteTarget(){
+            return nowRouteTarget;
+        }
     };
 }

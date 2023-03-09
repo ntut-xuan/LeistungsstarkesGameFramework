@@ -41,6 +41,7 @@ namespace Btd {
         Vector2 _location;
         GameObject throwableFactory;
         queue<Btd::Throwable> throwablePool;
+        float shootDeltaTime;
         Vector2 throwLocal;
         void Shoot();
         void PushThrowablePool(bool active);
