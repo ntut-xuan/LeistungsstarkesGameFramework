@@ -249,6 +249,7 @@
     <ClCompile Include="Source\Game\BtdClass\map.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
     <ClCompile Include="Source\Game\BtdClass\tower.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\TestEverything.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
     <ClCompile Include="Source\Game\mygame_run.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="Source\Game\BtdClass\map.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
     <ClInclude Include="Source\Game\BtdClass\tower.h" />
+    <ClInclude Include="Source\Game\BtdClass\TestEverything.h" />
     <ClInclude Include="Source\Game\config.h" />
     <ClInclude Include="Source\Game\mygame.h" />
     <ClInclude Include="Source\Library\audio.h" />
