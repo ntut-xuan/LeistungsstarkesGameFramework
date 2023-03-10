@@ -1,7 +1,7 @@
+#include "stdafx.h"
 #include "BallonFactory.h"
 #include "BtdUtil.h"
 #include "map.h"
-#include "stdafx.h"
 #include "tower.h"
 
 namespace Btd
@@ -22,25 +22,28 @@ namespace Btd
     {
         _isMovable = false;
     }
-    void Tower::Update(){
+
+    void Tower::Update()
+    {
         Ballon target;
-        if(BallonFactory::BallonVector.size()!=0){
-            target=BallonFactory::BallonVector[0];
-            for(Ballon b : BallonFactory::BallonVector){
-                if((b.GetNowRouteTarget() >target.GetNowRouteTarget())||
-                (b.GetNowRouteTarget() ==target.GetNowRouteTarget()&&
-                Vector2Distance({b.GetLeft(),b.GetTop() },Map::GetRoute()[b.GetNowRouteTarget()])<
-                Vector2Distance({target.GetLeft(),target.GetTop() },Map::GetRoute()[b.GetNowRouteTarget()])))
+        if (BallonFactory::BallonVector.size() != 0)
+        {
+            target = BallonFactory::BallonVector[0];
+            for (Ballon b : BallonFactory::BallonVector)
+            {
+                if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
+                    (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
+                        Vector2Distance({(float)b.GetLeft(),(float) b.GetTop()}, Map::GetRoute()[b.GetNowRouteTarget()]) <
+                        Vector2Distance({(float)target.GetLeft(),(float ) target.GetTop()}, Map::GetRoute()[b.GetNowRouteTarget()])))
                 {
-                    target=b;
+                    target = b;
                 }
             }
             Shoot();
         }
-
     }
 
-//todo set throwable target position
+    //todo set throwable target position
     void Tower::Shoot()
     {
         if (throwablePool.empty() || throwablePool.front().GetActive())
@@ -55,7 +58,6 @@ namespace Btd
             next.SetTopLeft(static_cast<int>(throwLocal.X), static_cast<int>(throwLocal.Y));
             throwablePool.push(next);
         }
-        sleep(shootDeltaTime);
     }
 
     //todo when push can set top left
@@ -69,7 +71,5 @@ namespace Btd
     void Tower::MakeThrowable()
     {
         // return throwableFactory.MakeThrowable(throwableName);
-
-
     }
 }
