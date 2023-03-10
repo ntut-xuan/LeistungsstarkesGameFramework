@@ -26,10 +26,6 @@ namespace Btd
         vector<Ballon> BALLOONS;
 
     public:
-        TestEverything()
-        {
-            UnitInit();
-        }
 
         void UnitInit();
         void UnitTest();

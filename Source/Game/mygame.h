@@ -101,7 +101,7 @@ namespace game_framework
         void OnRButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
 
-        Btd::TestEverything UnitTest;
+        Btd::TestEverything UnitTest ;
 
     protected:
         void OnMove() override; // 移動遊戲元素

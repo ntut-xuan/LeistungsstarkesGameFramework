@@ -50,6 +50,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
     map.initBackground();
     // unit init
     UnitTest = Btd::TestEverything();
+    UnitTest.UnitInit();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
