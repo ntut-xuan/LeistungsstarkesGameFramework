@@ -29,11 +29,19 @@ void CGameStateRun::OnBeginState()
         static_cast<float>(map.GetBackground().GetWidth()), static_cast<float>(map.GetBackground().GetHeight())
     };
     map.SetStartPosition({
-        static_cast<float>(0), mapSize.Y / 2
+        static_cast<float>(0), mapSize.Y * 0.4F
     });
     map.SetRoute({
-        {mapSize.X / 10, mapSize.Y / 2}, {mapSize.X / 10, mapSize.Y / 4},
-        {mapSize.X / 5, mapSize.Y / 4}, {mapSize.X * 0.4F, mapSize.Y / 2},
+        // {mapSize.X / 10, mapSize.Y *0.4F}, {mapSize.X / 10, mapSize.Y *0.1F},
+        // {mapSize.X / 5, mapSize.Y / 4}, {mapSize.X * 0.4F, mapSize.Y / 2},
+        {mapSize.X * 0.11F, mapSize.Y * 0.4F},
+        {mapSize.X * 0.11F, mapSize.Y * 0.12F},
+        {mapSize.X * 0.3F, mapSize.Y * 0.12F}, {mapSize.X * 0.3F, mapSize.Y * 0.67F},
+        {mapSize.X * 0.05F, mapSize.Y * 0.67F}, {mapSize.X * 0.05F, mapSize.Y * 0.85F},
+        {mapSize.X * 0.65F, mapSize.Y * 0.85F}, {mapSize.X * 0.65F, mapSize.Y * 0.53F},
+        {mapSize.X * 0.45F, mapSize.Y * 0.53F}, {mapSize.X * 0.45F, mapSize.Y * 0.3F},
+        // {mapSize.X *0.65F, mapSize.Y*0.3F}, {mapSize.X * 0.65F, mapSize.Y *0.06F},
+        // {mapSize.X *0.38F, mapSize.Y*0.06F}, {mapSize.X * 0.38F, mapSize.Y *0.F},
     });
 }
 
