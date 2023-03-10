@@ -17,6 +17,7 @@ namespace Btd
             _dartMonkey.LoadBitmapByString({"Resources/towers/monkey/tower_monkey_1.bmp"},RGB(0, 0, 0));
             _dartMonkey.LoadEmptyBitmap(50, 50);
             _dartMonkey.SetTopLeft(100, 100);
+            _dartMonkey.SetShootDeltaTime(1);
         // DARTMONKEY.SetThrowableName("dart");
         // break;
         case BalloonMoveTest:

@@ -23,37 +23,60 @@ namespace Btd
         _isMovable = false;
     }
 
-    void Tower::Update()
+    void Tower::UpdateThrowable()
     {
-        for (auto &t : throwables)
+        for (auto& t : throwables)
         {
             t.Update();
         }
-        Ballon target;
-        if (BallonFactory::BallonVector.size() != 0)
-        {
-            target = BallonFactory::BallonVector[0];
-            for (Ballon b : BallonFactory::BallonVector)
-            {
-                if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
-                    (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
-                        Vector2Distance({static_cast<float>(b.GetLeft()), static_cast<float>(b.GetTop())},
-                                        Map::GetRoute()[b.GetNowRouteTarget()]) <
-                        Vector2Distance({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())},
-                                        Map::GetRoute()[b.GetNowRouteTarget()])))
-                {
-                    target = b;
-                }
-            }
-            //todo check in attack range
-            Shoot();
-        }
     }
 
+    Ballon Tower::focus()
+    {
+        Ballon target;
+
+        target = BallonFactory::BallonVector[0];
+        for (Ballon b : BallonFactory::BallonVector)
+        {
+            if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
+                (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
+                    Vector2Distance({static_cast<float>(b.GetLeft()), static_cast<float>(b.GetTop())},
+                                    Map::GetRoute()[b.GetNowRouteTarget()]) <
+                    Vector2Distance({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())},
+                                    Map::GetRoute()[b.GetNowRouteTarget()])))
+            {
+                target = b;
+            }
+        }
+
+        return target;
+    }
+
+    void Tower::Update()
+    {
+        UpdateThrowable();
+
+        if (BallonFactory::BallonVector.size() != 0&&shootTimecounter>shootDeltaTime)
+        {
+            Ballon target = focus();
+        //todo check in attack range
+            Shoot();
+        }else
+        {
+            shootTimecounter += delayCount/1000.F;
+        }
+
+    }
+
+    void Tower::SetShootDeltaTime(float time)
+    {
+        shootDeltaTime = time;
+    }
 
     //todo set throwable target position
     void Tower::Shoot()
     {
+        shootTimecounter = 0;
         if (throwablePool.empty() || throwablePool.front().GetActive())
         {
             PushThrowablePool(true);

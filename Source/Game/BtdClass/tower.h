@@ -42,6 +42,7 @@ namespace Btd
                 t.ShowBitmap();
             }
         }
+        void SetShootDeltaTime(float time);
 
     private:
         bool _isUpgrade[2];
@@ -54,10 +55,13 @@ namespace Btd
         GameObject throwableFactory;
         queue<Throwable> throwablePool;
         float shootDeltaTime;
+        float shootTimecounter;
         Vector2 throwLocal;
+        Ballon focus();
         void Shoot();
         void PushThrowablePool(bool active);
         void MakeThrowable();
+        void UpdateThrowable();
     };
 }
 #endif
