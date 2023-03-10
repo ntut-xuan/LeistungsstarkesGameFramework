@@ -8,6 +8,7 @@
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
 #include "mygame.h"
+#include "BtdClass/TowerFactory.h"
 
 using namespace game_framework;
 
@@ -30,6 +31,7 @@ void CGameStateRun::OnBeginState()
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
     UnitTest();
+    button.Update();
 }
 
 vector<string> generatePath (string initPath)
@@ -45,10 +47,12 @@ vector<string> generatePath (string initPath)
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-	monkey.LoadBitmapByString({{generatePath("resources/towers/monkey/tower_monkey_")}}, RGB(0, 0, 0));
     UnitInit();
 	map.InitRoad();
     map.initBackground();
+    button.LoadBitmapByString({"resources/button/button_monkey.bmp"}, RGB(0, 0, 0));
+    button.SetAttribute(Btd::dart);
+    button.SetTopLeft(780, 300);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -70,6 +74,10 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的�
     {
         monkey.SetNotMove();
     }
+    if (button.IsCursorFocus())
+    {
+        button.SetClicked(true);
+    }
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -78,14 +86,6 @@ void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-    if (monkey.IsMovable())
-    {
-        POINT p;
-        GetCursorPos(&p);
-        HWND hwnd = FindWindowA(NULL, "Game");
-        ScreenToClient(hwnd, &p);
-        monkey.SetCenter(p.x, p.y);
-    }
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
@@ -100,8 +100,12 @@ void CGameStateRun::OnShow()
 {
     map.showBackground();
 	map.ShowRoad();
-	monkey.ShowBitmap();
+    button.ShowBitmap();
     UnitShow();
+    if (Btd::TowerFactory::TowerVector.size() != 0)
+    {
+        Btd::TowerFactory::TowerVector.back().ShowBitmap();
+    }
 }
 
 void CGameStateRun::UnitInit()

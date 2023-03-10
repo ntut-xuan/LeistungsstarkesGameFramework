@@ -46,6 +46,7 @@
 #include <vector>
 
 #include "BtdClass/BallonFactory.h"
+#include "BtdClass/FactoryButton.h"
 #include "BtdClass/Tower.h"
 
 namespace game_framework
@@ -131,6 +132,7 @@ namespace game_framework
 	private:
 		Btd::Tower monkey;
         Btd::Map map;
+        Btd::FactoryButton button;
     };
 
     /////////////////////////////////////////////////////////////////////////////

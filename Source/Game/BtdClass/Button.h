@@ -7,10 +7,11 @@ namespace Btd
     class Button : public GameObject 
     {
     public:
-        Button(Attribute attribute);
-        ~Button();
-        bool IsFocus();
-    private:
-        Attribute _attribute;
+        Button() = default;
+        ~Button() = default;
+        bool IsCursorFocus();
+        void SetClicked(bool clicked);
+    protected:
+        bool _isClicked = false;
     };
 }
