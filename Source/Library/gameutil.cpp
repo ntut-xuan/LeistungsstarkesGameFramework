@@ -298,14 +298,14 @@ namespace game_framework {
 	int CMovingBitmap::GetWidth()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Width() is called !!!");
-		return (int)((location.right - location.left) * factor);
+		return (int)((location.right - location.left) * scaleFactor);
 	}
 	
-	double CMovingBitmap::GetFactor() const
+	double CMovingBitmap::GetScale() const
 	{
 		return scaleFactor;
 	}
-	void CMovingBitmap::SetFactor(double scale)
+	void CMovingBitmap::SetScale(double scale)
 	{
 		GAME_ASSERT(scale >= 0, "CMovingBitmap factor cannot be negative number!!!!!!!!!!")
 		scaleFactor = scale;
