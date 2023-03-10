@@ -22,6 +22,7 @@ namespace Btd
         int getRange();
         void setUpdate(int level);
         static string throwableName;
+        vector<Throwable> throwables;
 
         void SetThrowableName(string name)
         {
@@ -31,6 +32,15 @@ namespace Btd
         void SetThrowableLocal(Vector2 local)
         {
             throwLocal = local;
+        }
+
+        void TowerShow()
+        {
+            this->ShowBitmap();
+            for (auto t : throwables)
+            {
+                t.ShowBitmap();
+            }
         }
 
     private:

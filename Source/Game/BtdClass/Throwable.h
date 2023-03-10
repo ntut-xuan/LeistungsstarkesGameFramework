@@ -25,13 +25,13 @@ namespace Btd
     public:
         Vector2 GetMoveDirection() const;
 
-        // void Update()
-        // {
-        //     if (GetActive())
-        //     {
-        //         Move();
-        //     }
-        // }
+        void Update() override
+        {
+            if (GetActive())
+            {
+                Move();
+            }
+        }
 
         void Move();
 

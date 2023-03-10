@@ -14,6 +14,7 @@ namespace Btd
             _throwable.SetMoveDirection(1, 1);
         // break;
         case DartMonkeyShoot:
+            _dartMonkey.LoadBitmapByString({"Resources/towers/monkey/tower_monkey_1.bmp"},RGB(0, 0, 0));
             _dartMonkey.LoadEmptyBitmap(50, 50);
             _dartMonkey.SetTopLeft(100, 100);
         // DARTMONKEY.SetThrowableName("dart");
@@ -43,7 +44,8 @@ namespace Btd
             }
             break;
         case DartMonkeyShoot:
-            //shoot test
+            _dartMonkey.Update();
+        //shoot test
             break;
         case BalloonMoveTest:
 
@@ -71,6 +73,10 @@ namespace Btd
             {
                 ballon.Move({{500, 500}});
             }
+            if (_balloonFactory.BallonVector.size() > 5)
+            {
+                _unitTestState = DartMonkeyShoot;
+            }
 
             break;
         default: ;
@@ -85,7 +91,7 @@ namespace Btd
             _throwable.ShowBitmap();
             break;
         case DartMonkeyShoot:
-            _dartMonkey.ShowBitmap();
+            _dartMonkey.TowerShow();
             break;
         case BalloonMoveTest:
             _balloon.ShowBitmap();
