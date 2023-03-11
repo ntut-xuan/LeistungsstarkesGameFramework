@@ -243,7 +243,7 @@
     <ClCompile Include="Source\Core\StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\Game\BtdClass\BtdTime.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\Ballon.cpp" />
     <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
     <ClCompile Include="Source\Game\BtdClass\map.cpp" />
@@ -268,7 +268,6 @@
     <ClInclude Include="Source\Game\BtdClass\Ballon.h" />
     <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
     <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
-    <ClInclude Include="Source\Game\BtdClass\BtdTime.h" />
     <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
     <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
@@ -286,6 +285,7 @@
     <ResourceCompile Include="Source\Core\game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\bloon\bloon_red.bmp" />
     <Content Include="Resources\bomb.bmp" />
     <Content Include="Resources\GAME.ICO" />
     <Content Include="Resources\GAME.RC2" />
@@ -310,6 +310,16 @@
     <Content Include="Resources\start_button.bmp" />
     <Content Include="Resources\testRed.bmp" />
     <Content Include="Resources\Toolbar.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_1.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_2.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_3.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_4.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_5.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_6.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_7.bmp" />
+    <Content Include="Resources\towers\monkey\tower_monkey_8.bmp" />
+    <Content Include="Resources\towers\nail\tower_nail.bmp" />
+    <Content Include="Resources\towers\super\tower_super.bmp" />
     <Content Include="Resources\tower_monkey.bmp" />
     <Content Include="Resources\tower_nail.bmp" />
   </ItemGroup>
