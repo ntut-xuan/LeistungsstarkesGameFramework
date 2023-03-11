@@ -7,11 +7,11 @@
 
 namespace Btd
 {
-    class Map 
+    class Map :public GameObject
     {
     public:
         Map() = default;
-        ~Map() override = default;
+        ~Map() = default;
         const int InitMoney = 650;
         const int InitLives = 40;
         void InitRoad();

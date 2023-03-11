@@ -63,7 +63,6 @@ vector<string> GeneratePath(string initPath)
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
-    UnitInit();
 	map.InitRoad();
     map.InitBackground();
     map.InitFactoryButton();
@@ -114,6 +113,12 @@ void CGameStateRun::OnShow()
     map.ShowBackground();
     map.ShowFactoryButton();
     map.ShowRoad();
-    monkey.ShowBitmap();
     UnitTest.UnitShow();
+    if (!Btd::TowerFactory::TowerVector.empty())
+    {
+        for (auto m : Btd::TowerFactory::TowerVector)
+        {
+            m.ShowBitmap();
+        }
+    }
 }

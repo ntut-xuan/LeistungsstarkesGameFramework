@@ -34,7 +34,7 @@ namespace Btd
     Ballon Tower::focus()
     {
         Ballon target;
-
+        
         target = BallonFactory::BallonVector[0];
         for (Ballon b : BallonFactory::BallonVector)
         {
@@ -48,7 +48,7 @@ namespace Btd
                 target = b;
             }
         }
-
+        
         return target;
     }
 
