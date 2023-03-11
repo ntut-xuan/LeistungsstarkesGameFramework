@@ -15,4 +15,21 @@ namespace Btd
     bool CompareVector2(Vector2 a,Vector2 b){
         return a.X == b.X && a.Y==b.Y;
     }
+    int GetCursorPosX()
+    {
+        POINT p;
+        GetCursorPos(&p);
+        HWND hwnd = FindWindowA(NULL, "Game");
+        ScreenToClient(hwnd, &p);
+        return (int)p.x;
+    }
+    int GetCursorPosY()
+    {
+        POINT p;
+        GetCursorPos(&p);
+        HWND hwnd = FindWindowA(NULL, "Game");
+        ScreenToClient(hwnd, &p);
+        return (int)p.y;
+    }
+
 }
