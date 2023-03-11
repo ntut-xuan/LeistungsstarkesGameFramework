@@ -39,13 +39,8 @@
 */
 
 #pragma once
-#include "BtdClass/DartMonkey.h"
-#include "BtdClass/Throwable.h"
 #include "BtdClass/map.h"
-#include "BtdClass/GameObject.h"
-#include <vector>
-
-#include "BtdClass/BallonFactory.h"
+#include "BtdClass/TestEverything.h"
 #include "BtdClass/tower.h"
 
 namespace game_framework
@@ -62,15 +57,6 @@ namespace game_framework
         AUDIO_LAKE,
         // 1
         AUDIO_NTUT // 2
-    };
-
-    enum UnitTestState
-    {
-        Throwable,
-        DartMonkey,
-        BalloonFactory,
-        BalloonMove,
-        BalloonVectorMove,
     };
 
     /////////////////////////////////////////////////////////////////////////////
@@ -90,7 +76,7 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         CMovingBitmap logo; // csie的logo
-		CMovingBitmap startButton;
+        CMovingBitmap startButton;
         Btd::Map map;
     };
 
@@ -114,22 +100,14 @@ namespace game_framework
         void OnMouseMove(UINT nFlags, CPoint point) override; // 處理滑鼠的動作 
         void OnRButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
-        UnitTestState UNIT_TEST_STATE = Throwable;
-        Btd::Throwable THROWABLE;
-        Btd::DartMonkey DART_MONKEY;
-        Btd::BallonFactory BALLOON_FACTORY;
-        Btd::Ballon BALLOON;
-        vector<Btd::Ballon> BALLOONS;
-        // std::vector<Btd::Bloon> bloonList;
-        void UnitTest();
-        void UnitInit();
-        void UnitShow();
+
+        Btd::TestEverything UnitTest;
 
     protected:
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
-	private:
-		Btd::Tower monkey;
+    private:
+        Btd::Tower monkey;
         Btd::Map map;
     };
 
