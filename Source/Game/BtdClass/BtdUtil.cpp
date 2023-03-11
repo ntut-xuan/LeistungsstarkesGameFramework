@@ -36,4 +36,21 @@ namespace Btd
         float y = a.Y - b.Y;
         return sqrt(x * x + y * y);
     }
+    int GetCursorPosX()
+    {
+        POINT p;
+        GetCursorPos(&p);
+        HWND hwnd = FindWindowA(NULL, "Game");
+        ScreenToClient(hwnd, &p);
+        return (int)p.x;
+    }
+    int GetCursorPosY()
+    {
+        POINT p;
+        GetCursorPos(&p);
+        HWND hwnd = FindWindowA(NULL, "Game");
+        ScreenToClient(hwnd, &p);
+        return (int)p.y;
+    }
+
 }

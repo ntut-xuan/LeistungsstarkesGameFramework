@@ -245,10 +245,13 @@
     </ClCompile>
     <ClCompile Include="Source\Game\BtdClass\Ballon.cpp" />
     <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\Button.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
     <ClCompile Include="Source\Game\BtdClass\map.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
-    <ClCompile Include="Source\Game\BtdClass\tower.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\Tower.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\TowerFactory.cpp" />
     <ClCompile Include="Source\Game\BtdClass\TestEverything.cpp" />
     <ClCompile Include="Source\Game\mygame_initialize.cpp" />
     <ClCompile Include="Source\Game\mygame_over.cpp" />
@@ -270,12 +273,15 @@
     <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
     <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
     <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
+    <ClInclude Include="Source\Game\BtdClass\Button.h" />
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
     <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
+    <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
     <ClInclude Include="Source\Game\BtdClass\map.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
-    <ClInclude Include="Source\Game\BtdClass\tower.h" />
+    <ClInclude Include="Source\Game\BtdClass\Tower.h" />
+    <ClInclude Include="Source\Game\BtdClass\TowerFactory.h" />
     <ClInclude Include="Source\Game\BtdClass\TestEverything.h" />
     <ClInclude Include="Source\Game\config.h" />
     <ClInclude Include="Source\Game\mygame.h" />

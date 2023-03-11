@@ -2,7 +2,7 @@
 #include "BallonFactory.h"
 #include "BtdUtil.h"
 #include "map.h"
-#include "tower.h"
+#include "Tower.h"
 
 namespace Btd
 {
@@ -18,9 +18,9 @@ namespace Btd
         return _isMovable;
     }
 
-    void Tower::SetNotMove()
+    void Tower::SetIsMove(bool move)
     {
-        _isMovable = false;
+        _isMovable = move;
     }
 
     void Tower::UpdateThrowable()
@@ -34,7 +34,7 @@ namespace Btd
     Ballon Tower::focus()
     {
         Ballon target;
-
+        
         target = BallonFactory::BallonVector[0];
         for (Ballon b : BallonFactory::BallonVector)
         {
@@ -48,7 +48,7 @@ namespace Btd
                 target = b;
             }
         }
-
+        
         return target;
     }
 

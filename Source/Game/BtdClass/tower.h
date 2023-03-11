@@ -6,6 +6,7 @@
 #include "Throwable.h"
 #include <queue>
 #include <string>
+#include "Ballon.h"
 
 namespace Btd
 {
@@ -17,7 +18,7 @@ namespace Btd
         void Update() override;
         void SetUpgrade(int level);
         bool IsMovable();
-        void SetNotMove();
+        void SetIsMove(bool move);
         Vector2 getLocation();
         int getRange();
         void setUpdate(int level);
@@ -43,6 +44,10 @@ namespace Btd
             }
         }
         void SetShootDeltaTime(float time);
+        void Shoot();
+        void PushThrowablePool(bool active);
+        void MakeThrowable();
+        void UpdateThrowable();
 
     private:
         bool _isUpgrade[2];
@@ -58,10 +63,6 @@ namespace Btd
         float shootTimecounter;
         Vector2 throwLocal;
         Ballon focus();
-        void Shoot();
-        void PushThrowablePool(bool active);
-        void MakeThrowable();
-        void UpdateThrowable();
     };
 }
 #endif

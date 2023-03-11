@@ -40,8 +40,13 @@
 
 #pragma once
 #include "BtdClass/map.h"
+#include "BtdClass/GameObject.h"
+#include <vector>
+
+#include "BtdClass/BallonFactory.h"
+#include "BtdClass/FactoryButton.h"
+#include "BtdClass/Tower.h"
 #include "BtdClass/TestEverything.h"
-#include "BtdClass/tower.h"
 
 namespace game_framework
 {
@@ -109,6 +114,7 @@ namespace game_framework
     private:
         Btd::Tower monkey;
         Btd::Map map;
+        Btd::FactoryButton factoryButton[5];
     };
 
     /////////////////////////////////////////////////////////////////////////////
