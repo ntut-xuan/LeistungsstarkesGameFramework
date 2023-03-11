@@ -26,23 +26,39 @@ CGameStateRun::~CGameStateRun()
 
 void CGameStateRun::OnBeginState()
 {
+    Btd::Vector2 mapSize = {
+        static_cast<float>(map.GetBackground().GetWidth()), static_cast<float>(map.GetBackground().GetHeight())
+    };
+    map.SetStartPosition({
+        static_cast<float>(0), mapSize.Y * 0.4F
+    });
+    map.SetRoute({
+        {mapSize.X * 0.11F, mapSize.Y * 0.4F}, {mapSize.X * 0.11F, mapSize.Y * 0.12F},
+        {mapSize.X * 0.3F, mapSize.Y * 0.12F}, {mapSize.X * 0.3F, mapSize.Y * 0.67F},
+        {mapSize.X * 0.05F, mapSize.Y * 0.67F}, {mapSize.X * 0.05F, mapSize.Y * 0.85F},
+        {mapSize.X * 0.65F, mapSize.Y * 0.85F}, {mapSize.X * 0.65F, mapSize.Y * 0.53F},
+        {mapSize.X * 0.45F, mapSize.Y * 0.53F}, {mapSize.X * 0.45F, mapSize.Y * 0.3F},
+        {mapSize.X * 0.65F, mapSize.Y * 0.3F}, {mapSize.X * 0.65F, mapSize.Y * 0.06F},
+        {mapSize.X * 0.38F, mapSize.Y * 0.06F}, {mapSize.X * 0.38F, mapSize.Y * 0.F},
+        {mapSize.X * 0.38F, mapSize.Y * -0.08F},
+    });
 }
 
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
-    UnitTest();
+    UnitTest.UnitTest();
     map.UpdateFatoryButton();
 }
 
-vector<string> generatePath (string initPath)
+vector<string> GeneratePath(string initPath)
 {
-	vector<string> path;
-	for (int i=1; i<=8; i++)
-	{
-		string tmpPath = initPath + std::to_string(i) + ".bmp";
-		path.push_back(tmpPath);
-	}
-	return path;
+    vector<string> path;
+    for (int i = 1; i <= 8; i++)
+    {
+        string tmpPath = initPath + std::to_string(i) + ".bmp";
+        path.push_back(tmpPath);
+    }
+    return path;
 }
 
 void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
@@ -51,6 +67,9 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 	map.InitRoad();
     map.InitBackground();
     map.InitFactoryButton();
+    // unit init
+    UnitTest = Btd::TestEverything();
+    UnitTest.UnitInit();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -93,116 +112,8 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 void CGameStateRun::OnShow()
 {
     map.ShowBackground();
-	map.ShowRoad();
     map.ShowFactoryButton();
-    UnitShow();
-    if (!Btd::TowerFactory::TowerVector.empty())
-    {
-        for (auto m : Btd::TowerFactory::TowerVector)
-        {
-            m.ShowBitmap();
-        }
-    }
-}
-
-void CGameStateRun::UnitInit()
-{
-    switch (UNIT_TEST_STATE)
-    {
-    case Throwable:
-        THROWABLE.LoadEmptyBitmap(100, 100);
-        THROWABLE.SetTopLeft(0, 0);
-        THROWABLE.SetSpeed(2);
-        THROWABLE.SetMoveDirection(1, 1);
-    // break;
-    case DartMonkey:
-        DART_MONKEY.LoadEmptyBitmap(50, 50);
-        DART_MONKEY.SetTopLeft(100, 100);
-    // DARTMONKEY.SetThrowableName("dart");
-    // break;
-    case BalloonMove:
-        BALLOON.LoadEmptyBitmap(30, 30);
-        BALLOON.SetTopLeft(10, 10);
-        BALLOON.SetActive(false);
-        BALLOON.SetNowRouteTarget(0);
-        BALLOON.Setspeed(3);
-    case BalloonVectorMove:
-        BALLOONS.push_back(BALLOON);
-    default:
-        break;
-    }
-}
-
-void CGameStateRun::UnitTest()
-{
-    switch (UNIT_TEST_STATE)
-    {
-    case Throwable:
-        THROWABLE.Move();
-        if (THROWABLE.GetTop() > 10)
-        {
-            UNIT_TEST_STATE = BalloonMove;
-        }
-        break;
-    case DartMonkey:
-        //shoot test
-        break;
-    case BalloonMove:
-
-        BALLOON.Move({{500, 500}});
-        if (BALLOON.GetTop() > 30)
-        {
-            UNIT_TEST_STATE = BalloonVectorMove;
-        }
-        break;
-    case BalloonVectorMove:
-
-
-        BALLOONS[0].Move({{500, 500}});
-        if (BALLOONS[0].GetLeft() > 100)
-        {
-            UNIT_TEST_STATE = BalloonFactory;
-        }
-        break;
-    case BalloonFactory:
-        if (BALLOON_FACTORY.BallonVector.size() < 10)
-        {
-            BALLOON_FACTORY.MakeBallon("a");
-        }
-        for (auto& ballon : BALLOON_FACTORY.BallonVector)
-        {
-            ballon.Move({{500, 500}});
-        }
-
-        break;
-    default: ;
-    }
-}
-
-void CGameStateRun::UnitShow()
-{
-    switch (UNIT_TEST_STATE)
-    {
-    case Throwable:
-        THROWABLE.ShowBitmap();
-        break;
-    case DartMonkey:
-        DART_MONKEY.ShowBitmap();
-        break;
-    case BalloonMove:
-        BALLOON.ShowBitmap();
-        break;
-    case BalloonVectorMove:
-        BALLOONS[0].ShowBitmap();
-        break;
-    case BalloonFactory:
-        for (auto& ballon : BALLOON_FACTORY.BallonVector)
-        {
-            ballon.ShowBitmap();
-        }
-
-        break;
-    default:
-        break;
-    }
+    map.ShowRoad();
+    monkey.ShowBitmap();
+    UnitTest.UnitShow();
 }

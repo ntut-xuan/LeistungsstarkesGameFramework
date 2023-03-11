@@ -46,39 +46,42 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 }
 
-bool isPointInBmp(POINT p, CMovingBitmap target) 
+bool isPointInBmp(POINT p, CMovingBitmap target)
 {
-	if (target.GetLeft() <= p.x && p.x <= target.GetLeft() + target.GetWidth() &&
-		target.GetTop() <= p.y && p.y <= target.GetTop() + target.GetHeight()) {
-		return true;
-	}
-	return false;
+    if (target.GetLeft() <= p.x && p.x <= target.GetLeft() + target.GetWidth() &&
+        target.GetTop() <= p.y && p.y <= target.GetTop() + target.GetHeight())
+    {
+        return true;
+    }
+    return false;
 }
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	POINT p;
-	GetCursorPos(&p);
-	HWND hwnd = FindWindowA(NULL, "Game");
-	ScreenToClient(hwnd, &p);
+    POINT p;
+    GetCursorPos(&p);
+    HWND hwnd = FindWindowA(nullptr, "Game");
+    ScreenToClient(hwnd, &p);
 
-	if (isPointInBmp(p, startButton)) {
-		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
-	}
+    if (isPointInBmp(p, startButton))
+    {
+        GotoGameState(GAME_STATE_RUN); // 切換至GAME_STATE_RUN
+    }
 }
 
-void showInfoText() {
-	CDC *pDC = CDDraw::GetBackCDC();
-	CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
-	CTextDraw::Print(pDC, 749, 25, "Round:   1");
-	CTextDraw::Print(pDC, 749, 61, "Money: 650");
-	CTextDraw::Print(pDC, 749, 97, "Lives:  40");
+void showInfoText()
+{
+    CDC* pDC = CDDraw::GetBackCDC();
+    CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
+    CTextDraw::Print(pDC, 749, 25, "Round:   1");
+    CTextDraw::Print(pDC, 749, 61, "Money: 650");
+    CTextDraw::Print(pDC, 749, 97, "Lives:  40");
 
-	CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
-	CTextDraw::Print(pDC, 749, 152, "Build Towers");
-	CTextDraw::Print(pDC, 749, 152, "____________");
+    CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
+    CTextDraw::Print(pDC, 749, 152, "Build Towers");
+    CTextDraw::Print(pDC, 749, 152, "____________");
 
-	CDDraw::ReleaseBackCDC();
+    CDDraw::ReleaseBackCDC();
 }
 
 void CGameStateInit::OnShow()

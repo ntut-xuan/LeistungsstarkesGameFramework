@@ -23,4 +23,7 @@ namespace Btd
     bool CompareVector2(Vector2 a,Vector2 b);
     int GetCursorPosX();
     int GetCursorPosY();
+    Vector2 Vector2Add(Vector2 a, Vector2 b);
+    Vector2 Vector2Sub(Vector2 a, Vector2 b);
+    float Vector2Distance(Vector2 a, Vector2 b);
 }

@@ -7,12 +7,14 @@
 #include <queue>
 #include <string>
 
-namespace Btd {
+namespace Btd
+{
     class Tower : public GameObject
     {
     public:
         Tower();
-        ~Tower() = default;
+        ~Tower() override = default;
+        void Update() override;
         void SetUpgrade(int level);
         bool IsMovable();
         void SetIsMove(bool move);
@@ -20,16 +22,27 @@ namespace Btd {
         int getRange();
         void setUpdate(int level);
         static string throwableName;
+        vector<Throwable> throwables;
 
         void SetThrowableName(string name)
         {
             throwableName = name;
         }
 
-        void SetThrowableLocal(Btd::Vector2 local)
+        void SetThrowableLocal(Vector2 local)
         {
             throwLocal = local;
         }
+
+        void TowerShow()
+        {
+            this->ShowBitmap();
+            for (auto t : throwables)
+            {
+                t.ShowBitmap();
+            }
+        }
+        void SetShootDeltaTime(float time);
 
     private:
         bool _isUpgrade[2];
@@ -40,12 +53,15 @@ namespace Btd {
         int _sellMoney;
         Vector2 _location;
         GameObject throwableFactory;
-        queue<Btd::Throwable> throwablePool;
+        queue<Throwable> throwablePool;
+        float shootDeltaTime;
+        float shootTimecounter;
         Vector2 throwLocal;
+        Ballon focus();
         void Shoot();
         void PushThrowablePool(bool active);
         void MakeThrowable();
+        void UpdateThrowable();
     };
-
 }
 #endif
