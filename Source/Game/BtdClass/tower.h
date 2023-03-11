@@ -15,7 +15,7 @@ namespace Btd {
         ~Tower() = default;
         void SetUpgrade(int level);
         bool IsMovable();
-        void SetNotMove();
+        void SetIsMove(bool move);
         Vector2 getLocation();
         int getRange();
         void setUpdate(int level);

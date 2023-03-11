@@ -15,9 +15,9 @@ namespace Btd
         return _isMovable;
     }
 
-    void Tower::SetNotMove()
+    void Tower::SetIsMove(bool move)
     {
-        _isMovable = false;
+        _isMovable = move;
     }
 
     void Tower::Shoot()
