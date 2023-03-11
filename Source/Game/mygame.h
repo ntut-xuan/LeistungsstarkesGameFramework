@@ -132,7 +132,7 @@ namespace game_framework
 	private:
 		Btd::Tower monkey;
         Btd::Map map;
-        Btd::FactoryButton button;
+        Btd::FactoryButton factoryButton[5];
     };
 
     /////////////////////////////////////////////////////////////////////////////

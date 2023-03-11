@@ -3,10 +3,11 @@
 
 #include "GameObject.h"
 #include "BtdUtil.h"
+#include "FactoryButton.h"
 
 namespace Btd
 {
-    class Map : public GameObject
+    class Map 
     {
     public:
         Map() = default;
@@ -15,11 +16,16 @@ namespace Btd
         const int InitLives = 40;
         void InitRoad();
         void ShowRoad();
-        void initBackground();
-        void showBackground();
+        void InitBackground();
+        void ShowBackground();
+        void InitFactoryButton();
+        void ShowFactoryButton();
+        void UpdateFatoryButton();
+        void HandleButtonClicked();
     private:
         std::vector<GameObject> _road;
         GameObject _background;
+        FactoryButton _factoryButton[5];
     };
 }
 

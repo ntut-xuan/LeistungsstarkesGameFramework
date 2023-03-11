@@ -35,7 +35,7 @@ void CGameStateInit::OnInit()
 	startButton.LoadBitmapByString({ "resources/start_button.bmp" });
 	startButton.SetTopLeft(742, 620);
 	map.InitRoad();
-	map.initBackground();
+	map.InitBackground();
 }
 
 void CGameStateInit::OnBeginState()
@@ -83,7 +83,7 @@ void showInfoText() {
 
 void CGameStateInit::OnShow()
 {
-	map.showBackground();
+	map.ShowBackground();
 	map.ShowRoad();
 	startButton.ShowBitmap();
 	showInfoText();

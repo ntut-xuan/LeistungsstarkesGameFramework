@@ -31,7 +31,7 @@ void CGameStateRun::OnBeginState()
 void CGameStateRun::OnMove() // 移動遊戲元素
 {
     UnitTest();
-    button.Update();
+    map.UpdateFatoryButton();
 }
 
 vector<string> generatePath (string initPath)
@@ -49,10 +49,8 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
 {
     UnitInit();
 	map.InitRoad();
-    map.initBackground();
-    button.LoadBitmapByString({"resources/button/button_monkey.bmp"}, RGB(0, 0, 0));
-    button.SetAttribute(Btd::dart);
-    button.SetTopLeft(780, 300);
+    map.InitBackground();
+    map.InitFactoryButton();
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -65,10 +63,7 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-    if (button.IsCursorFocus())
-    {
-        button.SetClicked(true);
-    }
+    map.HandleButtonClicked();
     if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back().IsMovable())
     {
         Btd::TowerFactory::TowerVector.back().SetIsMove(false);
@@ -97,9 +92,9 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnShow()
 {
-    map.showBackground();
+    map.ShowBackground();
 	map.ShowRoad();
-    button.ShowBitmap();
+    map.ShowFactoryButton();
     UnitShow();
     if (!Btd::TowerFactory::TowerVector.empty())
     {
