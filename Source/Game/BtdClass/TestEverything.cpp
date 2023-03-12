@@ -27,7 +27,7 @@ namespace Btd
             BALLOONS.push_back(_balloon);
         case NailMachineShoot:
             // _nailMachine.LoadBitmapByString({"Resources/towers/nail/tower_nail.bmp"},RGB(0, 0, 0));
-            _nailMachine.LoadEmptyBitmap(100,10);
+            _nailMachine.LoadEmptyBitmap(100, 10);
             _nailMachine.SetTopLeft(500, 500);
             _nailMachine.SetShootDeltaTime(1);
         default:
@@ -132,6 +132,10 @@ namespace Btd
             break;
         case NailMachineShoot:
             _nailMachine.TowerShow();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.ShowBitmap();
+            }
             break;
         default:
             break;

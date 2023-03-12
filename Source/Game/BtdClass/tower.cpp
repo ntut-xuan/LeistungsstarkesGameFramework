@@ -25,21 +25,17 @@ namespace Btd
 
     void Tower::UpdateThrowable()
     {
-        vector<vector<Throwable>::iterator> waitDelete;
+        int waitDelete = 0;
+
         for (auto i = throwables.begin(); i != throwables.end(); ++i)
         {
             i->Update();
             if (!i->GetActive())
             {
-                waitDelete.push_back(i);
+                waitDelete += 1;
             }
         }
-        for (auto i : waitDelete)
-        {
-            auto a = *i;
-            throwablePool.push(*i);
-            throwables.erase(i, i + 1);
-        }
+        throwables.erase(throwables.begin(), throwables.begin() + waitDelete);
     }
 
     Ballon Tower::focus()
@@ -125,7 +121,7 @@ namespace Btd
     {
         Throwable tmp;
         tmp.LoadBitmapByString({
-            "resources/bomb.bmp"
+            throwableName
         });
         throwablePool.push(tmp);
     }
