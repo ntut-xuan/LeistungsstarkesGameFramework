@@ -22,13 +22,10 @@ namespace Btd
         Vector2 getLocation();
         int getRange();
         void setUpdate(int level);
-        static string throwableName = "resources/bomb.bmp";
+        void SetThrowablePath(string name);
+        static string ThrowablePath;
         vector<Throwable> throwables;
 
-        void SetThrowableName(string name)
-        {
-            throwableName = name;
-        }
 
         void SetThrowableLocal(Vector2 local)
         {

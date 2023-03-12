@@ -6,6 +6,8 @@
 
 namespace Btd
 {
+    string Tower::ThrowablePath = "resources/bomb/bomb.bmp";
+
     Tower::Tower()
     {
         _isUpgrade[0] = false;
@@ -116,13 +118,18 @@ namespace Btd
         throwables.push_back(next);
     }
 
+    void Tower::SetThrowablePath(string name)
+    {
+        ThrowablePath = name;
+    }
+
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
         Throwable tmp;
         tmp.LoadBitmapByString({
-            throwableName
-        });
+                                   ThrowablePath
+                               },RGB(255, 255, 255));
         throwablePool.push(tmp);
     }
 }

@@ -297,6 +297,11 @@
   <ItemGroup>
     <Content Include="Resources\bloon\bloon_red.bmp" />
     <Content Include="Resources\bomb.bmp" />
+    <Content Include="Resources\button\button_bomb.bmp" />
+    <Content Include="Resources\button\button_ice.bmp" />
+    <Content Include="Resources\button\button_monkey.bmp" />
+    <Content Include="Resources\button\button_nail.bmp" />
+    <Content Include="Resources\button\button_super.bmp" />
     <Content Include="Resources\GAME.ICO" />
     <Content Include="Resources\GAME.RC2" />
     <Content Include="Resources\gamecurs.cur" />
@@ -320,6 +325,8 @@
     <Content Include="Resources\start_button.bmp" />
     <Content Include="Resources\testRed.bmp" />
     <Content Include="Resources\Toolbar.bmp" />
+    <Content Include="Resources\towers\boomShooter\bomb.bmp" />
+    <Content Include="Resources\towers\ice\ice.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_1.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_2.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_3.bmp" />
@@ -328,6 +335,7 @@
     <Content Include="Resources\towers\monkey\tower_monkey_6.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_7.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_8.bmp" />
+    <Content Include="Resources\towers\nail\nail.bmp" />
     <Content Include="Resources\towers\nail\tower_nail.bmp" />
     <Content Include="Resources\towers\super\tower_super.bmp" />
     <Content Include="Resources\tower_monkey.bmp" />

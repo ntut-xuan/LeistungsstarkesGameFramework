@@ -1,4 +1,5 @@
 #pragma once
+#include "BtdUtil.h"
 #include "../../Library/gameutil.h"
 
 namespace Btd
@@ -11,7 +12,7 @@ namespace Btd
 
     public:
         virtual ~GameObject() = default;
-        virtual void Update() ;
+        virtual void Update();
         void SetActive(bool active);
         bool GetActive();
         void SetTag(string tag);
