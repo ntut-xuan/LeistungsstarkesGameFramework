@@ -13,6 +13,7 @@ namespace Btd
         BalloonFactoryTest,
         BalloonMoveTest,
         BalloonVectorMoveTest,
+        TowerFocus,
     };
 
     class TestEverything
@@ -26,7 +27,6 @@ namespace Btd
         vector<Ballon> BALLOONS;
 
     public:
-
         void UnitInit();
         void UnitTest();
         void UnitShow();

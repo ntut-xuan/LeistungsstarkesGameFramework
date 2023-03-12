@@ -43,9 +43,10 @@ namespace Btd
                 t.ShowBitmap();
             }
         }
+
         void SetShootDeltaTime(float time);
-        void Shoot();
-        void PushThrowablePool(bool active);
+        void Shoot(Ballon target);
+        void PushThrowablePool();
         void MakeThrowable();
         void UpdateThrowable();
 

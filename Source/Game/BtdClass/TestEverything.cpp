@@ -49,7 +49,6 @@ namespace Btd
         //shoot test
             break;
         case BalloonMoveTest:
-
             _balloon.Move({{500, 500}});
             if (_balloon.GetTop() > 30)
             {
@@ -57,8 +56,6 @@ namespace Btd
             }
             break;
         case BalloonVectorMoveTest:
-
-
             BALLOONS[0].Move({{500, 500}});
             if (BALLOONS[0].GetLeft() > 100)
             {
@@ -76,7 +73,15 @@ namespace Btd
             }
             if (_balloonFactory.BallonVector.size() > 5)
             {
-                _unitTestState = DartMonkeyShoot;
+                _unitTestState = TowerFocus;
+            }
+
+            break;
+        case TowerFocus:
+            _dartMonkey.Update();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.Update();
             }
 
             break;
@@ -101,6 +106,14 @@ namespace Btd
             BALLOONS[0].ShowBitmap();
             break;
         case BalloonFactoryTest:
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.ShowBitmap();
+            }
+
+            break;
+        case TowerFocus:
+            _dartMonkey.TowerShow();
             for (auto& ballon : _balloonFactory.BallonVector)
             {
                 ballon.ShowBitmap();

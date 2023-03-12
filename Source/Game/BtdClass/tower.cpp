@@ -25,16 +25,20 @@ namespace Btd
 
     void Tower::UpdateThrowable()
     {
-        for (auto& t : throwables)
+        for (auto i = throwables.begin(); i != throwables.end(); ++i)
         {
-            t.Update();
+            i->Update();
+            if (!i->GetActive())
+            {
+                throwables.erase(i, i++);
+            }
         }
     }
 
     Ballon Tower::focus()
     {
         Ballon target;
-        
+
         target = BallonFactory::BallonVector[0];
         for (Ballon b : BallonFactory::BallonVector)
         {
@@ -48,7 +52,7 @@ namespace Btd
                 target = b;
             }
         }
-        
+
         return target;
     }
 
@@ -56,16 +60,16 @@ namespace Btd
     {
         UpdateThrowable();
 
-        if (BallonFactory::BallonVector.size() != 0&&shootTimecounter>shootDeltaTime)
+        if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
         {
             Ballon target = focus();
-        //todo check in attack range
-            Shoot();
-        }else
-        {
-            shootTimecounter += delayCount/1000.F;
+            //todo check in attack range
+            Shoot(target);
         }
-
+        else
+        {
+            shootTimecounter += delayCount / 100.F;
+        }
     }
 
     void Tower::SetShootDeltaTime(float time)
@@ -74,35 +78,38 @@ namespace Btd
     }
 
     //todo set throwable target position
-    void Tower::Shoot()
+    void Tower::Shoot(Ballon target)
     {
         shootTimecounter = 0;
         if (throwablePool.empty() || throwablePool.front().GetActive())
         {
-            PushThrowablePool(true);
+            PushThrowablePool();
         }
-        else
-        {
-            auto next = throwablePool.front();
-            throwablePool.pop();
-            next.SetActive(true);
-            next.SetTopLeft(static_cast<int>(throwLocal.X), static_cast<int>(throwLocal.Y));
-            throwablePool.push(next);
-        }
+        auto next = throwablePool.front();
+        Vector2 targetDirection = {
+            static_cast<float>(target.GetLeft() - GetLeft()), static_cast<float>(target.GetTop()) - GetTop()
+        };
+        throwablePool.pop();
+        next.SetActive(true);
+        next.SetTopLeft(static_cast<int>(GetLeft()), static_cast<int>(GetTop()));
+        next.SetMoveDirection(targetDirection.X, targetDirection.Y);
+        throwables.push_back(next);
     }
 
-    //todo when push can set top left
-    void Tower::PushThrowablePool(bool active)
+    // it is throwable factory
+    void Tower::PushThrowablePool()
     {
         //var throwable = MakeThrowable();
         //throwable.SetActive(active);
         Throwable tmp;
-        tmp.LoadEmptyBitmap(100, 100);
+        tmp.LoadBitmapByString({
+            "resources/bomb.bmp"
+        });
         tmp.SetActive(true);
         tmp.SetTopLeft(GetLeft(), GetTop());
         tmp.SetSpeed(5);
         tmp.SetMoveDirection(10, 10);
-        throwables.push_back(tmp);
+        throwablePool.push(tmp);
     }
 
     void Tower::MakeThrowable()
