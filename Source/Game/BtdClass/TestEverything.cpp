@@ -28,7 +28,6 @@ namespace Btd
         case NailMachineShoot:
             _nailMachine.SetThrowablePath("resources/towers/nail/nail.bmp");
             _nailMachine.LoadBitmapByString({"Resources/towers/nail/tower_nail.bmp"},RGB(0, 0, 0));
-            _nailMachine.LoadEmptyBitmap(100, 10);
             _nailMachine.SetTopLeft(500, 500);
             _nailMachine.SetShootDeltaTime(1);
         default:

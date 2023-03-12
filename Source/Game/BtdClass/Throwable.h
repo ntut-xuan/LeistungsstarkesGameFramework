@@ -29,7 +29,7 @@ namespace Btd
 
         void Update() override;
         void SetMaxExistTime(float);
-        void Init(Vector2 position);
+        void InitByCenter(Vector2 position);
 
 
         void Move();

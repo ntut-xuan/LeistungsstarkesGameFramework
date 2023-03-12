@@ -18,10 +18,11 @@ namespace Btd
         }
     }
 
-    void Throwable::Init(Vector2 position)
+    void Throwable::InitByCenter(Vector2 position)
     {
-        _existTime =0 ;
+        _existTime = 0;
         _position = position;
+        SetTopLeft(static_cast<int>(position.X) - GetWidth() / 2, static_cast<int>(position.Y) - GetHeight() / 2);
     }
 
     void Throwable::SetMaxExistTime(float t)

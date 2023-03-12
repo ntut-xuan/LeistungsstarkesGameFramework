@@ -110,8 +110,7 @@ namespace Btd
         };
         throwablePool.pop();
         next.SetActive(true);
-        next.Init({static_cast<float>(GetLeft()), static_cast<float>(GetTop())});
-        next.SetTopLeft(GetLeft(), GetTop());
+        next.InitByCenter(GetCenter());
         next.SetSpeed(5);
         next.SetMaxExistTime(300);
         next.SetMoveDirection(targetDirection.X, targetDirection.Y);

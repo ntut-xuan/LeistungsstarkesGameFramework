@@ -29,6 +29,11 @@ namespace Btd
         return _tag;
     }
 
+    Vector2 GameObject::GetCenter()
+    {
+        return {static_cast<float>(GetLeft()) + GetWidth() / 2, static_cast<float>(GetTop()) + GetHeight() / 2};
+    }
+
 
     void GameObject::SetCenter(int x, int y)
     {

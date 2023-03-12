@@ -17,6 +17,7 @@ namespace Btd
         bool GetActive();
         void SetTag(string tag);
         string GetTag();
+        Vector2 GetCenter();
         void SetCenter(int x, int y);
     };
 }
