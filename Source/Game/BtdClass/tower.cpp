@@ -25,13 +25,18 @@ namespace Btd
 
     void Tower::UpdateThrowable()
     {
+        vector<vector<Throwable>::iterator> waitDelete;
         for (auto i = throwables.begin(); i != throwables.end(); ++i)
         {
             i->Update();
             if (!i->GetActive())
             {
-                throwables.erase(i, i++);
+                waitDelete.push_back(i);
             }
+        }
+        for (auto i : waitDelete)
+        {
+            throwables.erase(i, i + 1);
         }
     }
 
@@ -77,7 +82,6 @@ namespace Btd
         shootDeltaTime = time;
     }
 
-    //todo set throwable target position
     void Tower::Shoot(Ballon target)
     {
         shootTimecounter = 0;
@@ -91,7 +95,7 @@ namespace Btd
         };
         throwablePool.pop();
         next.SetActive(true);
-        next.SetTopLeft(static_cast<int>(GetLeft()), static_cast<int>(GetTop()));
+        next.SetTopLeft(GetLeft(), GetTop());
         next.SetMoveDirection(targetDirection.X, targetDirection.Y);
         throwables.push_back(next);
     }
@@ -109,6 +113,7 @@ namespace Btd
         tmp.SetTopLeft(GetLeft(), GetTop());
         tmp.SetSpeed(5);
         tmp.SetMoveDirection(10, 10);
+        tmp.SetMaxExistTime(300);
         throwablePool.push(tmp);
     }
 

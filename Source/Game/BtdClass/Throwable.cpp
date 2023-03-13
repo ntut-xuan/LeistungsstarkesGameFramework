@@ -5,9 +5,30 @@
 
 namespace Btd
 {
-    // void Throwable::SetSpeed(float speed) {
-    //     _speed = speed;
-    // }
+    void Throwable::Update()
+    {
+        _existTime += delayCount;
+        if (_existTime > _maxExistTime)
+        {
+            SetActive(false);
+        }
+        if (GetActive())
+        {
+            Move();
+        }
+    }
+
+    void Throwable::SetMaxExistTime(float t)
+    {
+        _maxExistTime = t;
+    }
+
+
+    void Throwable::SetSpeed(float speed)
+    {
+        _speed = speed;
+    }
+
     float Throwable::GetSpeed()
     {
         return _speed;
