@@ -1,6 +1,7 @@
 #pragma once
 #include "BallonFactory.h"
 #include "DartMonkey.h"
+#include "NailMachine.h"
 #include "Throwable.h"
 
 
@@ -14,6 +15,7 @@ namespace Btd
         BalloonMoveTest,
         BalloonVectorMoveTest,
         TowerFocus,
+        NailMachineShoot,
     };
 
     class TestEverything
@@ -22,6 +24,7 @@ namespace Btd
         UnitTestState _unitTestState = ThrowableMove;
         Throwable _throwable;
         DartMonkey _dartMonkey;
+        NailMachine _nailMachine;
         BallonFactory _balloonFactory;
         Ballon _balloon;
         vector<Ballon> BALLOONS;

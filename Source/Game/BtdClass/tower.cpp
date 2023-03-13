@@ -36,6 +36,7 @@ namespace Btd
         }
         for (auto i : waitDelete)
         {
+            auto a = *i;
             throwablePool.push(*i);
             throwables.erase(i, i + 1);
         }
@@ -60,6 +61,21 @@ namespace Btd
         }
 
         return target;
+    }
+
+    void Tower::SetShootTimeCounter(float tome)
+    {
+        shootTimecounter = tome;
+    }
+
+    float Tower::GetShootDeltaTime()
+    {
+        return shootDeltaTime;
+    }
+
+    float Tower::GetShootTimeCounter()
+    {
+        return shootTimecounter;
     }
 
     void Tower::Update()

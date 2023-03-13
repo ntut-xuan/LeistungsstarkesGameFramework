@@ -44,10 +44,13 @@ namespace Btd
             }
         }
 
+        float GetShootDeltaTime();
         void SetShootDeltaTime(float time);
         void Shoot(Vector2 target);
         void PushThrowablePool();
         void UpdateThrowable();
+        float GetShootTimeCounter();
+        void SetShootTimeCounter(float);
 
     private:
         bool _isUpgrade[2];
@@ -62,6 +65,8 @@ namespace Btd
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;
+
+    protected:
         Ballon focus();
     };
 }

@@ -1,7 +1,11 @@
 #pragma once
 #include "Tower.h"
 
-class NailMachine : Btd::Tower
+namespace Btd
 {
-public:
-};
+    class NailMachine : public Tower
+    {
+    public:
+        void Update() override;
+    };
+}

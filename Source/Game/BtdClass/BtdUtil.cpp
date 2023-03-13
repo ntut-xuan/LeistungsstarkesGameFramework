@@ -1,8 +1,22 @@
 #include "stdafx.h"
 #include "BtdUtil.h"
 
+#include <complex>
+
 namespace Btd
 {
+    Vector2 Spin90(const Vector2 a)
+    {
+        return {-a.Y, a.X};
+    }
+
+    Vector2 Spin45(const Vector2 a)
+    {
+        Vector2 b = Spin90(a);
+        Vector2 c = Vector2Add(a, b);
+        return Normailize(c.X / 2, c.Y / 2);
+    }
+
     Vector2 Normailize(float x, float y)
     {
         float powSum = sqrt(x * x + y * y);
@@ -36,21 +50,22 @@ namespace Btd
         float y = a.Y - b.Y;
         return sqrt(x * x + y * y);
     }
+
     int GetCursorPosX()
     {
         POINT p;
         GetCursorPos(&p);
-        HWND hwnd = FindWindowA(NULL, "Game");
+        HWND hwnd = FindWindowA(nullptr, "Game");
         ScreenToClient(hwnd, &p);
-        return (int)p.x;
+        return static_cast<int>(p.x);
     }
+
     int GetCursorPosY()
     {
         POINT p;
         GetCursorPos(&p);
-        HWND hwnd = FindWindowA(NULL, "Game");
+        HWND hwnd = FindWindowA(nullptr, "Game");
         ScreenToClient(hwnd, &p);
-        return (int)p.y;
+        return static_cast<int>(p.y);
     }
-
 }
