@@ -249,6 +249,7 @@
     <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
     <ClCompile Include="Source\Game\BtdClass\map.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\NailMachine.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Tower.cpp" />
     <ClCompile Include="Source\Game\BtdClass\TowerFactory.cpp" />
@@ -279,6 +280,7 @@
     <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
     <ClInclude Include="Source\Game\BtdClass\map.h" />
+    <ClInclude Include="Source\Game\BtdClass\NailMachine.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
     <ClInclude Include="Source\Game\BtdClass\Tower.h" />
     <ClInclude Include="Source\Game\BtdClass\TowerFactory.h" />

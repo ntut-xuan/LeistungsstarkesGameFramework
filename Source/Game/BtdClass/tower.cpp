@@ -70,7 +70,7 @@ namespace Btd
         {
             Ballon target = focus();
             //todo check in attack range
-            Shoot(target);
+            Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
         }
         else
         {
@@ -83,7 +83,7 @@ namespace Btd
         shootDeltaTime = time;
     }
 
-    void Tower::Shoot(Ballon target)
+    void Tower::Shoot(Vector2 target)
     {
         shootTimecounter = 0;
         if (throwablePool.empty() || throwablePool.front().GetActive())
@@ -92,7 +92,7 @@ namespace Btd
         }
         auto next = throwablePool.front();
         Vector2 targetDirection = {
-            static_cast<float>(target.GetLeft() - GetLeft()), static_cast<float>(target.GetTop()) - GetTop()
+            (target.X - GetLeft()), target.Y - GetTop()
         };
         throwablePool.pop();
         next.SetActive(true);
@@ -107,17 +107,10 @@ namespace Btd
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
-        //var throwable = MakeThrowable();
-        //throwable.SetActive(active);
         Throwable tmp;
         tmp.LoadBitmapByString({
             "resources/bomb.bmp"
         });
         throwablePool.push(tmp);
-    }
-
-    void Tower::MakeThrowable()
-    {
-        // return throwableFactory.MakeThrowable(throwableName);
     }
 }

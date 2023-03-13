@@ -45,9 +45,8 @@ namespace Btd
         }
 
         void SetShootDeltaTime(float time);
-        void Shoot(Ballon target);
+        void Shoot(Vector2 target);
         void PushThrowablePool();
-        void MakeThrowable();
         void UpdateThrowable();
 
     private:
