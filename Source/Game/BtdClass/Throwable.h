@@ -15,6 +15,7 @@ namespace Btd
     {
     private:
         Vector2 _moveDirection;
+        Vector2 _position = {0, 0};
         float _speed = 0;
         float _existTime = 0;
         float _maxExistTime = 0;
@@ -28,6 +29,7 @@ namespace Btd
 
         void Update() override;
         void SetMaxExistTime(float);
+        void Init(Vector2 position);
 
 
         void Move();

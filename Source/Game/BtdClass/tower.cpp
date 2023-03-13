@@ -36,6 +36,7 @@ namespace Btd
         }
         for (auto i : waitDelete)
         {
+            throwablePool.push(*i);
             throwables.erase(i, i + 1);
         }
     }
@@ -95,7 +96,10 @@ namespace Btd
         };
         throwablePool.pop();
         next.SetActive(true);
+        next.Init({static_cast<float>(GetLeft()), static_cast<float>(GetTop())});
         next.SetTopLeft(GetLeft(), GetTop());
+        next.SetSpeed(5);
+        next.SetMaxExistTime(300);
         next.SetMoveDirection(targetDirection.X, targetDirection.Y);
         throwables.push_back(next);
     }
@@ -109,11 +113,6 @@ namespace Btd
         tmp.LoadBitmapByString({
             "resources/bomb.bmp"
         });
-        tmp.SetActive(true);
-        tmp.SetTopLeft(GetLeft(), GetTop());
-        tmp.SetSpeed(5);
-        tmp.SetMoveDirection(10, 10);
-        tmp.SetMaxExistTime(300);
         throwablePool.push(tmp);
     }
 

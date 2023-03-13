@@ -18,6 +18,12 @@ namespace Btd
         }
     }
 
+    void Throwable::Init(Vector2 position)
+    {
+        _existTime =0 ;
+        _position = position;
+    }
+
     void Throwable::SetMaxExistTime(float t)
     {
         _maxExistTime = t;
@@ -54,9 +60,8 @@ namespace Btd
         Vector2 moveDirection = GetMoveDirection();
         float speed = GetSpeed();
         Vector2 deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
-        int top = GetTop() + static_cast<int>(deltaMove.Y);
-        int left = GetLeft() + static_cast<int>(deltaMove.X);
-        SetTopLeft(left, top);
+        _position = Vector2Add(_position, deltaMove);
+        SetTopLeft(static_cast<int>(_position.X), static_cast<int>(_position.Y));
     }
 
     //TODO check touch baloon
