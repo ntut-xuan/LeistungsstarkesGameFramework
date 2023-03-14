@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "BtdUtil.h"
-#include "stdafx.h"
-#include "Throwable.h"
 #include "Ballon.h"
 
 #include "map.h"

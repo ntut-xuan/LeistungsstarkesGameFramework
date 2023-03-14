@@ -1,15 +1,10 @@
 #pragma once
 #include "GameObject.h"
 #include "BtdUtil.h"
+#include "Ballon.h"
 
 namespace Btd
 {
-    enum DamageType
-    {
-        Ice,
-        Boom,
-        Normal
-    };
 
     class Throwable : public GameObject
     {

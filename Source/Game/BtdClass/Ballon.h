@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 #include "BtdUtil.h"
-#include "Throwable.h"
 #include <list>
 #include <map>
 

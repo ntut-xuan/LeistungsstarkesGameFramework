@@ -25,6 +25,13 @@ namespace Btd
         green,
         yelllow,
     };
+    
+    enum DamageType
+    {
+        Ice,
+        Boom,
+        Normal
+    };
 
     Vector2 Normailize(float x, float y);
     Vector2 Normailize(Vector2);
