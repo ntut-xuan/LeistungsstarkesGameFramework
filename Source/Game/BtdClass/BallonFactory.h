@@ -50,10 +50,10 @@ namespace Btd
         {
             for (int i=0; i<(int)BallonVector.size(); i++)
             {
-                bool b = BallonVector[i].IsPoped();
-                if (b == true)
+                if (BallonVector[i].IsPoped())
                 {
                     BallonVector[i].UnshowBitmap();
+                    BallonPool.push(BallonVector[i]);
                     BallonVector.erase(BallonVector.begin()+i);
                 }
             }

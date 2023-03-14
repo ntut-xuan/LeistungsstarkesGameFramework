@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Throwable.h"
-#include "BallonFactory.h"
 #include "BtdUtil.h"
+#include "BallonFactory.h"
 
 namespace Btd
 {
