@@ -24,9 +24,18 @@ namespace Btd
         {
             for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
             {
+                // TODO: maybe need add timestamp
+                for (int j=0; j<(int)cantHitBloons.size(); j++)
+                {
+                    if (cantHitBloons[j] == &BallonFactory::BallonVector[i])
+                    {
+                        return;
+                    }
+                }
                 if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]))
                 {
                     BallonFactory::BallonVector[i].Pop(1, Normal);
+                    cantHitBloons.push_back(&BallonFactory::BallonVector[i]);
                 }    
             }
         }

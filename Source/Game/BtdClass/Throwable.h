@@ -16,6 +16,7 @@ namespace Btd
         int _maxPop = 0;
         int _poped = 0;
         DamageType _damageType;
+        vector<Ballon*> cantHitBloons;
 
     public:
         Vector2 GetMoveDirection() const;
