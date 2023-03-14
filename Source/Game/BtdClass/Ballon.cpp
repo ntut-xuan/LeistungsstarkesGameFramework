@@ -93,4 +93,9 @@ namespace Btd
     {
         _isPoped = poped;
     }
+
+    void Ballon::SetLayer(int layer)
+    {
+        _layer = layer;
+    }
 }

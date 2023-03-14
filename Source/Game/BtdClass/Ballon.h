@@ -13,7 +13,7 @@ namespace Btd
     private:
         int nowRouteTarget = 0;
         float _speed = 3;
-        int _layer = 3;
+        int _layer;
         bool _isPoped;
 
     public:
@@ -46,5 +46,6 @@ namespace Btd
 
         bool IsPoped();
         void SetIsPoped(bool poped);
+        void SetLayer(int layer);
     };
 }

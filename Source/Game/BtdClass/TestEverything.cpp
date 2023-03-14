@@ -20,8 +20,10 @@ namespace Btd
             TowerFactory::TowerVector[0].SetIsMove(false);
             TowerFactory::TowerVector[0].SetTopLeft(200, 200);
             TowerFactory::TowerVector[0].SetShootDeltaTime(1);
-            _balloonFactory.MakeBallon("a");
+            _balloonFactory.MakeBallon(yelllow);
             BallonFactory::BallonVector[0].SetTopLeft(100, 400);
+            _balloonFactory.MakeBallon(blue);
+            BallonFactory::BallonVector[1].SetTopLeft(600, 400);
             
         // DARTMONKEY.SetThrowableName("dart");
         break;
@@ -78,7 +80,7 @@ namespace Btd
         case BalloonFactoryTest:
             if (_balloonFactory.BallonVector.size() < 10)
             {
-                _balloonFactory.MakeBallon("a");
+                _balloonFactory.MakeBallon(red);
             }
             for (auto& ballon : _balloonFactory.BallonVector)
             {
