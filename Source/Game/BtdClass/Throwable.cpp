@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Throwable.h"
-
+#include "BallonFactory.h"
 #include "BtdUtil.h"
 
 namespace Btd
@@ -17,6 +17,19 @@ namespace Btd
     void Throwable::SetMoveDirection(float x, float y)
     {
         _moveDirection = Normailize(x, y);
+    }
+
+    void Throwable::DetectHitBalloon()
+    {
+        {
+            for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
+            {
+                if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]))
+                {
+                    BallonFactory::BallonVector[i].Pop(1, Normal);
+                }    
+            }
+        }
     }
 
 

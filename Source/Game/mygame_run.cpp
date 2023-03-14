@@ -69,6 +69,7 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
     // unit init
     UnitTest = Btd::TestEverything();
     UnitTest.UnitInit();
+    UnitTest.SetState(Btd::DartMonkeyShoot);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)

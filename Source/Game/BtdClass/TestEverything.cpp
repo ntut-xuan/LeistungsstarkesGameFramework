@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "TestEverything.h"
 
+#include "TowerFactory.h"
+
 namespace Btd
 {
     void TestEverything::UnitInit()
@@ -14,12 +16,15 @@ namespace Btd
             _throwable.SetMoveDirection(1, 1);
         // break;
         case DartMonkeyShoot:
-            _dartMonkey.LoadBitmapByString({"Resources/towers/monkey/tower_monkey_1.bmp"},RGB(0, 0, 0));
-            _dartMonkey.LoadEmptyBitmap(50, 50);
-            _dartMonkey.SetTopLeft(100, 100);
-            _dartMonkey.SetShootDeltaTime(1);
+            TowerFactory::MakeTower(dart);
+            TowerFactory::TowerVector[0].SetIsMove(false);
+            TowerFactory::TowerVector[0].SetTopLeft(200, 200);
+            TowerFactory::TowerVector[0].SetShootDeltaTime(1);
+            _balloonFactory.MakeBallon("a");
+            BallonFactory::BallonVector[0].SetTopLeft(100, 400);
+            
         // DARTMONKEY.SetThrowableName("dart");
-        // break;
+        break;
         case BalloonMoveTest:
             _balloon.LoadEmptyBitmap(30, 30);
             _balloon.SetTopLeft(10, 10);
@@ -45,7 +50,12 @@ namespace Btd
             }
             break;
         case DartMonkeyShoot:
-            _dartMonkey.Update();
+            TowerFactory::TowerVector[0].Update();
+            for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
+            {
+                TowerFactory::TowerVector[i].Update();
+            }
+            BallonFactory::handlePopBalloon();
         //shoot test
             break;
         case BalloonMoveTest:
@@ -92,7 +102,14 @@ namespace Btd
             _throwable.ShowBitmap();
             break;
         case DartMonkeyShoot:
-            _dartMonkey.TowerShow();
+            for (Tower tower : TowerFactory::TowerVector)
+            {
+                tower.TowerShow();
+            }
+            for (auto b : BallonFactory::BallonVector)
+            {
+                b.ShowBitmap();
+            }
             break;
         case BalloonMoveTest:
             _balloon.ShowBitmap();

@@ -52,5 +52,17 @@ namespace Btd
         ScreenToClient(hwnd, &p);
         return (int)p.y;
     }
+    
+    bool IsOverlap(GameObject& character, GameObject& other)
+    {
+        if ((character.GetTop() + character.GetHeight() >= other.GetTop() &&
+                character.GetTop() <= other.GetTop() + other.GetHeight())
+            && (character.GetLeft() + character.GetWidth() >= other.GetLeft() &&
+                character.GetLeft() <= other.GetLeft() + other.GetWidth()))
+        {
+            return true;
+        }
+        return false;
+    }
 
 }

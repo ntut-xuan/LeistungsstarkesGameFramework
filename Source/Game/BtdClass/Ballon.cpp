@@ -69,4 +69,28 @@ namespace Btd
         }
         SetTopLeft(left, top);
     }
+
+    void Ballon::Pop(int damege, DamageType type)
+    {
+        if (resistDamegeMap[type])
+        {
+            _layer -= damege;
+        }
+        if (_layer < 0)
+        {
+            _isPoped = true;
+            return;
+        }
+        SetFrameIndexOfBitmap(_layer);
+    }
+
+    bool Ballon::IsPoped()
+    {
+        return _isPoped;
+    }
+
+    void Ballon::SetIsPoped(bool poped)
+    {
+        _isPoped = poped;
+    }
 }

@@ -5,6 +5,7 @@
 
 #include "Ballon.h"
 #include "map.h"
+#include "TowerFactory.h"
 
 namespace Btd
 {
@@ -39,6 +40,19 @@ namespace Btd
             for (Ballon& b : BallonVector)
             {
                 b.Update();
+            }
+        }
+
+        static void handlePopBalloon ()
+        {
+            for (int i=0; i<(int)BallonVector.size(); i++)
+            {
+                bool b = BallonVector[i].IsPoped();
+                if (b == true)
+                {
+                    BallonVector[i].UnshowBitmap();
+                    BallonVector.erase(BallonVector.begin()+i);
+                }
             }
         }
     };

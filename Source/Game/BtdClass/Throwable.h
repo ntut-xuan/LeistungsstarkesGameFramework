@@ -31,6 +31,7 @@ namespace Btd
             {
                 Move();
             }
+            DetectHitBalloon();
         }
 
         void Move();
@@ -43,5 +44,7 @@ namespace Btd
         float GetSpeed();
 
         void SetMoveDirection(float x, float y);
+
+        void DetectHitBalloon ();
     };
 }
