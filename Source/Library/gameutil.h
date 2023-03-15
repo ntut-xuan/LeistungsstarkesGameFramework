@@ -137,7 +137,7 @@ namespace game_framework {
 		bool isBitmapLoaded = false;	// whether a bitmap has been loaded
 		//! 儲存物件動畫是否為單次動畫
 		bool isOnce = false;
-		CRect    location;			// location of the bitmap
+		vector<CRect>    locations;			// location of the bitmap
 		vector<unsigned> surfaceID;
 		clock_t last_time = clock();
 		//! 儲存物件讀取的圖片路徑
