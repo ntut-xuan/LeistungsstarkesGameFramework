@@ -16,7 +16,7 @@ namespace Btd
         int _maxPop = 0;
         int _poped = 0;
         DamageType _damageType;
-        vector<Ballon*> cantHitBloons;
+        vector<pair<Ballon*, long long>> cantHitBloons;
 
     public:
         Vector2 GetMoveDirection() const;
@@ -28,6 +28,7 @@ namespace Btd
                 Move();
             }
             DetectHitBalloon();
+            UpdateCantHitBloons();
         }
 
         void Move();
@@ -42,5 +43,7 @@ namespace Btd
         void SetMoveDirection(float x, float y);
 
         void DetectHitBalloon ();
+
+        void UpdateCantHitBloons ();
     };
 }

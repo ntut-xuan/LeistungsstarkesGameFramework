@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "Throwable.h"
+
+#include <chrono>
+
 #include "BtdUtil.h"
 #include "BallonFactory.h"
 
@@ -27,7 +30,7 @@ namespace Btd
                 // TODO: maybe need add timestamp
                 for (int j=0; j<(int)cantHitBloons.size(); j++)
                 {
-                    if (cantHitBloons[j] == &BallonFactory::BallonVector[i])
+                    if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
                     {
                         return;
                     }
@@ -35,8 +38,22 @@ namespace Btd
                 if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]))
                 {
                     BallonFactory::BallonVector[i].Pop(1, Normal);
-                    cantHitBloons.push_back(&BallonFactory::BallonVector[i]);
+                    long long nowTime = std::chrono::system_clock::to_time_t((std::chrono::system_clock::now()));
+                    cantHitBloons.push_back({&BallonFactory::BallonVector[i], nowTime});
                 }    
+            }
+        }
+    }
+
+    void Throwable::UpdateCantHitBloons()
+    {
+        for (int i=0; i<(int)cantHitBloons.size(); i++)
+        {
+            long long nowTime = std::chrono::system_clock::to_time_t((std::chrono::system_clock::now()));
+            long long delta = nowTime - cantHitBloons[i].second;
+            if (delta > 1)
+            {
+                cantHitBloons.erase(cantHitBloons.begin()+i);
             }
         }
     }
