@@ -1,3 +1,4 @@
+#pragma once
 /*
  * gamelib.h: 本檔案儲遊戲相關的class的interface
  * Copyright (C) 2002-2008 Woei-Kae Chen <wkc@csie.ntut.edu.tw>

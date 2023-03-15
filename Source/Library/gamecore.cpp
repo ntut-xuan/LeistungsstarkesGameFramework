@@ -1,5 +1,4 @@
 //#define	 INITGUID
-#pragma once
 #include "stdafx.h"
 #include "../Core/Game.h"
 #include "../Core/MainFrm.h"
