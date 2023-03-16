@@ -77,17 +77,20 @@ namespace Btd
 
     void Tower::Update()
     {
-        UpdateThrowable();
+        if (_isActive)
+        {
+            UpdateThrowable();
 
-        if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
-        {
-            Ballon target = focus();
-            //todo check in attack range
-            Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
-        }
-        else
-        {
-            shootTimecounter += delayCount / 100.F;
+            if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
+            {
+                Ballon target = focus();
+                //todo check in attack range
+                Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
+            }
+            else
+            {
+                shootTimecounter += delayCount / 100.F;
+            }
         }
     }
 

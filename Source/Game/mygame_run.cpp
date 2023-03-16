@@ -86,6 +86,7 @@ void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的�
     if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back().IsMovable())
     {
         Btd::TowerFactory::TowerVector.back().SetIsMove(false);
+        Btd::TowerFactory::TowerVector.back().SetActive(true);
     }
 }
 

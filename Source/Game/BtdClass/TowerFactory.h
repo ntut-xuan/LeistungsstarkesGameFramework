@@ -20,6 +20,7 @@ namespace Btd
                 dartMonkey.SetCenter(GetCursorPosX(), GetCursorPosY());
                 dartMonkey.SetIsMove(true);
                 dartMonkey.SetShootDeltaTime(1);
+                dartMonkey.SetActive(false);
                 TowerVector.push_back(dartMonkey);
             }
         }

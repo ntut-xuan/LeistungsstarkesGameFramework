@@ -6,7 +6,7 @@ namespace Btd
 {
     class GameObject : public game_framework::CMovingBitmap
     {
-    private:
+    protected:
         bool _isActive = true;
         string _tag = "default";
 
