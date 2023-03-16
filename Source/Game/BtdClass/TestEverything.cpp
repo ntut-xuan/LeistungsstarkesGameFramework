@@ -16,16 +16,6 @@ namespace Btd
             _throwable.SetMoveDirection(1, 1);
         // break;
         case DartMonkeyShoot:
-            TowerFactory::MakeTower(dart);
-            TowerFactory::TowerVector[0].SetIsMove(false);
-            TowerFactory::TowerVector[0].SetTopLeft(200, 200);
-            TowerFactory::TowerVector[0].SetShootDeltaTime(1);
-            _balloonFactory.MakeBallon(yelllow);
-            BallonFactory::BallonVector[0].SetTopLeft(100, 400);
-            _balloonFactory.MakeBallon(blue);
-            BallonFactory::BallonVector[1].SetTopLeft(600, 400);
-            _balloonFactory.MakeBallon(black);
-            BallonFactory::BallonVector[2].SetTopLeft(400, 400);
             
         // DARTMONKEY.SetThrowableName("dart");
         break;
@@ -37,6 +27,19 @@ namespace Btd
             _balloon.Setspeed(3);
         case BalloonVectorMoveTest:
             BALLOONS.push_back(_balloon);
+        case BallonPop:
+            TowerFactory::MakeTower(dart);
+            TowerFactory::TowerVector[0].SetIsMove(false);
+            TowerFactory::TowerVector[0].SetTopLeft(200, 200);
+            TowerFactory::TowerVector[0].SetShootDeltaTime(1);
+            _balloonFactory.MakeBallon(yelllow);
+            BallonFactory::BallonVector[0].SetTopLeft(100, 400);
+            _balloonFactory.MakeBallon(blue);
+            BallonFactory::BallonVector[1].SetTopLeft(600, 400);
+            _balloonFactory.MakeBallon(black);
+            BallonFactory::BallonVector[2].SetTopLeft(400, 400);
+            break;
+            
         default:
             break;
         }
@@ -54,12 +57,6 @@ namespace Btd
             }
             break;
         case DartMonkeyShoot:
-            TowerFactory::TowerVector[0].Update();
-            for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
-            {
-                TowerFactory::TowerVector[i].Update();
-            }
-            BallonFactory::handlePopBalloon();
         //shoot test
             break;
         case BalloonMoveTest:
@@ -94,6 +91,14 @@ namespace Btd
             }
 
             break;
+        case BallonPop:
+            TowerFactory::TowerVector[0].Update();
+            for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
+            {
+                TowerFactory::TowerVector[i].Update();
+            }
+            BallonFactory::handlePopBalloon();
+            break;
         default: ;
         }
     }
@@ -106,14 +111,6 @@ namespace Btd
             _throwable.ShowBitmap();
             break;
         case DartMonkeyShoot:
-            for (Tower tower : TowerFactory::TowerVector)
-            {
-                tower.TowerShow();
-            }
-            for (auto b : BallonFactory::BallonVector)
-            {
-                b.ShowBitmap();
-            }
             break;
         case BalloonMoveTest:
             _balloon.ShowBitmap();
@@ -128,6 +125,17 @@ namespace Btd
             }
 
             break;
+        case BallonPop:
+            for (Tower tower : TowerFactory::TowerVector)
+            {
+                tower.TowerShow();
+            }
+            for (auto b : BallonFactory::BallonVector)
+            {
+                b.ShowBitmap();
+            }
+            break;
+            
         default:
             break;
         }

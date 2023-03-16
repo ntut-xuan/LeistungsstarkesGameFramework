@@ -13,6 +13,7 @@ namespace Btd
         BalloonFactoryTest,
         BalloonMoveTest,
         BalloonVectorMoveTest,
+        BallonPop,
     };
 
     class TestEverything
