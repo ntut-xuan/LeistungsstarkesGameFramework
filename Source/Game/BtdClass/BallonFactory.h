@@ -4,6 +4,7 @@
 #include <queue>
 
 #include "Ballon.h"
+#include "BlackBallon.h"
 #include "map.h"
 #include "TowerFactory.h"
 
@@ -22,14 +23,25 @@ namespace Btd
             if (BallonPool.empty())
             {
                 Ballon tmpBallon;
-                tmpBallon.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
+                switch (type)
+                {
+                case black:
+                    tmpBallon.LoadBitmapByString({"Resources/bloon/bloon_black.bmp"}, RGB(0, 0, 0));
+                    tmpBallon.SetLayer(0);
+                    ASSERT(false);
+                    break;
+                default:
+                    tmpBallon.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
+                    tmpBallon.SetLayer(type);
+                    tmpBallon.SetFrameIndexOfBitmap(type);
+                    ASSERT(false);
+                    break;
+                }
                 Vector2 startPosition = Map::GetStartPosition();
                 tmpBallon.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
                 tmpBallon.SetActive(false);
                 tmpBallon.SetNowRouteTarget(0);
                 tmpBallon.Setspeed(3);
-                tmpBallon.SetLayer(type);
-                tmpBallon.SetFrameIndexOfBitmap(type);
                 BallonPool.push(tmpBallon);
             }
             auto next = BallonPool.front();

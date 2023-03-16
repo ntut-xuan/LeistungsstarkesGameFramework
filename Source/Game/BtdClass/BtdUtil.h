@@ -24,6 +24,8 @@ namespace Btd
         blue,
         green,
         yelllow,
+        black,
+        white,
     };
     
     enum DamageType

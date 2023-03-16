@@ -24,6 +24,8 @@ namespace Btd
             BallonFactory::BallonVector[0].SetTopLeft(100, 400);
             _balloonFactory.MakeBallon(blue);
             BallonFactory::BallonVector[1].SetTopLeft(600, 400);
+            _balloonFactory.MakeBallon(black);
+            BallonFactory::BallonVector[2].SetTopLeft(400, 400);
             
         // DARTMONKEY.SetThrowableName("dart");
         break;

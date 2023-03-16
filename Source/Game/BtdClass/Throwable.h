@@ -21,15 +21,7 @@ namespace Btd
     public:
         Vector2 GetMoveDirection() const;
 
-        void Update() override
-        {
-            if (GetActive())
-            {
-                Move();
-            }
-            DetectHitBalloon();
-            UpdateCantHitBloons();
-        }
+        void Update() override;
 
         void Move();
 

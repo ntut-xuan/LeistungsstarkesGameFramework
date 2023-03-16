@@ -27,7 +27,6 @@ namespace Btd
         {
             for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
             {
-                // TODO: maybe need add timestamp
                 for (int j=0; j<(int)cantHitBloons.size(); j++)
                 {
                     if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
@@ -62,6 +61,16 @@ namespace Btd
     Vector2 Throwable::GetMoveDirection() const
     {
         return _moveDirection;
+    }
+
+    void Throwable::Update ()
+    {
+        if (GetActive())
+        {
+            Move();
+        }
+        DetectHitBalloon();
+        UpdateCantHitBloons();
     }
 
     /**

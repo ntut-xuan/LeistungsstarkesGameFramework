@@ -68,11 +68,11 @@ namespace Btd
         SetTopLeft(left, top);
     }
 
-    void Ballon::Pop(int damege, DamageType type)
+    void Ballon::Pop(int damage, DamageType type)
     {
         if (resistDamegeMap[type])
         {
-            _layer -= damege;
+            _layer -= damage;
         }
         if (_layer < 0)
         {
