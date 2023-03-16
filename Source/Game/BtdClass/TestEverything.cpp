@@ -15,11 +15,8 @@ namespace Btd
         // break;
         case DartMonkeyShoot:
             _dartMonkey.LoadBitmapByString({"Resources/towers/monkey/tower_monkey_1.bmp"},RGB(0, 0, 0));
-            _dartMonkey.LoadEmptyBitmap(50, 50);
             _dartMonkey.SetTopLeft(100, 100);
             _dartMonkey.SetShootDeltaTime(1);
-        // DARTMONKEY.SetThrowableName("dart");
-        // break;
         case BalloonMoveTest:
             _balloon.LoadEmptyBitmap(30, 30);
             _balloon.SetTopLeft(10, 10);
@@ -28,6 +25,11 @@ namespace Btd
             _balloon.Setspeed(3);
         case BalloonVectorMoveTest:
             BALLOONS.push_back(_balloon);
+        case NailMachineShoot:
+            _nailMachine.SetThrowablePath("resources/towers/nail/nail.bmp");
+            _nailMachine.LoadBitmapByString({"Resources/towers/nail/tower_nail.bmp"},RGB(0, 0, 0));
+            _nailMachine.SetTopLeft(500, 500);
+            _nailMachine.SetShootDeltaTime(1);
         default:
             break;
         }
@@ -49,7 +51,6 @@ namespace Btd
         //shoot test
             break;
         case BalloonMoveTest:
-
             _balloon.Move({{500, 500}});
             if (_balloon.GetTop() > 30)
             {
@@ -57,8 +58,6 @@ namespace Btd
             }
             break;
         case BalloonVectorMoveTest:
-
-
             BALLOONS[0].Move({{500, 500}});
             if (BALLOONS[0].GetLeft() > 100)
             {
@@ -76,8 +75,24 @@ namespace Btd
             }
             if (_balloonFactory.BallonVector.size() > 5)
             {
-                _unitTestState = DartMonkeyShoot;
+                _unitTestState = NailMachineShoot;
             }
+
+            break;
+        case TowerFocus:
+            _dartMonkey.Update();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.Update();
+            }
+            break;
+        case NailMachineShoot:
+            _nailMachine.Update();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.Update();
+            }
+
 
             break;
         default: ;
@@ -106,6 +121,21 @@ namespace Btd
                 ballon.ShowBitmap();
             }
 
+            break;
+        case TowerFocus:
+            _dartMonkey.TowerShow();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.ShowBitmap();
+            }
+
+            break;
+        case NailMachineShoot:
+            _nailMachine.TowerShow();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.ShowBitmap();
+            }
             break;
         default:
             break;

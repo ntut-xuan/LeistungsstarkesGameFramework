@@ -11,6 +11,7 @@ namespace Btd
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
+        ThrowablePath = "resources/bomb/bomb.bmp";
     }
 
     bool Tower::IsMovable()
@@ -25,16 +26,23 @@ namespace Btd
 
     void Tower::UpdateThrowable()
     {
-        for (auto& t : throwables)
+        int waitDelete = 0;
+
+        for (auto i = throwables.begin(); i != throwables.end(); ++i)
         {
-            t.Update();
+            i->Update();
+            if (!i->GetActive())
+            {
+                waitDelete += 1;
+            }
         }
+        throwables.erase(throwables.begin(), throwables.begin() + waitDelete);
     }
 
     Ballon Tower::focus()
     {
         Ballon target;
-        
+
         target = BallonFactory::BallonVector[0];
         for (Ballon b : BallonFactory::BallonVector)
         {
@@ -48,24 +56,39 @@ namespace Btd
                 target = b;
             }
         }
-        
+
         return target;
+    }
+
+    void Tower::SetShootTimeCounter(float tome)
+    {
+        shootTimecounter = tome;
+    }
+
+    float Tower::GetShootDeltaTime()
+    {
+        return shootDeltaTime;
+    }
+
+    float Tower::GetShootTimeCounter()
+    {
+        return shootTimecounter;
     }
 
     void Tower::Update()
     {
         UpdateThrowable();
 
-        if (BallonFactory::BallonVector.size() != 0&&shootTimecounter>shootDeltaTime)
+        if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
         {
             Ballon target = focus();
-        //todo check in attack range
-            Shoot();
-        }else
-        {
-            shootTimecounter += delayCount/1000.F;
+            //todo check in attack range
+            Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
         }
-
+        else
+        {
+            shootTimecounter += delayCount / 100.F;
+        }
     }
 
     void Tower::SetShootDeltaTime(float time)
@@ -73,40 +96,38 @@ namespace Btd
         shootDeltaTime = time;
     }
 
-    //todo set throwable target position
-    void Tower::Shoot()
+    void Tower::Shoot(Vector2 target)
     {
         shootTimecounter = 0;
         if (throwablePool.empty() || throwablePool.front().GetActive())
         {
-            PushThrowablePool(true);
+            PushThrowablePool();
         }
-        else
-        {
-            auto next = throwablePool.front();
-            throwablePool.pop();
-            next.SetActive(true);
-            next.SetTopLeft(static_cast<int>(throwLocal.X), static_cast<int>(throwLocal.Y));
-            throwablePool.push(next);
-        }
+        auto next = throwablePool.front();
+        Vector2 targetDirection = {
+            (target.X - GetLeft()), target.Y - GetTop()
+        };
+        throwablePool.pop();
+        next.SetActive(true);
+        next.InitByCenter(GetCenter());
+        next.SetSpeed(5);
+        next.SetMaxExistTime(300);
+        next.SetMoveDirection(targetDirection.X, targetDirection.Y);
+        throwables.push_back(next);
     }
 
-    //todo when push can set top left
-    void Tower::PushThrowablePool(bool active)
+    void Tower::SetThrowablePath(string name)
     {
-        //var throwable = MakeThrowable();
-        //throwable.SetActive(active);
+        ThrowablePath = name;
+    }
+
+    // it is throwable factory
+    void Tower::PushThrowablePool()
+    {
         Throwable tmp;
-        tmp.LoadEmptyBitmap(100, 100);
-        tmp.SetActive(true);
-        tmp.SetTopLeft(GetLeft(), GetTop());
-        tmp.SetSpeed(5);
-        tmp.SetMoveDirection(10, 10);
-        throwables.push_back(tmp);
-    }
-
-    void Tower::MakeThrowable()
-    {
-        // return throwableFactory.MakeThrowable(throwableName);
+        tmp.LoadBitmapByString({
+                                   ThrowablePath
+                               },RGB(255, 255, 255));
+        throwablePool.push(tmp);
     }
 }

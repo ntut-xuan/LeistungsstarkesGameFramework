@@ -22,13 +22,10 @@ namespace Btd
         Vector2 getLocation();
         int getRange();
         void setUpdate(int level);
-        static string throwableName;
+        void SetThrowablePath(string name);
+        string ThrowablePath;
         vector<Throwable> throwables;
 
-        void SetThrowableName(string name)
-        {
-            throwableName = name;
-        }
 
         void SetThrowableLocal(Vector2 local)
         {
@@ -43,11 +40,14 @@ namespace Btd
                 t.ShowBitmap();
             }
         }
+
+        float GetShootDeltaTime();
         void SetShootDeltaTime(float time);
-        void Shoot();
-        void PushThrowablePool(bool active);
-        void MakeThrowable();
+        void Shoot(Vector2 target);
+        void PushThrowablePool();
         void UpdateThrowable();
+        float GetShootTimeCounter();
+        void SetShootTimeCounter(float);
 
     private:
         bool _isUpgrade[2];
@@ -62,6 +62,8 @@ namespace Btd
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;
+
+    protected:
         Ballon focus();
     };
 }
