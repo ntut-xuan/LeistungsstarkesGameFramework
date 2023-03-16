@@ -6,13 +6,12 @@
 
 namespace Btd
 {
-    string Tower::ThrowablePath = "resources/bomb/bomb.bmp";
-
     Tower::Tower()
     {
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
+        ThrowablePath = "resources/bomb/bomb.bmp";
     }
 
     bool Tower::IsMovable()

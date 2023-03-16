@@ -23,7 +23,7 @@ namespace Btd
         int getRange();
         void setUpdate(int level);
         void SetThrowablePath(string name);
-        static string ThrowablePath;
+        string ThrowablePath;
         vector<Throwable> throwables;
 
 
