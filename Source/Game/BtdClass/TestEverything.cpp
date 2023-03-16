@@ -27,6 +27,11 @@ namespace Btd
             _balloon.Setspeed(3);
         case BalloonVectorMoveTest:
             BALLOONS.push_back(_balloon);
+        case NailMachineShoot:
+            _nailMachine.SetThrowablePath("resources/towers/nail/nail.bmp");
+            _nailMachine.LoadBitmapByString({"Resources/towers/nail/tower_nail.bmp"},RGB(0, 0, 0));
+            _nailMachine.SetTopLeft(500, 500);
+            _nailMachine.SetShootDeltaTime(1);
         case BallonPop:
             TowerFactory::MakeTower(dart);
             TowerFactory::TowerVector[0].SetIsMove(false);
@@ -58,6 +63,7 @@ namespace Btd
             }
             break;
         case DartMonkeyShoot:
+            _dartMonkey.Update();
         //shoot test
             break;
         case BalloonMoveTest:
@@ -89,14 +95,6 @@ namespace Btd
             }
 
             break;
-        case BallonPop:
-            TowerFactory::TowerVector[0].Update();
-            for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
-            {
-                TowerFactory::TowerVector[i].Update();
-            }
-            BallonFactory::handlePopBalloon();
-            break;
         case TowerFocus:
             _dartMonkey.Update();
             for (auto& ballon : _balloonFactory.BallonVector)
@@ -110,8 +108,15 @@ namespace Btd
             {
                 ballon.Update();
             }
-
-
+            BallonFactory::handlePopBalloon();
+            break;
+        case BallonPop:
+            TowerFactory::TowerVector[0].Update();
+            for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
+            {
+                TowerFactory::TowerVector[i].Update();
+            }
+            BallonFactory::handlePopBalloon();
             break;
         default: ;
         }
@@ -139,6 +144,20 @@ namespace Btd
             }
 
             break;
+        case TowerFocus:
+            _dartMonkey.TowerShow();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.ShowBitmap();
+            }
+            break;
+        case NailMachineShoot:
+            _nailMachine.TowerShow();
+            for (auto& ballon : _balloonFactory.BallonVector)
+            {
+                ballon.ShowBitmap();
+            }
+            break;
         case BallonPop:
             for (Tower tower : TowerFactory::TowerVector)
             {
@@ -147,22 +166,6 @@ namespace Btd
             for (auto b : BallonFactory::BallonVector)
             {
                 b.ShowBitmap();
-            }
-            break;
-            
-        case TowerFocus:
-            _dartMonkey.TowerShow();
-            for (auto& ballon : _balloonFactory.BallonVector)
-            {
-                ballon.ShowBitmap();
-            }
-
-            break;
-        case NailMachineShoot:
-            _nailMachine.TowerShow();
-            for (auto& ballon : _balloonFactory.BallonVector)
-            {
-                ballon.ShowBitmap();
             }
             break;
         default:
