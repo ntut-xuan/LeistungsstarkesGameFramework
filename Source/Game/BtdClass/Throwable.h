@@ -10,8 +10,10 @@ namespace Btd
     {
     private:
         Vector2 _moveDirection;
+        Vector2 _position = {0, 0};
         float _speed = 0;
         float _existTime = 0;
+        float _maxExistTime = 0;
         float _damage = 0;
         int _maxPop = 0;
         int _poped = 0;
@@ -23,13 +25,13 @@ namespace Btd
         Vector2 GetMoveDirection() const;
 
         void Update() override;
+        void SetMaxExistTime(float);
+        void InitByCenter(Vector2 position);
+
 
         void Move();
 
-        void SetSpeed(float speed)
-        {
-            _speed = speed;
-        }
+        void SetSpeed(float speed);
 
         float GetSpeed();
 

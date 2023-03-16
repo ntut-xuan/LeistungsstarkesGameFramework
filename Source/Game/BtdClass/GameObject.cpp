@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
+
 namespace Btd
 {
     void GameObject::Update()
@@ -27,14 +28,31 @@ namespace Btd
         return _tag;
     }
 
+    Vector2 GameObject::GetCenter()
+    {
+        return {static_cast<float>(GetLeft()) + GetWidth() / 2, static_cast<float>(GetTop()) + GetHeight() / 2};
+    }
+
+
     void GameObject::SetCenter(int x, int y)
     {
-		int halfWidth = (location.right - location.left) / 2;
-		int halfHeight = (location.bottom - location.top) /2;
-		location.left = x - halfWidth;
-		location.top = y - halfHeight;
+        int halfWidth = (location.right - location.left) / 2;
+        int halfHeight = (location.bottom - location.top) / 2;
+        location.left = x - halfWidth;
+        location.top = y - halfHeight;
         location.right = x + halfWidth;
         location.bottom = y + halfHeight;
     }
-
+    
+    bool IsOverlap(GameObject& character, GameObject& other)
+    {
+        if ((character.GetTop() + character.GetHeight() >= other.GetTop() &&
+                character.GetTop() <= other.GetTop() + other.GetHeight())
+            && (character.GetLeft() + character.GetWidth() >= other.GetLeft() &&
+                character.GetLeft() <= other.GetLeft() + other.GetWidth()))
+        {
+            return true;
+        }
+        return false;
+    }
 }
