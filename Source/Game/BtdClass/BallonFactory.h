@@ -28,13 +28,11 @@ namespace Btd
                 case black:
                     tmpBallon.LoadBitmapByString({"Resources/bloon/bloon_black.bmp"}, RGB(0, 0, 0));
                     tmpBallon.SetLayer(0);
-                    ASSERT(false);
                     break;
                 default:
                     tmpBallon.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
                     tmpBallon.SetLayer(type);
                     tmpBallon.SetFrameIndexOfBitmap(type);
-                    ASSERT(false);
                     break;
                 }
                 Vector2 startPosition = Map::GetStartPosition();
