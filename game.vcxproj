@@ -248,6 +248,7 @@
     <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Button.cpp" />
     <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\GameManager.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
     <ClCompile Include="Source\Game\BtdClass\map.cpp" />
     <ClCompile Include="Source\Game\BtdClass\NailMachine.cpp" />
@@ -280,6 +281,7 @@
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
     <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
     <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
+    <ClInclude Include="Source\Game\BtdClass\GameManager.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
     <ClInclude Include="Source\Game\BtdClass\map.h" />
     <ClInclude Include="Source\Game\BtdClass\NailMachine.h" />

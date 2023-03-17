@@ -45,6 +45,7 @@
 
 #include "BtdClass/BallonFactory.h"
 #include "BtdClass/FactoryButton.h"
+#include "BtdClass/GameManager.h"
 #include "BtdClass/Tower.h"
 #include "BtdClass/TestEverything.h"
 
@@ -105,14 +106,11 @@ namespace game_framework
         void OnMouseMove(UINT nFlags, CPoint point) override; // 處理滑鼠的動作 
         void OnRButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
         void OnRButtonUp(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
-
-        Btd::TestEverything UnitTest;
-
     protected:
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
-        Btd::Map map;
+        GameManager gm;
     };
 
     /////////////////////////////////////////////////////////////////////////////
