@@ -54,23 +54,20 @@ namespace Btd
 
     void Throwable::DetectHitBalloon()
     {
+        for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
         {
-            for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
+            for (int j=0; j<(int)cantHitBloons.size(); j++)
             {
-                for (int j=0; j<(int)cantHitBloons.size(); j++)
+                if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
                 {
-                    if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
-                    {
-                        return;
-                    }
+                    return;
                 }
-                if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]))
-                {
-                    BallonFactory::BallonVector[i].Pop(1, Normal);
-                    long long nowTime = std::chrono::system_clock::to_time_t((std::chrono::system_clock::now()));
-                    cantHitBloons.push_back({&BallonFactory::BallonVector[i], nowTime});
-                }    
             }
+            if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]))
+            {
+                BallonFactory::BallonVector[i].Pop(1, Normal);
+                cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
+            }    
         }
     }
 
@@ -78,9 +75,8 @@ namespace Btd
     {
         for (int i=0; i<(int)cantHitBloons.size(); i++)
         {
-            long long nowTime = std::chrono::system_clock::to_time_t((std::chrono::system_clock::now()));
-            long long delta = nowTime - cantHitBloons[i].second;
-            if (delta > 1)
+            cantHitBloons[i].second += delayCount;
+            if (cantHitBloons[i].second > 1000)
             {
                 cantHitBloons.erase(cantHitBloons.begin()+i);
             }

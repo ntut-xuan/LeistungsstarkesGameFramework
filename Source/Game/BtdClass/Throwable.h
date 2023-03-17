@@ -19,7 +19,7 @@ namespace Btd
         int _poped = 0;
         DamageType _damageType;
         // throwable can't hit same balloon in one second
-        vector<pair<Ballon*, long long>> cantHitBloons;
+        vector<pair<Ballon*, int>> cantHitBloons;
 
     public:
         Vector2 GetMoveDirection() const;

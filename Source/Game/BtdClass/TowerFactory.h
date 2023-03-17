@@ -19,7 +19,7 @@ namespace Btd
                 dartMonkey.LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp"}, RGB(0, 0, 0));
                 dartMonkey.SetCenter(GetCursorPosX(), GetCursorPosY());
                 dartMonkey.SetIsMove(true);
-                dartMonkey.SetShootDeltaTime(1);
+                dartMonkey.SetShootDeltaTime(3);
                 dartMonkey.SetActive(false);
                 TowerVector.push_back(dartMonkey);
             }
