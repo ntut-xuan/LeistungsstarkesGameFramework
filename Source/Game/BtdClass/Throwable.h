@@ -1,15 +1,10 @@
 #pragma once
 #include "GameObject.h"
 #include "BtdUtil.h"
+#include "Ballon.h"
 
 namespace Btd
 {
-    enum DamageType
-    {
-        Ice,
-        Boom,
-        Normal
-    };
 
     class Throwable : public GameObject
     {
@@ -23,6 +18,8 @@ namespace Btd
         int _maxPop = 0;
         int _poped = 0;
         DamageType _damageType;
+        // throwable can't hit same balloon in one second
+        vector<pair<Ballon*, int>> cantHitBloons;
 
     public:
         Vector2 GetMoveDirection() const;
@@ -39,5 +36,9 @@ namespace Btd
         float GetSpeed();
 
         void SetMoveDirection(float x, float y);
+
+        void DetectHitBalloon ();
+
+        void UpdateCantHitBloons ();
     };
 }

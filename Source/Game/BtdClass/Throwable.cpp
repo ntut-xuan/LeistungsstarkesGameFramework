@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "Throwable.h"
 
+#include <chrono>
+
 #include "BtdUtil.h"
+#include "BallonFactory.h"
 
 namespace Btd
 {
@@ -16,6 +19,8 @@ namespace Btd
         {
             Move();
         }
+        DetectHitBalloon();
+        UpdateCantHitBloons();
     }
 
     void Throwable::InitByCenter(Vector2 position)
@@ -45,6 +50,37 @@ namespace Btd
     void Throwable::SetMoveDirection(float x, float y)
     {
         _moveDirection = Normailize(x, y);
+    }
+
+    void Throwable::DetectHitBalloon()
+    {
+        for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
+        {
+            for (int j=0; j<(int)cantHitBloons.size(); j++)
+            {
+                if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
+                {
+                    return;
+                }
+            }
+            if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]))
+            {
+                BallonFactory::BallonVector[i].Pop(1, Normal);
+                cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
+            }    
+        }
+    }
+
+    void Throwable::UpdateCantHitBloons()
+    {
+        for (int i=0; i<(int)cantHitBloons.size(); i++)
+        {
+            cantHitBloons[i].second += delayCount;
+            if (cantHitBloons[i].second > 1000)
+            {
+                cantHitBloons.erase(cantHitBloons.begin()+i);
+            }
+        }
     }
 
 

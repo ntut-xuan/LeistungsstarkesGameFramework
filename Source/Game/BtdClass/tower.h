@@ -20,7 +20,7 @@ namespace Btd
         bool IsMovable();
         void SetIsMove(bool move);
         Vector2 getLocation();
-        int getRange();
+        int GetRange();
         void setUpdate(int level);
         void SetThrowablePath(string name);
         string ThrowablePath;
@@ -49,7 +49,7 @@ namespace Btd
         float GetShootTimeCounter();
         void SetShootTimeCounter(float);
 
-    private:
+    protected:
         bool _isUpgrade[2];
         bool _isMovable;
         int _speed;
@@ -62,8 +62,6 @@ namespace Btd
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;
-
-    protected:
         Ballon focus();
     };
 }

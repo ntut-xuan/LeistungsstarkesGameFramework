@@ -3,6 +3,8 @@
 
 #include <complex>
 
+#include "GameObject.h"
+
 namespace Btd
 {
     Vector2 Spin90(const Vector2 a)
@@ -68,4 +70,5 @@ namespace Btd
         ScreenToClient(hwnd, &p);
         return static_cast<int>(p.y);
     }
+
 }

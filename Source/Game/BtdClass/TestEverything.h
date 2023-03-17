@@ -14,6 +14,7 @@ namespace Btd
         BalloonFactoryTest,
         BalloonMoveTest,
         BalloonVectorMoveTest,
+        BallonPop,
         TowerFocus,
         NailMachineShoot,
     };
@@ -21,7 +22,7 @@ namespace Btd
     class TestEverything
     {
     private:
-        UnitTestState _unitTestState = ThrowableMove;
+        UnitTestState _unitTestState = DartMonkeyShoot;
         Throwable _throwable;
         DartMonkey _dartMonkey;
         NailMachine _nailMachine;
@@ -33,5 +34,6 @@ namespace Btd
         void UnitInit();
         void UnitTest();
         void UnitShow();
+        void SetState(UnitTestState state) {_unitTestState = state;};
     };
 }

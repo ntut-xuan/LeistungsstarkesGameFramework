@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "BtdUtil.h"
-#include "stdafx.h"
-#include "Throwable.h"
 #include "Ballon.h"
 
 #include "map.h"
@@ -68,5 +66,34 @@ namespace Btd
             top =(int) target.Y;
         }
         SetTopLeft(left, top);
+    }
+
+    void Ballon::Pop(int damage, DamageType type)
+    {
+        if (resistDamegeMap[type])
+        {
+            _layer -= damage;
+        }
+        if (_layer < 0)
+        {
+            _isPoped = true;
+            return;
+        }
+        SetFrameIndexOfBitmap(_layer);
+    }
+
+    bool Ballon::IsPoped()
+    {
+        return _isPoped;
+    }
+
+    void Ballon::SetIsPoped(bool poped)
+    {
+        _isPoped = poped;
+    }
+
+    void Ballon::SetLayer(int layer)
+    {
+        _layer = layer;
     }
 }

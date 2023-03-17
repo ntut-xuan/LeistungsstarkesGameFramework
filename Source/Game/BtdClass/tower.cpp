@@ -11,7 +11,7 @@ namespace Btd
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
-        ThrowablePath = "resources/bomb/bomb.bmp";
+        ThrowablePath = "resources/towers/boomShooter/bomb.bmp";
     }
 
     bool Tower::IsMovable()
@@ -22,6 +22,11 @@ namespace Btd
     void Tower::SetIsMove(bool move)
     {
         _isMovable = move;
+    }
+
+    int Tower::GetRange()
+    {
+        return _range;
     }
 
     void Tower::UpdateThrowable()
@@ -46,12 +51,8 @@ namespace Btd
         target = BallonFactory::BallonVector[0];
         for (Ballon b : BallonFactory::BallonVector)
         {
-            if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
-                (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
-                    Vector2Distance({static_cast<float>(b.GetLeft()), static_cast<float>(b.GetTop())},
-                                    Map::GetRoute()[b.GetNowRouteTarget()]) <
-                    Vector2Distance({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())},
-                                    Map::GetRoute()[b.GetNowRouteTarget()])))
+            if (Vector2Distance(GetCenter(), b.GetCenter()) <
+                Vector2Distance(GetCenter(), target.GetCenter()))
             {
                 target = b;
             }
@@ -77,17 +78,22 @@ namespace Btd
 
     void Tower::Update()
     {
-        UpdateThrowable();
+        if (_isActive)
+        {
+            UpdateThrowable();
 
-        if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
-        {
-            Ballon target = focus();
-            //todo check in attack range
-            Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
-        }
-        else
-        {
-            shootTimecounter += delayCount / 100.F;
+            if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
+            {
+                Ballon target = focus();
+                if (Vector2Distance(GetCenter(), target.GetCenter()) < (float)_range)
+                {
+                    Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
+                }
+            }
+            else
+            {
+                shootTimecounter += delayCount / 100.F;
+            }
         }
     }
 

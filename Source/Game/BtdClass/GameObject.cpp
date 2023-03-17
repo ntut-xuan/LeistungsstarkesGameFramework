@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "GameObject.h"
 
-#include "BtdUtil.h"
 
 namespace Btd
 {
@@ -43,5 +42,17 @@ namespace Btd
         location.top = y - halfHeight;
         location.right = x + halfWidth;
         location.bottom = y + halfHeight;
+    }
+    
+    bool IsOverlap(GameObject& character, GameObject& other)
+    {
+        if ((character.GetTop() + character.GetHeight() >= other.GetTop() &&
+                character.GetTop() <= other.GetTop() + other.GetHeight())
+            && (character.GetLeft() + character.GetWidth() >= other.GetLeft() &&
+                character.GetLeft() <= other.GetLeft() + other.GetWidth()))
+        {
+            return true;
+        }
+        return false;
     }
 }

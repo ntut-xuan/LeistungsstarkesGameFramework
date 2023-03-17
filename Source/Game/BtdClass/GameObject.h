@@ -6,7 +6,7 @@ namespace Btd
 {
     class GameObject : public game_framework::CMovingBitmap
     {
-    private:
+    protected:
         bool _isActive = true;
         string _tag = "default";
 
@@ -20,4 +20,5 @@ namespace Btd
         Vector2 GetCenter();
         void SetCenter(int x, int y);
     };
+    bool IsOverlap(GameObject& character, GameObject& other);
 }

@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 #include "BtdUtil.h"
-#include "Throwable.h"
 #include <list>
 #include <map>
 
@@ -13,10 +12,15 @@ namespace Btd
     private:
         int nowRouteTarget = 0;
         float _speed = 3;
-        int _layer = 1;
+        int _layer;
+        bool _isPoped;
 
     public:
-        Ballon() = default;
+        Ballon()
+        {
+            _layer = 0;
+            _isPoped = false;
+        };
 
         Ballon(int layer): _layer(layer)
         {
@@ -34,16 +38,13 @@ namespace Btd
 
         void Move(vector<Vector2> route);
 
-        void Pop(int damege, DamageType type)
-        {
-            if (resistDamegeMap[type])
-            {
-                _layer -= damege;
-            }
-            SetFrameIndexOfBitmap(_layer);
-        }
+        void Pop(int damage, DamageType type);
         int GetNowRouteTarget(){
             return nowRouteTarget;
         }
+
+        bool IsPoped();
+        void SetIsPoped(bool poped);
+        void SetLayer(int layer);
     };
 }
