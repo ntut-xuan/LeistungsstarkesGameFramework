@@ -61,7 +61,7 @@
  *   2010-03-23 V4.6
  *      1. Rewrite CAudio with MCI commands to eliminate dependency with DirectMusic.
 */
-
+#pragma once
 #include <list>
 #include <vector>
 #include <map>
