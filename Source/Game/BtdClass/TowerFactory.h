@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "Cannon.h"
 #include "DartMonkey.h"
 
 namespace Btd
@@ -15,6 +16,7 @@ namespace Btd
             switch (attribute)
             {
             case dart:
+            {
                 DartMonkey dartMonkey;
                 dartMonkey.LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp"}, RGB(0, 0, 0));
                 dartMonkey.SetCenter(GetCursorPosX(), GetCursorPosY());
@@ -22,6 +24,21 @@ namespace Btd
                 dartMonkey.SetShootDeltaTime(3);
                 dartMonkey.SetActive(false);
                 TowerVector.push_back(dartMonkey);
+                break;
+            }
+            case bomb:
+            {
+                Cannon cannon;
+                cannon.LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
+                cannon.SetCenter(GetCursorPosX(), GetCursorPosY());
+                cannon.SetIsMove(true);
+                cannon.SetShootDeltaTime(3);
+                cannon.SetActive(false);
+                TowerVector.push_back(cannon);
+                break;
+            }
+            default:
+                break;
             }
         }
     private: 

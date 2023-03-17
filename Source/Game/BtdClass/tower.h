@@ -22,8 +22,8 @@ namespace Btd
         Vector2 getLocation();
         int GetRange();
         void setUpdate(int level);
-        void SetThrowablePath(string name);
-        string ThrowablePath;
+        void SetThrowablePath(vector<string> name);
+        vector<string> ThrowablePath;
         vector<Throwable> throwables;
 
 

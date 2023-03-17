@@ -28,11 +28,14 @@ namespace Btd
         case BalloonVectorMoveTest:
             BALLOONS.push_back(_balloon);
         case NailMachineShoot:
-            _nailMachine.SetThrowablePath("resources/towers/nail/nail.bmp");
+            _nailMachine.SetThrowablePath({"resources/towers/nail/nail.bmp"});
             _nailMachine.LoadBitmapByString({"Resources/towers/nail/tower_nail.bmp"},RGB(0, 0, 0));
             _nailMachine.SetTopLeft(500, 500);
             _nailMachine.SetShootDeltaTime(1);
         case BallonPop:
+            _cannon.LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
+            _cannon.SetTopLeft(500, 500);
+            _cannon.SetShootDeltaTime(3);
             TowerFactory::MakeTower(dart);
             TowerFactory::TowerVector[0].SetIsMove(false);
             TowerFactory::TowerVector[0].SetTopLeft(200, 200);
@@ -116,6 +119,7 @@ namespace Btd
             {
                 TowerFactory::TowerVector[i].Update();
             }
+            _cannon.Update();
             BallonFactory::handlePopBalloon();
             break;
         default: ;
@@ -163,6 +167,7 @@ namespace Btd
             {
                 tower.TowerShow();
             }
+            _cannon.TowerShow();
             for (auto b : BallonFactory::BallonVector)
             {
                 b.ShowBitmap();

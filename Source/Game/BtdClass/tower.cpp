@@ -11,7 +11,6 @@ namespace Btd
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
-        ThrowablePath = "resources/towers/boomShooter/bomb.bmp";
     }
 
     bool Tower::IsMovable()
@@ -122,7 +121,7 @@ namespace Btd
         throwables.push_back(next);
     }
 
-    void Tower::SetThrowablePath(string name)
+    void Tower::SetThrowablePath(vector<string> name)
     {
         ThrowablePath = name;
     }
@@ -131,9 +130,9 @@ namespace Btd
     void Tower::PushThrowablePool()
     {
         Throwable tmp;
-        tmp.LoadBitmapByString({
+        tmp.LoadBitmapByString(
                                    ThrowablePath
-                               },RGB(255, 255, 255));
+                               ,RGB(255, 255, 255));
         throwablePool.push(tmp);
     }
 }

@@ -3,6 +3,7 @@
 #include "DartMonkey.h"
 #include "NailMachine.h"
 #include "Throwable.h"
+#include "Cannon.h"
 
 
 namespace Btd
@@ -26,6 +27,7 @@ namespace Btd
         Throwable _throwable;
         DartMonkey _dartMonkey;
         NailMachine _nailMachine;
+        Cannon _cannon;
         BallonFactory _balloonFactory;
         Ballon _balloon;
         vector<Ballon> BALLOONS;
