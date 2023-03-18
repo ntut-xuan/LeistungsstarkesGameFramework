@@ -17,9 +17,12 @@ namespace Btd
         static vector<Ballon> BallonVector;
         //todo idk should new or not 
 
-        void MakeBallon(BallonType type)
+        static void MakeBallon(BallonType type)
         {
-            vector<string> balloonPath = {"Resources/bloon/bloon_red.bmp", "Resources/bloon/bloon_blue.bmp", "Resources/bloon/bloon_green.bmp", "Resources/bloon/bloon_yellow.bmp"};
+            vector<string> balloonPath = {
+                "Resources/bloon/bloon_red.bmp", "Resources/bloon/bloon_blue.bmp", "Resources/bloon/bloon_green.bmp",
+                "Resources/bloon/bloon_yellow.bmp"
+            };
             if (BallonPool.empty())
             {
                 Ballon tmpBallon;
@@ -56,15 +59,15 @@ namespace Btd
             }
         }
 
-        static void handlePopBalloon ()
+        static void handlePopBalloon()
         {
-            for (int i=0; i<(int)BallonVector.size(); i++)
+            for (int i = 0; i < static_cast<int>(BallonVector.size()); i++)
             {
                 if (BallonVector[i].IsPoped())
                 {
                     BallonVector[i].UnshowBitmap();
                     BallonPool.push(BallonVector[i]);
-                    BallonVector.erase(BallonVector.begin()+i);
+                    BallonVector.erase(BallonVector.begin() + i);
                 }
             }
         }

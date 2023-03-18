@@ -27,12 +27,19 @@ namespace Btd
         black,
         white,
     };
-    
+
     enum DamageType
     {
         Ice,
         Boom,
         Normal
+    };
+
+    enum GameFlow
+    {
+        Prepare,
+        Shoot,
+        Win // get price
     };
 
     Vector2 Normailize(float x, float y);

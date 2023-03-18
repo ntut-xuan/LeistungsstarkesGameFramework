@@ -110,7 +110,7 @@ namespace game_framework
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
-        GameManager gm;
+        Btd::GameManager gm;
     };
 
     /////////////////////////////////////////////////////////////////////////////

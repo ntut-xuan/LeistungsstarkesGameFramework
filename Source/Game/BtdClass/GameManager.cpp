@@ -1,88 +1,114 @@
 #include "stdafx.h"
 #include "GameManager.h"
 
+#include "BallonFactory.h"
 #include "TowerFactory.h"
 
-void GameManager::OnBeginState()
+namespace Btd
 {
-    Btd::Vector2 mapSize = {
-        static_cast<float>(map.GetBackground().GetWidth()), static_cast<float>(map.GetBackground().GetHeight())
-    };
-    map.SetStartPosition({
-        static_cast<float>(0), mapSize.Y * 0.4F
-    });
-    map.SetRoute({
-        {mapSize.X * 0.11F, mapSize.Y * 0.4F}, {mapSize.X * 0.11F, mapSize.Y * 0.12F},
-        {mapSize.X * 0.3F, mapSize.Y * 0.12F}, {mapSize.X * 0.3F, mapSize.Y * 0.67F},
-        {mapSize.X * 0.05F, mapSize.Y * 0.67F}, {mapSize.X * 0.05F, mapSize.Y * 0.85F},
-        {mapSize.X * 0.65F, mapSize.Y * 0.85F}, {mapSize.X * 0.65F, mapSize.Y * 0.53F},
-        {mapSize.X * 0.45F, mapSize.Y * 0.53F}, {mapSize.X * 0.45F, mapSize.Y * 0.3F},
-        {mapSize.X * 0.65F, mapSize.Y * 0.3F}, {mapSize.X * 0.65F, mapSize.Y * 0.06F},
-        {mapSize.X * 0.38F, mapSize.Y * 0.06F}, {mapSize.X * 0.38F, mapSize.Y * 0.F},
-        {mapSize.X * 0.38F, mapSize.Y * -0.08F},
-    });
-}
-
-void GameManager::OnInit()
-{
-    map.InitRoad();
-    map.InitBackground();
-    map.InitFactoryButton();
-}
-
-void GameManager::OnKeyUp(UINT, UINT, UINT)
-{
-}
-
-void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
-{
-    map.HandleButtonClicked();
-    if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back().IsMovable())
+    void GameManager::OnBeginState()
     {
-        Btd::TowerFactory::TowerVector.back().SetIsMove(false);
-        Btd::TowerFactory::TowerVector.back().SetActive(true);
+        Vector2 mapSize = {
+            static_cast<float>(Map.GetBackground().GetWidth()), static_cast<float>(Map.GetBackground().GetHeight())
+        };
+        Map.SetStartPosition({
+            static_cast<float>(0), mapSize.Y * 0.4F
+        });
+        Map.SetRoute({
+            {mapSize.X * 0.11F, mapSize.Y * 0.4F}, {mapSize.X * 0.11F, mapSize.Y * 0.12F},
+            {mapSize.X * 0.3F, mapSize.Y * 0.12F}, {mapSize.X * 0.3F, mapSize.Y * 0.67F},
+            {mapSize.X * 0.05F, mapSize.Y * 0.67F}, {mapSize.X * 0.05F, mapSize.Y * 0.85F},
+            {mapSize.X * 0.65F, mapSize.Y * 0.85F}, {mapSize.X * 0.65F, mapSize.Y * 0.53F},
+            {mapSize.X * 0.45F, mapSize.Y * 0.53F}, {mapSize.X * 0.45F, mapSize.Y * 0.3F},
+            {mapSize.X * 0.65F, mapSize.Y * 0.3F}, {mapSize.X * 0.65F, mapSize.Y * 0.06F},
+            {mapSize.X * 0.38F, mapSize.Y * 0.06F}, {mapSize.X * 0.38F, mapSize.Y * 0.F},
+            {mapSize.X * 0.38F, mapSize.Y * -0.08F},
+        });
     }
-}
 
-void GameManager::OnLButtonUp(UINT nFlags, CPoint point)
-{
-}
-
-void GameManager::OnMouseMove(UINT nFlags, CPoint point)
-{
-    if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back().IsMovable())
+    void GameManager::OnInit()
     {
-        Btd::TowerFactory::TowerVector.back().SetCenter(Btd::GetCursorPosX(), Btd::GetCursorPosY());
+        Map.InitRoad();
+        Map.InitBackground();
+        Map.InitFactoryButton();
     }
-}
 
-void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
-{
-}
-
-void GameManager::OnRButtonUp(UINT nFlags, CPoint point)
-{
-}
-
-void GameManager::OnMove()
-{
-    map.UpdateFatoryButton();
-}
-
-void GameManager::OnShow()
-{
-    map.ShowBackground();
-    map.ShowFactoryButton();
-    map.ShowRoad();
-    if (!Btd::TowerFactory::TowerVector.empty())
+    void GameManager::OnKeyUp(UINT, UINT, UINT)
     {
-        for (auto m : Btd::TowerFactory::TowerVector)
+    }
+
+    void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
+    {
+        Map.HandleButtonClicked();
+        if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back().IsMovable())
         {
-            m.ShowBitmap();
+            TowerFactory::TowerVector.back().SetIsMove(false);
+            TowerFactory::TowerVector.back().SetActive(true);
         }
     }
-}
 
-void GameManager::OnKeyDown(UINT, UINT, UINT)
-{
+    void GameManager::OnLButtonUp(UINT nFlags, CPoint point)
+    {
+    }
+
+    void GameManager::OnMouseMove(UINT nFlags, CPoint point)
+    {
+        if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back().IsMovable())
+        {
+            TowerFactory::TowerVector.back().SetCenter(GetCursorPosX(), GetCursorPosY());
+        }
+    }
+
+    void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
+    {
+    }
+
+    void GameManager::OnRButtonUp(UINT nFlags, CPoint point)
+    {
+    }
+
+    void GameManager::OnMove()
+    {
+        Map.UpdateFatoryButton();
+        switch (GameFlow)
+        {
+        case Prepare:
+            break;
+        case Shoot:
+            break;
+        case Win:
+            break;
+        default: ;
+        }
+        for (auto& ballon : BallonFactory::BallonVector)
+        {
+            ballon.Update();
+        }
+    }
+
+    void GameManager::OnShow()
+    {
+        Map.ShowBackground();
+        Map.ShowFactoryButton();
+        Map.ShowRoad();
+        if (!TowerFactory::TowerVector.empty())
+        {
+            for (auto m : TowerFactory::TowerVector)
+            {
+                m.ShowBitmap();
+            }
+        }
+        for (auto& ballon : BallonFactory::BallonVector)
+        {
+            ballon.ShowBitmap();
+        }
+    }
+
+    void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+    {
+        if (nChar == 'A')
+        {
+            BallonFactory::MakeBallon(red);
+        }
+    }
 }
