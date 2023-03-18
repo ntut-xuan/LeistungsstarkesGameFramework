@@ -11,7 +11,7 @@ namespace Btd
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
-        ThrowablePath = "resources/towers/boomShooter/bomb.bmp";
+        ThrowablePath = "resources/towers/bomb/bomb.bmp";
     }
 
     bool Tower::IsMovable()
