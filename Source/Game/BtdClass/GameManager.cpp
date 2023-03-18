@@ -80,10 +80,15 @@ namespace Btd
             break;
         default: ;
         }
-        for (auto& ballon : BallonFactory::BallonVector)
+        for (auto& m : TowerFactory::TowerVector)
         {
-            ballon.Update();
+            m.Update();
         }
+        BallonFactory::UpdateBloon();
+        // for (auto& ballon : BallonFactory::BallonVector)
+        // {
+        //     ballon.Update();
+        // }
     }
 
     void GameManager::OnShow()
@@ -91,12 +96,9 @@ namespace Btd
         Map.ShowBackground();
         Map.ShowFactoryButton();
         Map.ShowRoad();
-        if (!TowerFactory::TowerVector.empty())
+        for (auto m : TowerFactory::TowerVector)
         {
-            for (auto m : TowerFactory::TowerVector)
-            {
-                m.ShowBitmap();
-            }
+            m.TowerShow();
         }
         for (auto& ballon : BallonFactory::BallonVector)
         {

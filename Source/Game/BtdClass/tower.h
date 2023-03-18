@@ -52,7 +52,7 @@ namespace Btd
     protected:
         bool _isUpgrade[2];
         bool _isMovable;
-        int _speed;
+        // int _speed;
         int _range;
         int _buyMoney;
         int _sellMoney;

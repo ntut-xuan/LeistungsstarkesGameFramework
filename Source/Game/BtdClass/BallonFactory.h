@@ -23,6 +23,7 @@ namespace Btd
                 "Resources/bloon/bloon_red.bmp", "Resources/bloon/bloon_blue.bmp", "Resources/bloon/bloon_green.bmp",
                 "Resources/bloon/bloon_yellow.bmp"
             };
+            Vector2 startPosition = Map::GetStartPosition();
             if (BallonPool.empty())
             {
                 Ballon tmpBallon;
@@ -38,16 +39,17 @@ namespace Btd
                     tmpBallon.SetFrameIndexOfBitmap(type);
                     break;
                 }
-                Vector2 startPosition = Map::GetStartPosition();
-                tmpBallon.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
                 tmpBallon.SetActive(false);
-                tmpBallon.SetNowRouteTarget(0);
-                tmpBallon.Setspeed(3);
                 BallonPool.push(tmpBallon);
             }
             auto next = BallonPool.front();
             BallonPool.pop();
             next.SetActive(true);
+            next.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
+            next.SetNowRouteTarget(0);
+            next.SetIsPoped(false);
+            next.Setspeed(3);
+            next.SetLayer(type);
             BallonVector.push_back(next);
         }
 
@@ -57,6 +59,7 @@ namespace Btd
             {
                 b.Update();
             }
+            handlePopBalloon();
         }
 
         static void handlePopBalloon()
