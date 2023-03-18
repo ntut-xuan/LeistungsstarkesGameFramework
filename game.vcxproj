@@ -327,7 +327,8 @@
     <Content Include="Resources\start_button.bmp" />
     <Content Include="Resources\testRed.bmp" />
     <Content Include="Resources\Toolbar.bmp" />
-    <Content Include="Resources\towers\boomShooter\bomb.bmp" />
+    <Content Include="Resources\towers\bomb\bomb.bmp" />
+    <Content Include="Resources\towers\bomb\tower_bomb.bmp" />
     <Content Include="Resources\towers\ice\ice.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_1.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_2.bmp" />
