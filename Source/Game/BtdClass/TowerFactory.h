@@ -28,7 +28,7 @@ namespace Btd
             }
             case bomb:
             {
-                Cannon *cannon = new Cannon();
+                Tower *cannon = new Cannon();
                 cannon->LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
                 cannon->SetCenter(GetCursorPosX(), GetCursorPosY());
                 cannon->SetIsMove(true);

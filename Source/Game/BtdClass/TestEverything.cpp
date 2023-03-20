@@ -118,12 +118,6 @@ namespace Btd
             {
                 TowerFactory::TowerVector[i]->Update();
             }
-            // for (auto t : _towerFactory.TowerVector)
-            // {
-            //     t->Update();
-            // }
-            _towerFactory.TowerVector[0]->Update();
-            // _cannon.Update();
             BallonFactory::handlePopBalloon();
             break;
         default: ;
