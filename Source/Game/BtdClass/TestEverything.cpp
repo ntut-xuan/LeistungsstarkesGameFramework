@@ -36,13 +36,13 @@ namespace Btd
             _cannon.LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
             _cannon.SetTopLeft(500, 500);
             _cannon.SetShootDeltaTime(3);
-            TowerFactory::MakeTower(dart);
-            TowerFactory::TowerVector[0].SetIsMove(false);
-            TowerFactory::TowerVector[0].SetTopLeft(200, 200);
-            TowerFactory::TowerVector[0].SetShootDeltaTime(1);
-            TowerFactory::TowerVector[0].SetActive(true);
+            TowerFactory::MakeTower(bomb);
+            TowerFactory::TowerVector[0]->SetIsMove(false);
+            TowerFactory::TowerVector[0]->SetTopLeft(200, 200);
+            TowerFactory::TowerVector[0]->SetShootDeltaTime(3);
+            TowerFactory::TowerVector[0]->SetActive(true);
             _balloonFactory.MakeBallon(yelllow);
-            BallonFactory::BallonVector[0].SetTopLeft(100, 400);
+            BallonFactory::BallonVector[0].SetTopLeft(120, 120);
             _balloonFactory.MakeBallon(blue);
             BallonFactory::BallonVector[1].SetTopLeft(600, 400);
             _balloonFactory.MakeBallon(black);
@@ -114,12 +114,16 @@ namespace Btd
             BallonFactory::handlePopBalloon();
             break;
         case BallonPop:
-            TowerFactory::TowerVector[0].Update();
             for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
             {
-                TowerFactory::TowerVector[i].Update();
+                TowerFactory::TowerVector[i]->Update();
             }
-            _cannon.Update();
+            // for (auto t : _towerFactory.TowerVector)
+            // {
+            //     t->Update();
+            // }
+            _towerFactory.TowerVector[0]->Update();
+            // _cannon.Update();
             BallonFactory::handlePopBalloon();
             break;
         default: ;
@@ -163,9 +167,9 @@ namespace Btd
             }
             break;
         case BallonPop:
-            for (Tower tower : TowerFactory::TowerVector)
+            for (Tower *tower : TowerFactory::TowerVector)
             {
-                tower.TowerShow();
+                tower->TowerShow();
             }
             _cannon.TowerShow();
             for (auto b : BallonFactory::BallonVector)

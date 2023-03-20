@@ -11,6 +11,7 @@ namespace Btd
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
+        shootTimecounter = 0;
     }
 
     bool Tower::IsMovable()

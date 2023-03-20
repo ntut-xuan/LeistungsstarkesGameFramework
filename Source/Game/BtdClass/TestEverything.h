@@ -29,6 +29,7 @@ namespace Btd
         NailMachine _nailMachine;
         Cannon _cannon;
         BallonFactory _balloonFactory;
+        TowerFactory _towerFactory;
         Ballon _balloon;
         vector<Ballon> BALLOONS;
 

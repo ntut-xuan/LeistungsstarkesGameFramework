@@ -83,10 +83,10 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
     map.HandleButtonClicked();
-    if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back().IsMovable())
+    if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back()->IsMovable())
     {
-        Btd::TowerFactory::TowerVector.back().SetIsMove(false);
-        Btd::TowerFactory::TowerVector.back().SetActive(true);
+        Btd::TowerFactory::TowerVector.back()->SetIsMove(false);
+        Btd::TowerFactory::TowerVector.back()->SetActive(true);
     }
 }
 
@@ -96,9 +96,9 @@ void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point) // 處理滑鼠的動作
 {
-    if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back().IsMovable())
+    if (!Btd::TowerFactory::TowerVector.empty() && Btd::TowerFactory::TowerVector.back()->IsMovable())
     {
-        Btd::TowerFactory::TowerVector.back().SetCenter(Btd::GetCursorPosX(), Btd::GetCursorPosY());
+        Btd::TowerFactory::TowerVector.back()->SetCenter(Btd::GetCursorPosX(), Btd::GetCursorPosY());
     }
 }
 
@@ -116,11 +116,4 @@ void CGameStateRun::OnShow()
     map.ShowFactoryButton();
     map.ShowRoad();
     UnitTest.UnitShow();
-    if (!Btd::TowerFactory::TowerVector.empty())
-    {
-        for (auto m : Btd::TowerFactory::TowerVector)
-        {
-            m.ShowBitmap();
-        }
-    }
 }

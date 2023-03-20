@@ -4,7 +4,7 @@
 
 namespace Btd
 {
-    vector<Tower> TowerFactory::TowerVector = {};
+    vector<Tower*> TowerFactory::TowerVector = {};
     void FactoryButton::SetAttribute(Attribute attribute)
     {
         _attribute = attribute;
