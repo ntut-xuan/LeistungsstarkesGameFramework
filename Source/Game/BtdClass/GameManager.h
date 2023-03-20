@@ -1,4 +1,5 @@
 #pragma once
+#include "BtdTimer.h"
 #include "map.h"
 #include "Tower.h"
 
@@ -23,5 +24,6 @@ namespace Btd
 
         Map Map;
         GameFlow GameFlow;
+        BtdTimer BtdTimer;
     };
 }

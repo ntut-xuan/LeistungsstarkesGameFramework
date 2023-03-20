@@ -245,6 +245,7 @@
     </ClCompile>
     <ClCompile Include="Source\Game\BtdClass\Ballon.cpp" />
     <ClCompile Include="Source\Game\BtdClass\BlackBallon.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\BtdTimer.cpp" />
     <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Button.cpp" />
     <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
@@ -276,6 +277,7 @@
     <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
     <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
     <ClInclude Include="Source\Game\BtdClass\BlackBallon.h" />
+    <ClInclude Include="Source\Game\BtdClass\BtdTimer.h" />
     <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
     <ClInclude Include="Source\Game\BtdClass\Button.h" />
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />

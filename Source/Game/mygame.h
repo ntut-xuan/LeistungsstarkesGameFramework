@@ -41,13 +41,7 @@
 #pragma once
 #include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
-#include <vector>
-
-#include "BtdClass/BallonFactory.h"
-#include "BtdClass/FactoryButton.h"
 #include "BtdClass/GameManager.h"
-#include "BtdClass/Tower.h"
-#include "BtdClass/TestEverything.h"
 
 namespace game_framework
 {

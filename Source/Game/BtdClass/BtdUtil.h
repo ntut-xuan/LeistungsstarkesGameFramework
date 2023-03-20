@@ -28,6 +28,12 @@ namespace Btd
         white,
     };
 
+    struct UnitRound
+    {
+        BallonType type;
+        int nextTime;
+    };
+
     enum DamageType
     {
         Ice,

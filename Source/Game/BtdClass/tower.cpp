@@ -93,7 +93,7 @@ namespace Btd
             else
             {
                 shootTimecounter += static_cast<float>(delayCount) / 100.F;
-                shootTimecounter += 1;
+                // shootTimecounter += 1;
             }
         }
     }

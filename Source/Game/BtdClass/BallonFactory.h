@@ -1,12 +1,9 @@
 #pragma once
-
-#include <string>
 #include <queue>
 
 #include "Ballon.h"
-#include "BlackBallon.h"
-#include "map.h"
-#include "TowerFactory.h"
+#include "Map.h"
+
 
 namespace Btd
 {
@@ -15,7 +12,34 @@ namespace Btd
     public:
         static queue<Ballon> BallonPool;
         static vector<Ballon> BallonVector;
-        //todo idk should new or not 
+
+        static vector<UnitRound> BallonRound;
+        static int BallonCounter;
+        static int BallonTimer;
+
+        static void SetRound(vector<UnitRound> rounds)
+        {
+            BallonRound = rounds;
+        }
+
+        static bool UpdateRound(int DeltaTime)
+        {
+            if (BallonTimer <= 0)
+            {
+                if (BallonCounter >= static_cast<int>(BallonRound.size()))
+                {
+                    return true;
+                }
+                MakeBallon(BallonRound[BallonCounter].type);
+                BallonTimer = BallonRound[BallonCounter].nextTime;
+                BallonCounter ++;
+            }
+            else
+            {
+                BallonTimer -= DeltaTime;
+            }
+            return false;
+        }
 
         static void MakeBallon(BallonType type)
         {

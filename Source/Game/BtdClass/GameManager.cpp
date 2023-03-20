@@ -24,6 +24,13 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * 0.06F}, {mapSize.X * 0.38F, mapSize.Y * 0.F},
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
+        Map.SetRounds({
+            {{red, 10}, {red, 10}, {blue, 10}},
+            {{red, 10}, {red, 10}, {blue, 10}},
+            {{red, 10}, {red, 10}, {blue, 10}},
+            {{red, 10}, {red, 10}, {blue, 10}}
+        });
+        BallonFactory::SetRound(Map.GetRounds()[0]);
     }
 
     void GameManager::OnInit()
@@ -31,6 +38,7 @@ namespace Btd
         Map.InitRoad();
         Map.InitBackground();
         Map.InitFactoryButton();
+        GameFlow = Prepare;
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -70,14 +78,19 @@ namespace Btd
     void GameManager::OnMove()
     {
         Map.UpdateFatoryButton();
+        bool RoundRunOut = BallonFactory::UpdateRound(BtdTimer.GetDeltaTime());
+        bool isRoundEnd = BallonFactory::BallonVector.empty() && RoundRunOut;
+
         switch (GameFlow)
         {
         case Prepare:
-            break;
         case Shoot:
+            if (isRoundEnd)
+            {
+                GameFlow = Win;
+            }
             break;
         case Win:
-            break;
         default: ;
         }
         for (auto& m : TowerFactory::TowerVector)
@@ -85,10 +98,6 @@ namespace Btd
             m.Update();
         }
         BallonFactory::UpdateBloon();
-        // for (auto& ballon : BallonFactory::BallonVector)
-        // {
-        //     ballon.Update();
-        // }
     }
 
     void GameManager::OnShow()
