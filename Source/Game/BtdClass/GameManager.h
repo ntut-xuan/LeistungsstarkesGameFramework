@@ -26,5 +26,6 @@ namespace Btd
         GameFlow GameFlow;
         BtdTimer BtdTimer;
         int round = 0;
+        game_framework::CMovingBitmap startButton;
     };
 }

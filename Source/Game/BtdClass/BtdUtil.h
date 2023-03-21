@@ -1,6 +1,11 @@
 #pragma once
 
 
+namespace game_framework
+{
+    class CMovingBitmap;
+}
+
 namespace Btd
 {
     struct Vector2
@@ -59,4 +64,5 @@ namespace Btd
     float Vector2Distance(Vector2 a, Vector2 b);
     Vector2 Spin45(Vector2 a);
     Vector2 Spin90(Vector2 a);
+    bool isPointInBmp(POINT p, game_framework::CMovingBitmap target);
 }

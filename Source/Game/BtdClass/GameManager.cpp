@@ -25,10 +25,10 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
         Map.SetRounds({
-            {{red, 10}, {red, 10}, {blue, 10}},
-            {{red, 10}, {red, 10}, {blue, 10}},
-            {{red, 10}, {red, 10}, {blue, 10}},
-            {{red, 10}, {red, 10}, {blue, 10}}
+            {{red, 1000}, {red, 1000}, {blue, 1000}},
+            {{red, 1000}, {red, 1000}, {blue, 1000}},
+            {{red, 1000}, {red, 1000}, {blue, 1000}},
+            {{red, 1000}, {red, 1000}, {blue, 1000}}
         });
         BallonFactory::SetNextRound(Map.GetRounds()[round]);
     }
@@ -39,6 +39,8 @@ namespace Btd
         Map.InitBackground();
         Map.InitFactoryButton();
         GameFlow = Prepare;
+        startButton.LoadBitmapByString({"resources/start_button.bmp"});
+        startButton.SetTopLeft(742, 620);
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -52,6 +54,24 @@ namespace Btd
         {
             TowerFactory::TowerVector.back().SetIsMove(false);
             TowerFactory::TowerVector.back().SetActive(true);
+        }
+        switch (GameFlow)
+        {
+        case Prepare:
+            {
+                POINT p;
+                GetCursorPos(&p);
+                HWND hwnd = FindWindowA(nullptr, "Game");
+                ScreenToClient(hwnd, &p);
+
+                if (isPointInBmp(p, startButton))
+                {
+                    GameFlow = Shoot;
+                }
+                break;
+            }
+        default:
+            break;
         }
     }
 
@@ -69,14 +89,6 @@ namespace Btd
 
     void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
     {
-        switch (GameFlow)
-        {
-        case Prepare:
-            GameFlow = Shoot;
-            break;
-        default:
-            break;
-        }
     }
 
     void GameManager::OnRButtonUp(UINT nFlags, CPoint point)
@@ -104,11 +116,20 @@ namespace Btd
             }
         case Win:
             round++;
-            BallonFactory::SetNextRound(Map.GetRounds()[round]);
-            GameFlow = Prepare;
-        //todo gold ++
+            if (round >= Map.GetRounds().size())
+            {
+                GameFlow = GameEnd;
+            }
+            else
+            {
+                BallonFactory::SetNextRound(Map.GetRounds()[round]);
+                GameFlow = Prepare;
+                //todo gold ++
+            }
+
             break;
         case GameEnd:
+
             break;
         default: ;
         }
@@ -131,6 +152,14 @@ namespace Btd
         for (auto& ballon : BallonFactory::BallonVector)
         {
             ballon.ShowBitmap();
+        }
+        switch (GameFlow)
+        {
+        case Prepare:
+            startButton.ShowBitmap();
+            break;
+        default:
+            break;
         }
     }
 
