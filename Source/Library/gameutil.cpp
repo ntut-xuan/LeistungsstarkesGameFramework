@@ -1,3 +1,28 @@
+/*
+ * gamelib.cpp: 本檔案儲存支援遊戲相關的class的implementation
+ *
+ * Copyright (C) 2002-2012 Woei-Kae Chen <wkc@csie.ntut.edu.tw>
+ * Copyright (C) 2022-2023 Uriah Xuan <t109590031@ntut.org.tw>
+ * Copyright (C) 2023 Alex Rick <t110590016@ntut.edu.tw>
+ *
+ * This file is part of game, a free game development framework for windows.
+ *
+ * game is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * game is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ */
+
 //#define	 INITGUID
 #include "stdafx.h"
 #include "../Core/game.h"
@@ -42,7 +67,7 @@ namespace game_framework {
 	int CMovingBitmap::GetHeight()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Height() is called !!!");
-		return locations[frameIndex].bottom - locations[frameIndex].top;
+		return (int)((locations[frameIndex].bottom - locations[frameIndex].top) * scaleFactor);
 	}
 
 	//! 取得 CMovingBitmap 物件的左上角的 x 軸座標值。
@@ -212,9 +237,17 @@ namespace game_framework {
 	//! 顯示圖片。
 	/*!
 		僅能在 `onShow()` 時呼叫，且圖片需要被讀取。
+		使用`CMovingBitmap::factor`作為預設放大倍率，需要 VGA 顯卡的支援，否則會變得異常慢。
 	*/
 	void CMovingBitmap::ShowBitmap()
 	{
+		if (scaleFactor != 1)
+		{
+			ShowBitmap(scaleFactor);
+			return;
+		}
+
+		// `BltBitmapToBack`內實做方式不同，為了向下相容故保留
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
 		CDDraw::BltBitmapToBack(surfaceID[frameIndex], locations[frameIndex].left, locations[frameIndex].top);
 		ShowBitmapBySetting();
@@ -228,6 +261,7 @@ namespace game_framework {
 	void CMovingBitmap::ShowBitmap(double factor)
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before ShowBitmap() is called !!!");
+		GAME_ASSERT(factor >= 0, "CMovingBitmap factor cannot be negative number!!!!!!!!!!")
 		CDDraw::BltBitmapToBack(surfaceID[frameIndex], locations[frameIndex].left, locations[frameIndex].top, factor);
 		ShowBitmapBySetting();
 	}
@@ -267,7 +301,17 @@ namespace game_framework {
 	int CMovingBitmap::GetWidth()
 	{
 		GAME_ASSERT(isBitmapLoaded, "A bitmap must be loaded before Width() is called !!!");
-		return locations[frameIndex].right - locations[frameIndex].left;
+		return (int)((locations[frameIndex].right - locations[frameIndex].left) * scaleFactor);
+	}
+	
+	double CMovingBitmap::GetScale() const
+	{
+		return scaleFactor;
+	}
+	void CMovingBitmap::SetScale(double scale)
+	{
+		GAME_ASSERT(scale >= 0, "CMovingBitmap factor cannot be negative number!!!!!!!!!!")
+		scaleFactor = scale;
 	}
 	
 	//! 啟動單次動畫。
