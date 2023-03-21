@@ -3,6 +3,6 @@
 
 namespace Btd
 {
-    queue<Ballon> BallonFactory::BallonPool;
-    vector<Ballon> BallonFactory::BallonVector;
+    queue<Ballon> BallonFactory::BallonPool= queue<Ballon>();
+    vector<Ballon> BallonFactory::BallonVector = vector<Ballon>();
 }

@@ -38,14 +38,14 @@ namespace Btd
             TowerFactory::TowerVector[0].SetTopLeft(200, 200);
             TowerFactory::TowerVector[0].SetShootDeltaTime(1);
             TowerFactory::TowerVector[0].SetActive(true);
-            _balloonFactory.MakeBallon(yelllow);
+            _balloonFactory.MakeBallon(Layer::black);
             BallonFactory::BallonVector[0].SetTopLeft(100, 400);
-            _balloonFactory.MakeBallon(blue);
+            _balloonFactory.MakeBallon(Layer::blue);
             BallonFactory::BallonVector[1].SetTopLeft(600, 400);
-            _balloonFactory.MakeBallon(black);
+            _balloonFactory.MakeBallon(Layer::black);
             BallonFactory::BallonVector[2].SetTopLeft(400, 400);
             break;
-            
+
         default:
             break;
         }
@@ -83,7 +83,7 @@ namespace Btd
         case BalloonFactoryTest:
             if (_balloonFactory.BallonVector.size() < 10)
             {
-                _balloonFactory.MakeBallon(red);
+                _balloonFactory.MakeBallon(Layer::red);
             }
             for (auto& ballon : _balloonFactory.BallonVector)
             {
@@ -112,7 +112,7 @@ namespace Btd
             break;
         case BallonPop:
             TowerFactory::TowerVector[0].Update();
-            for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
+            for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
             {
                 TowerFactory::TowerVector[i].Update();
             }

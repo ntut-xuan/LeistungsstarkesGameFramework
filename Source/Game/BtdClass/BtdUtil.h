@@ -18,21 +18,34 @@ namespace Btd
         super
     };
 
-    enum BallonType
+    namespace Layer
     {
-        red = 0,
-        blue,
-        green,
-        yelllow,
-        black,
-        white,
-    };
-    
+        enum NormalBallonLayer
+        {
+            red = 0,
+            blue,
+            green,
+            yelllow,
+            black,
+            white,
+        };
+    }
+
+    namespace BallonType
+    {
+        enum BallonType
+        {
+            normal,
+            black,
+            white
+        };
+    }
+
     enum DamageType
     {
-        Ice,
+        Normal,
         Boom,
-        Normal
+        Ice,
     };
 
     Vector2 Normailize(float x, float y);
