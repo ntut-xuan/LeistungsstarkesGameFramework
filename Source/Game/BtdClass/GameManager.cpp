@@ -116,7 +116,7 @@ namespace Btd
             }
         case Win:
             round++;
-            if (round >= Map.GetRounds().size())
+            if (round >= (int)Map.GetRounds().size())
             {
                 GameFlow = GameEnd;
             }

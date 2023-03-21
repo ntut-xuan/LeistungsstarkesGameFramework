@@ -1,10 +1,5 @@
 #pragma once
-
-
-namespace game_framework
-{
-    class CMovingBitmap;
-}
+#include "../../Library/gameutil.h"
 
 namespace Btd
 {
