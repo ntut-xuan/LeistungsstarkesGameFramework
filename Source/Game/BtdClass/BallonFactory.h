@@ -17,9 +17,11 @@ namespace Btd
         static int BallonCounter;
         static int BallonTimer;
 
-        static void SetRound(vector<UnitRound> rounds)
+        static void SetNextRound(vector<UnitRound> rounds)
         {
             BallonRound = rounds;
+            BallonCounter = 0;
+            BallonTimer = 0;
         }
 
         static bool UpdateRound(int DeltaTime)

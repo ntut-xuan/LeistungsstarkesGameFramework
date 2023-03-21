@@ -30,7 +30,7 @@ namespace Btd
             {{red, 10}, {red, 10}, {blue, 10}},
             {{red, 10}, {red, 10}, {blue, 10}}
         });
-        BallonFactory::SetRound(Map.GetRounds()[0]);
+        BallonFactory::SetNextRound(Map.GetRounds()[round]);
     }
 
     void GameManager::OnInit()
@@ -69,6 +69,14 @@ namespace Btd
 
     void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
     {
+        switch (GameFlow)
+        {
+        case Prepare:
+            GameFlow = Shoot;
+            break;
+        default:
+            break;
+        }
     }
 
     void GameManager::OnRButtonUp(UINT nFlags, CPoint point)
@@ -78,19 +86,30 @@ namespace Btd
     void GameManager::OnMove()
     {
         Map.UpdateFatoryButton();
-        bool RoundRunOut = BallonFactory::UpdateRound(BtdTimer.GetDeltaTime());
-        bool isRoundEnd = BallonFactory::BallonVector.empty() && RoundRunOut;
 
         switch (GameFlow)
         {
         case Prepare:
-        case Shoot:
-            if (isRoundEnd)
-            {
-                GameFlow = Win;
-            }
             break;
+
+        case Shoot:
+            {
+                bool RoundRunOut = BallonFactory::UpdateRound(BtdTimer.GetDeltaTime());
+                bool isRoundEnd = BallonFactory::BallonVector.empty() && RoundRunOut;
+                if (isRoundEnd)
+                {
+                    GameFlow = Win;
+                }
+                break;
+            }
         case Win:
+            round++;
+            BallonFactory::SetNextRound(Map.GetRounds()[round]);
+            GameFlow = Prepare;
+        //todo gold ++
+            break;
+        case GameEnd:
+            break;
         default: ;
         }
         for (auto& m : TowerFactory::TowerVector)

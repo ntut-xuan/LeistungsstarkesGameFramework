@@ -45,7 +45,8 @@ namespace Btd
     {
         Prepare,
         Shoot,
-        Win // get price
+        Win,
+        GameEnd
     };
 
     Vector2 Normailize(float x, float y);

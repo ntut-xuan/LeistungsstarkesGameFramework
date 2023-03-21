@@ -25,5 +25,6 @@ namespace Btd
         Map Map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;
+        int round = 0;
     };
 }
