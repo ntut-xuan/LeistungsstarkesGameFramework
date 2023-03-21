@@ -54,6 +54,7 @@ namespace Btd
                 next.SetLayer(type);
                 next.SetFrameIndexOfBitmap(type);
                 next.Setspeed(3);
+                next.SetType(BallonType::normal);
                 break;
             }
             next.SetNowRouteTarget(nowRouteTarget);
@@ -79,16 +80,16 @@ namespace Btd
                 Ballon b = BallonVector[i];
                 if (BallonVector[i].IsPoped())
                 {
-                    // BallonType type = BallonVector[i].GetType();
-                    // if (type == black || type == white)
-                    // {
-                    //     int nowRouteTarget = BallonVector[i].GetNowRouteTarget();
-                    //     Vector2 position = {
-                    //         static_cast<float>(BallonVector[i].GetLeft()), static_cast<float>(BallonVector[i].GetTop())
-                    //     };
-                    //     // MakeBallonByPosition(Layer::yelllow, position, nowRouteTarget);
-                    //     // MakeBallonByPosition(Layer::yelllow, position, nowRouteTarget);
-                    // }
+                    BallonType::BallonType type = BallonVector[i].GetType();
+                    if (type == BallonType::black || type == BallonType::white)
+                    {
+                        int nowRouteTarget = BallonVector[i].GetNowRouteTarget();
+                        Vector2 position = {
+                            static_cast<float>(BallonVector[i].GetLeft()), static_cast<float>(BallonVector[i].GetTop())
+                        };
+                        MakeBallonByPosition(Layer::yelllow, position, nowRouteTarget);
+                        MakeBallonByPosition(Layer::yelllow, position, nowRouteTarget);
+                    }
                     BallonPool.push(BallonVector[i]);
                     BallonVector.erase(BallonVector.begin() + i);
                 }

@@ -71,7 +71,7 @@ namespace Btd
             {
                 BallonFactory::BallonVector[i].Pop(1, Normal);
                 cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
-            }    
+            }
         }
     }
 
