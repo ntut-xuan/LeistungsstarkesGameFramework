@@ -10,7 +10,7 @@ namespace Btd
 {
     void Throwable::Update()
     {
-        _existTime += delayCount;
+        _existTime += deltaTime;
         if (_existTime > _maxExistTime)
         {
             SetActive(false);
@@ -79,7 +79,7 @@ namespace Btd
     {
         for (int i=0; i<(int)cantHitBloons.size(); i++)
         {
-            cantHitBloons[i].second += delayCount;
+            cantHitBloons[i].second += deltaTime;
             if (cantHitBloons[i].second > 1000)
             {
                 cantHitBloons.erase(cantHitBloons.begin()+i);

@@ -8,7 +8,7 @@ namespace Btd
 
     class Throwable : public GameObject
     {
-    private:
+    protected:
         Vector2 _moveDirection;
         Vector2 _position = {0, 0};
         float _speed = 0;
@@ -37,7 +37,7 @@ namespace Btd
 
         void SetMoveDirection(float x, float y);
 
-        void DetectHitBalloon ();
+        virtual void DetectHitBalloon ();
 
         void UpdateCantHitBloons ();
     };

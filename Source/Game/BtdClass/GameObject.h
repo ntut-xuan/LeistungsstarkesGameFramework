@@ -9,6 +9,7 @@ namespace Btd
     protected:
         bool _isActive = true;
         string _tag = "default";
+        int deltaTime = 10;
 
     public:
         virtual ~GameObject() = default;

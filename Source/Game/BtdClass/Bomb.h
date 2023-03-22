@@ -6,6 +6,8 @@ namespace Btd
     class Bomb : public Throwable
     {
     public:
+        Bomb();
+        void DetectHitBalloon ();
         
     };
 }

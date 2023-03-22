@@ -92,7 +92,7 @@ namespace Btd
             }
             else
             {
-                shootTimecounter += delayCount / 100.F;
+                shootTimecounter += deltaTime / 100.F;
             }
         }
     }
