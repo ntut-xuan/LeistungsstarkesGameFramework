@@ -9,6 +9,6 @@ namespace Btd
     {
         unique_ptr<Bomb> bomb = make_unique<Bomb>(Bomb());
         bomb->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
-        throwablePool.push(move(bomb));
+        throwablePool.push(std::move(bomb));
     }
 }

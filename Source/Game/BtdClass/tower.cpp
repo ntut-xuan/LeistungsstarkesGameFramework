@@ -130,9 +130,8 @@ namespace Btd
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
-        unique_ptr<Throwable> tmp;
-        tmp->LoadBitmapByString(
-                                   ThrowablePath
+        unique_ptr<Throwable> tmp = make_unique<Throwable>(Throwable());
+        tmp->LoadBitmapByString({"resources/towers/bomb/bomb.bmp"}
                                ,RGB(255, 255, 255));
         throwablePool.push(std::move(tmp));
     }
