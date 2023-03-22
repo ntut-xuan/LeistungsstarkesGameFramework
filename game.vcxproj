@@ -251,6 +251,7 @@
     <ClCompile Include="Source\Game\BtdClass\Cannon.cpp" />
     <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\IceTower.cpp" />
     <ClCompile Include="Source\Game\BtdClass\map.cpp" />
     <ClCompile Include="Source\Game\BtdClass\NailMachine.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
     <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
+    <ClInclude Include="Source\Game\BtdClass\IceTower.h" />
     <ClInclude Include="Source\Game\BtdClass\map.h" />
     <ClInclude Include="Source\Game\BtdClass\NailMachine.h" />
     <ClInclude Include="Source\Game\BtdClass\Throwable.h" />

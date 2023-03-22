@@ -36,6 +36,9 @@ namespace Btd
             _cannon.LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
             _cannon.SetTopLeft(500, 500);
             _cannon.SetShootDeltaTime(3);
+            _ice.LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
+            _ice.SetTopLeft(350, 300);
+            _ice.SetShootDeltaTime(3);
             TowerFactory::MakeTower(bomb);
             TowerFactory::TowerVector[0]->SetIsMove(false);
             TowerFactory::TowerVector[0]->SetTopLeft(200, 220);
@@ -167,6 +170,7 @@ namespace Btd
                 TRACE("%.2f %.2f\n", tower->GetCenter().X, tower->GetCenter().Y);
             }
             _cannon.TowerShow();
+            _ice.TowerShow();
             for (auto b : BallonFactory::BallonVector)
             {
                 b.ShowBitmap();

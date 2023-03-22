@@ -4,6 +4,7 @@
 #include "NailMachine.h"
 #include "Throwable.h"
 #include "Cannon.h"
+#include "IceTower.h"
 
 
 namespace Btd
@@ -28,6 +29,7 @@ namespace Btd
         DartMonkey _dartMonkey;
         NailMachine _nailMachine;
         Cannon _cannon;
+        IceTower _ice;
         BallonFactory _balloonFactory;
         TowerFactory _towerFactory;
         Ballon _balloon;
