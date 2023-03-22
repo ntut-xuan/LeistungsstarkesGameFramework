@@ -25,10 +25,10 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
         Map.SetRounds({
-            {{red, 1000}, {red, 1000}, {blue, 1000}},
-            {{red, 1000}, {red, 1000}, {blue, 1000}},
-            {{red, 1000}, {red, 1000}, {blue, 1000}},
-            {{red, 1000}, {red, 1000}, {blue, 1000}}
+            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
+            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
+            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
+            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}}
         });
         BallonFactory::SetNextRound(Map.GetRounds()[round]);
     }
@@ -116,7 +116,7 @@ namespace Btd
             }
         case Win:
             round++;
-            if (round >= (int)Map.GetRounds().size())
+            if (round >= static_cast<int>(Map.GetRounds().size()))
             {
                 GameFlow = GameEnd;
             }
@@ -167,7 +167,7 @@ namespace Btd
     {
         if (nChar == 'A')
         {
-            BallonFactory::MakeBallon(red);
+            BallonFactory::MakeBallon(Layer::red);
         }
     }
 }

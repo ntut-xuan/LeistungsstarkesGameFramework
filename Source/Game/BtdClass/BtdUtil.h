@@ -18,27 +18,40 @@ namespace Btd
         super
     };
 
-    enum BallonType
+    namespace Layer
     {
-        red = 0,
-        blue,
-        green,
-        yelllow,
-        black,
-        white,
-    };
+        enum NormalBallonLayer
+        {
+            red = 0,
+            blue,
+            green,
+            yelllow,
+            black,
+            white,
+        };
+    }
+
+    namespace BallonType
+    {
+        enum BallonType
+        {
+            normal,
+            black,
+            white
+        };
+    }
 
     struct UnitRound
     {
-        BallonType type;
+        Layer::NormalBallonLayer type;
         int nextTime;
     };
 
     enum DamageType
     {
-        Ice,
+        Normal,
         Boom,
-        Normal
+        Ice,
     };
 
     enum GameFlow
