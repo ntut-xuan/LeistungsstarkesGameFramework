@@ -38,13 +38,13 @@ namespace Btd
             _cannon.SetShootDeltaTime(3);
             TowerFactory::MakeTower(bomb);
             TowerFactory::TowerVector[0]->SetIsMove(false);
-            TowerFactory::TowerVector[0]->SetTopLeft(200, 200);
+            TowerFactory::TowerVector[0]->SetTopLeft(200, 220);
             TowerFactory::TowerVector[0]->SetShootDeltaTime(3);
             TowerFactory::TowerVector[0]->SetActive(true);
             _balloonFactory.MakeBallon(yelllow);
-            BallonFactory::BallonVector[0].SetTopLeft(120, 120);
+            BallonFactory::BallonVector[0].SetTopLeft(190, 70);
             _balloonFactory.MakeBallon(blue);
-            BallonFactory::BallonVector[1].SetTopLeft(600, 400);
+            BallonFactory::BallonVector[1].SetTopLeft(210, 80);
             _balloonFactory.MakeBallon(black);
             BallonFactory::BallonVector[2].SetTopLeft(400, 400);
             break;
@@ -164,6 +164,7 @@ namespace Btd
             for (auto&& tower : TowerFactory::TowerVector)
             {
                 tower->TowerShow();
+                TRACE("%.2f %.2f\n", tower->GetCenter().X, tower->GetCenter().Y);
             }
             _cannon.TowerShow();
             for (auto b : BallonFactory::BallonVector)
