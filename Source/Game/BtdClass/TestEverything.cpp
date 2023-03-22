@@ -36,7 +36,7 @@ namespace Btd
             _cannon.LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
             _cannon.SetTopLeft(500, 500);
             _cannon.SetShootDeltaTime(3);
-            TowerFactory::MakeTower(dart);
+            TowerFactory::MakeTower(bomb);
             TowerFactory::TowerVector[0]->SetIsMove(false);
             TowerFactory::TowerVector[0]->SetTopLeft(200, 200);
             TowerFactory::TowerVector[0]->SetShootDeltaTime(3);
@@ -116,7 +116,7 @@ namespace Btd
         case BallonPop:
             for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
             {
-                TowerFactory::TowerVector[i]->Update();
+                TowerFactory::TowerVector[i].get()->Update();
             }
             BallonFactory::handlePopBalloon();
             break;

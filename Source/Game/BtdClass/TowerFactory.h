@@ -28,7 +28,7 @@ namespace Btd
             }
             case bomb:
             {
-                unique_ptr<Tower> cannon = make_unique<Tower>(Cannon());
+                unique_ptr<Cannon> cannon = make_unique<Cannon>(Cannon());
                 cannon->LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
                 cannon->SetCenter(GetCursorPosX(), GetCursorPosY());
                 cannon->SetIsMove(true);
