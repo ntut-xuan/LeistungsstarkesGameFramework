@@ -244,12 +244,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Game\BtdClass\Ballon.cpp" />
-    <ClCompile Include="Source\Game\BtdClass\BlackBallon.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Bomb.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\BtdTimer.cpp" />
     <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Button.cpp" />
     <ClCompile Include="Source\Game\BtdClass\Cannon.cpp" />
     <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
+    <ClCompile Include="Source\Game\BtdClass\GameManager.cpp" />
     <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
     <ClCompile Include="Source\Game\BtdClass\IceTower.cpp" />
     <ClCompile Include="Source\Game\BtdClass\map.cpp" />
@@ -277,7 +278,7 @@
     <ClInclude Include="Source\Game\BtdClass\Ballon.h" />
     <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
     <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
-    <ClInclude Include="Source\Game\BtdClass\BlackBallon.h" />
+        <ClInclude Include="Source\Game\BtdClass\BtdTimer.h" />
     <ClInclude Include="Source\Game\BtdClass\Bomb.h" />
     <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
     <ClInclude Include="Source\Game\BtdClass\Button.h" />
@@ -285,6 +286,7 @@
     <ClInclude Include="Source\Game\BtdClass\CSharp.h" />
     <ClInclude Include="Source\Game\BtdClass\DartMonkey.h" />
     <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
+    <ClInclude Include="Source\Game\BtdClass\GameManager.h" />
     <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
     <ClInclude Include="Source\Game\BtdClass\IceTower.h" />
     <ClInclude Include="Source\Game\BtdClass\map.h" />
@@ -333,7 +335,8 @@
     <Content Include="Resources\start_button.bmp" />
     <Content Include="Resources\testRed.bmp" />
     <Content Include="Resources\Toolbar.bmp" />
-    <Content Include="Resources\towers\boomShooter\bomb.bmp" />
+    <Content Include="Resources\towers\bomb\bomb.bmp" />
+    <Content Include="Resources\towers\bomb\tower_bomb.bmp" />
     <Content Include="Resources\towers\ice\ice.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_1.bmp" />
     <Content Include="Resources\towers\monkey\tower_monkey_2.bmp" />
