@@ -33,10 +33,10 @@ namespace Btd
     {
         int waitDelete = 0;
 
-        for (auto i = throwables.begin(); i != throwables.end(); ++i)
+        for (int i=0; i<(int)throwables.size(); i++)
         {
-            i->Update();
-            if (!i->GetActive())
+            throwables[i]->Update();
+            if (!throwables[i]->GetActive())
             {
                 waitDelete += 1;
             }
@@ -119,7 +119,7 @@ namespace Btd
         next->SetSpeed(5);
         next->SetMaxExistTime(300);
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
-        throwables.push_back(*next);
+        throwables.push_back(std::move(next));
     }
 
     void Tower::SetThrowablePath(vector<string> name)

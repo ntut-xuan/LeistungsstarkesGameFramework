@@ -25,7 +25,7 @@ namespace Btd
         void setUpdate(int level);
         void SetThrowablePath(vector<string> name);
         vector<string> ThrowablePath;
-        vector<Throwable> throwables;
+        vector<unique_ptr<Throwable>> throwables;
 
 
         void SetThrowableLocal(Vector2 local)
@@ -36,9 +36,9 @@ namespace Btd
         void TowerShow()
         {
             this->ShowBitmap();
-            for (auto t : throwables)
+            for (int i=0; i<(int)throwables.size(); i++)
             {
-                t.ShowBitmap();
+                throwables[i]->ShowBitmap();
             }
         }
 
