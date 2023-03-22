@@ -105,21 +105,21 @@ namespace Btd
     void Tower::Shoot(Vector2 target)
     {
         shootTimecounter = 0;
-        if (throwablePool.empty() || throwablePool.front().GetActive())
+        if (throwablePool.empty() || throwablePool.front()->GetActive())
         {
             PushThrowablePool();
         }
-        auto next = throwablePool.front();
+        auto next = move(throwablePool.front());
         Vector2 targetDirection = {
             (target.X - GetLeft()), target.Y - GetTop()
         };
         throwablePool.pop();
-        next.SetActive(true);
-        next.InitByCenter(GetCenter());
-        next.SetSpeed(5);
-        next.SetMaxExistTime(300);
-        next.SetMoveDirection(targetDirection.X, targetDirection.Y);
-        throwables.push_back(next);
+        next->SetActive(true);
+        next->InitByCenter(GetCenter());
+        next->SetSpeed(5);
+        next->SetMaxExistTime(300);
+        next->SetMoveDirection(targetDirection.X, targetDirection.Y);
+        throwables.push_back(*next);
     }
 
     void Tower::SetThrowablePath(vector<string> name)
@@ -130,10 +130,10 @@ namespace Btd
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
-        Throwable tmp;
-        tmp.LoadBitmapByString(
+        unique_ptr<Throwable> tmp;
+        tmp->LoadBitmapByString(
                                    ThrowablePath
                                ,RGB(255, 255, 255));
-        throwablePool.push(tmp);
+        throwablePool.push(std::move(tmp));
     }
 }
