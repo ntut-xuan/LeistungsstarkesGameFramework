@@ -116,7 +116,7 @@ namespace Btd
         case BallonPop:
             for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
             {
-                TowerFactory::TowerVector[i].get()->Update();
+                TowerFactory::TowerVector[i]->Update();
             }
             BallonFactory::handlePopBalloon();
             break;

@@ -7,8 +7,8 @@ namespace Btd
 {
     void Cannon::PushThrowablePool()
     {
-        Bomb bomb;
-        bomb.LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
-        throwablePool.push(bomb);
+        unique_ptr<Bomb> bomb = make_unique<Bomb>(Bomb());
+        bomb->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
+        throwablePool.push(move(bomb));
     }
 }

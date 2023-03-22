@@ -15,6 +15,7 @@ namespace Btd
     public:
         Tower();
         ~Tower() override = default;
+        Tower(Tower&&) = default;
         void Update() override;
         void SetUpgrade(int level);
         bool IsMovable();
@@ -58,7 +59,7 @@ namespace Btd
         int _sellMoney;
         Vector2 _location;
         GameObject throwableFactory;
-        queue<Throwable> throwablePool;
+        queue<unique_ptr<Throwable>> throwablePool;
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;

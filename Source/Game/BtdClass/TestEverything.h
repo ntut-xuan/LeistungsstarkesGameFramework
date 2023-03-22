@@ -34,6 +34,8 @@ namespace Btd
         vector<Ballon> BALLOONS;
 
     public:
+        TestEverything(TestEverything&&) = default;
+        TestEverything() = default;
         void UnitInit();
         void UnitTest();
         void UnitShow();

@@ -67,7 +67,6 @@ void CGameStateRun::OnInit() // 遊戲的初值及圖形設定
     map.InitBackground();
     map.InitFactoryButton();
     // unit init
-    UnitTest = Btd::TestEverything();
     UnitTest.SetState(Btd::BallonPop);
     UnitTest.UnitInit();
 }
