@@ -7,11 +7,11 @@
 
 namespace Btd
 {
-    class Map :public GameObject
+    class Map : public GameObject
     {
     public:
         Map() = default;
-        ~Map() = default;
+        ~Map() override = default;
         const int InitMoney = 650;
         const int InitLives = 40;
         void InitRoad();
@@ -23,16 +23,21 @@ namespace Btd
         void UpdateFatoryButton();
         void HandleButtonClicked();
         GameObject GetBackground();
+        vector<vector<UnitRound>> GetRounds();
+        void SetRounds(vector<vector<UnitRound>> round);
         static vector<Vector2> GetRoute();
         static Vector2 GetStartPosition();
         static void SetStartPosition(Vector2);
         static void SetRoute(vector<Vector2>);
+
     private:
         std::vector<GameObject> _road;
         GameObject _background;
         FactoryButton _factoryButton[5];
         static vector<Vector2> _route;
         static Vector2 _startPosition;
+
+        vector<vector<UnitRound>> _rounds;
     };
 }
 

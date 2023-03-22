@@ -71,4 +71,13 @@ namespace Btd
         return static_cast<int>(p.y);
     }
 
+    bool isPointInBmp(POINT p, game_framework::CMovingBitmap target)
+    {
+        if (target.GetLeft() <= p.x && p.x <= target.GetLeft() + target.GetWidth() &&
+            target.GetTop() <= p.y && p.y <= target.GetTop() + target.GetHeight())
+        {
+            return true;
+        }
+        return false;
+    }
 }

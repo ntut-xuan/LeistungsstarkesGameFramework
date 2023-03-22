@@ -85,14 +85,15 @@ namespace Btd
             if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
             {
                 Ballon target = focus();
-                if (Vector2Distance(GetCenter(), target.GetCenter()) < (float)_range)
+                if (Vector2Distance(GetCenter(), target.GetCenter()) < static_cast<float>(_range))
                 {
                     Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
                 }
             }
             else
             {
-                shootTimecounter += delayCount / 100.F;
+                shootTimecounter += static_cast<float>(delayCount) / 100.F;
+                // shootTimecounter += 1;
             }
         }
     }
