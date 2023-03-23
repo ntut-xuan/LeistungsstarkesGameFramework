@@ -7,7 +7,6 @@ namespace Btd
     {
     public:
         IceTower();
-        
     };
     
 }

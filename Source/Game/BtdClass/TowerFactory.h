@@ -2,6 +2,7 @@
 
 #include "Cannon.h"
 #include "DartMonkey.h"
+#include "IceTower.h"
 
 namespace Btd
 {
@@ -34,8 +35,18 @@ namespace Btd
                 cannon->SetIsMove(true);
                 cannon->SetShootDeltaTime(3);
                 cannon->SetActive(false);
-                TowerVector.push_back(move(cannon));
+                TowerVector.push_back(std::move(cannon));
                 break;
+            }
+            case ice:
+            {
+                unique_ptr<IceTower> ice = make_unique<IceTower>(IceTower());
+                ice->LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
+                ice->SetCenter(GetCursorPosX(), GetCursorPosY());
+                ice->SetIsMove(true);
+                ice->SetShootDeltaTime(3);
+                ice->SetActive(false);
+                TowerVector.push_back(std::move(ice));
             }
             default:
                 break;
