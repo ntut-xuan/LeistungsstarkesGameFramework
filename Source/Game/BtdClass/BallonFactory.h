@@ -1,11 +1,9 @@
 #pragma once
-
-#include <string>
 #include <queue>
 
 #include "Ballon.h"
-#include "map.h"
 #include "TowerFactory.h"
+#include "Map.h"
 
 namespace Btd
 {
@@ -35,8 +33,6 @@ namespace Btd
                 tmpBallon.SetFrameIndexOfBitmap(0);
                 tmpBallon.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
                 tmpBallon.SetActive(false);
-                tmpBallon.SetNowRouteTarget(0);
-                tmpBallon.Setspeed(3);
                 BallonPool.push(tmpBallon);
             }
             auto next = BallonPool.front();
@@ -62,6 +58,11 @@ namespace Btd
             next.SetIsPoped(false);
             BallonPool.pop();
             next.SetActive(true);
+            next.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
+            next.SetNowRouteTarget(0);
+            next.SetIsPoped(false);
+            next.Setspeed(3);
+            next.SetLayer(type);
             BallonVector.push_back(next);
         }
 
@@ -71,6 +72,7 @@ namespace Btd
             {
                 b.Update();
             }
+            handlePopBalloon();
         }
 
         static void handlePopBalloon()

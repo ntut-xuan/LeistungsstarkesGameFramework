@@ -55,10 +55,10 @@ namespace Btd
 
     void Throwable::DetectHitBalloon()
     {
-        for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
+        for (int i = 0; i < static_cast<int>(BallonFactory::BallonVector.size()); i++)
         {
             bool isHited = false;
-            for (int j=0; j<(int)cantHitBloons.size(); j++)
+            for (int j = 0; j < static_cast<int>(cantHitBloons.size()); j++)
             {
                 if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
                 {
@@ -66,8 +66,8 @@ namespace Btd
                     break;
                 }
             }
-            if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i])&&
-                !isHited )//not in cant hit bloon)
+            if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]) &&
+                !isHited) //not in cant hit bloon)
             {
                 BallonFactory::BallonVector[i].Pop(1, Normal);
                 cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
@@ -77,12 +77,12 @@ namespace Btd
 
     void Throwable::UpdateCantHitBloons()
     {
-        for (int i=0; i<(int)cantHitBloons.size(); i++)
+        for (int i = 0; i < static_cast<int>(cantHitBloons.size()); i++)
         {
             cantHitBloons[i].second += delayCount;
             if (cantHitBloons[i].second > 1000)
             {
-                cantHitBloons.erase(cantHitBloons.begin()+i);
+                cantHitBloons.erase(cantHitBloons.begin() + i);
             }
         }
     }
@@ -104,6 +104,4 @@ namespace Btd
         _position = Vector2Add(_position, deltaMove);
         SetTopLeft(static_cast<int>(_position.X), static_cast<int>(_position.Y));
     }
-
-    //TODO check touch baloon
 }
