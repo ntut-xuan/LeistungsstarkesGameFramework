@@ -12,6 +12,35 @@ namespace Btd
     public:
         static queue<Ballon> BallonPool;
         static vector<Ballon> BallonVector;
+        static vector<UnitRound> BallonRound;
+        static int BallonCounter;
+        static int BallonTimer;
+
+        static void SetNextRound(vector<UnitRound> rounds)
+        {
+            BallonRound = rounds;
+            BallonCounter = 0;
+            BallonTimer = 0;
+        }
+
+        static bool UpdateRound(int DeltaTime)
+        {
+            if (BallonTimer <= 0)
+            {
+                if (BallonCounter >= static_cast<int>(BallonRound.size()))
+                {
+                    return true;
+                }
+                MakeBallon(BallonRound[BallonCounter].type);
+                BallonTimer = BallonRound[BallonCounter].nextTime;
+                BallonCounter ++;
+            }
+            else
+            {
+                BallonTimer -= DeltaTime;
+            }
+            return false;
+        }
 
         static void MakeBallon(Layer::NormalBallonLayer type)
         {

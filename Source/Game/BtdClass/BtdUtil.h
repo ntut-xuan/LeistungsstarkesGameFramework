@@ -43,7 +43,7 @@ namespace Btd
 
     struct UnitRound
     {
-        BallonType type;
+        Layer::NormalBallonLayer type;
         int nextTime;
     };
 
