@@ -6,11 +6,14 @@
 
 namespace Btd
 {
-    map<DamageType, bool> Ballon::resistDamegeMap =
-    {
-        {Normal, true},
-        {Ice, true},
-        {Boom, true}
+    //      normal ice boom
+    //normal
+    //black
+    //white
+    bool Ballon::resistDamegeMap[3][3] = {
+        {true, true, true},
+        {true, false, true},
+        {true, true, false}
     };
 
     void Ballon::SetNowRouteTarget(int target)
@@ -27,7 +30,6 @@ namespace Btd
     {
         if (GetActive())
         {
-            //todo if pop (layer==0) setactive(false)
             Move(Map::GetRoute());
         }
     }
@@ -42,8 +44,9 @@ namespace Btd
         Vector2 nowLocal;
         nowLocal.X = static_cast<float>(GetLeft());
         nowLocal.Y = static_cast<float>(GetTop());
-        Vector2 target=route[nowRouteTarget];
-        if((int)target.X==(int)nowLocal.X&& (int)target.Y==(int)nowLocal.Y)
+        Vector2 target = route[nowRouteTarget];
+        if (static_cast<int>(target.X) == static_cast<int>(nowLocal.X) && static_cast<int>(target.Y) == static_cast<int>
+            (nowLocal.Y))
         {
             if (nowRouteTarget != static_cast<int>(route.size()) - 1)
                 nowRouteTarget++;
@@ -53,24 +56,30 @@ namespace Btd
                 //todo  arrive goal ,hp-layer
             }
         }
-        target=route[nowRouteTarget];
+        target = route[nowRouteTarget];
         Vector2 deltaMove = Vector2Sub(target, nowLocal);
         Vector2 moveDirection = Normailize(deltaMove);
         float speed = GetSpeed();
         deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
         int left = GetLeft() + static_cast<int>(deltaMove.X);
         int top = GetTop() + static_cast<int>(deltaMove.Y);
-        if(Vector2Distance({(float )left,(float )top},target)<speed*2/3)
+        if (Vector2Distance({static_cast<float>(left), static_cast<float>(top)}, target) < speed * 2 / 3)
         {
-            left=(int)target.X;
-            top =(int) target.Y;
+            left = static_cast<int>(target.X);
+            top = static_cast<int>(target.Y);
         }
         SetTopLeft(left, top);
     }
 
-    void Ballon::Pop(int damage, DamageType type)
+    BallonType::BallonType Ballon::GetType()
     {
-        if (resistDamegeMap[type])
+        return type;
+    }
+
+    void Ballon::Pop(int damage, DamageType damageType)
+    {
+        this;
+        if (resistDamegeMap[type][damageType])
         {
             _layer -= damage;
         }

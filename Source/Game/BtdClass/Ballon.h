@@ -12,8 +12,9 @@ namespace Btd
     private:
         int nowRouteTarget = 0;
         float _speed = 3;
-        int _layer;
-        bool _isPoped;
+        int _layer = 0;
+        bool _isPoped = false;
+        BallonType::BallonType type = BallonType::normal;
 
     public:
         Ballon()
@@ -26,20 +27,28 @@ namespace Btd
         {
         }
 
-        static map<DamageType, bool> resistDamegeMap;
+        static bool resistDamegeMap[3][3];
+
         void SetNowRouteTarget(int target);
 
         void Setspeed(float speed);
 
+        void SetType(BallonType::BallonType t)
+        {
+            type = t;
+        }
 
         void Update() override;
 
         float GetSpeed();
+        BallonType::BallonType GetType();
 
         void Move(vector<Vector2> route);
 
-        void Pop(int damage, DamageType type);
-        int GetNowRouteTarget(){
+        void Pop(int damage, DamageType damageType);
+
+        int GetNowRouteTarget()
+        {
             return nowRouteTarget;
         }
 

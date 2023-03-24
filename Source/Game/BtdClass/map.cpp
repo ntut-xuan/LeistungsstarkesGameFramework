@@ -38,59 +38,63 @@ namespace Btd
         }
     }
 
-	void Map::InitBackground()
-	{
-		_background.LoadBitmapByString({ "resources/map.bmp" });
-		_background.SetTopLeft(0, 0);
-	}
+    void Map::InitBackground()
+    {
+        _background.LoadBitmapByString({"resources/map.bmp"});
+        _background.SetTopLeft(0, 0);
+    }
 
-	void Map::ShowBackground()
-	{
-		_background.ShowBitmap();
-	}
+    void Map::ShowBackground()
+    {
+        _background.ShowBitmap();
+    }
 
-	void Map::InitFactoryButton()
-	{
-		vector<string> filePath = {"resources/button/button_monkey.bmp", "resources/button/button_nail.bmp", "resources/button/button_ice.bmp"
-		, "resources/button/button_bomb.bmp", "resources/button/button_super.bmp"};
-		vector<Btd::Attribute> attributes = {dart, nail, ice, bomb, super};
-		float start = 740, space = 47;
-		vector<Vector2> locations = {{start, 300}, {start + space*1, 300}, {start + space*2, 300},
-			{start + space*3, 300}, {start + space*4, 300}};
-		for (int i=0; i<5; i++)
-		{
-			_factoryButton[i].LoadBitmapByString({filePath[i]});
-			_factoryButton[i].SetAttribute(attributes[i]);
-			_factoryButton[i].SetTopLeft((int)locations[i].X, (int)locations[i].Y);
-		}
-	}
+    void Map::InitFactoryButton()
+    {
+        vector<string> filePath = {
+            "resources/button/button_monkey.bmp", "resources/button/button_nail.bmp", "resources/button/button_ice.bmp",
+            "resources/button/button_bomb.bmp", "resources/button/button_super.bmp"
+        };
+        vector<Attribute> attributes = {dart, nail, ice, bomb, super};
+        float start = 740, space = 47;
+        vector<Vector2> locations = {
+            {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},
+            {start + space * 3, 300}, {start + space * 4, 300}
+        };
+        for (int i = 0; i < 5; i++)
+        {
+            _factoryButton[i].LoadBitmapByString({filePath[i]});
+            _factoryButton[i].SetAttribute(attributes[i]);
+            _factoryButton[i].SetTopLeft(static_cast<int>(locations[i].X), static_cast<int>(locations[i].Y));
+        }
+    }
 
-	void Map::ShowFactoryButton()
-	{
-		for (int i=0; i<5; i++)
-		{
-			_factoryButton[i].ShowBitmap();
-		}
-	}
+    void Map::ShowFactoryButton()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            _factoryButton[i].ShowBitmap();
+        }
+    }
 
-	void Map::UpdateFatoryButton()
-	{
-		for (int i=0; i<5; i++)
-		{
-			_factoryButton[i].Update();
-		}
-	}
+    void Map::UpdateFatoryButton()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            _factoryButton[i].Update();
+        }
+    }
 
-	void Map::HandleButtonClicked()
-	{
-		for (int i=0; i<5; i++)
-		{
-			if (_factoryButton[i].IsCursorFocus())
-			{
-				_factoryButton[i].SetClicked(true);
-			}
-		}
-	}
+    void Map::HandleButtonClicked()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (_factoryButton[i].IsCursorFocus())
+            {
+                _factoryButton[i].SetClicked(true);
+            }
+        }
+    }
 
     GameObject Map::GetBackground()
     {
@@ -119,5 +123,15 @@ namespace Btd
     Vector2 Map::GetStartPosition()
     {
         return _startPosition;
+    }
+
+    vector<vector<UnitRound>> Map::GetRounds()
+    {
+        return _rounds;
+    }
+
+    void Map::SetRounds(vector<vector<UnitRound>> round)
+    {
+        _rounds = round;
     }
 }
