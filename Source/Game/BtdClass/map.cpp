@@ -55,7 +55,7 @@ namespace Btd
             "resources/button/button_monkey.bmp", "resources/button/button_nail.bmp", "resources/button/button_ice.bmp",
             "resources/button/button_bomb.bmp", "resources/button/button_super.bmp"
         };
-        vector<Attribute> attributes = {dart, nail, ice, bomb, super};
+        vector<TowerType> attributes = {dart, nail, ice, bomb, super};
         float start = 740, space = 47;
         vector<Vector2> locations = {
             {start, 300}, {start + space * 1, 300}, {start + space * 2, 300},

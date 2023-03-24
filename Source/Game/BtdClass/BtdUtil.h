@@ -9,7 +9,7 @@ namespace Btd
         float Y;
     };
 
-    enum Attribute
+    enum TowerType
     {
         dart,
         nail,
@@ -20,7 +20,7 @@ namespace Btd
 
     namespace Layer
     {
-        enum NormalBallonLayer
+        enum NormalBloonLayer
         {
             red = 0,
             blue,
@@ -31,9 +31,9 @@ namespace Btd
         };
     }
 
-    namespace BallonType
+    namespace BloonType
     {
-        enum BallonType
+        enum BloonType
         {
             normal,
             black,
@@ -43,7 +43,7 @@ namespace Btd
 
     struct UnitRound
     {
-        Layer::NormalBallonLayer type;
+        Layer::NormalBloonLayer type;
         int nextTime;
     };
 

@@ -243,7 +243,7 @@
         <ClCompile Include="Source\Core\StdAfx.cpp">
             <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
         </ClCompile>
-        <ClCompile Include="Source\Game\BtdClass\Ballon.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\Bloon.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Bomb.cpp" />
         <ClCompile Include="Source\Game\BtdClass\BtdTimer.cpp" />
         <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
@@ -275,9 +275,9 @@
         <ClInclude Include="Source\Core\MainFrm.h" />
         <ClInclude Include="Source\Core\Resource.h" />
         <ClInclude Include="Source\Core\StdAfx.h" />
-        <ClInclude Include="Source\Game\BtdClass\Ballon.h" />
-        <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
-        <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
+        <ClInclude Include="Source\Game\BtdClass\Bloon.h" />
+        <ClInclude Include="Source\Game\BtdClass\BloonFactory.h" />
+        <ClCompile Include="Source\Game\BtdClass\BloonFactory.cpp" />
         <ClInclude Include="Source\Game\BtdClass\BloonDB.h" />
         <ClInclude Include="Source\Game\BtdClass\BtdTimer.h" />
         <ClInclude Include="Source\Game\BtdClass\Bomb.h" />

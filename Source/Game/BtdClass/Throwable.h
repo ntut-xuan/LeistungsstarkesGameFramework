@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "BtdUtil.h"
-#include "Ballon.h"
+#include "Bloon.h"
 
 namespace Btd
 {
@@ -19,7 +19,7 @@ namespace Btd
         int _poped = 0;
         DamageType _damageType;
         // throwable can't hit same balloon in one second
-        vector<pair<Ballon*, int>> cantHitBloons;
+        vector<pair<Bloon*, int>> cantHitBloons;
 
     public:
         Vector2 GetMoveDirection() const;

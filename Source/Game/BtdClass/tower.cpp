@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "BallonFactory.h"
+#include "BloonFactory.h"
 #include "BtdUtil.h"
 #include "map.h"
 #include "Tower.h"
@@ -41,12 +41,12 @@ namespace Btd
         }
     }
 
-    Ballon Tower::focus()
+    Bloon Tower::focus()
     {
-        Ballon target;
+        Bloon target;
 
-        target = BallonFactory::BallonVector[0];
-        for (Ballon b : BallonFactory::BallonVector)
+        target = BloonFactory::BloonVector[0];
+        for (Bloon b : BloonFactory::BloonVector)
         {
             if (Vector2Distance(GetCenter(), b.GetCenter()) <
                 Vector2Distance(GetCenter(), target.GetCenter()))
@@ -79,9 +79,9 @@ namespace Btd
         {
             UpdateThrowable();
 
-            if (!BallonFactory::BallonVector.empty() && shootTimecounter > shootDeltaTime)
+            if (!BloonFactory::BloonVector.empty() && shootTimecounter > shootDeltaTime)
             {
-                Ballon target = focus();
+                Bloon target = focus();
                 if (Vector2Distance(GetCenter(), target.GetCenter()) < static_cast<float>(_range))
                 {
                     Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});

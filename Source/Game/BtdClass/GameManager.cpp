@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameManager.h"
 
-#include "BallonFactory.h"
+#include "BloonFactory.h"
 #include "TowerFactory.h"
 
 namespace Btd
@@ -30,7 +30,7 @@ namespace Btd
             {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
             {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}}
         });
-        BallonFactory::SetNextRound(Map.GetRounds()[round]);
+        BloonFactory::SetNextRound(Map.GetRounds()[round]);
     }
 
     void GameManager::OnInit()
@@ -107,8 +107,8 @@ namespace Btd
 
         case Shoot:
             {
-                bool RoundRunOut = BallonFactory::UpdateRound(BtdTimer.GetDeltaTime());
-                bool isRoundEnd = BallonFactory::BallonVector.empty() && RoundRunOut;
+                bool RoundRunOut = BloonFactory::UpdateRound(BtdTimer.GetDeltaTime());
+                bool isRoundEnd = BloonFactory::BloonVector.empty() && RoundRunOut;
                 if (isRoundEnd)
                 {
                     GameFlow = Win;
@@ -123,7 +123,7 @@ namespace Btd
             }
             else
             {
-                BallonFactory::SetNextRound(Map.GetRounds()[round]);
+                BloonFactory::SetNextRound(Map.GetRounds()[round]);
                 GameFlow = Prepare;
                 //todo gold ++
             }
@@ -138,7 +138,7 @@ namespace Btd
         {
             m->Update();
         }
-        BallonFactory::UpdateBloon();
+        BloonFactory::UpdateBloon();
     }
 
     void GameManager::OnShow()
@@ -150,9 +150,9 @@ namespace Btd
         {
             TowerFactory::TowerVector[i]->TowerShow();
         }
-        for (auto& ballon : BallonFactory::BallonVector)
+        for (auto& bloon : BloonFactory::BloonVector)
         {
-            ballon.ShowBitmap();
+            bloon.ShowBitmap();
         }
         switch (GameFlow)
         {
@@ -168,7 +168,7 @@ namespace Btd
     {
         if (nChar == 'A')
         {
-            BallonFactory::MakeBallon(Layer::red);
+            BloonFactory::MakeBloon(Layer::red);
         }
     }
 }

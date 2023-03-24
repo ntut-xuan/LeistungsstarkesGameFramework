@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "NailMachine.h"
 
-#include "BallonFactory.h"
+#include "BloonFactory.h"
 
 namespace Btd
 {
@@ -9,9 +9,9 @@ namespace Btd
     {
         UpdateThrowable();
 
-        if (!BallonFactory::BallonVector.empty() && GetShootTimeCounter() > GetShootDeltaTime())
+        if (!BloonFactory::BloonVector.empty() && GetShootTimeCounter() > GetShootDeltaTime())
         {
-            Ballon targetBallon = focus();
+            Bloon targetBloon = focus();
             Vector2 direction = {1, 0};
             for (int i = 0; i < 8; i++)
             {
