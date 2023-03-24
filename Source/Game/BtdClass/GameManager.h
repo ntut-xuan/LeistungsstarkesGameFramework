@@ -1,4 +1,5 @@
 #pragma once
+#include "BloonDB.h"
 #include "BtdTimer.h"
 #include "map.h"
 #include "Tower.h"
@@ -27,5 +28,6 @@ namespace Btd
         BtdTimer BtdTimer;
         int round = 0;
         game_framework::CMovingBitmap startButton;
+        BloonDB db;
     };
 }

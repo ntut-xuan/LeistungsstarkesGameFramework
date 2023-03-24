@@ -44,7 +44,7 @@ namespace Btd
             TowerFactory::TowerVector[0]->SetTopLeft(200, 220);
             TowerFactory::TowerVector[0]->SetShootDeltaTime(3);
             TowerFactory::TowerVector[0]->SetActive(true);
-            _balloonFactory.MakeBallon(Layer::yelllow);
+            _balloonFactory.MakeBallon(Layer::yellow);
             BallonFactory::BallonVector[0].SetTopLeft(190, 70);
             _balloonFactory.MakeBallon(Layer::blue);
             BallonFactory::BallonVector[1].SetTopLeft(210, 80);
