@@ -118,8 +118,8 @@ namespace Btd
                         Vector2 position = {
                             static_cast<float>(BallonVector[i].GetLeft()), static_cast<float>(BallonVector[i].GetTop())
                         };
-                        MakeBallonByPosition(Layer::yelllow, position, nowRouteTarget);
-                        MakeBallonByPosition(Layer::yelllow, position, nowRouteTarget);
+                        MakeBallonByPosition(Layer::yellow, position, nowRouteTarget);
+                        MakeBallonByPosition(Layer::yellow, position, nowRouteTarget);
                     }
                     BallonPool.push(BallonVector[i]);
                     BallonVector.erase(BallonVector.begin() + i);

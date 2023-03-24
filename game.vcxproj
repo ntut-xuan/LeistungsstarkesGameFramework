@@ -272,6 +272,7 @@
         <ClInclude Include="Source\Game\BtdClass\Ballon.h" />
         <ClInclude Include="Source\Game\BtdClass\BallonFactory.h" />
         <ClCompile Include="Source\Game\BtdClass\BallonFactory.cpp" />
+        <ClInclude Include="Source\Game\BtdClass\BloonDB.h" />
         <ClInclude Include="Source\Game\BtdClass\BtdTimer.h" />
         <ClInclude Include="Source\Game\BtdClass\BtdUtil.h" />
         <ClInclude Include="Source\Game\BtdClass\Button.h" />
@@ -296,7 +297,14 @@
         <ResourceCompile Include="Source\Core\game.rc" />
     </ItemGroup>
     <ItemGroup>
+        <Content Include="Resources\bloon\bloon_black.bmp" />
+        <Content Include="Resources\bloon\bloon_blue.bmp" />
+        <Content Include="Resources\bloon\bloon_green.bmp" />
         <Content Include="Resources\bloon\bloon_red.bmp" />
+        <Content Include="Resources\bloon\bloon_white.bmp" />
+        <Content Include="Resources\bloon\bloon_yellow.bmp" />
+        <Content Include="Resources\bloon\explode.bmp" />
+        <Content Include="Resources\bloon\round.csv" />
         <Content Include="Resources\button\button_bomb.bmp" />
         <Content Include="Resources\button\button_ice.bmp" />
         <Content Include="Resources\button\button_monkey.bmp" />
