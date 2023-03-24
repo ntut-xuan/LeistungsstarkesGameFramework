@@ -41,6 +41,7 @@ namespace Btd
         GameFlow = Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
+        db.GetRoutes();
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)

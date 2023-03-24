@@ -25,7 +25,7 @@ namespace Btd
             red = 0,
             blue,
             green,
-            yelllow,
+            yellow,
             black,
             white,
         };
