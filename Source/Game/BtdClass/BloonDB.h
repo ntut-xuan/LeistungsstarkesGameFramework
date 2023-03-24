@@ -46,29 +46,6 @@ namespace Btd
                         nextBloon.type = Layer::black;
                     if (token == "white")
                         nextBloon.type = Layer::white;
-                    //switch cant use string
-                    // switch (token)
-                    // {
-                    // case "red":
-                    //     nextBloon.type = Layer::red;
-                    //     break;
-                    //
-                    // case "blue":
-                    //     nextBloon.type = Layer::blue;
-                    //     break;
-                    // case "green":
-                    //     nextBloon.type = Layer::green;
-                    //     break;
-                    // case "yellow":
-                    //     nextBloon.type = Layer::yellow;
-                    //     break;
-                    // case "black":
-                    //     nextBloon.type = Layer::black;
-                    //     break;
-                    // case "white":
-                    //     nextBloon.type = Layer::white;
-                    //     break;
-                    // }
                     nextRound.push_back(nextBloon);
                 }
                 _roundses.push_back(nextRound);

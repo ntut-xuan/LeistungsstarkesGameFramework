@@ -25,7 +25,7 @@ namespace Btd
         void setUpdate(int level);
         void SetThrowablePath(vector<string> name);
         vector<string> ThrowablePath;
-        vector<unique_ptr<Throwable>> throwables;
+        vector<shared_ptr<Throwable>> throwables;
 
 
         void SetThrowableLocal(Vector2 local)
@@ -59,7 +59,7 @@ namespace Btd
         int _sellMoney;
         Vector2 _location;
         GameObject throwableFactory;
-        queue<unique_ptr<Throwable>> throwablePool;
+        queue<shared_ptr<Throwable>> throwablePool;
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;

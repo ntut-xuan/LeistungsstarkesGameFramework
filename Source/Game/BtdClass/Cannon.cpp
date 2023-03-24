@@ -7,8 +7,8 @@ namespace Btd
 {
     void Cannon::PushThrowablePool()
     {
-        unique_ptr<Bomb> bomb = make_unique<Bomb>(Bomb());
+        shared_ptr<Bomb> bomb = make_shared<Bomb>(Bomb());
         bomb->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
-        throwablePool.push(std::move(bomb));
+        throwablePool.push(bomb);
     }
 }

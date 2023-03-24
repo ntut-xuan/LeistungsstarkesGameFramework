@@ -120,7 +120,7 @@ namespace Btd
         next->SetSpeed(5);
         next->SetMaxExistTime(300);
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
-        throwables.push_back(std::move(next));
+        throwables.push_back(next);
     }
 
     void Tower::SetThrowablePath(vector<string> name)
@@ -131,9 +131,9 @@ namespace Btd
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
-        unique_ptr<Throwable> tmp = make_unique<Throwable>(Throwable());
+        shared_ptr<Throwable> tmp = make_shared<Throwable>(Throwable());
         tmp->LoadBitmapByString({"resources/towers/bomb/bomb.bmp"}
                                ,RGB(255, 255, 255));
-        throwablePool.push(std::move(tmp));
+        throwablePool.push(tmp);
     }
 }

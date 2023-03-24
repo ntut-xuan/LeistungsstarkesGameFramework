@@ -4,7 +4,7 @@
 
 namespace Btd
 {
-    vector<unique_ptr<Tower>> TowerFactory::TowerVector = {};
+    vector<shared_ptr<Tower>> TowerFactory::TowerVector = {};
     void FactoryButton::SetAttribute(Attribute attribute)
     {
         _attribute = attribute;
