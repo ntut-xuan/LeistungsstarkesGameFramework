@@ -10,7 +10,7 @@ namespace Btd
 {
     void Throwable::Update()
     {
-        _existTime += deltaTime;
+        _existTime += (float)deltaTime;
         if (_existTime > _maxExistTime)
         {
             SetActive(false);

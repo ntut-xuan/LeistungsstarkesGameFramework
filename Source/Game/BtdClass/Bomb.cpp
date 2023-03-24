@@ -26,9 +26,17 @@ namespace Btd
             if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i])&&
                 !isHited )//not in cant hit bloon)
             {
-                BallonFactory::BallonVector[i].Pop(1, Normal);
-                cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
-                ToggleAnimation();
+                if (GetFrameIndexOfBitmap() == 0)
+                {
+                    ToggleAnimation();
+                    _existTime =0;
+                    _maxExistTime = 75;
+                }
+                else
+                {
+                    BallonFactory::BallonVector[i].Pop(1, Normal);
+                    cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
+                }
                 _speed = 0;
             }
         }

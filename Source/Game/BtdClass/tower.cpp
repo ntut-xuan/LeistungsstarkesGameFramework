@@ -31,17 +31,14 @@ namespace Btd
 
     void Tower::UpdateThrowable()
     {
-        int waitDelete = 0;
-
-        for (int i=0; i<(int)throwables.size(); i++)
+        for (int i=(int)throwables.size()-1; i>=0; i--)
         {
             throwables[i]->Update();
             if (!throwables[i]->GetActive())
             {
-                waitDelete += 1;
+                throwables.erase(throwables.begin() + i);
             }
         }
-        throwables.erase(throwables.begin(), throwables.begin() + waitDelete);
     }
 
     Ballon Tower::focus()
