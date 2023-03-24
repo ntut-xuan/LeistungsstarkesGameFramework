@@ -3,6 +3,8 @@
 #include "DartMonkey.h"
 #include "NailMachine.h"
 #include "Throwable.h"
+#include "Cannon.h"
+#include "IceTower.h"
 
 
 namespace Btd
@@ -26,11 +28,16 @@ namespace Btd
         Throwable _throwable;
         DartMonkey _dartMonkey;
         NailMachine _nailMachine;
+        Cannon _cannon;
+        IceTower _ice;
         BallonFactory _balloonFactory;
+        TowerFactory _towerFactory;
         Ballon _balloon;
         vector<Ballon> BALLOONS;
 
     public:
+        TestEverything(TestEverything&&) = default;
+        TestEverything() = default;
         void UnitInit();
         void UnitTest();
         void UnitShow();

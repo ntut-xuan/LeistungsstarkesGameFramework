@@ -15,6 +15,7 @@ namespace Btd
     public:
         Tower();
         ~Tower() override = default;
+        Tower(Tower&&) = default;
         void Update() override;
         void SetUpgrade(int level);
         bool IsMovable();
@@ -22,9 +23,9 @@ namespace Btd
         Vector2 getLocation();
         int GetRange();
         void setUpdate(int level);
-        void SetThrowablePath(string name);
-        string ThrowablePath;
-        vector<Throwable> throwables;
+        void SetThrowablePath(vector<string> name);
+        vector<string> ThrowablePath;
+        vector<shared_ptr<Throwable>> throwables;
 
 
         void SetThrowableLocal(Vector2 local)
@@ -35,16 +36,16 @@ namespace Btd
         void TowerShow()
         {
             this->ShowBitmap();
-            for (auto t : throwables)
+            for (int i=0; i<(int)throwables.size(); i++)
             {
-                t.ShowBitmap();
+                throwables[i]->ShowBitmap();
             }
         }
 
         float GetShootDeltaTime();
         void SetShootDeltaTime(float time);
         void Shoot(Vector2 target);
-        void PushThrowablePool();
+        virtual void PushThrowablePool();
         void UpdateThrowable();
         float GetShootTimeCounter();
         void SetShootTimeCounter(float);
@@ -58,7 +59,7 @@ namespace Btd
         int _sellMoney;
         Vector2 _location;
         GameObject throwableFactory;
-        queue<Throwable> throwablePool;
+        queue<shared_ptr<Throwable>> throwablePool;
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;

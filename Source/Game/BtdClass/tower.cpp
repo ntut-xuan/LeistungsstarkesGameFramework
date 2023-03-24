@@ -11,7 +11,7 @@ namespace Btd
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
-        ThrowablePath = "resources/towers/bomb/bomb.bmp";
+        ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
     }
 
     bool Tower::IsMovable()
@@ -31,17 +31,14 @@ namespace Btd
 
     void Tower::UpdateThrowable()
     {
-        int waitDelete = 0;
-
-        for (auto i = throwables.begin(); i != throwables.end(); ++i)
+        for (int i=(int)throwables.size()-1; i>=0; i--)
         {
-            i->Update();
-            if (!i->GetActive())
+            throwables[i]->Update();
+            if (!throwables[i]->GetActive())
             {
-                waitDelete += 1;
+                throwables.erase(throwables.begin() + i);
             }
         }
-        throwables.erase(throwables.begin(), throwables.begin() + waitDelete);
     }
 
     Ballon Tower::focus()
@@ -106,24 +103,24 @@ namespace Btd
     void Tower::Shoot(Vector2 target)
     {
         shootTimecounter = 0;
-        if (throwablePool.empty() || throwablePool.front().GetActive())
+        if (throwablePool.empty() || throwablePool.front()->GetActive())
         {
             PushThrowablePool();
         }
-        auto next = throwablePool.front();
+        auto next = move(throwablePool.front());
         Vector2 targetDirection = {
             (target.X - GetLeft()), target.Y - GetTop()
         };
         throwablePool.pop();
-        next.SetActive(true);
-        next.InitByCenter(GetCenter());
-        next.SetSpeed(5);
-        next.SetMaxExistTime(300);
-        next.SetMoveDirection(targetDirection.X, targetDirection.Y);
+        next->SetActive(true);
+        next->InitByCenter(GetCenter());
+        next->SetSpeed(5);
+        next->SetMaxExistTime(300);
+        next->SetMoveDirection(targetDirection.X, targetDirection.Y);
         throwables.push_back(next);
     }
 
-    void Tower::SetThrowablePath(string name)
+    void Tower::SetThrowablePath(vector<string> name)
     {
         ThrowablePath = name;
     }
@@ -131,10 +128,9 @@ namespace Btd
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
-        Throwable tmp;
-        tmp.LoadBitmapByString({
-                                   ThrowablePath
-                               },RGB(255, 255, 255));
+        shared_ptr<Throwable> tmp = make_shared<Throwable>(Throwable());
+        tmp->LoadBitmapByString({"resources/towers/bomb/bomb.bmp"}
+                               ,RGB(255, 255, 255));
         throwablePool.push(tmp);
     }
 }

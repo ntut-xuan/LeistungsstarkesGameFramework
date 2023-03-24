@@ -9,6 +9,7 @@ namespace Btd {
 		DartMonkey()
 		{
 			_range = 160;
+			ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
 		}
 	private:
 	};

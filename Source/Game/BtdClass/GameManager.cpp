@@ -51,10 +51,10 @@ namespace Btd
     void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
     {
         Map.HandleButtonClicked();
-        if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back().IsMovable())
+        if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
         {
-            TowerFactory::TowerVector.back().SetIsMove(false);
-            TowerFactory::TowerVector.back().SetActive(true);
+            TowerFactory::TowerVector.back()->SetIsMove(false);
+            TowerFactory::TowerVector.back()->SetActive(true);
         }
         switch (GameFlow)
         {
@@ -82,9 +82,9 @@ namespace Btd
 
     void GameManager::OnMouseMove(UINT nFlags, CPoint point)
     {
-        if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back().IsMovable())
+        if (!TowerFactory::TowerVector.empty() && TowerFactory::TowerVector.back()->IsMovable())
         {
-            TowerFactory::TowerVector.back().SetCenter(GetCursorPosX(), GetCursorPosY());
+            TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(), GetCursorPosY());
         }
     }
 
@@ -136,7 +136,7 @@ namespace Btd
         }
         for (auto& m : TowerFactory::TowerVector)
         {
-            m.Update();
+            m->Update();
         }
         BallonFactory::UpdateBloon();
     }
@@ -146,9 +146,9 @@ namespace Btd
         Map.ShowBackground();
         Map.ShowFactoryButton();
         Map.ShowRoad();
-        for (auto m : TowerFactory::TowerVector)
+        for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
         {
-            m.TowerShow();
+            TowerFactory::TowerVector[i]->TowerShow();
         }
         for (auto& ballon : BallonFactory::BallonVector)
         {

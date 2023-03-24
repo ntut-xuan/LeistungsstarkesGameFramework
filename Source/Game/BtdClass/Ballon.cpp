@@ -28,9 +28,13 @@ namespace Btd
 
     void Ballon::Update()
     {
-        if (GetActive())
+        if (GetActive() && _freezeTime == 0)
         {
             Move(Map::GetRoute());
+        }
+        else if (_freezeTime > 0)
+        {
+            _freezeTime -= deltaTime;
         }
     }
 
@@ -104,5 +108,10 @@ namespace Btd
     void Ballon::SetLayer(int layer)
     {
         _layer = layer;
+    }
+
+    void Ballon::SetFreezeTime(int time)
+    {
+        _freezeTime = time;
     }
 }

@@ -5,6 +5,6 @@ namespace Btd
 {
     int BtdTimer::GetDeltaTime()
     {
-        return delayCount;
+        return deltaTime;
     }
 }

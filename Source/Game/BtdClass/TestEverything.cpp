@@ -28,20 +28,26 @@ namespace Btd
         case BalloonVectorMoveTest:
             BALLOONS.push_back(_balloon);
         case NailMachineShoot:
-            _nailMachine.SetThrowablePath("resources/towers/nail/nail.bmp");
+            _nailMachine.SetThrowablePath({"resources/towers/nail/nail.bmp"});
             _nailMachine.LoadBitmapByString({"Resources/towers/nail/tower_nail.bmp"},RGB(0, 0, 0));
             _nailMachine.SetTopLeft(500, 500);
             _nailMachine.SetShootDeltaTime(1);
         case BallonPop:
-            TowerFactory::MakeTower(dart);
-            TowerFactory::TowerVector[0].SetIsMove(false);
-            TowerFactory::TowerVector[0].SetTopLeft(200, 200);
-            TowerFactory::TowerVector[0].SetShootDeltaTime(1);
-            TowerFactory::TowerVector[0].SetActive(true);
-            _balloonFactory.MakeBallon(Layer::black);
-            BallonFactory::BallonVector[0].SetTopLeft(100, 400);
+            _cannon.LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
+            _cannon.SetTopLeft(500, 500);
+            _cannon.SetShootDeltaTime(3);
+            _ice.LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
+            _ice.SetTopLeft(350, 300);
+            _ice.SetShootDeltaTime(3);
+            TowerFactory::MakeTower(bomb);
+            TowerFactory::TowerVector[0]->SetIsMove(false);
+            TowerFactory::TowerVector[0]->SetTopLeft(200, 220);
+            TowerFactory::TowerVector[0]->SetShootDeltaTime(3);
+            TowerFactory::TowerVector[0]->SetActive(true);
+            _balloonFactory.MakeBallon(Layer::yellow);
+            BallonFactory::BallonVector[0].SetTopLeft(190, 70);
             _balloonFactory.MakeBallon(Layer::blue);
-            BallonFactory::BallonVector[1].SetTopLeft(600, 400);
+            BallonFactory::BallonVector[1].SetTopLeft(210, 80);
             _balloonFactory.MakeBallon(Layer::black);
             BallonFactory::BallonVector[2].SetTopLeft(400, 400);
             break;
@@ -111,10 +117,9 @@ namespace Btd
             BallonFactory::handlePopBalloon();
             break;
         case BallonPop:
-            TowerFactory::TowerVector[0].Update();
-            for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
+            for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
             {
-                TowerFactory::TowerVector[i].Update();
+                TowerFactory::TowerVector[i]->Update();
             }
             BallonFactory::handlePopBalloon();
             break;
@@ -159,10 +164,13 @@ namespace Btd
             }
             break;
         case BallonPop:
-            for (Tower tower : TowerFactory::TowerVector)
+            for (auto&& tower : TowerFactory::TowerVector)
             {
-                tower.TowerShow();
+                tower->TowerShow();
+                TRACE("%.2f %.2f\n", tower->GetCenter().X, tower->GetCenter().Y);
             }
+            _cannon.TowerShow();
+            _ice.TowerShow();
             for (auto b : BallonFactory::BallonVector)
             {
                 b.ShowBitmap();

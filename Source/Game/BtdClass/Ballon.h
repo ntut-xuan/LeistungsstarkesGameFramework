@@ -15,12 +15,14 @@ namespace Btd
         int _layer = 0;
         bool _isPoped = false;
         BallonType::BallonType type = BallonType::normal;
+        int _freezeTime;
 
     public:
         Ballon()
         {
             _layer = 0;
             _isPoped = false;
+            _freezeTime = 0;
         };
 
         Ballon(int layer): _layer(layer)
@@ -55,5 +57,6 @@ namespace Btd
         bool IsPoped();
         void SetIsPoped(bool poped);
         void SetLayer(int layer);
+        void SetFreezeTime(int time);
     };
 }

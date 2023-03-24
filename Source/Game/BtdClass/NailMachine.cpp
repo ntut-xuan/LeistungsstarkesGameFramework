@@ -25,7 +25,7 @@ namespace Btd
         }
         else
         {
-            SetShootTimeCounter(GetShootTimeCounter() + delayCount / 100.F);
+            SetShootTimeCounter(GetShootTimeCounter() + deltaTime / 100.F);
         }
     }
 }
