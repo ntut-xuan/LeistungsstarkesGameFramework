@@ -5,6 +5,12 @@
 
 namespace Btd
 {
+    NailMachine::NailMachine()
+    {
+        _range = 300;
+        ThrowablePath = {"resources/towers/nail/nail.bmp"};
+    }
+
     void NailMachine::Update()
     {
         UpdateThrowable();
@@ -27,5 +33,12 @@ namespace Btd
         {
             SetShootTimeCounter(GetShootTimeCounter() + deltaTime / 100.F);
         }
+    }
+
+    void NailMachine::PushThrowablePool()
+    {
+        shared_ptr<Throwable> nail = make_shared<Throwable>(Throwable());
+        nail->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
+        throwablePool.push(nail);
     }
 }

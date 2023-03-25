@@ -3,6 +3,7 @@
 #include "Cannon.h"
 #include "DartMonkey.h"
 #include "IceTower.h"
+#include "NailMachine.h"
 
 namespace Btd
 {
@@ -18,7 +19,7 @@ namespace Btd
             {
             case dart:
             {
-                shared_ptr<Tower> dartMonkey = make_shared<Tower>(DartMonkey());
+                shared_ptr<DartMonkey> dartMonkey = make_shared<DartMonkey>(DartMonkey());
                 dartMonkey->LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp"}, RGB(0, 0, 0));
                 dartMonkey->SetCenter(GetCursorPosX(), GetCursorPosY());
                 dartMonkey->SetIsMove(true);
@@ -36,6 +37,17 @@ namespace Btd
                 cannon->SetShootDeltaTime(3);
                 cannon->SetActive(false);
                 TowerVector.push_back(cannon);
+                break;
+            }
+            case nail:
+            {
+                shared_ptr<NailMachine> nailMachine = make_shared<NailMachine>(NailMachine());
+                nailMachine->LoadBitmapByString({"resources/towers/nail/tower_nail.bmp"}, RGB(0, 0, 0));
+                nailMachine->SetCenter(GetCursorPosX(), GetCursorPosY());
+                nailMachine->SetIsMove(true);
+                nailMachine->SetShootDeltaTime(3);
+                nailMachine->SetActive(false);
+                TowerVector.push_back(nailMachine);
                 break;
             }
             case ice:

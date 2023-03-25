@@ -249,6 +249,7 @@
         <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Button.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Cannon.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\DartMonkey.cpp" />
         <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
         <ClCompile Include="Source\Game\BtdClass\GameManager.cpp" />
         <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />

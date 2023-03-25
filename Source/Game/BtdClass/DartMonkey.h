@@ -6,11 +6,8 @@
 namespace Btd {
 	class DartMonkey : public  Tower{
 	public:
-		DartMonkey()
-		{
-			_range = 160;
-			ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
-		}
+		DartMonkey();
+        void PushThrowablePool();
 	private:
 	};
 
