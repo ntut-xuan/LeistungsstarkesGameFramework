@@ -25,7 +25,7 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
         Map.SetRounds({
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
+            {{Layer::white, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
             {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
             {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
             {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}}
@@ -146,7 +146,7 @@ namespace Btd
         Map.ShowBackground();
         Map.ShowFactoryButton();
         Map.ShowRoad();
-        for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
+        for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
             TowerFactory::TowerVector[i]->TowerShow();
         }
@@ -169,6 +169,26 @@ namespace Btd
         if (nChar == 'A')
         {
             BloonFactory::MakeBloon(Layer::red);
+        }
+        if (nChar == 'S')
+        {
+            BloonFactory::MakeBloon(Layer::blue);
+        }
+        if (nChar == 'D')
+        {
+            BloonFactory::MakeBloon(Layer::green);
+        }
+        if (nChar == 'F')
+        {
+            BloonFactory::MakeBloon(Layer::yellow);
+        }
+        if (nChar == 'Z')
+        {
+            BloonFactory::MakeBloon(Layer::black);
+        }
+        if (nChar == 'X')
+        {
+            BloonFactory::MakeBloon(Layer::white);
         }
     }
 }
