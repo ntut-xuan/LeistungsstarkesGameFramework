@@ -52,7 +52,8 @@ namespace Btd
         {
             vector<string> balloonPath = {
                 "Resources/bloon/bloon_red.bmp", "Resources/bloon/bloon_blue.bmp", "Resources/bloon/bloon_green.bmp",
-                "Resources/bloon/bloon_yellow.bmp", "Resources/bloon/bloon_black.bmp"
+                "Resources/bloon/bloon_yellow.bmp", "Resources/bloon/bloon_black.bmp",
+                "Resources/bloon/bloon_white.bmp",
             };
             if (BloonPool.empty())
             {
@@ -68,11 +69,16 @@ namespace Btd
             switch (type)
             {
             case Layer::black:
-                // next.LoadBitmapByString({"Resources/bloon/bloon_black.bmp"}, RGB(0, 0, 0));
                 next.SetFrameIndexOfBitmap(Layer::black);
                 next.SetLayer(0);
                 next.Setspeed(3);
                 next.SetType(BloonType::black);
+                break;
+            case Layer::white:
+                next.SetFrameIndexOfBitmap(Layer::white);
+                next.SetLayer(0);
+                next.Setspeed(3);
+                next.SetType(BloonType::white);
                 break;
             default:
                 next.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
@@ -84,14 +90,9 @@ namespace Btd
             }
             next.SetNowRouteTarget(nowRouteTarget);
             next.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
+            next.SetActive(true);
             next.SetIsPoped(false);
             BloonPool.pop();
-            next.SetActive(true);
-            next.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
-            next.SetNowRouteTarget(0);
-            next.SetIsPoped(false);
-            next.Setspeed(3);
-            next.SetLayer(type);
             BloonVector.push_back(next);
         }
 

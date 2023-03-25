@@ -141,7 +141,7 @@ namespace Btd
         Map.ShowBackground();
         Map.ShowFactoryButton();
         Map.ShowRoad();
-        for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
+        for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
             TowerFactory::TowerVector[i]->TowerShow();
         }
@@ -164,6 +164,26 @@ namespace Btd
         if (nChar == 'A')
         {
             BloonFactory::MakeBloon(Layer::red);
+        }
+        if (nChar == 'S')
+        {
+            BloonFactory::MakeBloon(Layer::blue);
+        }
+        if (nChar == 'D')
+        {
+            BloonFactory::MakeBloon(Layer::green);
+        }
+        if (nChar == 'F')
+        {
+            BloonFactory::MakeBloon(Layer::yellow);
+        }
+        if (nChar == 'Z')
+        {
+            BloonFactory::MakeBloon(Layer::black);
+        }
+        if (nChar == 'X')
+        {
+            BloonFactory::MakeBloon(Layer::white);
         }
     }
 }
