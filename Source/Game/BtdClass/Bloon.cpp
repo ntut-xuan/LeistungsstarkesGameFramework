@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "BtdUtil.h"
-#include "Ballon.h"
+#include "Bloon.h"
 
 #include "map.h"
 
@@ -10,23 +10,23 @@ namespace Btd
     //normal
     //black
     //white
-    bool Ballon::resistDamegeMap[3][3] = {
+    bool Bloon::resistDamegeMap[3][3] = {
         {true, true, true},
         {true, false, true},
         {true, true, false}
     };
 
-    void Ballon::SetNowRouteTarget(int target)
+    void Bloon::SetNowRouteTarget(int target)
     {
         nowRouteTarget = target;
     }
 
-    void Ballon::Setspeed(float speed)
+    void Bloon::Setspeed(float speed)
     {
         _speed = speed;
     }
 
-    void Ballon::Update()
+    void Bloon::Update()
     {
         if (GetActive() && _freezeTime == 0)
         {
@@ -38,12 +38,12 @@ namespace Btd
         }
     }
 
-    float Ballon::GetSpeed()
+    float Bloon::GetSpeed()
     {
         return _speed;
     }
 
-    void Ballon::Move(vector<Vector2> route)
+    void Bloon::Move(vector<Vector2> route)
     {
         Vector2 nowLocal;
         nowLocal.X = static_cast<float>(GetLeft());
@@ -75,12 +75,12 @@ namespace Btd
         SetTopLeft(left, top);
     }
 
-    BallonType::BallonType Ballon::GetType()
+    BloonType::BloonType Bloon::GetType()
     {
         return type;
     }
 
-    void Ballon::Pop(int damage, DamageType damageType)
+    void Bloon::Pop(int damage, DamageType damageType)
     {
         this;
         if (resistDamegeMap[type][damageType])
@@ -95,22 +95,22 @@ namespace Btd
         SetFrameIndexOfBitmap(_layer);
     }
 
-    bool Ballon::IsPoped()
+    bool Bloon::IsPoped()
     {
         return _isPoped;
     }
 
-    void Ballon::SetIsPoped(bool poped)
+    void Bloon::SetIsPoped(bool poped)
     {
         _isPoped = poped;
     }
 
-    void Ballon::SetLayer(int layer)
+    void Bloon::SetLayer(int layer)
     {
         _layer = layer;
     }
 
-    void Ballon::SetFreezeTime(int time)
+    void Bloon::SetFreezeTime(int time)
     {
         _freezeTime = time;
     }

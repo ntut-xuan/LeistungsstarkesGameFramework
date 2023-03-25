@@ -6,7 +6,7 @@
 #include "Throwable.h"
 #include <queue>
 #include <string>
-#include "Ballon.h"
+#include "Bloon.h"
 
 namespace Btd
 {
@@ -63,7 +63,7 @@ namespace Btd
         float shootDeltaTime;
         float shootTimecounter;
         Vector2 throwLocal;
-        Ballon focus();
+        Bloon focus();
     };
 }
 #endif

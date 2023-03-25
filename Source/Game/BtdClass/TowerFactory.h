@@ -13,7 +13,7 @@ namespace Btd
         TowerFactory() {};
         ~TowerFactory() {};
         static vector<shared_ptr<Tower>> TowerVector;
-        static void MakeTower (Attribute attribute)
+        static void MakeTower (TowerType attribute)
         {
             switch (attribute)
             {

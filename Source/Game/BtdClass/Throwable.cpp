@@ -4,7 +4,7 @@
 #include <chrono>
 
 #include "BtdUtil.h"
-#include "BallonFactory.h"
+#include "BloonFactory.h"
 
 namespace Btd
 {
@@ -55,22 +55,22 @@ namespace Btd
 
     void Throwable::DetectHitBalloon()
     {
-        for (int i = 0; i < static_cast<int>(BallonFactory::BallonVector.size()); i++)
+        for (int i = 0; i < static_cast<int>(BloonFactory::BloonVector.size()); i++)
         {
             bool isHited = false;
             for (int j = 0; j < static_cast<int>(cantHitBloons.size()); j++)
             {
-                if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
+                if (cantHitBloons[j].first == &BloonFactory::BloonVector[i])
                 {
                     isHited = true;
                     break;
                 }
             }
-            if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i]) &&
+            if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i]) &&
                 !isHited) //not in cant hit bloon)
             {
-                BallonFactory::BallonVector[i].Pop(1, Normal);
-                cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
+                BloonFactory::BloonVector[i].Pop(1, Normal);
+                cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
             }
         }
     }

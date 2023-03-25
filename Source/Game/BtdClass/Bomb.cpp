@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "Bomb.h"
 
-#include "BallonFactory.h"
+#include "BloonFactory.h"
 
 namespace Btd
 {
@@ -12,18 +12,18 @@ namespace Btd
 
     void Bomb::DetectHitBalloon()
     {
-        for (int i=0; i<(int)BallonFactory::BallonVector.size(); i++)
+        for (int i=0; i<(int)BloonFactory::BloonVector.size(); i++)
         {
             bool isHited = false;
             for (int j=0; j<(int)cantHitBloons.size(); j++)
             {
-                if (cantHitBloons[j].first == &BallonFactory::BallonVector[i])
+                if (cantHitBloons[j].first == &BloonFactory::BloonVector[i])
                 {
                     isHited = true;
                     break;
                 }
             }
-            if (Btd::IsOverlap(*this, BallonFactory::BallonVector[i])&&
+            if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i])&&
                 !isHited )//not in cant hit bloon)
             {
                 if (GetFrameIndexOfBitmap() == 0)
@@ -34,8 +34,8 @@ namespace Btd
                 }
                 else
                 {
-                    BallonFactory::BallonVector[i].Pop(1, Normal);
-                    cantHitBloons.push_back({&BallonFactory::BallonVector[i], 0});
+                    BloonFactory::BloonVector[i].Pop(1, Normal);
+                    cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 }
                 _speed = 0;
             }

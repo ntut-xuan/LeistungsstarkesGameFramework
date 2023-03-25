@@ -6,26 +6,25 @@
 
 namespace Btd
 {
-    // ballon pop will not appear many bloon
-    class Ballon : public GameObject
+    class Bloon : public GameObject
     {
     private:
         int nowRouteTarget = 0;
         float _speed = 3;
         int _layer = 0;
         bool _isPoped = false;
-        BallonType::BallonType type = BallonType::normal;
+        BloonType::BloonType type = BloonType::normal;
         int _freezeTime;
 
     public:
-        Ballon()
+        Bloon()
         {
             _layer = 0;
             _isPoped = false;
             _freezeTime = 0;
         };
 
-        Ballon(int layer): _layer(layer)
+        Bloon(int layer): _layer(layer)
         {
         }
 
@@ -35,7 +34,7 @@ namespace Btd
 
         void Setspeed(float speed);
 
-        void SetType(BallonType::BallonType t)
+        void SetType(BloonType::BloonType t)
         {
             type = t;
         }
@@ -43,7 +42,7 @@ namespace Btd
         void Update() override;
 
         float GetSpeed();
-        BallonType::BallonType GetType();
+        BloonType::BloonType GetType();
 
         void Move(vector<Vector2> route);
 

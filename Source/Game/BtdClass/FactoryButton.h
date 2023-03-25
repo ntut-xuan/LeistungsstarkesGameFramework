@@ -10,9 +10,9 @@ namespace Btd
         FactoryButton() = default;
         ~FactoryButton() = default;
         void Update() override;
-        void SetAttribute(Attribute attribute);
+        void SetAttribute(TowerType attribute);
     private:
-        Attribute _attribute;
+        TowerType _attribute;
     
     };
     

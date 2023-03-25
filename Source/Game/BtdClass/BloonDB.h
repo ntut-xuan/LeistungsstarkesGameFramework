@@ -12,9 +12,8 @@ namespace Btd
         vector<vector<UnitRound>> _roundses;
 
     public:
-        void GetRoutes()
+        void LoadRounds()
         {
-            vector<UnitRound> nextRound;
             std::string delimiter = ",";
             std::ifstream fin("resources/bloon/round.csv");
             while (fin)
@@ -24,6 +23,7 @@ namespace Btd
                 size_t pos = 0;
                 std::string token;
                 std::string time;
+                vector<UnitRound> nextRound;
                 while ((pos = s.find(delimiter)) != std::string::npos)
                 {
                     token = s.substr(0, pos);
@@ -52,5 +52,9 @@ namespace Btd
             }
             fin.close();
         }
+        vector<vector<UnitRound>> GetRounds()
+        {
+            return _roundses;
+        };
     };
 } // namespace Btd

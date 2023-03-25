@@ -1,5 +1,5 @@
 #pragma once
-#include "BallonFactory.h"
+#include "BloonFactory.h"
 #include "DartMonkey.h"
 #include "NailMachine.h"
 #include "Throwable.h"
@@ -13,10 +13,10 @@ namespace Btd
     {
         ThrowableMove,
         DartMonkeyShoot,
-        BalloonFactoryTest,
-        BalloonMoveTest,
-        BalloonVectorMoveTest,
-        BallonPop,
+        BloonFactoryTest,
+        BloonMoveTest,
+        BloonVectorMoveTest,
+        BloonPop,
         TowerFocus,
         NailMachineShoot,
     };
@@ -30,10 +30,10 @@ namespace Btd
         NailMachine _nailMachine;
         Cannon _cannon;
         IceTower _ice;
-        BallonFactory _balloonFactory;
+        BloonFactory _balloonFactory;
         TowerFactory _towerFactory;
-        Ballon _balloon;
-        vector<Ballon> BALLOONS;
+        Bloon _balloon;
+        vector<Bloon> BLOONS;
 
     public:
         TestEverything(TestEverything&&) = default;

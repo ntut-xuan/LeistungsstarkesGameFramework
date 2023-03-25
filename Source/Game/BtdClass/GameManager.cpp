@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameManager.h"
 
-#include "BallonFactory.h"
+#include "BloonFactory.h"
 #include "TowerFactory.h"
 
 namespace Btd
@@ -24,13 +24,7 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * 0.06F}, {mapSize.X * 0.38F, mapSize.Y * 0.F},
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
-        Map.SetRounds({
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}}
-        });
-        BallonFactory::SetNextRound(Map.GetRounds()[round]);
+        BloonFactory::SetNextRound(Map.GetRounds()[round]);
     }
 
     void GameManager::OnInit()
@@ -41,7 +35,8 @@ namespace Btd
         GameFlow = Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
-        db.GetRoutes();
+        db.LoadRounds();
+        Map.SetRounds(db.GetRounds());
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -107,8 +102,8 @@ namespace Btd
 
         case Shoot:
             {
-                bool RoundRunOut = BallonFactory::UpdateRound(BtdTimer.GetDeltaTime());
-                bool isRoundEnd = BallonFactory::BallonVector.empty() && RoundRunOut;
+                bool RoundRunOut = BloonFactory::UpdateRound(BtdTimer.GetDeltaTime());
+                bool isRoundEnd = BloonFactory::BloonVector.empty() && RoundRunOut;
                 if (isRoundEnd)
                 {
                     GameFlow = Win;
@@ -123,7 +118,7 @@ namespace Btd
             }
             else
             {
-                BallonFactory::SetNextRound(Map.GetRounds()[round]);
+                BloonFactory::SetNextRound(Map.GetRounds()[round]);
                 GameFlow = Prepare;
                 //todo gold ++
             }
@@ -138,7 +133,7 @@ namespace Btd
         {
             m->Update();
         }
-        BallonFactory::UpdateBloon();
+        BloonFactory::UpdateBloon();
     }
 
     void GameManager::OnShow()
@@ -146,13 +141,13 @@ namespace Btd
         Map.ShowBackground();
         Map.ShowFactoryButton();
         Map.ShowRoad();
-        for (int i=0; i<(int)TowerFactory::TowerVector.size(); i++)
+        for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
             TowerFactory::TowerVector[i]->TowerShow();
         }
-        for (auto& ballon : BallonFactory::BallonVector)
+        for (auto& bloon : BloonFactory::BloonVector)
         {
-            ballon.ShowBitmap();
+            bloon.ShowBitmap();
         }
         switch (GameFlow)
         {
@@ -168,7 +163,27 @@ namespace Btd
     {
         if (nChar == 'A')
         {
-            BallonFactory::MakeBallon(Layer::red);
+            BloonFactory::MakeBloon(Layer::red);
+        }
+        if (nChar == 'S')
+        {
+            BloonFactory::MakeBloon(Layer::blue);
+        }
+        if (nChar == 'D')
+        {
+            BloonFactory::MakeBloon(Layer::green);
+        }
+        if (nChar == 'F')
+        {
+            BloonFactory::MakeBloon(Layer::yellow);
+        }
+        if (nChar == 'Z')
+        {
+            BloonFactory::MakeBloon(Layer::black);
+        }
+        if (nChar == 'X')
+        {
+            BloonFactory::MakeBloon(Layer::white);
         }
     }
 }
