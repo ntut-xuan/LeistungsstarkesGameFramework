@@ -24,12 +24,6 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * 0.06F}, {mapSize.X * 0.38F, mapSize.Y * 0.F},
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
-        Map.SetRounds({
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}},
-            {{Layer::red, 1000}, {Layer::red, 1000}, {Layer::blue, 1000}}
-        });
         BloonFactory::SetNextRound(Map.GetRounds()[round]);
     }
 
@@ -41,7 +35,8 @@ namespace Btd
         GameFlow = Prepare;
         startButton.LoadBitmapByString({"resources/start_button.bmp"});
         startButton.SetTopLeft(742, 620);
-        db.GetRoutes();
+        db.LoadRounds();
+        Map.SetRounds(db.GetRounds());
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
