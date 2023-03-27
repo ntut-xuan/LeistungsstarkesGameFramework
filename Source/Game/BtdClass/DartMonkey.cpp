@@ -18,6 +18,7 @@ namespace Btd
     		dart->SetPenetrate(true);
     	}
     	dart->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
+    	dart->SetSpeed(5);
     	throwablePool.push(dart);
     }
 }

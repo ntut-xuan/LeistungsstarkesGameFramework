@@ -42,6 +42,7 @@ namespace Btd
     {
         shared_ptr<Throwable> nail = make_shared<Throwable>(Throwable());
         nail->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
+        nail->SetSpeed(5);
         throwablePool.push(nail);
     }
 }
