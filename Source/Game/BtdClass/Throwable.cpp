@@ -92,6 +92,11 @@ namespace Btd
         }
     }
 
+    void Throwable::SetPenetrate(bool penetrate)
+    {
+        _canPenetrate = penetrate;
+    }
+
     Vector2 Throwable::GetMoveDirection() const
     {
         return _moveDirection;

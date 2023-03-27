@@ -41,5 +41,7 @@ namespace Btd
         virtual void DetectHitBalloon ();
 
         void UpdateCantHitBloons ();
+
+        void SetPenetrate(bool penetrate);
     };
 }
