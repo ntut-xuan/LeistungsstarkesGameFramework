@@ -10,10 +10,13 @@ namespace Btd
 {
     void Throwable::Update()
     {
-        _existTime += (float)deltaTime;
-        if (_existTime > _maxExistTime)
+        if ((int)_maxExistTime != -1) // only bomb need
         {
-            SetActive(false);
+            _existTime += (float)deltaTime;
+            if (_existTime > _maxExistTime)
+            {
+                SetActive(false);
+            }
         }
         if (GetActive())
         {
@@ -95,6 +98,11 @@ namespace Btd
     void Throwable::SetPenetrate(bool penetrate)
     {
         _canPenetrate = penetrate;
+    }
+
+    Throwable::Throwable()
+    {
+        _maxExistTime = -1;
     }
 
     Vector2 Throwable::GetMoveDirection() const

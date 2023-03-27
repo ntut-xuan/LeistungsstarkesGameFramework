@@ -120,7 +120,6 @@ namespace Btd
         next->SetActive(true);
         next->InitByCenter(GetCenter());
         next->SetSpeed(5);
-        next->SetMaxExistTime(300);
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
         throwables.push_back(next);
     }

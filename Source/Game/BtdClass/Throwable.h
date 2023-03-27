@@ -13,7 +13,7 @@ namespace Btd
         Vector2 _position = {0, 0};
         float _speed = 0;
         float _existTime = 0;
-        float _maxExistTime = 0;
+        float _maxExistTime = -1;  // every throwable except bomb maxExistTime is -1 (because no use)
         float _damage = 0;
         int _maxPop = 0;
         int _poped = 0;
@@ -23,6 +23,7 @@ namespace Btd
         vector<pair<Bloon*, int>> cantHitBloons;
 
     public:
+        Throwable();
         Vector2 GetMoveDirection() const;
 
         void Update() override;
