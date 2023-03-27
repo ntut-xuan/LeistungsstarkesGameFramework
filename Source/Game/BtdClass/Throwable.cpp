@@ -71,6 +71,11 @@ namespace Btd
             {
                 BloonFactory::BloonVector[i].Pop(1, Normal);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
+                if (_canPenetrate == false)
+                {
+                    _isActive = false;
+                    break;
+                }
             }
         }
     }
@@ -86,7 +91,6 @@ namespace Btd
             }
         }
     }
-
 
     Vector2 Throwable::GetMoveDirection() const
     {
