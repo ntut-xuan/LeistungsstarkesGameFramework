@@ -34,6 +34,11 @@ namespace Btd
         for (int i=(int)throwables.size()-1; i>=0; i--)
         {
             throwables[i]->Update();
+            if (Vector2Distance(throwables[i]->GetCenter(), GetCenter()) > (float)_range + 70) 
+            {
+                // if throwable fly over (range + 70) distance will be erase
+                throwables[i]->SetActive(false);
+            }
             if (!throwables[i]->GetActive())
             {
                 throwables.erase(throwables.begin() + i);
@@ -107,7 +112,7 @@ namespace Btd
         {
             PushThrowablePool();
         }
-        auto next = move(throwablePool.front());
+        auto next = throwablePool.front();
         Vector2 targetDirection = {
             (target.X - GetLeft()), target.Y - GetTop()
         };
