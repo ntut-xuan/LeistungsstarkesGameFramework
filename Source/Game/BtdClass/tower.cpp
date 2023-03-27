@@ -53,11 +53,15 @@ namespace Btd
         target = BloonFactory::BloonVector[0];
         for (Bloon b : BloonFactory::BloonVector)
         {
+            if (Vector2Distance(b.GetCenter(), this->GetCenter()) > (float)_range)
+            {
+                continue;
+            }
             if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
                 (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
-                    Vector2Distance({static_cast<float>(b.GetLeft()), static_cast<float>(b.GetTop())},
+                    Vector2Distance(b.GetCenter(),
                                     Map::GetRoute()[b.GetNowRouteTarget()]) <
-                    Vector2Distance({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())},
+                    Vector2Distance(target.GetCenter(),
                                     Map::GetRoute()[b.GetNowRouteTarget()])))
             {
                 target = b;
@@ -123,7 +127,6 @@ namespace Btd
         throwablePool.pop();
         next->SetActive(true);
         next->InitByCenter(GetCenter());
-        next->SetSpeed(5);
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
         throwables.push_back(next);
     }
