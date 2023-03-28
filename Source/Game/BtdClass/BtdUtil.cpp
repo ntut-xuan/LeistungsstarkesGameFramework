@@ -4,6 +4,7 @@
 #include <complex>
 
 #include "GameObject.h"
+#define M_PI 3.1415926
 
 namespace Btd
 {
@@ -79,5 +80,39 @@ namespace Btd
             return true;
         }
         return false;
+    }
+
+	int GetFrameIndexByVector2(Vector2 dir)
+    {
+        /*
+         * game object need 8 different directions frames
+         * this function will return a proper frame index that game object need to show
+         */
+    	double angleInRadians = std::atan2(dir.Y, dir.X);
+    	double angleInDegrees = (angleInRadians / M_PI) * 180.0;
+        // angle:
+    	// up:  -180 <----> 0
+    	// down: 180 <----> 0
+    	int index = 0;
+    	double tmp = 0;
+    	vector<int> rangeList = {0, 1, 3, 5, 7};  // quotient of angle / 22.5
+    	vector<int> UpIndexList = {1, 8, 7, 6, 5};  // frame index
+    	vector<int> downIndexList = {1, 2, 3, 4, 5};
+    	vector<int> indexList;
+    	if (angleInDegrees > 0)
+    	{
+    		indexList = downIndexList;
+    	}
+    	else
+    	{
+    		angleInDegrees *= (-1);
+    		indexList = UpIndexList;
+    	}
+		tmp = angleInDegrees / 22.5;
+		for (int i=0; i<5; i++)
+		{
+			if (tmp > rangeList[i])  index = indexList[i];
+		}
+    	return index - 1;
     }
 }

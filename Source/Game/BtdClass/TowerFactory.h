@@ -20,11 +20,14 @@ namespace Btd
             case dart:
             {
                 shared_ptr<DartMonkey> dartMonkey = make_shared<DartMonkey>(DartMonkey());
-                dartMonkey->LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp"}, RGB(0, 0, 0));
+                dartMonkey->LoadBitmapByString({"resources/towers/monkey/tower_monkey_1.bmp", "resources/towers/monkey/tower_monkey_2.bmp"
+                , "resources/towers/monkey/tower_monkey_3.bmp", "resources/towers/monkey/tower_monkey_4.bmp", "resources/towers/monkey/tower_monkey_5.bmp"
+                , "resources/towers/monkey/tower_monkey_6.bmp", "resources/towers/monkey/tower_monkey_7.bmp", "resources/towers/monkey/tower_monkey_8.bmp"}, RGB(0, 0, 0));
                 dartMonkey->SetCenter(GetCursorPosX(), GetCursorPosY());
                 dartMonkey->SetIsMove(true);
                 dartMonkey->SetShootDeltaTime(3);
                 dartMonkey->SetActive(false);
+                dartMonkey->SetFrameIndexOfBitmap(6);
                 TowerVector.push_back(dartMonkey);
                 break;
             }

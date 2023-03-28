@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Library/gameutil.h"
+#include  <cmath>
 
 namespace Btd
 {
@@ -73,4 +74,5 @@ namespace Btd
     Vector2 Spin45(Vector2 a);
     Vector2 Spin90(Vector2 a);
     bool isPointInBmp(POINT p, game_framework::CMovingBitmap target);
+	int GetFrameIndexByVector2(Vector2 dir);
 }
