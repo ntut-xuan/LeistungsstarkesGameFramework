@@ -34,11 +34,14 @@ namespace Btd
             case bomb:
             {
                 shared_ptr<Cannon> cannon = make_shared<Cannon>(Cannon());
-                cannon->LoadBitmapByString({"resources/towers/bomb/tower_bomb.bmp"}, RGB(255, 255, 255));
+                cannon->LoadBitmapByString({"resources/towers/bomb/tower_bomb_1.bmp", "resources/towers/bomb/tower_bomb_2.bmp"
+                , "resources/towers/bomb/tower_bomb_3.bmp", "resources/towers/bomb/tower_bomb_4.bmp", "resources/towers/bomb/tower_bomb_5.bmp"
+                , "resources/towers/bomb/tower_bomb_6.bmp", "resources/towers/bomb/tower_bomb_7.bmp", "resources/towers/bomb/tower_bomb_8.bmp"}, RGB(255, 255, 255));
                 cannon->SetCenter(GetCursorPosX(), GetCursorPosY());
                 cannon->SetIsMove(true);
                 cannon->SetShootDeltaTime(3);
                 cannon->SetActive(false);
+                cannon->SetFrameIndexOfBitmap(6);
                 TowerVector.push_back(cannon);
                 break;
             }
