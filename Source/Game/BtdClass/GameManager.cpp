@@ -25,6 +25,7 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
         BloonFactory::SetNextRound(Map.GetRounds()[round]);
+        IsLose = false;
     }
 
     void GameManager::OnInit()
@@ -111,6 +112,11 @@ namespace Btd
                     GameFlow = Win;
                 }
                 life -= BloonFactory::GoalBloonLayer();
+                if (life <= 0)
+                {
+                    GameFlow = GameEnd;
+                    IsLose = true;
+                }
                 break;
             }
         case Win:
@@ -129,6 +135,15 @@ namespace Btd
 
             break;
         case GameEnd:
+            // todo print win or lose and can restart
+            if (IsLose)
+            {
+                //todo print lose
+            }
+            else
+            {
+                //todo print win
+            }
 
             break;
         default: ;

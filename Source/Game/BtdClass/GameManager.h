@@ -9,6 +9,7 @@ namespace Btd
     class GameManager
     {
     private:
+        bool IsLose = false;
         int life = 10;
         int money = 0;
 
