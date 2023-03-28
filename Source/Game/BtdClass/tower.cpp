@@ -96,7 +96,7 @@ namespace Btd
                 Bloon target = focus();
                 if (Vector2Distance(GetCenter(), target.GetCenter()) < static_cast<float>(_range))
                 {
-                    Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
+                    Shoot({static_cast<float>(target.GetCenter().X), static_cast<float>(target.GetCenter().Y)});
                 }
             }
             else

@@ -16,7 +16,7 @@ namespace Btd
     {
 	    Tower::Shoot(target);
         Vector2 targetDirection = {
-            (target.X - (float)GetLeft()), target.Y - (float)GetTop()
+            (target.X - (float)GetCenter().X), target.Y - (float)GetCenter().Y
         };
     	throwables.back()->SetFrameIndexOfBitmap(GetFrameIndexByVector2(targetDirection));
     	this->SetFrameIndexOfBitmap(GetFrameIndexByVector2(targetDirection));
