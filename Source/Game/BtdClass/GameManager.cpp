@@ -37,6 +37,8 @@ namespace Btd
         startButton.SetTopLeft(742, 620);
         db.LoadRounds();
         Map.SetRounds(db.GetRounds());
+        life = Map.InitLives;
+        money = Map.InitLives;
     }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
@@ -108,6 +110,7 @@ namespace Btd
                 {
                     GameFlow = Win;
                 }
+                life -= BloonFactory::GoalBloonLayer();
                 break;
             }
         case Win:
@@ -120,6 +123,7 @@ namespace Btd
             {
                 BloonFactory::SetNextRound(Map.GetRounds()[round]);
                 GameFlow = Prepare;
+                money += 100;
                 //todo gold ++
             }
 

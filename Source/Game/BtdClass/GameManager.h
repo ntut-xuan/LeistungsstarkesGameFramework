@@ -9,6 +9,8 @@ namespace Btd
     class GameManager
     {
     private:
+        int life = 10;
+        int money = 0;
 
     public:
         void OnBeginState(); // 設定每次重玩所需的變數

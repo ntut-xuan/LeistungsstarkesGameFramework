@@ -28,7 +28,7 @@ namespace Btd
 
     void Bloon::Update()
     {
-        if (GetActive() && _freezeTime == 0)
+        if (GetActive() && _freezeTime <= 0)
         {
             Move(Map::GetRoute());
         }
@@ -57,7 +57,7 @@ namespace Btd
             else
             {
                 SetActive(false);
-                //todo  arrive goal ,hp-layer
+                _isGoaled = true;
             }
         }
         target = route[nowRouteTarget];
@@ -113,5 +113,15 @@ namespace Btd
     void Bloon::SetFreezeTime(int time)
     {
         _freezeTime = time;
+    }
+
+    bool Bloon::IsGoaled()
+    {
+        return _isGoaled;
+    }
+
+    int Bloon::GetLayer()
+    {
+        return _layer;
     }
 }

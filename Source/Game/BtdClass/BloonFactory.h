@@ -15,6 +15,7 @@ namespace Btd
         static vector<UnitRound> BloonRound;
         static int BloonCounter;
         static int BloonTimer;
+        static vector<string> balloonPath;
 
         static void SetNextRound(vector<UnitRound> rounds)
         {
@@ -50,11 +51,6 @@ namespace Btd
 
         static void MakeBloonByPosition(Layer::NormalBloonLayer type, Vector2 startPosition, int nowRouteTarget)
         {
-            vector<string> balloonPath = {
-                "Resources/bloon/bloon_red.bmp", "Resources/bloon/bloon_blue.bmp", "Resources/bloon/bloon_green.bmp",
-                "Resources/bloon/bloon_yellow.bmp", "Resources/bloon/bloon_black.bmp",
-                "Resources/bloon/bloon_white.bmp",
-            };
             if (BloonPool.empty())
             {
                 Bloon tmpBloon;
@@ -85,6 +81,7 @@ namespace Btd
                 next.SetLayer(type);
                 next.SetFrameIndexOfBitmap(type);
                 next.Setspeed(3);
+                // next.Setspeed(100);
                 next.SetType(BloonType::normal);
                 break;
             }
@@ -126,6 +123,30 @@ namespace Btd
                     BloonVector.erase(BloonVector.begin() + i);
                 }
             }
+        }
+
+        static int GoalBloonLayer()
+        {
+            int subLife = 0;
+            for (int i = 0; i < static_cast<int>(BloonVector.size()); i++)
+            {
+                Bloon b = BloonVector[i];
+                if (b.IsGoaled())
+                {
+                    BloonType::BloonType type = b.GetType();
+                    if (type == BloonType::black || type == BloonType::white)
+                    {
+                        subLife += 5;
+                    }
+                    else
+                    {
+                        subLife += b.GetLayer();
+                    }
+                    BloonPool.push(BloonVector[i]);
+                    BloonVector.erase(BloonVector.begin() + i);
+                }
+            }
+            return subLife;
         }
     };
 }
