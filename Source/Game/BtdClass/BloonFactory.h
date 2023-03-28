@@ -81,7 +81,7 @@ namespace Btd
                 next.SetLayer(type);
                 next.SetFrameIndexOfBitmap(type);
                 next.Setspeed(3);
-                // next.Setspeed(100);
+            // next.Setspeed(70);
                 next.SetType(BloonType::normal);
                 break;
             }
@@ -89,6 +89,7 @@ namespace Btd
             next.SetTopLeft(static_cast<int>(startPosition.X), static_cast<int>(startPosition.Y));
             next.SetActive(true);
             next.SetIsPoped(false);
+            next.SetIsGoaled(false);
             BloonPool.pop();
             BloonVector.push_back(next);
         }

@@ -57,6 +57,7 @@ namespace Btd
         bool IsPoped();
         bool IsGoaled();
         void SetIsPoped(bool poped);
+        void SetIsGoaled(bool goaled);
         void SetLayer(int layer);
         void SetFreezeTime(int time);
         int GetLayer();

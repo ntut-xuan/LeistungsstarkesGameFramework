@@ -105,6 +105,11 @@ namespace Btd
         _isPoped = poped;
     }
 
+    void Bloon::SetIsGoaled(bool goaled)
+    {
+        _isGoaled = goaled;
+    }
+
     void Bloon::SetLayer(int layer)
     {
         _layer = layer;
