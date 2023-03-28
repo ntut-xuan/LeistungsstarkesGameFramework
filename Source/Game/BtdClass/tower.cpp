@@ -53,18 +53,17 @@ namespace Btd
         target = BloonFactory::BloonVector[0];
         for (Bloon b : BloonFactory::BloonVector)
         {
-            if (Vector2Distance(b.GetCenter(), this->GetCenter()) > (float)_range)
+            if (Vector2Distance(b.GetCenter(), this->GetCenter()) <= (float)_range)
             {
-                continue;
-            }
-            if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
-                (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
-                    Vector2Distance(b.GetCenter(),
-                                    Map::GetRoute()[b.GetNowRouteTarget()]) <
-                    Vector2Distance(target.GetCenter(),
-                                    Map::GetRoute()[b.GetNowRouteTarget()])))
-            {
-                target = b;
+                if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
+                    (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
+                        Vector2Distance(b.GetCenter(),
+                                        Map::GetRoute()[b.GetNowRouteTarget()]) <
+                        Vector2Distance(target.GetCenter(),
+                                        Map::GetRoute()[b.GetNowRouteTarget()])))
+                {
+                    target = b;
+                }
             }
         }
 

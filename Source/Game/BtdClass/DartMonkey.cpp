@@ -39,7 +39,6 @@ namespace Btd
 		{
 			if (tmp > rangeList[i])  index = indexList[i];
 		}
-    	TRACE("%d\n", index);
     	return index - 1;
     }
 
