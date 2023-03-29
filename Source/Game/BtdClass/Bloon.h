@@ -13,6 +13,7 @@ namespace Btd
         float _speed = 3;
         int _layer = 0;
         bool _isPoped = false;
+        bool _isGoaled = false;
         BloonType::BloonType type = BloonType::normal;
         int _freezeTime;
 
@@ -54,8 +55,11 @@ namespace Btd
         }
 
         bool IsPoped();
+        bool IsGoaled();
         void SetIsPoped(bool poped);
+        void SetIsGoaled(bool goaled);
         void SetLayer(int layer);
         void SetFreezeTime(int time);
+        int GetLayer();
     };
 }
