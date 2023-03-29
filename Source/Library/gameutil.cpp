@@ -278,6 +278,7 @@ namespace game_framework {
 		frameIndex = 0;
 		isAnimation = true;
 		isAnimationDone = false;
+		last_time = clock();
 	}
 
 	//! 物件是否為動畫物件。
