@@ -45,9 +45,7 @@ namespace Btd
 
     void Bloon::Move(vector<Vector2> route)
     {
-        Vector2 nowLocal;
-        nowLocal.X = static_cast<float>(GetLeft());
-        nowLocal.Y = static_cast<float>(GetTop());
+        Vector2 nowLocal = GetBottomCenter();
         Vector2 target = route[nowRouteTarget];
         if (static_cast<int>(target.X) == static_cast<int>(nowLocal.X) && static_cast<int>(target.Y) == static_cast<int>
             (nowLocal.Y))
@@ -65,14 +63,15 @@ namespace Btd
         Vector2 moveDirection = Normailize(deltaMove);
         float speed = GetSpeed();
         deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
-        int left = GetLeft() + static_cast<int>(deltaMove.X);
-        int top = GetTop() + static_cast<int>(deltaMove.Y);
-        if (Vector2Distance({static_cast<float>(left), static_cast<float>(top)}, target) < speed * 2 / 3)
+
+        int x = static_cast<int>(nowLocal.X) + static_cast<int>(deltaMove.X);
+        int y = static_cast<int>(nowLocal.Y) + static_cast<int>(deltaMove.Y);
+        if (Vector2Distance({static_cast<float>(x), static_cast<float>(y)}, target) < speed * 2 / 3)
         {
-            left = static_cast<int>(target.X);
-            top = static_cast<int>(target.Y);
+            x = static_cast<int>(target.X);
+            y = static_cast<int>(target.Y);
         }
-        SetTopLeft(left, top);
+        SetBottomCenter(x, y);
     }
 
     BloonType::BloonType Bloon::GetType()
