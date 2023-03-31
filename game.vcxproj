@@ -249,9 +249,11 @@
         <ClCompile Include="Source\Game\BtdClass\BtdUtil.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Button.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Cannon.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\DartMonkey.cpp" />
         <ClCompile Include="Source\Game\BtdClass\FactoryButton.cpp" />
         <ClCompile Include="Source\Game\BtdClass\GameManager.cpp" />
         <ClCompile Include="Source\Game\BtdClass\GameObject.cpp" />
+        <ClCompile Include="Source\Game\BtdClass\IceGas.cpp" />
         <ClCompile Include="Source\Game\BtdClass\IceTower.cpp" />
         <ClCompile Include="Source\Game\BtdClass\map.cpp" />
         <ClCompile Include="Source\Game\BtdClass\NailMachine.cpp" />
@@ -289,6 +291,7 @@
         <ClInclude Include="Source\Game\BtdClass\FactoryButton.h" />
         <ClInclude Include="Source\Game\BtdClass\GameManager.h" />
         <ClInclude Include="Source\Game\BtdClass\GameObject.h" />
+        <ClInclude Include="Source\Game\BtdClass\IceGas.h" />
         <ClInclude Include="Source\Game\BtdClass\IceTower.h" />
         <ClInclude Include="Source\Game\BtdClass\map.h" />
         <ClInclude Include="Source\Game\BtdClass\NailMachine.h" />

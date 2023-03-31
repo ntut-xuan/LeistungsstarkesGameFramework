@@ -44,7 +44,7 @@ namespace Btd
 
         float GetShootDeltaTime();
         void SetShootDeltaTime(float time);
-        void Shoot(Vector2 target);
+        virtual void Shoot(Vector2 target);
         virtual void PushThrowablePool();
         void UpdateThrowable();
         float GetShootTimeCounter();

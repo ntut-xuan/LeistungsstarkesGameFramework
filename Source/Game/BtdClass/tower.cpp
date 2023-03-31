@@ -34,6 +34,11 @@ namespace Btd
         for (int i=(int)throwables.size()-1; i>=0; i--)
         {
             throwables[i]->Update();
+            if (Vector2Distance(throwables[i]->GetCenter(), GetCenter()) > (float)_range + 70) 
+            {
+                // if throwable fly over (range + 70) distance will be erase
+                throwables[i]->SetActive(false);
+            }
             if (!throwables[i]->GetActive())
             {
                 throwables.erase(throwables.begin() + i);
@@ -48,10 +53,21 @@ namespace Btd
         target = BloonFactory::BloonVector[0];
         for (Bloon b : BloonFactory::BloonVector)
         {
-            if (Vector2Distance(GetCenter(), b.GetCenter()) <
-                Vector2Distance(GetCenter(), target.GetCenter()))
+            if (Vector2Distance(b.GetCenter(), this->GetCenter()) <= (float)_range)
             {
-                target = b;
+                if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
+                    (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
+                        Vector2Distance(b.GetCenter(),
+                                        Map::GetRoute()[b.GetNowRouteTarget()]) <
+                        Vector2Distance(target.GetCenter(),
+                                        Map::GetRoute()[b.GetNowRouteTarget()])))
+                {
+                    target = b;
+                }
+            }
+            else
+            {
+                continue;
             }
         }
 
@@ -84,7 +100,7 @@ namespace Btd
                 Bloon target = focus();
                 if (Vector2Distance(GetCenter(), target.GetCenter()) < static_cast<float>(_range))
                 {
-                    Shoot({static_cast<float>(target.GetLeft()), static_cast<float>(target.GetTop())});
+                    Shoot({static_cast<float>(target.GetCenter().X), static_cast<float>(target.GetCenter().Y)});
                 }
             }
             else
@@ -107,15 +123,13 @@ namespace Btd
         {
             PushThrowablePool();
         }
-        auto next = move(throwablePool.front());
+        auto next = throwablePool.front();
         Vector2 targetDirection = {
-            (target.X - GetLeft()), target.Y - GetTop()
+            target.X - GetCenter().X, target.Y - GetCenter().Y
         };
         throwablePool.pop();
         next->SetActive(true);
         next->InitByCenter(GetCenter());
-        next->SetSpeed(5);
-        next->SetMaxExistTime(300);
         next->SetMoveDirection(targetDirection.X, targetDirection.Y);
         throwables.push_back(next);
     }

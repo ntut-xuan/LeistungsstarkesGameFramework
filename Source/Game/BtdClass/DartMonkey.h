@@ -2,15 +2,14 @@
 #include "../../Library/gameutil.h"
 #include "Throwable.h"
 #include "Tower.h"
+#include <cmath>
 
 namespace Btd {
 	class DartMonkey : public  Tower{
 	public:
-		DartMonkey()
-		{
-			_range = 160;
-			ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
-		}
+		DartMonkey();
+		void Shoot(Vector2 target) override;
+        void PushThrowablePool();
 	private:
 	};
 

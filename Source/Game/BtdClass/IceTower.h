@@ -7,6 +7,7 @@ namespace Btd
     {
     public:
         IceTower();
+        void PushThrowablePool();
     };
     
 }
