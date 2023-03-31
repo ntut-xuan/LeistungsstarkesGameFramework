@@ -151,6 +151,11 @@ void GameManager::OnShow() {
   }
 }
 
+bool GameManager::GetLose()
+{
+  return IsLose;
+}
+
 void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
   if (nChar == 'A') {
     BloonFactory::MakeBloon(Layer::red);
