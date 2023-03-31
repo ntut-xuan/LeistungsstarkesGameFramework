@@ -111,6 +111,18 @@ namespace Btd
     void Map::SetRoute(vector<Vector2> route)
     {
         _route = route;
+    }
+
+    bool Map::IsOverLapRoad(GameObject target)
+    {
+        for (int i=0; i<(int)_road.size()-1; i++)
+        {
+            if(Btd::IsOverlap(_road[i], target))
+            {
+                return true;
+            }
+        }
+        return false;
     };
 
     Vector2 Map::_startPosition = {0, 0};

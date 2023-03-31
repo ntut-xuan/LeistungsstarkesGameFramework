@@ -48,7 +48,8 @@ void GameManager::OnKeyUp(UINT, UINT, UINT) {}
 void GameManager::OnLButtonDown(UINT nFlags, CPoint point) {
   Map.HandleButtonClicked();
   if (!TowerFactory::TowerVector.empty() &&
-      TowerFactory::TowerVector.back()->IsMovable()) {
+      TowerFactory::TowerVector.back()->IsMovable() &&
+      !Map.IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back()))) {
     TowerFactory::TowerVector.back()->SetIsMove(false);
     TowerFactory::TowerVector.back()->SetActive(true);
   }
@@ -76,6 +77,7 @@ void GameManager::OnMouseMove(UINT nFlags, CPoint point) {
       TowerFactory::TowerVector.back()->IsMovable()) {
     TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
                                                 GetCursorPosY());
+    TowerFactory::TowerVector.back()->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
   }
 }
 
@@ -84,6 +86,17 @@ void GameManager::OnRButtonDown(UINT nFlags, CPoint point) {}
 void GameManager::OnRButtonUp(UINT nFlags, CPoint point) {}
 
 void GameManager::OnMove() {
+  if (!TowerFactory::TowerVector.empty())
+  {
+    if (Map.IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())))
+    {
+      TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
+    }
+    else
+    {
+      TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
+    }
+  }
   Map.UpdateFatoryButton();
 
   switch (GameFlow) {
