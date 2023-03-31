@@ -94,17 +94,9 @@ namespace Btd
     	double tmp = 0;
         if (angleInDegrees < 0)  angleInDegrees += 360;
         // angle:
-    	// up:   180 <-- 270 --> 0
+    	// up:   180 <-- 270 --> 359
     	// down: 180 <--  90 --> 0
-		tmp = angleInDegrees / 22.5;
-        if (tmp >= 15 || tmp < 1)
-        {
-            index = 0;
-        }
-        else
-        {
-            index = (int)std::ceil(std::floor(tmp)/2);
-        }
-    	return index;
+		tmp = (angleInDegrees+25) / 45 ;
+        return  (int)std::floor(tmp)%8;
     }
 }

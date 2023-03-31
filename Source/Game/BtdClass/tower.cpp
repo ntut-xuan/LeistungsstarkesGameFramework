@@ -65,6 +65,10 @@ namespace Btd
                     target = b;
                 }
             }
+            else
+            {
+                continue;
+            }
         }
 
         return target;
@@ -121,7 +125,7 @@ namespace Btd
         }
         auto next = throwablePool.front();
         Vector2 targetDirection = {
-            (target.X - GetLeft()), target.Y - GetTop()
+            target.X - GetCenter().X, target.Y - GetCenter().Y
         };
         throwablePool.pop();
         next->SetActive(true);
