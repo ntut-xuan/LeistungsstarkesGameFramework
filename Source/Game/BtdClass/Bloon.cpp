@@ -81,7 +81,6 @@ namespace Btd
 
     void Bloon::Pop(int damage, DamageType damageType)
     {
-        this;
         if (resistDamegeMap[type][damageType])
         {
             _layer -= damage;
@@ -92,6 +91,7 @@ namespace Btd
             return;
         }
         SetFrameIndexOfBitmap(_layer);
+        Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
     }
 
     bool Bloon::IsPoped()

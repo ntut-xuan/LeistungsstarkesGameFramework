@@ -82,8 +82,10 @@ namespace Btd
                 next.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
                 next.SetLayer(type);
                 next.SetFrameIndexOfBitmap(type);
-                next.Setspeed(3);
-            // next.Setspeed(40);
+            // next.Setspeed(3);
+                next.Setspeed(
+                    static_cast<float>(0.5 * (float)next.GetLayer() * (float)next.GetLayer() + (float)next.GetLayer() +
+                        3));
                 next.SetType(BloonType::normal);
                 break;
             }
@@ -113,14 +115,12 @@ namespace Btd
                 Bloon b = BloonVector[i];
                 if (BloonVector[i].IsPoped())
                 {
-                    BloonType::BloonType type = BloonVector[i].GetType();
+                    auto b = BloonVector[i];
+                    BloonType::BloonType type = b.GetType();
                     if (type == BloonType::black || type == BloonType::white)
                     {
-                        int nowRouteTarget = BloonVector[i].GetNowRouteTarget();
-                        Vector2 position = {
-                            static_cast<float>(BloonVector[i].GetLeft()),
-                            static_cast<float>(BloonVector[i].GetTop())
-                        };
+                        int nowRouteTarget = b.GetNowRouteTarget();
+                        Vector2 position = b.GetBottomCenter();
                         MakeBloonByPosition(Layer::yellow, position, nowRouteTarget);
                         MakeBloonByPosition(Layer::yellow, position, nowRouteTarget);
                     }
