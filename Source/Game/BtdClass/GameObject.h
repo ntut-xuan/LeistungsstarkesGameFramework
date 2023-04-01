@@ -23,6 +23,8 @@ namespace Btd
         void SetCenter(int x, int y);
         bool IsCursorFocus();
         void SetClicked(bool clicked);
+        void SetHeight(int height);
+        void SetWidth(int width);
     };
     bool IsOverlap(GameObject& character, GameObject& other);
 }

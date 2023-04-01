@@ -54,6 +54,18 @@ namespace Btd
         _isClicked = clicked;
     }
 
+    void GameObject::SetHeight(int height)
+    {
+        int bias = height - GetHeight();
+        locations[frameIndex].bottom += bias;
+    }
+
+    void GameObject::SetWidth(int width)
+    {
+        int bias = width - GetWidth();
+        locations[frameIndex].right += bias;
+    }
+
     bool IsOverlap(GameObject& character, GameObject& other)
     {
         if ((character.GetTop() + character.GetHeight() >= other.GetTop() &&
