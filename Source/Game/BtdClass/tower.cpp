@@ -11,6 +11,7 @@ namespace Btd
         _isUpgrade[0] = false;
         _isUpgrade[1] = false;
         _isMovable = true;
+        _isClicked = true;
         ThrowablePath = {"resources/towers/bomb/bomb.bmp"};
     }
 
@@ -77,7 +78,10 @@ namespace Btd
 
     void Tower::TowerShow()
     {
-        this->RangeCircle.ShowBitmap((float)_range / 100.0);
+        if (_isClicked)
+        {
+            this->RangeCircle.ShowBitmap((float)_range / 100.0);
+        }
         this->ShowBitmap();
         for (int i=0; i<(int)throwables.size(); i++)
         {

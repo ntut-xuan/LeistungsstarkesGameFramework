@@ -47,6 +47,7 @@ void GameManager::OnKeyUp(UINT, UINT, UINT) {}
 
 void GameManager::OnLButtonDown(UINT nFlags, CPoint point) {
   Map.HandleButtonClicked();
+  TowerFactory::HandleTowerClicked();
   if (!TowerFactory::TowerVector.empty() &&
       TowerFactory::TowerVector.back()->IsMovable() &&
       !Map.IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back()))) {
