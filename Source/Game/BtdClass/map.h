@@ -14,9 +14,9 @@ namespace Btd
         ~Map() override = default;
         const int InitMoney = 650;
         const int InitLives = 40;
-        void InitRoad();
+        virtual void InitRoad();
         void ShowRoad();
-        void InitBackground();
+        virtual void InitBackground();
         void ShowBackground();
         void InitFactoryButton();
         void ShowFactoryButton();
@@ -31,13 +31,12 @@ namespace Btd
         static void SetRoute(vector<Vector2>);
         bool IsOverLapRoad(GameObject target);
 
-    private:
+    protected:
         std::vector<GameObject> _road;
         GameObject _background;
         FactoryButton _factoryButton[5];
         static vector<Vector2> _route;
         static Vector2 _startPosition;
-
         vector<vector<UnitRound>> _rounds;
     };
 }
