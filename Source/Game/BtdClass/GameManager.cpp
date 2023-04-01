@@ -50,7 +50,7 @@ void GameManager::OnLButtonDown(UINT nFlags, CPoint point) {
   TowerFactory::HandleTowerClicked();
   if (!TowerFactory::TowerVector.empty() &&
       TowerFactory::TowerVector.back()->IsMovable() &&
-      !Map.IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back()))) {
+      TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0) {
     TowerFactory::TowerVector.back()->SetIsMove(false);
     TowerFactory::TowerVector.back()->SetActive(true);
   }
@@ -85,10 +85,23 @@ void GameManager::OnRButtonDown(UINT nFlags, CPoint point) {}
 
 void GameManager::OnRButtonUp(UINT nFlags, CPoint point) {}
 
+bool isOverlapOtherTower(GameObject t)
+{
+  for (int i=0; i<(int)TowerFactory::TowerVector.size()-1; i++)
+  {
+    if (IsOverlap(*TowerFactory::TowerVector[i], t))
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
 void GameManager::OnMove() {
   if (!TowerFactory::TowerVector.empty())
   {
-    if (Map.IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())))
+    if (Map.IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
+      isOverlapOtherTower(static_cast<GameObject>(*TowerFactory::TowerVector.back())))
     {
       TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
     }

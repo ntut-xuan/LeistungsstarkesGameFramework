@@ -22,7 +22,6 @@ namespace Btd
         void SetIsMove(bool move);
         Vector2 getLocation();
         int GetRange();
-        void setUpdate(int level);
         void SetThrowablePath(vector<string> name);
         vector<string> ThrowablePath;
         vector<shared_ptr<Throwable>> throwables;
