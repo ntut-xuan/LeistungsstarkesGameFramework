@@ -26,8 +26,8 @@ namespace Btd
                 for (int i = 0; i < 8; i++)
                 {
                     Vector2 target = {
-                        GetLeft() + direction.X,
-                        GetTop()+ direction.Y
+                        GetCenter().X + direction.X,
+                        GetCenter().Y + direction.Y
                     };
                     Shoot(target);
                     direction = Spin45(direction);

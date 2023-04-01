@@ -65,10 +65,6 @@ namespace Btd
                     target = b;
                 }
             }
-            else
-            {
-                continue;
-            }
         }
 
         return target;
