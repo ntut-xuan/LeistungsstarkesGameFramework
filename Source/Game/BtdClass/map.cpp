@@ -22,7 +22,7 @@ namespace Btd
         for (int i = 0; i < 15; i++)
         {
             GameObject tmpRoad;
-            string filePath = "resources/roads/road_" + std::to_string(i + 1) + ".bmp";
+            string filePath = "resources/map/medium/roads/road_" + std::to_string(i + 1) + ".bmp";
             tmpRoad.LoadBitmapByString({filePath});
             tmpRoad.LoadEmptyBitmap(tmpRoad.GetHeight()-20, tmpRoad.GetWidth()-20);
             tmpRoad.SetTopLeft(static_cast<int>(location[i].X), static_cast<int>(location[i].Y));
@@ -41,7 +41,7 @@ namespace Btd
 
     void Map::InitBackground()
     {
-        _background.LoadBitmapByString({"resources/map.bmp"});
+        _background.LoadBitmapByString({"resources/map/easy/map.bmp"});
         _background.SetTopLeft(0, 0);
     }
 
