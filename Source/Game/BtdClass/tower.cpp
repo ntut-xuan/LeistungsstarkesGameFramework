@@ -49,25 +49,31 @@ namespace Btd
 
     Bloon Tower::focus()
     {
-        Bloon target;
-
-        target = BloonFactory::BloonVector[0];
-        for (Bloon b : BloonFactory::BloonVector)
+        Bloon target = BloonFactory::BloonVector[0];
+        // first 'for' can detect the first bloon in range
+        // second 'for' decide the proper bloon to shoot
+        for (int i=0; i<(int)BloonFactory::BloonVector.size(); i++)
         {
-            if (Vector2Distance(b.GetCenter(), this->GetCenter()) <= (float)_range)
+            if (Vector2Distance(BloonFactory::BloonVector[i].GetCenter(), this->GetCenter()) <= (float)_range)
             {
-                if ((b.GetNowRouteTarget() > target.GetNowRouteTarget()) ||
-                    (b.GetNowRouteTarget() == target.GetNowRouteTarget() &&
-                        Vector2Distance(b.GetCenter(),
-                                        Map::GetRoute()[b.GetNowRouteTarget()]) <
+                target = BloonFactory::BloonVector[i];
+            }
+        }
+        for (int i=0; i<(int)BloonFactory::BloonVector.size(); i++)
+        {
+            if (Vector2Distance(BloonFactory::BloonVector[i].GetCenter(), this->GetCenter()) <= (float)_range)
+            {
+                if ((BloonFactory::BloonVector[i].GetNowRouteTarget() > target.GetNowRouteTarget()) ||
+                    (BloonFactory::BloonVector[i].GetNowRouteTarget() == target.GetNowRouteTarget() &&
+                        Vector2Distance(BloonFactory::BloonVector[i].GetCenter(),
+                                        Map::GetRoute()[BloonFactory::BloonVector[i].GetNowRouteTarget()]) <
                         Vector2Distance(target.GetCenter(),
-                                        Map::GetRoute()[b.GetNowRouteTarget()])))
+                                        Map::GetRoute()[BloonFactory::BloonVector[i].GetNowRouteTarget()])))
                 {
-                    target = b;
+                    target = BloonFactory::BloonVector[i];
                 }
             }
         }
-
         return target;
     }
 
