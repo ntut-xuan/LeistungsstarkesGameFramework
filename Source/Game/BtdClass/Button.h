@@ -9,9 +9,6 @@ namespace Btd
     public:
         Button() = default;
         ~Button() = default;
-        bool IsCursorFocus();
-        void SetClicked(bool clicked);
     protected:
-        bool _isClicked = false;
     };
 }

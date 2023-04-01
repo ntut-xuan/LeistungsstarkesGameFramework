@@ -38,7 +38,22 @@ namespace Btd
     {
         SetTopLeft(x-GetWidth()/2, y-GetHeight()/2);
     }
-    
+
+    bool GameObject::IsCursorFocus()
+    {
+        if (GetLeft() < GetCursorPosX() && GetCursorPosX() < GetLeft() + GetWidth() &&
+            GetTop() < GetCursorPosY() && GetCursorPosY() < GetTop() + GetHeight())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void GameObject::SetClicked(bool clicked)
+    {
+        _isClicked = clicked;
+    }
+
     bool IsOverlap(GameObject& character, GameObject& other)
     {
         if ((character.GetTop() + character.GetHeight() >= other.GetTop() &&
