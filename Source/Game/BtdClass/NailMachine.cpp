@@ -13,6 +13,8 @@ namespace Btd
 
     void NailMachine::Update()
     {
+        RangeCircle.SetCenter((int)GetCenter().X - (_range - 100),
+            (int)GetCenter().Y - (_range - 100));
         if (_isActive)
         {
             UpdateThrowable();

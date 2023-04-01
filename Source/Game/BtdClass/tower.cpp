@@ -79,6 +79,16 @@ namespace Btd
         shootTimecounter = tome;
     }
 
+    void Tower::TowerShow()
+    {
+        this->RangeCircle.ShowBitmap((float)_range / 100.0);
+        this->ShowBitmap();
+        for (int i=0; i<(int)throwables.size(); i++)
+        {
+            throwables[i]->ShowBitmap();
+        }
+    }
+
     float Tower::GetShootDeltaTime()
     {
         return shootDeltaTime;
@@ -91,6 +101,8 @@ namespace Btd
 
     void Tower::Update()
     {
+        RangeCircle.SetCenter((int)GetCenter().X - (_range - 100),
+            (int)GetCenter().Y - (_range - 100));
         if (_isActive)
         {
             UpdateThrowable();

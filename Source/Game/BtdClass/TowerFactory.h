@@ -28,7 +28,7 @@ namespace Btd
                 dartMonkey->SetShootDeltaTime(3);
                 dartMonkey->SetActive(false);
                 dartMonkey->SetFrameIndexOfBitmap(6);
-                dartMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(255, 255, 255));
+                dartMonkey->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
                 dartMonkey->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
                 TowerVector.push_back(dartMonkey);
                 break;
@@ -44,7 +44,7 @@ namespace Btd
                 cannon->SetShootDeltaTime(3);
                 cannon->SetActive(false);
                 cannon->SetFrameIndexOfBitmap(6);
-                cannon->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(255, 255, 255));
+                cannon->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
                 cannon->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
                 TowerVector.push_back(cannon);
                 break;
@@ -57,7 +57,7 @@ namespace Btd
                 nailMachine->SetIsMove(true);
                 nailMachine->SetShootDeltaTime(3);
                 nailMachine->SetActive(false);
-                nailMachine->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(255, 255, 255));
+                nailMachine->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
                 nailMachine->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
                 TowerVector.push_back(nailMachine);
                 break;
@@ -70,7 +70,7 @@ namespace Btd
                 ice->SetIsMove(true);
                 ice->SetShootDeltaTime(3);
                 ice->SetActive(false);
-                ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(255, 255, 255));
+                ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
                 ice->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
                 TowerVector.push_back(ice);
             }

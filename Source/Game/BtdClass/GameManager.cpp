@@ -77,7 +77,6 @@ void GameManager::OnMouseMove(UINT nFlags, CPoint point) {
       TowerFactory::TowerVector.back()->IsMovable()) {
     TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
                                                 GetCursorPosY());
-    TowerFactory::TowerVector.back()->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
   }
 }
 
