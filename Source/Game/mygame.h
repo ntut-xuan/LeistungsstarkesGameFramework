@@ -42,6 +42,7 @@
 #include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
 #include "BtdClass/GameManager.h"
+#include  "BtdClass/Button.h"
 
 namespace game_framework
 {
@@ -77,7 +78,8 @@ namespace game_framework
     private:
         CMovingBitmap logo; // csie的logo
         CMovingBitmap startButton;
-        Btd::Map map;
+        Btd::Map _map;
+        Btd::Button _mapButton[3];
     };
 
     /////////////////////////////////////////////////////////////////////////////

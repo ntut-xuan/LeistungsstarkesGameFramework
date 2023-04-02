@@ -8,6 +8,7 @@ namespace Btd
     public:
         const int InitMoney = 650;
         const int InitLives = 75;
+        void InitBackground() override;
     protected:
     };
     

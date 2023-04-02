@@ -34,8 +34,14 @@ void CGameStateInit::OnInit()
     //
     startButton.LoadBitmapByString({"resources/start_button.bmp"});
     startButton.SetTopLeft(742, 620);
-    map.InitRoad();
-    map.InitBackground();
+    _mapButton[0].LoadBitmapByString({"resources/easy.bmp", "resources/play.bmp"});
+    _mapButton[1].LoadBitmapByString({"resources/medium.bmp", "resources/play.bmp"});
+    _mapButton[2].LoadBitmapByString({"resources/hard.bmp", "resources/play.bmp"});
+    _mapButton[0].SetCenter(210, 325);
+    _mapButton[1].SetCenter(390, 325);
+    _mapButton[2].SetCenter(570, 325);
+    _map.InitRoad();
+    _map.InitBackground();
 }
 
 void CGameStateInit::OnBeginState()
@@ -77,8 +83,12 @@ void showInfoText()
 
 void CGameStateInit::OnShow()
 {
-    map.ShowBackground();
-    map.ShowRoad();
+    _map.ShowBackground();
+    _map.ShowRoad();
     startButton.ShowBitmap();
+    for (int i=0; i< 3; i++)
+    {
+        _mapButton[i].ShowBitmap();
+    }
     showInfoText();
 }
