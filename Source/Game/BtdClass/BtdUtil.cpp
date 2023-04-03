@@ -3,7 +3,6 @@
 
 #include <complex>
 
-#include "GameObject.h"
 #define M_PI 3.1415926
 
 namespace Btd
@@ -70,16 +69,6 @@ namespace Btd
         HWND hwnd = FindWindowA(nullptr, "Game");
         ScreenToClient(hwnd, &p);
         return static_cast<int>(p.y);
-    }
-
-    bool isPointInBmp(POINT p, game_framework::CMovingBitmap target)
-    {
-        if (target.GetLeft() <= p.x && p.x <= target.GetLeft() + target.GetWidth() &&
-            target.GetTop() <= p.y && p.y <= target.GetTop() + target.GetHeight())
-        {
-            return true;
-        }
-        return false;
     }
 
 	int GetFrameIndexByVector2(Vector2 dir)

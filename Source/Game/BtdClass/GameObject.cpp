@@ -77,4 +77,14 @@ namespace Btd
         }
         return false;
     }
+
+    bool IsCursorInObj(GameObject obj)
+    {
+        if (obj.GetLeft() <= GetCursorPosX() && GetCursorPosX() <= obj.GetLeft() + obj.GetWidth() &&
+            obj.GetTop() <= GetCursorPosY() && GetCursorPosY() <= obj.GetTop() + obj.GetHeight())
+        {
+            return true;
+        }
+        return false;
+    }
 }

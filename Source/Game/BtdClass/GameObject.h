@@ -27,4 +27,5 @@ namespace Btd
         void SetWidth(int width);
     };
     bool IsOverlap(GameObject& character, GameObject& other);
+    bool IsCursorInObj(GameObject target);
 }

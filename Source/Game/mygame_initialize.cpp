@@ -55,12 +55,7 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    POINT p;
-    GetCursorPos(&p);
-    HWND hwnd = FindWindowA(nullptr, "Game");
-    ScreenToClient(hwnd, &p);
-
-    if (Btd::isPointInBmp(p, startButton))
+    if (Btd::IsCursorInObj(startButton))
     {
         GotoGameState(GAME_STATE_RUN); // 切換至GAME_STATE_RUN
     }
