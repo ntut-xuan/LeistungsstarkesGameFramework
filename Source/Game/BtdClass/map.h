@@ -30,6 +30,7 @@ namespace Btd
         static void SetStartPosition(Vector2);
         static void SetRoute(vector<Vector2>);
         bool IsOverLapRoad(GameObject target);
+        static MapType::MapType mapType;
 
     protected:
         std::vector<GameObject> _road;
