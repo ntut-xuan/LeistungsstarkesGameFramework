@@ -256,7 +256,6 @@
         <ClCompile Include="Source\Game\BtdClass\IceGas.cpp" />
         <ClCompile Include="Source\Game\BtdClass\IceTower.cpp" />
         <ClCompile Include="Source\Game\BtdClass\map.cpp" />
-        <ClCompile Include="Source\Game\BtdClass\mapEasy.cpp" />
         <ClCompile Include="Source\Game\BtdClass\NailMachine.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Throwable.cpp" />
         <ClCompile Include="Source\Game\BtdClass\Tower.cpp" />
@@ -295,7 +294,6 @@
         <ClInclude Include="Source\Game\BtdClass\IceGas.h" />
         <ClInclude Include="Source\Game\BtdClass\IceTower.h" />
         <ClInclude Include="Source\Game\BtdClass\map.h" />
-        <ClInclude Include="Source\Game\BtdClass\mapEasy.h" />
         <ClInclude Include="Source\Game\BtdClass\NailMachine.h" />
         <ClInclude Include="Source\Game\BtdClass\Throwable.h" />
         <ClInclude Include="Source\Game\BtdClass\Tower.h" />
