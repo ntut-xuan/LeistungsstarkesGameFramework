@@ -55,9 +55,13 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    if (Btd::IsCursorInObj(startButton))
+    for (int i=0; i<3; i++)
     {
-        GotoGameState(GAME_STATE_RUN); // 切換至GAME_STATE_RUN
+        if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+        {
+            _mapButton[i].SetClicked(true);
+            GotoGameState(GAME_STATE_RUN);
+        }
     }
 }
 

@@ -61,7 +61,7 @@ void GameManager::OnLButtonDown(UINT nFlags, CPoint point) {
     HWND hwnd = FindWindowA(nullptr, "Game");
     ScreenToClient(hwnd, &p);
 
-    if (isPointInBmp(p, startButton)) {
+    if (IsCursorInObj(startButton)) {
       GameFlow = Shoot;
     }
     break;
