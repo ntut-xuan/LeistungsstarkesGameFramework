@@ -9,24 +9,42 @@
 
 namespace Btd
 {
-    void Map::InitRoad()
+    void Map::InitRoad(MapType::MapType type)
     {
-        std::string roadFileName;
-        vector<Vector2> location{
-            {0, 320}, {105, 124}, {170, 124},
-            {285, 190}, {285, 390}, {43, 510},
-            {43, 575}, {110, 636}, {620, 426},
-            {429, 428}, {429, 249}, {496, 249},
-            {622, 46}, {368, 48}, {368, 0}
+        int roadSize[3] = {0, 15, 0};
+        string roadPath[3] = {"easy", "medium", "hard"};
+        vector<Vector2> location[3] =
+        {
+            {
+                {0, 320}, {105, 124}, {170, 124},
+                {285, 190}, {285, 390}, {43, 510},
+                {43, 575}, {110, 636}, {620, 426},
+                {429, 428}, {429, 249}, {496, 249},
+                {622, 46}, {368, 48}, {368, 0}
+            },
+            {
+                {0, 320}, {105, 124}, {170, 124},
+                {285, 190}, {285, 390}, {43, 510},
+                {43, 575}, {110, 636}, {620, 426},
+                {429, 428}, {429, 249}, {496, 249},
+                {622, 46}, {368, 48}, {368, 0}
+            },
+            {
+                {0, 320}, {105, 124}, {170, 124},
+                {285, 190}, {285, 390}, {43, 510},
+                {43, 575}, {110, 636}, {620, 426},
+                {429, 428}, {429, 249}, {496, 249},
+                {622, 46}, {368, 48}, {368, 0}
+            }
         };
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < roadSize[type]; i++)
         {
             GameObject tmpRoad;
-            string filePath = "resources/map/medium/roads/road_" + std::to_string(i + 1) + ".bmp";
+            string filePath = "resources/map/" + roadPath[type] + "/roads/road_" + std::to_string(i + 1) + ".bmp";
             tmpRoad.LoadBitmapByString({filePath});
             tmpRoad.SetHeight(tmpRoad.GetHeight()-10);
             tmpRoad.SetWidth(tmpRoad.GetWidth()-10);
-            tmpRoad.SetTopLeft(static_cast<int>(location[i].X), static_cast<int>(location[i].Y));
+            tmpRoad.SetTopLeft(static_cast<int>(location[type][i].X), static_cast<int>(location[type][i].Y));
             tmpRoad.SetTag("road");
             _road.push_back(tmpRoad);
         }
@@ -34,7 +52,7 @@ namespace Btd
 
     void Map::ShowRoad()
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < (int)_road.size(); i++)
         {
             _road[i].ShowBitmap();
         }

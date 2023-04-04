@@ -42,6 +42,16 @@ namespace Btd
         };
     }
 
+    namespace MapType
+    {
+        enum MapType
+        {
+            easy = 0,
+            medium,
+            hard
+        };
+    }
+
     struct UnitRound
     {
         Layer::NormalBloonLayer type;

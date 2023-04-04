@@ -29,8 +29,7 @@ void CGameStateInit::InitSelectedMaps ()
     {
         shared_ptr<Btd::Map> m = make_shared<Btd::Map>(Btd::Map());
         m->InitBackground(backgroundBmps[i]);
-        m->InitRoad();
-        m->SetTag("map" + std::to_string(i));
+        m->InitRoad(static_cast<Btd::MapType::MapType>(i));
         selectedMaps.push_back(m);
     }
 }

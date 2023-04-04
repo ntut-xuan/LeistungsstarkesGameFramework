@@ -14,7 +14,7 @@ namespace Btd
         ~Map() override = default;
         const int InitMoney = 650;
         const int InitLives = 40;
-        virtual void InitRoad();
+        virtual void InitRoad(MapType::MapType type);
         void ShowRoad();
         virtual void InitBackground(vector<string> backgroundBmp);
         void ShowBackground();
