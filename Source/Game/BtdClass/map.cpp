@@ -11,16 +11,17 @@ namespace Btd
 {
     void Map::InitRoad(MapType::MapType type)
     {
-        int roadSize[3] = {0, 15, 0};
+        int roadSize[3];
         string roadPath[3] = {"easy", "medium", "hard"};
         vector<Vector2> location[3] =
         {
             {
-                {0, 320}, {105, 124}, {170, 124},
-                {285, 190}, {285, 390}, {43, 510},
-                {43, 575}, {110, 636}, {620, 426},
-                {429, 428}, {429, 249}, {496, 249},
-                {622, 46}, {368, 48}, {368, 0}
+                {0, 340}, {248, 143}, {131, 140},
+                {132, 26}, {132, 22}, {604, 23},
+                {414, 152}, {415, 155}, {412, 288},
+                {617, 288}, {138, 436}, {141, 436},
+                {144, 652}, {327, 510}, {327, 512},
+                {502, 507}
             },
             {
                 {0, 320}, {105, 124}, {170, 124},
@@ -30,13 +31,12 @@ namespace Btd
                 {622, 46}, {368, 48}, {368, 0}
             },
             {
-                {0, 320}, {105, 124}, {170, 124},
-                {285, 190}, {285, 390}, {43, 510},
-                {43, 575}, {110, 636}, {620, 426},
-                {429, 428}, {429, 249}, {496, 249},
-                {622, 46}, {368, 48}, {368, 0}
             }
         };
+        for (int i =0; i<3; i++)
+        {
+            roadSize[i] = (int)location[i].size();
+        }
         for (int i = 0; i < roadSize[type]; i++)
         {
             GameObject tmpRoad;
@@ -135,7 +135,7 @@ namespace Btd
 
     bool Map::IsOverLapRoad(GameObject target)
     {
-        for (int i=0; i<(int)_road.size()-1; i++)
+        for (int i=0; i<(int)_road.size(); i++)
         {
             if(Btd::IsOverlap(_road[i], target))
             {
