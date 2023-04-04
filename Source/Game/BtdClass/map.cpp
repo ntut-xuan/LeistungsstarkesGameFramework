@@ -40,9 +40,9 @@ namespace Btd
         }
     }
 
-    void Map::InitBackground()
+    void Map::InitBackground(vector<string> backgroundBmp)
     {
-        _background.LoadBitmapByString({"resources/map/medium/map.bmp"});
+        _background.LoadBitmapByString(backgroundBmp);
         _background.SetTopLeft(0, 0);
     }
 

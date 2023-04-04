@@ -42,7 +42,6 @@
 #include "BtdClass/map.h"
 #include "BtdClass/GameObject.h"
 #include "BtdClass/GameManager.h"
-#include "BtdClass/MapButton.h"
 
 namespace game_framework
 {
@@ -73,13 +72,16 @@ namespace game_framework
         void OnBeginState() override; // 設定每次重玩所需的變數
         void OnKeyUp(UINT, UINT, UINT) override; // 處理鍵盤Up的動作
         void OnLButtonDown(UINT nFlags, CPoint point) override; // 處理滑鼠的動作
+        void OnMouseMove(UINT nFlags, CPoint point) override; // 處理滑鼠的動作 
+        void InitSelectedMaps();
+        vector<shared_ptr<Btd::Map>> selectedMaps;
+        shared_ptr<Btd::Map> map;
     protected:
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         CMovingBitmap logo; // csie的logo
         Btd::GameObject startButton;
-        Btd::Map _map;
-        Btd::MapButton _mapButton[3];
+        Btd::Button _mapButton[3];
     };
 
     /////////////////////////////////////////////////////////////////////////////

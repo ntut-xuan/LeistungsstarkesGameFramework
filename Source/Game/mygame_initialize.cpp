@@ -18,6 +18,23 @@ CGameStateInit::CGameStateInit(CGame* g) : CGameState(g)
 {
 }
 
+void CGameStateInit::InitSelectedMaps ()
+{
+    vector<string> backgroundBmps[3] = {
+        {"resources/map/easy/map.bmp"},
+        {"resources/map/medium/map.bmp"},
+        {"resources/map/hard/map.bmp"} 
+    };
+    for (int i=0; i<3; i++)
+    {
+        shared_ptr<Btd::Map> m = make_shared<Btd::Map>(Btd::Map());
+        m->InitBackground(backgroundBmps[i]);
+        m->InitRoad();
+        m->SetTag("map" + std::to_string(i));
+        selectedMaps.push_back(m);
+    }
+}
+
 void CGameStateInit::OnInit()
 {
     //
@@ -40,8 +57,9 @@ void CGameStateInit::OnInit()
     _mapButton[0].SetCenter(210, 325);
     _mapButton[1].SetCenter(390, 325);
     _mapButton[2].SetCenter(570, 325);
-    _map.InitRoad();
-    _map.InitBackground();
+    InitSelectedMaps();
+    map = make_shared<Btd::Map>(Btd::Map());
+    map = selectedMaps[0];
 }
 
 void CGameStateInit::OnBeginState()
@@ -60,9 +78,22 @@ void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
         if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
         {
             _mapButton[i].SetClicked(true);
+            Btd::GameManager::map = map;
             GotoGameState(GAME_STATE_RUN);
         }
     }
+}
+
+void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
+{
+    for (int i=0; i<3; i++)
+    {
+        if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+        {
+            map = selectedMaps[i];
+        }
+    }
+    
 }
 
 void showInfoText()
@@ -82,8 +113,8 @@ void showInfoText()
 
 void CGameStateInit::OnShow()
 {
-    _map.ShowBackground();
-    _map.ShowRoad();
+    map->ShowBackground();
+    map->ShowRoad();
     startButton.ShowBitmap();
     for (int i=0; i< 3; i++)
     {
