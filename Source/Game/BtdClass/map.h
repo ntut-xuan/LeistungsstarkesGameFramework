@@ -16,7 +16,7 @@ namespace Btd
         const int InitLives = 40;
         virtual void InitRoad(MapType::MapType type);
         void ShowRoad();
-        virtual void InitBackground(vector<string> backgroundBmp);
+        virtual void InitBackground(MapType::MapType type);
         void ShowBackground();
         void InitFactoryButton();
         void ShowFactoryButton();

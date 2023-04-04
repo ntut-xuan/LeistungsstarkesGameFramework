@@ -58,9 +58,14 @@ namespace Btd
         }
     }
 
-    void Map::InitBackground(vector<string> backgroundBmp)
+    void Map::InitBackground(MapType::MapType type)
     {
-        _background.LoadBitmapByString(backgroundBmp);
+        vector<string> backGroundPath[3] = {
+            {"resources/map/easy/map.bmp"},
+            {"resources/map/medium/map.bmp"},
+            {"resources/map/hard/map.bmp"},
+        };
+        _background.LoadBitmapByString(backGroundPath[type]);
         _background.SetTopLeft(0, 0);
     }
 
