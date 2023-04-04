@@ -41,7 +41,7 @@ namespace Btd
 
     void Map::InitBackground()
     {
-        _background.LoadBitmapByString({"resources/map/easy/map.bmp"});
+        _background.LoadBitmapByString({"resources/map/medium/map.bmp"});
         _background.SetTopLeft(0, 0);
     }
 
