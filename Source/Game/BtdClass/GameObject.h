@@ -10,6 +10,7 @@ namespace Btd
         bool _isActive = true;
         string _tag = "default";
         int deltaTime = 10;
+        bool _isClicked;
 
     public:
         virtual ~GameObject() = default;
@@ -20,6 +21,8 @@ namespace Btd
         string GetTag();
         Vector2 GetCenter();
         void SetCenter(int x, int y);
+        bool IsCursorFocus();
+        void SetClicked(bool clicked);
     };
     bool IsOverlap(GameObject& character, GameObject& other);
 }

@@ -20,7 +20,7 @@ namespace Btd
         void ShowBackground();
         void InitFactoryButton();
         void ShowFactoryButton();
-        void UpdateFatoryButton();
+        void UpdateFactoryButton();
         void HandleButtonClicked();
         GameObject GetBackground();
         vector<vector<UnitRound>> GetRounds();
@@ -29,6 +29,7 @@ namespace Btd
         static Vector2 GetStartPosition();
         static void SetStartPosition(Vector2);
         static void SetRoute(vector<Vector2>);
+        bool IsOverLapRoad(GameObject target);
 
     private:
         std::vector<GameObject> _road;

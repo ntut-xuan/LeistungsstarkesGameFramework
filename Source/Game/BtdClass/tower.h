@@ -22,25 +22,14 @@ namespace Btd
         void SetIsMove(bool move);
         Vector2 getLocation();
         int GetRange();
-        void setUpdate(int level);
         void SetThrowablePath(vector<string> name);
         vector<string> ThrowablePath;
         vector<shared_ptr<Throwable>> throwables;
 
 
-        void SetThrowableLocal(Vector2 local)
-        {
-            throwLocal = local;
-        }
+        void SetThrowableLocal(Vector2 local);
 
-        void TowerShow()
-        {
-            this->ShowBitmap();
-            for (int i=0; i<(int)throwables.size(); i++)
-            {
-                throwables[i]->ShowBitmap();
-            }
-        }
+        void TowerShow();
 
         float GetShootDeltaTime();
         void SetShootDeltaTime(float time);
@@ -49,6 +38,7 @@ namespace Btd
         void UpdateThrowable();
         float GetShootTimeCounter();
         void SetShootTimeCounter(float);
+        GameObject RangeCircle;
 
     protected:
         bool _isUpgrade[2];
