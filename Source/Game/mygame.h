@@ -80,8 +80,6 @@ namespace game_framework
     protected:
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
-        CMovingBitmap logo; // csie的logo
-        Btd::GameObject startButton;
         Btd::Button _mapButton[3];
     };
 
