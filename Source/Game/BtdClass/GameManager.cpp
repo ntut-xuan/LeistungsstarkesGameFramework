@@ -16,6 +16,7 @@ namespace Btd
         map->SetStartPosition({static_cast<float>(0), mapSize.Y * 0.4F});
         life = map->InitLives;
         money = map->InitMoney;
+        db.LoadRounds();
         map->SetRoute({
             {mapSize.X * 0.11F, mapSize.Y * 0.4F},
             {mapSize.X * 0.11F, mapSize.Y * 0.12F},
