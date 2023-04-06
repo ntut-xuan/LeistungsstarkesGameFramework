@@ -39,6 +39,7 @@ namespace Btd
         static vector<Vector2> _route;
         static Vector2 _startPosition;
         vector<vector<UnitRound>> _rounds;
+        GameObject _sidebar;
     };
 }
 

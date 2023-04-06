@@ -160,8 +160,8 @@ namespace Btd
     void GameManager::OnShow()
     {
         map->ShowBackground();
-        map->ShowFactoryButton();
         map->ShowRoad();
+        map->ShowFactoryButton();
         for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
             TowerFactory::TowerVector[i]->TowerShow();
