@@ -28,6 +28,9 @@ namespace Btd
         int GetLive() const { return live; }
         int GetMoney() const { return money; }
         int GetRound() const { return round; }
+
+        bool GetLose();
+
         static shared_ptr<Map> map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;

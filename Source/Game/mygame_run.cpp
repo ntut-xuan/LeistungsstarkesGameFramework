@@ -4,6 +4,7 @@
 #include <ddraw.h>
 #include <string>
 
+#include "config.h"
 #include "../Library/audio.h"
 #include "../Library/gameutil.h"
 #include "../Library/gamecore.h"
@@ -27,6 +28,7 @@ CGameStateRun::~CGameStateRun()
 void CGameStateRun::OnBeginState()
 {
     gm.OnBeginState();
+    gameOverCounter = 0;
 }
 
 void CGameStateRun::OnMove() // 移動遊戲元素
@@ -89,8 +91,36 @@ void ShowGameStatusUI(int round, int lives, int money)
     CDDraw::ReleaseBackCDC();
 }
 
+void GameOver(int size)
+{
+    //size 150
+    int screenCenterX = SIZE_X / 2;
+    int screenCenterY = SIZE_Y / 2;
+    int textLeft =screenCenterX -static_cast<int>(2.5*size);
+    int textTop = screenCenterY - size;
+    int delta = size / 30;
+    auto cdc = CDDraw::GetBackCDC();
+    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(255, 255, 255), 800);
+    CTextDraw::Print(cdc, textLeft+delta, textTop+delta, "game  over");
+    CTextDraw::Print(cdc, textLeft-delta, textTop+delta, "game  over");
+    CTextDraw::Print(cdc, textLeft+delta, textTop-delta, "game  over");
+    CTextDraw::Print(cdc, textLeft-delta, textTop-delta, "game  over");
+
+    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(0, 0, 0), 800);
+    CTextDraw::Print(cdc, textLeft, textTop, "game  over");
+    CDDraw::ReleaseBackCDC();
+}
+
 void CGameStateRun::OnShow()
 {
     gm.OnShow();
     ShowGameStatusUI(gm.GetRound(), gm.GetLive(), gm.GetMoney());
+    if (gm.GetLose())
+    {
+        GameOver(gameOverCounter++);
+        if (gameOverCounter >= 180)
+        {
+            GotoGameState(GAME_STATE_INIT);
+        }
+    }
 }

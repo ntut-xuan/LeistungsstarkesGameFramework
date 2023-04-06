@@ -76,6 +76,7 @@ namespace game_framework
         void InitSelectedMaps();
         vector<shared_ptr<Btd::Map>> selectedMaps;
         shared_ptr<Btd::Map> map;
+
     protected:
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
@@ -109,6 +110,7 @@ namespace game_framework
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
         Btd::GameManager gm;
+        int gameOverCounter;
     };
 
     /////////////////////////////////////////////////////////////////////////////
