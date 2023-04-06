@@ -18,7 +18,7 @@ namespace Btd
         switch (type)
         {
         case MapType::easy:
-            SetStartPosition({static_cast<float>(0), mapSize.Y * 0.4F});
+            SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
             SetRoute({
                 {mapSize.X * 0.29F, mapSize.Y * 0.5F},
                 {mapSize.X * 0.29F, mapSize.Y * 0.25F},

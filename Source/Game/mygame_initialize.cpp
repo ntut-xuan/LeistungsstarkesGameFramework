@@ -48,8 +48,6 @@ void CGameStateInit::OnInit()
     //
     // 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
     //
-    startButton.LoadBitmapByString({"resources/start_button.bmp"});
-    startButton.SetTopLeft(742, 620);
     _mapButton[0].LoadBitmapByString({"resources/easy.bmp", "resources/play.bmp"});
     _mapButton[1].LoadBitmapByString({"resources/medium.bmp", "resources/play.bmp"});
     _mapButton[2].LoadBitmapByString({"resources/hard.bmp", "resources/play.bmp"});
@@ -120,7 +118,6 @@ void CGameStateInit::OnShow()
 {
     map->ShowBackground();
     map->ShowRoad();
-    startButton.ShowBitmap();
     for (int i = 0; i < 3; i++)
     {
         _mapButton[i].ShowBitmap();
