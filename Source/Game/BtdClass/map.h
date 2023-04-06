@@ -20,7 +20,7 @@ namespace Btd
         void ShowBackground();
         void InitFactoryButton();
         void ShowFactoryButton();
-        void UpdateFatoryButton();
+        void UpdateFactoryButton();
         void HandleButtonClicked();
         GameObject GetBackground();
         vector<vector<UnitRound>> GetRounds();

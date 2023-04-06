@@ -103,7 +103,7 @@ void GameManager::OnMove() {
       TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
     }
   }
-  map->UpdateFatoryButton();
+  map->UpdateFactoryButton();
 
   switch (GameFlow) {
   case Prepare:

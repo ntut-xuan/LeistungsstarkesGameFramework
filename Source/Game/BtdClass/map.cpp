@@ -102,7 +102,7 @@ namespace Btd
         }
     }
 
-    void Map::UpdateFatoryButton()
+    void Map::UpdateFactoryButton()
     {
         for (int i = 0; i < 5; i++)
         {
