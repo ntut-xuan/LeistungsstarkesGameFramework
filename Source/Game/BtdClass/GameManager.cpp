@@ -14,7 +14,7 @@ namespace Btd
         };
         map->InitFactoryButton();
         map->SetStartPosition({static_cast<float>(0), mapSize.Y * 0.4F});
-        life = map->InitLives;
+        live = map->InitLives;
         money = map->InitMoney;
         db.LoadRounds();
         map->SetRoute({
@@ -139,8 +139,8 @@ namespace Btd
                 {
                     GameFlow = Win;
                 }
-                life -= BloonFactory::subLifeByGoalBloon();
-                if (life <= 0)
+                live -= BloonFactory::subLifeByGoalBloon();
+                if (live <= 0)
                 {
                     GameFlow = GameEnd;
                     IsLose = true;
@@ -233,5 +233,6 @@ namespace Btd
             BloonFactory::MakeBloon(Layer::white);
         }
     }
+
     shared_ptr<Map> GameManager::map = make_shared<Map>(Map());
 } // namespace Btd
