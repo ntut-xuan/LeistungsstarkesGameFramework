@@ -12,6 +12,7 @@ namespace Btd
     public:
         Map() = default;
         ~Map() override = default;
+        void SetRoutesByMap(MapType::MapType type);
         const int InitMoney = 650;
         const int InitLives = 40;
         virtual void InitRoad(MapType::MapType type);
