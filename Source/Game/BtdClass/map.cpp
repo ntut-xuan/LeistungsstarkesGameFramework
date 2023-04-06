@@ -101,6 +101,8 @@ namespace Btd
             tmpRoad.SetTag("road");
             _road.push_back(tmpRoad);
         }
+        _sidebar.LoadBitmapByString({"resources/map/" + roadPath[type] + "/sidebar.bmp"});
+        _sidebar.SetTopLeft(732, 11);
     }
 
     void Map::ShowRoad()
@@ -109,6 +111,7 @@ namespace Btd
         {
             _road[i].ShowBitmap();
         }
+        _sidebar.ShowBitmap();
     }
 
     void Map::InitBackground(MapType::MapType type)
@@ -199,6 +202,10 @@ namespace Btd
             {
                 return true;
             }
+        }
+        if (Btd::IsOverlap(_sidebar, target))
+        {
+            return true;
         }
         return false;
     };

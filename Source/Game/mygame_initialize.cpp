@@ -84,11 +84,17 @@ void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
 {
-    for (int i = 0; i < 3; i++)
+    if (_mapButton[2].IsBitmapLoaded())
     {
-        if (IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+        for (int i = 0; i < 3; i++)
         {
-            map = selectedMaps[i];
+            if (IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+            {
+                if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+                {
+                    map = selectedMaps[i];
+                }
+            }
         }
     }
 }
