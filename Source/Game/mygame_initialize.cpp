@@ -18,6 +18,22 @@ CGameStateInit::CGameStateInit(CGame* g) : CGameState(g)
 {
 }
 
+void CGameStateInit::InitSelectedMaps ()
+{
+    vector<string> backgroundBmps[3] = {
+        {"resources/map/easy/map.bmp"},
+        {"resources/map/medium/map.bmp"},
+        {"resources/map/hard/map.bmp"} 
+    };
+    for (int i=0; i<3; i++)
+    {
+        shared_ptr<Btd::Map> m = make_shared<Btd::Map>(Btd::Map());
+        m->InitBackground(static_cast<Btd::MapType::MapType>(i));
+        m->InitRoad(static_cast<Btd::MapType::MapType>(i));
+        selectedMaps.push_back(m);
+    }
+}
+
 void CGameStateInit::OnInit()
 {
     //
@@ -34,8 +50,15 @@ void CGameStateInit::OnInit()
     //
     startButton.LoadBitmapByString({"resources/start_button.bmp"});
     startButton.SetTopLeft(742, 620);
-    map.InitRoad();
-    map.InitBackground();
+    _mapButton[0].LoadBitmapByString({"resources/easy.bmp", "resources/play.bmp"});
+    _mapButton[1].LoadBitmapByString({"resources/medium.bmp", "resources/play.bmp"});
+    _mapButton[2].LoadBitmapByString({"resources/hard.bmp", "resources/play.bmp"});
+    _mapButton[0].SetCenter(210, 325);
+    _mapButton[1].SetCenter(390, 325);
+    _mapButton[2].SetCenter(570, 325);
+    InitSelectedMaps();
+    map = make_shared<Btd::Map>(Btd::Map());
+    map = selectedMaps[0];
 }
 
 void CGameStateInit::OnBeginState()
@@ -49,15 +72,27 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    POINT p;
-    GetCursorPos(&p);
-    HWND hwnd = FindWindowA(nullptr, "Game");
-    ScreenToClient(hwnd, &p);
-
-    if (Btd::isPointInBmp(p, startButton))
+    for (int i=0; i<3; i++)
     {
-        GotoGameState(GAME_STATE_RUN); // 切換至GAME_STATE_RUN
+        if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+        {
+            _mapButton[i].SetClicked(true);
+            Btd::GameManager::map = map;
+            GotoGameState(GAME_STATE_RUN);
+        }
     }
+}
+
+void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
+{
+    for (int i=0; i<3; i++)
+    {
+        if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+        {
+            map = selectedMaps[i];
+        }
+    }
+    
 }
 
 void showInfoText()
@@ -77,8 +112,12 @@ void showInfoText()
 
 void CGameStateInit::OnShow()
 {
-    map.ShowBackground();
-    map.ShowRoad();
+    map->ShowBackground();
+    map->ShowRoad();
     startButton.ShowBitmap();
+    for (int i=0; i< 3; i++)
+    {
+        _mapButton[i].ShowBitmap();
+    }
     showInfoText();
 }

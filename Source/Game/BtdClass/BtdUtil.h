@@ -42,6 +42,16 @@ namespace Btd
         };
     }
 
+    namespace MapType
+    {
+        enum MapType
+        {
+            easy = 0,
+            medium,
+            hard
+        };
+    }
+
     struct UnitRound
     {
         Layer::NormalBloonLayer type;
@@ -73,6 +83,5 @@ namespace Btd
     float Vector2Distance(Vector2 a, Vector2 b);
     Vector2 Spin45(Vector2 a);
     Vector2 Spin90(Vector2 a);
-    bool isPointInBmp(POINT p, game_framework::CMovingBitmap target);
 	int GetFrameIndexByVector2(Vector2 dir);
 }

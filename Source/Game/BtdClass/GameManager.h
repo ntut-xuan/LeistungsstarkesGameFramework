@@ -25,12 +25,11 @@ namespace Btd
         void OnRButtonUp(UINT nFlags, CPoint point); // 處理滑鼠的動作
         void OnMove(); // 移動遊戲元素
         void OnShow(); // 顯示這個狀態的遊戲畫面
-
-        Map Map;
+        static shared_ptr<Map> map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;
         int round = 0;
-        game_framework::CMovingBitmap startButton;
+        GameObject startButton;
         BloonDB db;
     };
 }
