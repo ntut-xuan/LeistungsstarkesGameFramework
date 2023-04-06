@@ -10,7 +10,7 @@ namespace Btd
     {
     private:
         bool IsLose = false;
-        int life = 10;
+        int live = 10;
         int money = 0;
 
     public:
@@ -25,6 +25,9 @@ namespace Btd
         void OnRButtonUp(UINT nFlags, CPoint point); // 處理滑鼠的動作
         void OnMove(); // 移動遊戲元素
         void OnShow(); // 顯示這個狀態的遊戲畫面
+        int GetLive() const { return live; }
+        int GetMoney() const { return money; }
+        int GetRound() const { return round; }
         static shared_ptr<Map> map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;
