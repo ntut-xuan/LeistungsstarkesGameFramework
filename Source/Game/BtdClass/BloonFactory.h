@@ -58,8 +58,8 @@ namespace Btd
                 tmpBloon.LoadBitmapByString(balloonPath, RGB(0, 0, 0));
                 tmpBloon.SetLayer(0);
                 tmpBloon.SetFrameIndexOfBitmap(0);
-                tmpBloon.SetTopLeft(static_cast<int>(startPosition.X),
-                                    static_cast<int>(startPosition.Y));
+                tmpBloon.SetBottomCenter(static_cast<int>(startPosition.X),
+                                         static_cast<int>(startPosition.Y));
                 tmpBloon.SetActive(false);
                 BloonPool.push(tmpBloon);
             }
@@ -83,13 +83,16 @@ namespace Btd
                 next.SetLayer(type);
                 next.SetFrameIndexOfBitmap(type);
                 next.Setspeed(3);
-            // next.Setspeed(70);
+                next.Setspeed(
+                    static_cast<float>(0.5 * static_cast<float>(next.GetLayer()) * static_cast<float>(next.GetLayer()) +
+                        static_cast<float>(next.GetLayer()) +
+                        3));
                 next.SetType(BloonType::normal);
                 break;
             }
             next.SetNowRouteTarget(nowRouteTarget);
-            next.SetTopLeft(static_cast<int>(startPosition.X),
-                            static_cast<int>(startPosition.Y));
+            next.SetBottomCenter(static_cast<int>(startPosition.X),
+                                 static_cast<int>(startPosition.Y));
             next.SetActive(true);
             next.SetIsPoped(false);
             next.SetIsGoaled(false);
@@ -117,10 +120,7 @@ namespace Btd
                     if (type == BloonType::black || type == BloonType::white)
                     {
                         int nowRouteTarget = BloonVector[i].GetNowRouteTarget();
-                        Vector2 position = {
-                            static_cast<float>(BloonVector[i].GetLeft()),
-                            static_cast<float>(BloonVector[i].GetTop())
-                        };
+                        Vector2 position = b.GetBottomCenter();
                         MakeBloonByPosition(Layer::yellow, position, nowRouteTarget);
                         MakeBloonByPosition(Layer::yellow, position, nowRouteTarget);
                     }
@@ -132,9 +132,9 @@ namespace Btd
 
         static void ClearActiveBloon()
         {
-            for(auto &b : BloonVector)
+            for (auto& b : BloonVector)
             {
-                    BloonPool.push(b);
+                BloonPool.push(b);
             }
             BloonVector.clear();
         }

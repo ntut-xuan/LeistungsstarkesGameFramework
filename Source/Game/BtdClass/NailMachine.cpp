@@ -13,8 +13,8 @@ namespace Btd
 
     void NailMachine::Update()
     {
-        RangeCircle.SetCenter((int)GetCenter().X - (_range - 100),
-            (int)GetCenter().Y - (_range - 100));
+        RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
+                              static_cast<int>(GetCenter().Y) - (_range - 100));
         if (_isActive)
         {
             UpdateThrowable();
@@ -32,6 +32,7 @@ namespace Btd
                             GetCenter().Y + direction.Y
                         };
                         Shoot(target);
+                        throwables.back()->SetSpeed(20);
                         direction = Spin45(direction);
                     }
                 }
@@ -45,7 +46,7 @@ namespace Btd
 
     void NailMachine::PushThrowablePool()
     {
-        shared_ptr<Throwable> nail = make_shared<Throwable>(Throwable());
+        auto nail = make_shared<Throwable>(Throwable());
         nail->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         nail->SetSpeed(5);
         throwablePool.push(nail);
