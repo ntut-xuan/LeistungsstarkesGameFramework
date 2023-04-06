@@ -8,7 +8,11 @@ namespace Btd
 {
     void GameManager::OnBeginState()
     {
+        GameFlow = Prepare;
+        round = 0;
+        TowerFactory::TowerVector.clear();
         map->InitFactoryButton();
+        BloonFactory::ClearActiveBloon();
         live = map->InitLives;
         money = map->InitMoney;
         db.LoadRounds();
@@ -120,6 +124,7 @@ namespace Btd
                 live -= BloonFactory::subLifeByGoalBloon();
                 if (live <= 0)
                 {
+                    live = 0;
                     GameFlow = GameEnd;
                     IsLose = true;
                 }
@@ -141,15 +146,6 @@ namespace Btd
 
             break;
         case GameEnd:
-            // todo print win or lose and can restart
-            if (IsLose)
-            {
-                // todo print lose
-            }
-            else
-            {
-                // todo print win
-            }
 
             break;
         default: ;
@@ -184,6 +180,11 @@ namespace Btd
         }
     }
 
+    bool GameManager::GetLose()
+    {
+        return IsLose;
+    }
+
     void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     {
         if (nChar == 'A')
@@ -209,6 +210,10 @@ namespace Btd
         if (nChar == 'X')
         {
             BloonFactory::MakeBloon(Layer::white);
+        }
+        if (nChar == 'P')
+        {
+            live = 0;
         }
     }
 
