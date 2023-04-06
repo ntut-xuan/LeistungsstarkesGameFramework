@@ -21,11 +21,14 @@ namespace Btd
         string GetTag();
         Vector2 GetCenter();
         void SetCenter(int x, int y);
+        void SetBottomCenter(int x, int y);
+        Vector2 GetBottomCenter();
         bool IsCursorFocus();
         void SetClicked(bool clicked);
         void SetHeight(int height);
         void SetWidth(int width);
     };
+
     bool IsOverlap(GameObject& character, GameObject& other);
     bool IsCursorInObj(GameObject target);
 }

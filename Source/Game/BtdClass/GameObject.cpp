@@ -36,8 +36,19 @@ namespace Btd
 
     void GameObject::SetCenter(int x, int y)
     {
-        SetTopLeft(x-GetWidth()/2, y-GetHeight()/2);
+        SetTopLeft(x - GetWidth() / 2, y - GetHeight() / 2);
     }
+
+    void GameObject::SetBottomCenter(int x, int y)
+    {
+        SetTopLeft(x - GetWidth() / 2, y - GetHeight());
+    }
+
+    Vector2 GameObject::GetBottomCenter()
+    {
+        return {static_cast<float>(GetLeft()) + GetWidth() / 2, static_cast<float>(GetTop()) + GetHeight()};
+    }
+
 
     bool GameObject::IsCursorFocus()
     {
