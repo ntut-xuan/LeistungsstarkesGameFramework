@@ -13,6 +13,8 @@ namespace Btd
 
     void NailMachine::Update()
     {
+        RangeCircle.SetCenter((int)GetCenter().X - (_range - 100),
+            (int)GetCenter().Y - (_range - 100));
         if (_isActive)
         {
             UpdateThrowable();
@@ -21,14 +23,17 @@ namespace Btd
             {
                 Bloon targetBloon = focus();
                 Vector2 direction = {1, 0};
-                for (int i = 0; i < 8; i++)
+                if (Vector2Distance(GetCenter(), targetBloon.GetCenter()) < static_cast<float>(_range))
                 {
-                    Vector2 target = {
-                        GetLeft() + direction.X,
-                        GetTop()+ direction.Y
-                    };
-                    Shoot(target);
-                    direction = Spin45(direction);
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Vector2 target = {
+                            GetCenter().X + direction.X,
+                            GetCenter().Y + direction.Y
+                        };
+                        Shoot(target);
+                        direction = Spin45(direction);
+                    }
                 }
             }
             else
