@@ -8,31 +8,10 @@ namespace Btd
 {
     void GameManager::OnBeginState()
     {
-        Vector2 mapSize = {
-            static_cast<float>(map->GetBackground().GetWidth()),
-            static_cast<float>(map->GetBackground().GetHeight())
-        };
         map->InitFactoryButton();
-        map->SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
         live = map->InitLives;
         money = map->InitMoney;
         db.LoadRounds();
-        map->SetRoute({
-            {mapSize.X * 0.14F, mapSize.Y * 0.5F},
-            {mapSize.X * 0.14F, mapSize.Y * 0.22F},
-            {mapSize.X * 0.32F, mapSize.Y * 0.22F},
-            {mapSize.X * 0.32F, mapSize.Y * 0.72F},
-            {mapSize.X * 0.07F, mapSize.Y * 0.72F},
-            {mapSize.X * 0.07F, mapSize.Y * 0.90F},
-            {mapSize.X * 0.67F, mapSize.Y * 0.90F},
-            {mapSize.X * 0.67F, mapSize.Y * 0.63F},
-            {mapSize.X * 0.47F, mapSize.Y * 0.63F},
-            {mapSize.X * 0.47F, mapSize.Y * 0.4F},
-            {mapSize.X * 0.67F, mapSize.Y * 0.4F},
-            {mapSize.X * 0.67F, mapSize.Y * 0.13F},
-            {mapSize.X * 0.40F, mapSize.Y * 0.13F},
-            {mapSize.X * 0.40F, mapSize.Y * -0.18F},
-        });
         map->SetRounds(db.GetRounds());
         BloonFactory::SetNextRound(map->GetRounds()[round]);
         IsLose = false;
@@ -233,5 +212,5 @@ namespace Btd
         }
     }
 
-    shared_ptr<Map> GameManager::map;
+    shared_ptr<Map> GameManager::map = make_shared<Map>(Map());
 } // namespace Btd

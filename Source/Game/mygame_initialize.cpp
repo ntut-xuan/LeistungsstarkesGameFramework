@@ -18,16 +18,16 @@ CGameStateInit::CGameStateInit(CGame* g) : CGameState(g)
 {
 }
 
-void CGameStateInit::InitSelectedMaps ()
+void CGameStateInit::InitSelectedMaps()
 {
     vector<string> backgroundBmps[3] = {
         {"resources/map/easy/map.bmp"},
         {"resources/map/medium/map.bmp"},
-        {"resources/map/hard/map.bmp"} 
+        {"resources/map/hard/map.bmp"}
     };
-    for (int i=0; i<3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        shared_ptr<Btd::Map> m = make_shared<Btd::Map>(Btd::Map());
+        auto m = make_shared<Btd::Map>(Btd::Map());
         m->InitBackground(static_cast<Btd::MapType::MapType>(i));
         m->InitRoad(static_cast<Btd::MapType::MapType>(i));
         selectedMaps.push_back(m);
@@ -72,11 +72,12 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-    for (int i=0; i<3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+        if (IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
         {
             _mapButton[i].SetClicked(true);
+            map->SetRoutesByMap(static_cast<Btd::MapType::MapType>(i));
             Btd::GameManager::map = map;
             GotoGameState(GAME_STATE_RUN);
         }
@@ -85,14 +86,13 @@ void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CGameStateInit::OnMouseMove(UINT nFlags, CPoint point)
 {
-    for (int i=0; i<3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        if (Btd::IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
+        if (IsCursorInObj(static_cast<Btd::GameObject>(_mapButton[i])))
         {
             map = selectedMaps[i];
         }
     }
-    
 }
 
 void showInfoText()
@@ -115,7 +115,7 @@ void CGameStateInit::OnShow()
     map->ShowBackground();
     map->ShowRoad();
     startButton.ShowBitmap();
-    for (int i=0; i< 3; i++)
+    for (int i = 0; i < 3; i++)
     {
         _mapButton[i].ShowBitmap();
     }
