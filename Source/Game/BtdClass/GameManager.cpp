@@ -211,4 +211,5 @@ void GameManager::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) {
     BloonFactory::MakeBloon(Layer::white);
   }
 }
+         shared_ptr<Map> GameManager::map;
 } // namespace Btd
