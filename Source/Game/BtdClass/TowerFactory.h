@@ -15,7 +15,6 @@ namespace Btd
         static vector<shared_ptr<Tower>> TowerVector;
         static void MakeTower (TowerType attribute);
         static void HandleTowerClicked();
-
     private: 
     };
 }

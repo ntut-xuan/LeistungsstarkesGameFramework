@@ -55,6 +55,7 @@ namespace Btd
         vector<vector<UnitRound>> GetRounds()
         {
             return _roundses;
-        };
+        }
+        
     };
 } // namespace Btd

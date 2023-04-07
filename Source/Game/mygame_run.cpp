@@ -27,6 +27,7 @@ CGameStateRun::~CGameStateRun()
 void CGameStateRun::OnBeginState()
 {
     gm.OnBeginState();
+    gameOverCounter = 0;
 }
 
 void CGameStateRun::OnMove() // 移動遊戲元素
@@ -89,8 +90,34 @@ void ShowGameStatusUI(int round, int lives, int money)
     CDDraw::ReleaseBackCDC();
 }
 
+void GameOver(int size)
+{
+    //size 150
+    auto cdc = CDDraw::GetBackCDC();
+    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(255, 255, 255), 800);
+    CTextDraw::Print(cdc, 95, 205, "game over");
+    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(255, 255, 255), 800);
+    CTextDraw::Print(cdc, 105, 195, "game over");
+    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(255, 255, 255), 800);
+    CTextDraw::Print(cdc, 95, 195, "game over");
+    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(255, 255, 255), 800);
+    CTextDraw::Print(cdc, 105, 205, "game over");
+    
+    CTextDraw::ChangeFontLog(cdc, size, "微軟正黑體",RGB(0, 0, 0), 800);
+    CTextDraw::Print(cdc, 100, 200, "game over");
+    CDDraw::ReleaseBackCDC();
+}
+
 void CGameStateRun::OnShow()
 {
     gm.OnShow();
     ShowGameStatusUI(gm.GetRound(), gm.GetLive(), gm.GetMoney());
+    if (gm.GetLose())
+    {
+        GameOver(gameOverCounter++);
+        if (gameOverCounter >= 200)
+        {
+            GotoGameState(GAME_STATE_INIT);
+        }
+    }
 }
