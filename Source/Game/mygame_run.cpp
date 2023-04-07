@@ -74,23 +74,23 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point) // 處理滑鼠的動
     gm.OnRButtonUp(nFlags, point);
 }
 
+void ShowGameStatusUI(int round, int lives, int money)
+{
+    CDC* pDC = CDDraw::GetBackCDC();
+    CTextDraw::ChangeFontLog(pDC, 27, "Courier New", RGB(255, 255, 255), 620);
+    CTextDraw::Print(pDC, 749, 25, "Round:   " + to_string(round + 1));
+    CTextDraw::Print(pDC, 749, 61, "Money: " + to_string(money));
+    CTextDraw::Print(pDC, 749, 97, "Lives:  " + to_string(lives));
+
+    CTextDraw::ChangeFontLog(pDC, 24, "Courier New", RGB(255, 255, 255), 620);
+    CTextDraw::Print(pDC, 749, 152, "Build Towers");
+    CTextDraw::Print(pDC, 749, 152, "____________");
+
+    CDDraw::ReleaseBackCDC();
+}
+
 void CGameStateRun::OnShow()
 {
     gm.OnShow();
-    
-    if(gm.GetLose())
-    {
-        auto cdc =  CDDraw::GetBackCDC();
-        CTextDraw::ChangeFontLog(cdc ,150,"微軟正黑體",RGB(255,255,255),800);
-        CTextDraw::Print(cdc,95,205,"gameover");
-        CTextDraw::ChangeFontLog(cdc ,150,"微軟正黑體",RGB(255,255,255),800);
-        CTextDraw::Print(cdc,105,195,"gameover");
-        CTextDraw::ChangeFontLog(cdc ,150,"微軟正黑體",RGB(255,255,255),800);
-        CTextDraw::Print(cdc,95,195,"gameover");
-        CTextDraw::ChangeFontLog(cdc ,150,"微軟正黑體",RGB(255,255,255),800);
-        CTextDraw::Print(cdc,105,205,"gameover");
-        CTextDraw::ChangeFontLog(cdc ,150,"微軟正黑體",RGB(0,0,0),800);
-        CTextDraw::Print(cdc,100,200,"gameover");
-        CDDraw::ReleaseBackCDC();
-    }
+    ShowGameStatusUI(gm.GetRound(), gm.GetLive(), gm.GetMoney());
 }

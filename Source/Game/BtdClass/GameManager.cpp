@@ -15,7 +15,7 @@ namespace Btd
         };
         map->InitFactoryButton();
         map->SetStartPosition({static_cast<float>(0), mapSize.Y * 0.4F});
-        life = map->InitLives;
+        live = map->InitLives;
         money = map->InitMoney;
         db.LoadRounds();
         map->SetRoute({
@@ -40,15 +40,12 @@ namespace Btd
         IsLose = false;
     }
 
-void GameManager::OnInit() {
-  GameFlow = Prepare;
-  startButton.LoadBitmapByString({"resources/start_button.bmp"});
-  startButton.SetTopLeft(742, 620);
-  db.LoadRounds();
-  map->SetRounds(db.GetRounds());
-  life = map->InitLives;
-  money = map->InitMoney;
-}
+    void GameManager::OnInit()
+    {
+        GameFlow = Prepare;
+        startButton.LoadBitmapByString({"resources/start_button.bmp"});
+        startButton.SetTopLeft(742, 620);
+    }
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
     {
@@ -80,19 +77,27 @@ void GameManager::OnInit() {
         }
     }
 
-void GameManager::OnLButtonUp(UINT nFlags, CPoint point) {}
+    void GameManager::OnLButtonUp(UINT nFlags, CPoint point)
+    {
+    }
 
-void GameManager::OnMouseMove(UINT nFlags, CPoint point) {
-  if (!TowerFactory::TowerVector.empty() &&
-      TowerFactory::TowerVector.back()->IsMovable()) {
-    TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
-                                                GetCursorPosY());
-  }
-}
+    void GameManager::OnMouseMove(UINT nFlags, CPoint point)
+    {
+        if (!TowerFactory::TowerVector.empty() &&
+            TowerFactory::TowerVector.back()->IsMovable())
+        {
+            TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
+                                                        GetCursorPosY());
+        }
+    }
 
-void GameManager::OnRButtonDown(UINT nFlags, CPoint point) {}
+    void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
+    {
+    }
 
-void GameManager::OnRButtonUp(UINT nFlags, CPoint point) {}
+    void GameManager::OnRButtonUp(UINT nFlags, CPoint point)
+    {
+    }
 
     bool isOverlapOtherTower(GameObject t)
     {
@@ -135,8 +140,8 @@ void GameManager::OnRButtonUp(UINT nFlags, CPoint point) {}
                 {
                     GameFlow = Win;
                 }
-                life -= BloonFactory::subLifeByGoalBloon();
-                if (life <= 0)
+                live -= BloonFactory::subLifeByGoalBloon();
+                if (live <= 0)
                 {
                     GameFlow = GameEnd;
                     IsLose = true;
@@ -233,5 +238,7 @@ void GameManager::OnRButtonUp(UINT nFlags, CPoint point) {}
         {
             BloonFactory::MakeBloon(Layer::white);
         }
-    }shared_ptr<Map> GameManager::map = make_shared<Map>(Map());
+    }
+
+    shared_ptr<Map> GameManager::map = make_shared<Map>(Map());
 } // namespace Btd
