@@ -7,13 +7,18 @@
 namespace Btd
 {
     void GameManager::OnBeginState()
-    {
-        Vector2 mapSize = {
-            static_cast<float>(Map.GetBackground().GetWidth()),
-            static_cast<float>(Map.GetBackground().GetHeight())
+    
+        {Vector2 mapSize = {
+            static_cast<float>(map->GetBackground().GetWidth()),
+            static_cast<float>(map->GetBackground().GetHeight())
+        
         };
-        Map.SetStartPosition({static_cast<float>(0), mapSize.Y * 0.4F});
-        Map.SetRoute({
+        map->InitFactoryButton();
+        map->SetStartPosition({static_cast<float>(0), mapSize.Y * 0.4F});
+        life = map->InitLives;
+        money = map->InitMoney;
+        db.LoadRounds();
+        map->SetRoute({
             {mapSize.X * 0.11F, mapSize.Y * 0.4F},
             {mapSize.X * 0.11F, mapSize.Y * 0.12F},
             {mapSize.X * 0.3F, mapSize.Y * 0.12F},
@@ -30,23 +35,20 @@ namespace Btd
             {mapSize.X * 0.38F, mapSize.Y * 0.F},
             {mapSize.X * 0.38F, mapSize.Y * -0.08F},
         });
-        BloonFactory::SetNextRound(Map.GetRounds()[round]);
+        map->SetRounds(db.GetRounds());
+        BloonFactory::SetNextRound(map->GetRounds()[round]);
         IsLose = false;
     }
 
-    void GameManager::OnInit()
-    {
-        Map.InitRoad();
-        Map.InitBackground();
-        Map.InitFactoryButton();
-        GameFlow = Prepare;
-        startButton.LoadBitmapByString({"resources/start_button.bmp"});
-        startButton.SetTopLeft(742, 620);
-        db.LoadRounds();
-        Map.SetRounds(db.GetRounds());
-        life = Map.InitLives;
-        money = Map.InitMoney;
-    }
+void GameManager::OnInit() {
+  GameFlow = Prepare;
+  startButton.LoadBitmapByString({"resources/start_button.bmp"});
+  startButton.SetTopLeft(742, 620);
+  db.LoadRounds();
+  map->SetRounds(db.GetRounds());
+  life = map->InitLives;
+  money = map->InitMoney;
+}
 
     void GameManager::OnKeyUp(UINT, UINT, UINT)
     {
@@ -54,9 +56,11 @@ namespace Btd
 
     void GameManager::OnLButtonDown(UINT nFlags, CPoint point)
     {
-        Map.HandleButtonClicked();
+        map->HandleButtonClicked();
+        TowerFactory::HandleTowerClicked();
         if (!TowerFactory::TowerVector.empty() &&
-            TowerFactory::TowerVector.back()->IsMovable())
+            TowerFactory::TowerVector.back()->IsMovable() &&
+            TowerFactory::TowerVector.back()->RangeCircle.GetFrameIndexOfBitmap() == 0)
         {
             TowerFactory::TowerVector.back()->SetIsMove(false);
             TowerFactory::TowerVector.back()->SetActive(true);
@@ -65,12 +69,7 @@ namespace Btd
         {
         case Prepare:
             {
-                POINT p;
-                GetCursorPos(&p);
-                HWND hwnd = FindWindowA(nullptr, "Game");
-                ScreenToClient(hwnd, &p);
-
-                if (isPointInBmp(p, startButton))
+                if (IsCursorInObj(startButton))
                 {
                     GameFlow = Shoot;
                 }
@@ -81,31 +80,47 @@ namespace Btd
         }
     }
 
-    void GameManager::OnLButtonUp(UINT nFlags, CPoint point)
-    {
-    }
+void GameManager::OnLButtonUp(UINT nFlags, CPoint point) {}
 
-    void GameManager::OnMouseMove(UINT nFlags, CPoint point)
+void GameManager::OnMouseMove(UINT nFlags, CPoint point) {
+  if (!TowerFactory::TowerVector.empty() &&
+      TowerFactory::TowerVector.back()->IsMovable()) {
+    TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
+                                                GetCursorPosY());
+  }
+}
+
+void GameManager::OnRButtonDown(UINT nFlags, CPoint point) {}
+
+void GameManager::OnRButtonUp(UINT nFlags, CPoint point) {}
+
+    bool isOverlapOtherTower(GameObject t)
     {
-        if (!TowerFactory::TowerVector.empty() &&
-            TowerFactory::TowerVector.back()->IsMovable())
+        for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()) - 1; i++)
         {
-            TowerFactory::TowerVector.back()->SetCenter(GetCursorPosX(),
-                                                        GetCursorPosY());
+            if (IsOverlap(*TowerFactory::TowerVector[i], t))
+            {
+                return true;
+            }
         }
-    }
-
-    void GameManager::OnRButtonDown(UINT nFlags, CPoint point)
-    {
-    }
-
-    void GameManager::OnRButtonUp(UINT nFlags, CPoint point)
-    {
+        return false;
     }
 
     void GameManager::OnMove()
     {
-        Map.UpdateFatoryButton();
+        if (!TowerFactory::TowerVector.empty())
+        {
+            if (map->IsOverLapRoad(static_cast<GameObject>(*TowerFactory::TowerVector.back())) ||
+                isOverlapOtherTower(static_cast<GameObject>(*TowerFactory::TowerVector.back())))
+            {
+                TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(1);
+            }
+            else
+            {
+                TowerFactory::TowerVector.back()->RangeCircle.SetFrameIndexOfBitmap(0);
+            }
+        }
+        map->UpdateFactoryButton();
 
         switch (GameFlow)
         {
@@ -130,13 +145,13 @@ namespace Btd
             }
         case Win:
             round++;
-            if (round >= static_cast<int>(Map.GetRounds().size()))
+            if (round >= static_cast<int>(map->GetRounds().size()))
             {
                 GameFlow = GameEnd;
             }
             else
             {
-                BloonFactory::SetNextRound(Map.GetRounds()[round]);
+                BloonFactory::SetNextRound(map->GetRounds()[round]);
                 GameFlow = Prepare;
                 money += 100;
                 // todo gold ++
@@ -166,9 +181,9 @@ namespace Btd
 
     void GameManager::OnShow()
     {
-        Map.ShowBackground();
-        Map.ShowFactoryButton();
-        Map.ShowRoad();
+        map->ShowBackground();
+        map->ShowFactoryButton();
+        map->ShowRoad();
         for (int i = 0; i < static_cast<int>(TowerFactory::TowerVector.size()); i++)
         {
             TowerFactory::TowerVector[i]->TowerShow();
@@ -218,5 +233,5 @@ namespace Btd
         {
             BloonFactory::MakeBloon(Layer::white);
         }
-    }
+    }shared_ptr<Map> GameManager::map = make_shared<Map>(Map());
 } // namespace Btd

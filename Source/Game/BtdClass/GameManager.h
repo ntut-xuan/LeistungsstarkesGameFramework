@@ -28,11 +28,11 @@ namespace Btd
 
         bool GetLose();
 
-        Map Map;
+        static shared_ptr<Map> map;
         GameFlow GameFlow;
         BtdTimer BtdTimer;
         int round = 0;
-        game_framework::CMovingBitmap startButton;
+        GameObject startButton;
         BloonDB db;
     };
 }
