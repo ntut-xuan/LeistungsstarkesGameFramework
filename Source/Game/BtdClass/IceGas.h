@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Throwable.h"
+#include "BloonFactory.h"
 
 namespace Btd
 {
@@ -7,5 +8,6 @@ namespace Btd
     {
     public:
         IceGas();
+        void DetectHitBalloon() override;
     };
 }

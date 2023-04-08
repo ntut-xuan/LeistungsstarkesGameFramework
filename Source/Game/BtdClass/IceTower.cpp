@@ -16,6 +16,8 @@ namespace Btd
         shared_ptr<IceGas> iceGas = make_shared<IceGas>(IceGas());
         iceGas->LoadBitmapByString(ThrowablePath, RGB(0, 0, 0));
         iceGas->SetSpeed(0);
+        iceGas->SetMaxExistTime(150);
+        iceGas->SetPenetrate(true);
         throwablePool.push(iceGas);
     }
 }
