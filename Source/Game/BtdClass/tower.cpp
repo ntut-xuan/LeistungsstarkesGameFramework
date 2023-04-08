@@ -32,10 +32,10 @@ namespace Btd
 
     void Tower::UpdateThrowable()
     {
-        for (int i=(int)throwables.size()-1; i>=0; i--)
+        for (int i = static_cast<int>(throwables.size()) - 1; i >= 0; i--)
         {
             throwables[i]->Update();
-            if (Vector2Distance(throwables[i]->GetCenter(), GetCenter()) > (float)_range + 70) 
+            if (Vector2Distance(throwables[i]->GetCenter(), GetCenter()) > static_cast<float>(_range) + 70)
             {
                 // if throwable fly over (range + 70) distance will be erase
                 throwables[i]->SetActive(false);
@@ -52,23 +52,26 @@ namespace Btd
         Bloon target = BloonFactory::BloonVector[0];
         // first 'for' can detect the first bloon in range
         // second 'for' decide the proper bloon to shoot
-        for (int i=0; i<(int)BloonFactory::BloonVector.size(); i++)
+        for (int i = 0; i < static_cast<int>(BloonFactory::BloonVector.size()); i++)
         {
-            if (Vector2Distance(BloonFactory::BloonVector[i].GetCenter(), this->GetCenter()) <= (float)_range)
+            if (Vector2Distance(BloonFactory::BloonVector[i].GetCenter(), this->GetCenter()) <= static_cast<float>(
+                _range))
             {
                 target = BloonFactory::BloonVector[i];
             }
         }
-        for (int i=0; i<(int)BloonFactory::BloonVector.size(); i++)
+        for (int i = 0; i < static_cast<int>(BloonFactory::BloonVector.size()); i++)
         {
-            if (Vector2Distance(BloonFactory::BloonVector[i].GetCenter(), this->GetCenter()) <= (float)_range)
+            if (Vector2Distance(BloonFactory::BloonVector[i].GetCenter(), this->GetCenter()) <= static_cast<float>(
+                _range))
             {
+                auto b = BloonFactory::BloonVector[i];
                 if ((BloonFactory::BloonVector[i].GetNowRouteTarget() > target.GetNowRouteTarget()) ||
                     (BloonFactory::BloonVector[i].GetNowRouteTarget() == target.GetNowRouteTarget() &&
                         Vector2Distance(BloonFactory::BloonVector[i].GetCenter(),
-                                        Map::GetRoute()[BloonFactory::BloonVector[i].GetNowRouteTarget()]) <
+                                        Map::GetRoute()[b.Getroute()][b.GetNowRouteTarget()]) <
                         Vector2Distance(target.GetCenter(),
-                                        Map::GetRoute()[BloonFactory::BloonVector[i].GetNowRouteTarget()])))
+                                        Map::GetRoute()[b.Getroute()][b.GetNowRouteTarget()])))
                 {
                     target = BloonFactory::BloonVector[i];
                 }
@@ -86,10 +89,10 @@ namespace Btd
     {
         if (_isClicked)
         {
-            this->RangeCircle.ShowBitmap((float)_range / 100.0);
+            this->RangeCircle.ShowBitmap(static_cast<float>(_range) / 100.0);
         }
         this->ShowBitmap();
-        for (int i=0; i<(int)throwables.size(); i++)
+        for (int i = 0; i < static_cast<int>(throwables.size()); i++)
         {
             throwables[i]->ShowBitmap();
         }
@@ -107,8 +110,8 @@ namespace Btd
 
     void Tower::Update()
     {
-        RangeCircle.SetCenter((int)GetCenter().X - (_range - 100),
-            (int)GetCenter().Y - (_range - 100));
+        RangeCircle.SetCenter(static_cast<int>(GetCenter().X) - (_range - 100),
+                              static_cast<int>(GetCenter().Y) - (_range - 100));
         if (_isActive)
         {
             UpdateThrowable();
@@ -118,7 +121,7 @@ namespace Btd
                 Bloon target = focus();
                 if (Vector2Distance(GetCenter(), target.GetCenter()) < static_cast<float>(_range))
                 {
-                    Shoot({static_cast<float>(target.GetCenter().X), static_cast<float>(target.GetCenter().Y)});
+                    Shoot({(target.GetCenter().X), (target.GetCenter().Y)});
                 }
             }
             else
@@ -160,9 +163,9 @@ namespace Btd
     // it is throwable factory
     void Tower::PushThrowablePool()
     {
-        shared_ptr<Throwable> tmp = make_shared<Throwable>(Throwable());
+        auto tmp = make_shared<Throwable>(Throwable());
         tmp->LoadBitmapByString({"resources/towers/bomb/bomb.bmp"}
-                               ,RGB(255, 255, 255));
+                                ,RGB(255, 255, 255));
         throwablePool.push(tmp);
     }
 }

@@ -8,6 +8,7 @@ namespace Btd
     vector<UnitRound> BloonFactory::BloonRound;
     int BloonFactory::BloonCounter = 0;
     int BloonFactory::BloonTimer = 0;
+    int BloonFactory::RoundRoute = 0;
     vector<string> BloonFactory::balloonPath = {
         "Resources/bloon/bloon_red.bmp", "Resources/bloon/bloon_blue.bmp", "Resources/bloon/bloon_green.bmp",
         "Resources/bloon/bloon_yellow.bmp", "Resources/bloon/bloon_black.bmp",

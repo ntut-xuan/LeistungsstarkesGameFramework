@@ -20,44 +20,86 @@ namespace Btd
         case MapType::easy:
             SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
             SetRoute({
-                {mapSize.X * 0.29F, mapSize.Y * 0.5F},
-                {mapSize.X * 0.29F, mapSize.Y * 0.25F},
-                {mapSize.X * 0.17F, mapSize.Y * 0.25F},
-                {mapSize.X * 0.17F, mapSize.Y * 0.08F},
-                {mapSize.X * 0.65F, mapSize.Y * 0.08F},
-                {mapSize.X * 0.65F, mapSize.Y * 0.25F},
-                {mapSize.X * 0.45F, mapSize.Y * 0.25F},
-                {mapSize.X * 0.45F, mapSize.Y * 0.43F},
-                {mapSize.X * 0.65F, mapSize.Y * 0.43F},
-                {mapSize.X * 0.65F, mapSize.Y * 0.62F},
-                {mapSize.X * 0.16F, mapSize.Y * 0.62F},
-                {mapSize.X * 0.16F, mapSize.Y * 0.9F},
-                {mapSize.X * 0.35F, mapSize.Y * 0.9F},
-                {mapSize.X * 0.35F, mapSize.Y * 0.75F},
-                {mapSize.X * 0.55F, mapSize.Y * 0.75F},
-                {mapSize.X * 0.55F, mapSize.Y * 1.0F},
+                {
+                    {mapSize.X * 0.29F, mapSize.Y * 0.5F},
+                    {mapSize.X * 0.29F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.17F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.17F, mapSize.Y * 0.08F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.08F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.45F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.45F, mapSize.Y * 0.43F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.43F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.62F},
+                    {mapSize.X * 0.16F, mapSize.Y * 0.62F},
+                    {mapSize.X * 0.16F, mapSize.Y * 0.9F},
+                    {mapSize.X * 0.35F, mapSize.Y * 0.9F},
+                    {mapSize.X * 0.35F, mapSize.Y * 0.75F},
+                    {mapSize.X * 0.55F, mapSize.Y * 0.75F},
+                    {mapSize.X * 0.55F, mapSize.Y * 1.0F},
+                }
             });
             break;
         case MapType::medium:
             SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
             SetRoute({
-                {mapSize.X * 0.14F, mapSize.Y * 0.5F},
-                {mapSize.X * 0.14F, mapSize.Y * 0.22F},
-                {mapSize.X * 0.32F, mapSize.Y * 0.22F},
-                {mapSize.X * 0.32F, mapSize.Y * 0.72F},
-                {mapSize.X * 0.07F, mapSize.Y * 0.72F},
-                {mapSize.X * 0.07F, mapSize.Y * 0.90F},
-                {mapSize.X * 0.67F, mapSize.Y * 0.90F},
-                {mapSize.X * 0.67F, mapSize.Y * 0.63F},
-                {mapSize.X * 0.47F, mapSize.Y * 0.63F},
-                {mapSize.X * 0.47F, mapSize.Y * 0.4F},
-                {mapSize.X * 0.67F, mapSize.Y * 0.4F},
-                {mapSize.X * 0.67F, mapSize.Y * 0.13F},
-                {mapSize.X * 0.40F, mapSize.Y * 0.13F},
-                {mapSize.X * 0.40F, mapSize.Y * -0.18F},
+                {
+                    {mapSize.X * 0.14F, mapSize.Y * 0.5F},
+                    {mapSize.X * 0.14F, mapSize.Y * 0.22F},
+                    {mapSize.X * 0.32F, mapSize.Y * 0.22F},
+                    {mapSize.X * 0.32F, mapSize.Y * 0.72F},
+                    {mapSize.X * 0.07F, mapSize.Y * 0.72F},
+                    {mapSize.X * 0.07F, mapSize.Y * 0.90F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.90F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.63F},
+                    {mapSize.X * 0.47F, mapSize.Y * 0.63F},
+                    {mapSize.X * 0.47F, mapSize.Y * 0.4F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.4F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.13F},
+                    {mapSize.X * 0.40F, mapSize.Y * 0.13F},
+                    {mapSize.X * 0.40F, mapSize.Y * -0.18F},
+                }
             });
             break;
-        case MapType::hard: break;
+        case MapType::hard:
+            SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
+            SetRoute({
+                {
+                    {mapSize.X * 0.14F, mapSize.Y * 0.5F},
+                    {mapSize.X * 0.14F, mapSize.Y * 0.22F},
+                    {mapSize.X * 0.32F, mapSize.Y * 0.22F},
+                    {mapSize.X * 0.32F, mapSize.Y * 0.72F},
+                    {mapSize.X * 0.07F, mapSize.Y * 0.72F},
+                    {mapSize.X * 0.07F, mapSize.Y * 0.90F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.90F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.63F},
+                    {mapSize.X * 0.47F, mapSize.Y * 0.63F},
+                    {mapSize.X * 0.47F, mapSize.Y * 0.4F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.4F},
+                    {mapSize.X * 0.67F, mapSize.Y * 0.13F},
+                    {mapSize.X * 0.40F, mapSize.Y * 0.13F},
+                    {mapSize.X * 0.40F, mapSize.Y * -0.18F},
+                },
+                {
+                    {mapSize.X * 0.29F, mapSize.Y * 0.5F},
+                    {mapSize.X * 0.29F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.17F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.17F, mapSize.Y * 0.08F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.08F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.45F, mapSize.Y * 0.25F},
+                    {mapSize.X * 0.45F, mapSize.Y * 0.43F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.43F},
+                    {mapSize.X * 0.65F, mapSize.Y * 0.62F},
+                    {mapSize.X * 0.16F, mapSize.Y * 0.62F},
+                    {mapSize.X * 0.16F, mapSize.Y * 0.9F},
+                    {mapSize.X * 0.35F, mapSize.Y * 0.9F},
+                    {mapSize.X * 0.35F, mapSize.Y * 0.75F},
+                    {mapSize.X * 0.55F, mapSize.Y * 0.75F},
+                    {mapSize.X * 0.55F, mapSize.Y * 1.0F},
+                }
+            });
+            break;
         default: ;
         }
     }
@@ -182,14 +224,14 @@ namespace Btd
         return _background;
     }
 
-    vector<Vector2> Map::_route = {{100, 100}, {110, 110}, {0, 100}, {200, 200}};
+    vector<vector<Vector2>> Map::_route = {{{100, 100}, {110, 110}, {0, 100}, {200, 200}}};
 
-    vector<Vector2> Map::GetRoute()
+    vector<vector<Vector2>> Map::GetRoute()
     {
         return _route;
     }
 
-    void Map::SetRoute(vector<Vector2> route)
+    void Map::SetRoute(vector<vector<Vector2>> route)
     {
         _route = route;
     }

@@ -16,6 +16,7 @@ namespace Btd
         static int BloonCounter;
         static int BloonTimer;
         static vector<string> balloonPath;
+        static int RoundRoute;
 
         static void SetNextRound(vector<UnitRound> rounds)
         {
@@ -46,11 +47,13 @@ namespace Btd
         static void MakeBloon(Layer::NormalBloonLayer type)
         {
             Vector2 startPosition = Map::GetStartPosition();
-            MakeBloonByPosition(type, startPosition, 0);
+            MakeBloonByPosition(type, startPosition, 0, RoundRoute);
+            RoundRoute += 1;
+            RoundRoute %= Map::GetRoute().size();
         }
 
         static void MakeBloonByPosition(Layer::NormalBloonLayer type,
-                                        Vector2 startPosition, int nowRouteTarget)
+                                        Vector2 startPosition, int nowRouteTarget, int route)
         {
             if (BloonPool.empty())
             {
@@ -96,6 +99,7 @@ namespace Btd
             next.SetActive(true);
             next.SetIsPoped(false);
             next.SetIsGoaled(false);
+            next.SetRoute(route);
             BloonPool.pop();
             BloonVector.push_back(next);
         }
@@ -121,8 +125,8 @@ namespace Btd
                     {
                         int nowRouteTarget = BloonVector[i].GetNowRouteTarget();
                         Vector2 position = b.GetBottomCenter();
-                        MakeBloonByPosition(Layer::yellow, position, nowRouteTarget);
-                        MakeBloonByPosition(Layer::yellow, position, nowRouteTarget);
+                        MakeBloonByPosition(Layer::yellow, position, nowRouteTarget, b.Getroute());
+                        MakeBloonByPosition(Layer::yellow, position, nowRouteTarget, b.Getroute());
                     }
                     BloonPool.push(BloonVector[i]);
                     BloonVector.erase(BloonVector.begin() + i);
