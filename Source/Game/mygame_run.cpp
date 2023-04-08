@@ -99,7 +99,6 @@ void ShowGameStatusUI(int round, int lives, int money)
 
 void GameOver(int size)
 {
-    //size 150
     int screenCenterX = SIZE_X / 2;
     int screenCenterY = SIZE_Y / 2;
     int textLeft = screenCenterX - static_cast<int>(2.5 * size);

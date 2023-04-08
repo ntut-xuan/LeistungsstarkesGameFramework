@@ -64,13 +64,30 @@ namespace Btd
         case MapType::hard:
             SetRoute({
                 {
-                    {mapSize.X * 0.5F, mapSize.Y * -0.03F},
-                    {mapSize.X * 0.5F, mapSize.Y * 0.18F},
-                    {mapSize.X * 0.6F, mapSize.Y * 0.18F},
+                    {mapSize.X * 0.47F, mapSize.Y * -0.03F},
+                    {mapSize.X * 0.47F, mapSize.Y * 0.15F},
+                    {mapSize.X * 0.63F, mapSize.Y * 0.15F},
+                    {mapSize.X * 0.63F, mapSize.Y * 0.38F},
+                    {mapSize.X * 0.37F, mapSize.Y * 0.38F},
+                    {mapSize.X * 0.37F, mapSize.Y * 0.18F},
+                    {mapSize.X * 0.24F, mapSize.Y * 0.18F},
+                    {mapSize.X * 0.24F, mapSize.Y * 0.66F},
+                    {mapSize.X * 0.13F, mapSize.Y * 0.66F},
+                    {mapSize.X * 0.13F, mapSize.Y * 0.84F},
+                    {mapSize.X * 0.22F, mapSize.Y * 0.84F},
+                    {mapSize.X * 0.22F, mapSize.Y * 1.03F},
                 },
                 {
-                    {mapSize.X * 0.1F, mapSize.Y * -0.03F},
-                    {mapSize.X * 0.1F, mapSize.Y * 0.6F},
+                    {mapSize.X * 0.09F, mapSize.Y * -0.03F},
+                    {mapSize.X * 0.09F, mapSize.Y * 0.52F},
+                    {mapSize.X * 0.425F, mapSize.Y * 0.52F},
+                    {mapSize.X * 0.425F, mapSize.Y * 0.70F},
+                    {mapSize.X * 0.54F, mapSize.Y * 0.70F},
+                    {mapSize.X * 0.54F, mapSize.Y * 0.52F},
+                    {mapSize.X * 0.66F, mapSize.Y * 0.52F},
+                    {mapSize.X * 0.66F, mapSize.Y * 0.90F},
+                    {mapSize.X * 0.35F, mapSize.Y * 0.9F},
+                    {mapSize.X * 0.35F, mapSize.Y * 1.01F},
                 }
             });
             break;
