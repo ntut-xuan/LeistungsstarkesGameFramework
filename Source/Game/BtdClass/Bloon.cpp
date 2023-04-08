@@ -6,7 +6,7 @@
 
 namespace Btd
 {
-    //      normal ice boom
+    //      normal boom ice
     //normal
     //black
     //white

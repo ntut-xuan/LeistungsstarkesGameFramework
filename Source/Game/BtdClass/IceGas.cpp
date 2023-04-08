@@ -25,7 +25,7 @@ namespace Btd
                 !isHited) //not in cant hit bloon)
             {
                 // BloonFactory::BloonVector[i].Pop(0, DamageType::Ice);
-                if (BloonFactory::BloonVector[i].GetType() != BloonType::black)
+                if (BloonFactory::BloonVector[i].GetType() != BloonType::white)
                 {
                     BloonFactory::BloonVector[i].SetFreezeTime(150);
                 }
