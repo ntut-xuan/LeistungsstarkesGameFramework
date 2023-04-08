@@ -8,6 +8,7 @@ namespace Btd
     {
     public:
         IceGas();
+        ~IceGas() =default;
         void DetectHitBalloon() override;
     };
 }

@@ -24,8 +24,11 @@ namespace Btd
             if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i]) &&
                 !isHited) //not in cant hit bloon)
             {
-                BloonFactory::BloonVector[i].Pop(0, DamageType::Ice);
-                BloonFactory::BloonVector[i].SetFreezeTime(150);
+                // BloonFactory::BloonVector[i].Pop(0, DamageType::Ice);
+                if (BloonFactory::BloonVector[i].GetType() != BloonType::black)
+                {
+                    BloonFactory::BloonVector[i].SetFreezeTime(150);
+                }
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 if (_canPenetrate == false)
                 {
