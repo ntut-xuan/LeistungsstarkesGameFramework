@@ -27,8 +27,6 @@ namespace Btd
         vector<vector<UnitRound>> GetRounds();
         void SetRounds(vector<vector<UnitRound>> round);
         static vector<vector<Vector2>> GetRoute();
-        static Vector2 GetStartPosition();
-        static void SetStartPosition(Vector2);
         static void SetRoute(vector<vector<Vector2>>);
         bool IsOverLapRoad(GameObject target);
 
@@ -37,7 +35,6 @@ namespace Btd
         GameObject _background;
         FactoryButton _factoryButton[5];
         static vector<vector<Vector2>> _route;
-        static Vector2 _startPosition;
         vector<vector<UnitRound>> _rounds;
         GameObject _sidebar;
     };

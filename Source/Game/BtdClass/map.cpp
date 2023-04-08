@@ -18,9 +18,9 @@ namespace Btd
         switch (type)
         {
         case MapType::easy:
-            SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
             SetRoute({
                 {
+                    {mapSize.X * -0.05F, mapSize.Y * 0.5F},
                     {mapSize.X * 0.29F, mapSize.Y * 0.5F},
                     {mapSize.X * 0.29F, mapSize.Y * 0.25F},
                     {mapSize.X * 0.17F, mapSize.Y * 0.25F},
@@ -41,9 +41,9 @@ namespace Btd
             });
             break;
         case MapType::medium:
-            SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
             SetRoute({
                 {
+                    {mapSize.X * -0.05F, mapSize.Y * 0.5F},
                     {mapSize.X * 0.14F, mapSize.Y * 0.5F},
                     {mapSize.X * 0.14F, mapSize.Y * 0.22F},
                     {mapSize.X * 0.32F, mapSize.Y * 0.22F},
@@ -62,41 +62,15 @@ namespace Btd
             });
             break;
         case MapType::hard:
-            SetStartPosition({static_cast<float>(0), mapSize.Y * 0.5F});
             SetRoute({
                 {
-                    {mapSize.X * 0.14F, mapSize.Y * 0.5F},
-                    {mapSize.X * 0.14F, mapSize.Y * 0.22F},
-                    {mapSize.X * 0.32F, mapSize.Y * 0.22F},
-                    {mapSize.X * 0.32F, mapSize.Y * 0.72F},
-                    {mapSize.X * 0.07F, mapSize.Y * 0.72F},
-                    {mapSize.X * 0.07F, mapSize.Y * 0.90F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.90F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.63F},
-                    {mapSize.X * 0.47F, mapSize.Y * 0.63F},
-                    {mapSize.X * 0.47F, mapSize.Y * 0.4F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.4F},
-                    {mapSize.X * 0.67F, mapSize.Y * 0.13F},
-                    {mapSize.X * 0.40F, mapSize.Y * 0.13F},
-                    {mapSize.X * 0.40F, mapSize.Y * -0.18F},
+                    {mapSize.X * 0.5F, mapSize.Y * -0.03F},
+                    {mapSize.X * 0.5F, mapSize.Y * 0.18F},
+                    {mapSize.X * 0.6F, mapSize.Y * 0.18F},
                 },
                 {
-                    {mapSize.X * 0.29F, mapSize.Y * 0.5F},
-                    {mapSize.X * 0.29F, mapSize.Y * 0.25F},
-                    {mapSize.X * 0.17F, mapSize.Y * 0.25F},
-                    {mapSize.X * 0.17F, mapSize.Y * 0.08F},
-                    {mapSize.X * 0.65F, mapSize.Y * 0.08F},
-                    {mapSize.X * 0.65F, mapSize.Y * 0.25F},
-                    {mapSize.X * 0.45F, mapSize.Y * 0.25F},
-                    {mapSize.X * 0.45F, mapSize.Y * 0.43F},
-                    {mapSize.X * 0.65F, mapSize.Y * 0.43F},
-                    {mapSize.X * 0.65F, mapSize.Y * 0.62F},
-                    {mapSize.X * 0.16F, mapSize.Y * 0.62F},
-                    {mapSize.X * 0.16F, mapSize.Y * 0.9F},
-                    {mapSize.X * 0.35F, mapSize.Y * 0.9F},
-                    {mapSize.X * 0.35F, mapSize.Y * 0.75F},
-                    {mapSize.X * 0.55F, mapSize.Y * 0.75F},
-                    {mapSize.X * 0.55F, mapSize.Y * 1.0F},
+                    {mapSize.X * 0.1F, mapSize.Y * -0.03F},
+                    {mapSize.X * 0.1F, mapSize.Y * 0.6F},
                 }
             });
             break;
@@ -251,18 +225,6 @@ namespace Btd
         }
         return false;
     };
-
-    Vector2 Map::_startPosition = {0, 0};
-
-    void Map::SetStartPosition(Vector2 StartPosition)
-    {
-        _startPosition = StartPosition;
-    }
-
-    Vector2 Map::GetStartPosition()
-    {
-        return _startPosition;
-    }
 
     vector<vector<UnitRound>> Map::GetRounds()
     {

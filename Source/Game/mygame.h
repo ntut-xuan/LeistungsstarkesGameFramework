@@ -107,6 +107,7 @@ namespace game_framework
         void OnMove() override; // 移動遊戲元素
         void OnShow() override; // 顯示這個狀態的遊戲畫面
     private:
+        Btd::Vector2 mouseLocal = {0, 0};
         Btd::GameManager gm;
         int gameOverCounter;
     };

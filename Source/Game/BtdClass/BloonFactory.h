@@ -46,8 +46,8 @@ namespace Btd
 
         static void MakeBloon(Layer::NormalBloonLayer type)
         {
-            Vector2 startPosition = Map::GetStartPosition();
-            MakeBloonByPosition(type, startPosition, 0, RoundRoute);
+            Vector2 position = Map::GetRoute()[RoundRoute][0];
+            MakeBloonByPosition(type, position, 0, RoundRoute);
             RoundRoute += 1;
             RoundRoute %= Map::GetRoute().size();
         }
