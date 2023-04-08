@@ -47,7 +47,7 @@ namespace Btd
 
         void Move(vector<Vector2> route);
 
-        void Pop(int damage, DamageType damageType);
+        void Pop(int damage, DamageType::DamageType damageType);
 
         int GetNowRouteTarget()
         {

@@ -12,10 +12,10 @@ namespace Btd
 
     void Bomb::DetectHitBalloon()
     {
-        for (int i=0; i<(int)BloonFactory::BloonVector.size(); i++)
+        for (int i = 0; i < static_cast<int>(BloonFactory::BloonVector.size()); i++)
         {
             bool isHited = false;
-            for (int j=0; j<(int)cantHitBloons.size(); j++)
+            for (int j = 0; j < static_cast<int>(cantHitBloons.size()); j++)
             {
                 if (cantHitBloons[j].first == &BloonFactory::BloonVector[i])
                 {
@@ -23,18 +23,18 @@ namespace Btd
                     break;
                 }
             }
-            if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i])&&
-                !isHited )//not in cant hit bloon)
+            if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i]) &&
+                !isHited) //not in cant hit bloon)
             {
                 if (GetFrameIndexOfBitmap() == 0)
                 {
                     ToggleAnimation();
-                    _existTime =0;
+                    _existTime = 0;
                     _maxExistTime = 75;
                 }
                 else
                 {
-                    BloonFactory::BloonVector[i].Pop(1, Normal);
+                    BloonFactory::BloonVector[i].Pop(1, _damageType);
                     cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 }
                 _speed = 0;

@@ -14,9 +14,10 @@ namespace Btd
 
     void Cannon::PushThrowablePool()
     {
-        shared_ptr<Bomb> bomb = make_shared<Bomb>(Bomb());
+        auto bomb = make_shared<Bomb>(Bomb());
         bomb->LoadBitmapByString(ThrowablePath, RGB(255, 255, 255));
         bomb->SetSpeed(5);
+        bomb->SetDamageType(DamageType::Boom);
         throwablePool.push(bomb);
     }
 }
