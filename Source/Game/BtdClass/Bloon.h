@@ -15,7 +15,9 @@ namespace Btd
         bool _isPoped = false;
         bool _isGoaled = false;
         BloonType::BloonType type = BloonType::normal;
-        int _freezeTime;
+        int _slowerTime;
+        float _slowerSpeed;
+        float _originSpeed;
         int route = 0;
 
     public:
@@ -23,7 +25,7 @@ namespace Btd
         {
             _layer = 0;
             _isPoped = false;
-            _freezeTime = 0;
+            _slowerTime = 0;
         };
 
         Bloon(int layer): _layer(layer)
@@ -61,7 +63,7 @@ namespace Btd
         void SetIsPoped(bool poped);
         void SetIsGoaled(bool goaled);
         void SetLayer(int layer);
-        void SetFreezeTime(int time);
+        void SlowerInPeriod(float subSpeed, int time);
         int GetLayer();
     };
 }

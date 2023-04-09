@@ -24,17 +24,23 @@ namespace Btd
     void Bloon::Setspeed(float speed)
     {
         _speed = speed;
+        _originSpeed = speed;
     }
 
     void Bloon::Update()
     {
-        if (GetActive() && _freezeTime <= 0)
+        if (_slowerTime > 0)
+        {
+            _slowerTime -= deltaTime;
+            _speed = _slowerSpeed;
+        }
+        else
+        {
+            _speed = _originSpeed;
+        }
+        if (GetActive())
         {
             Move(Map::GetRoute()[route]);
-        }
-        else if (_freezeTime > 0)
-        {
-            _freezeTime -= deltaTime;
         }
     }
 
@@ -95,7 +101,8 @@ namespace Btd
         {
             if (damageType == DamageType::Ice)
             {
-                SetFreezeTime(damage);
+                // if damageType == ice, damage = slowerTime
+                SlowerInPeriod(_speed, damage);
             }
             else
             {
@@ -131,9 +138,10 @@ namespace Btd
         _layer = layer;
     }
 
-    void Bloon::SetFreezeTime(int time)
+    void Bloon::SlowerInPeriod(float subSpeed, int time)
     {
-        _freezeTime = time;
+        _slowerSpeed = _speed - subSpeed;
+        _slowerTime = time;
     }
 
     bool Bloon::IsGoaled()
