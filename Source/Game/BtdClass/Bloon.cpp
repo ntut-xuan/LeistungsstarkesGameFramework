@@ -83,15 +83,22 @@ namespace Btd
     {
         if (resistDamegeMap[type][damageType])
         {
-            _layer -= damage;
+            if (damageType == Ice)
+            {
+                SetFreezeTime(damage);
+            }
+            else
+            {
+                _layer -= damage;
+                SetFrameIndexOfBitmap(_layer);
+                Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
+            }
+            if (_layer < 0)
+            {
+                _isPoped = true;
+                return;
+            }
         }
-        if (_layer < 0)
-        {
-            _isPoped = true;
-            return;
-        }
-        SetFrameIndexOfBitmap(_layer);
-        Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
     }
 
     bool Bloon::IsPoped()

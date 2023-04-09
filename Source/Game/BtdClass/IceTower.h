@@ -10,6 +10,7 @@ namespace Btd
         void PushThrowablePool() override;
         void TowerShow() override;
     private:
+        int _freezeTime;
     };
     
 }

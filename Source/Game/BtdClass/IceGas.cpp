@@ -24,11 +24,7 @@ namespace Btd
             if (Vector2Distance(_realCenter, BloonFactory::BloonVector[i].GetCenter()) <= _range &&
                 !isHited) //not in cant hit bloon)
             {
-                // BloonFactory::BloonVector[i].Pop(0, DamageType::Ice);
-                if (BloonFactory::BloonVector[i].GetType() != BloonType::white)
-                {
-                    BloonFactory::BloonVector[i].SetFreezeTime(150);
-                }
+                BloonFactory::BloonVector[i].Pop(_freezeTime, DamageType::Ice);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 if (_canPenetrate == false)
                 {
@@ -49,4 +45,8 @@ namespace Btd
         _range = range;
     }
 
+    void IceGas::SetFreezeTime(int freezeTime)
+    {
+        _freezeTime = freezeTime;
+    }
 }

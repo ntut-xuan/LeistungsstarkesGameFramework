@@ -9,6 +9,7 @@ namespace Btd
     {
         _range = 150;
         ThrowablePath = {"resources/towers/ice/ice.bmp"};
+        _freezeTime = 150;
     }
 
     void IceTower::PushThrowablePool()
@@ -20,6 +21,7 @@ namespace Btd
         iceGas->SetPenetrate(true);
         iceGas->SetRealCenter(GetCenter());
         iceGas->SetRange(_range);
+        iceGas->SetFreezeTime(_freezeTime);
         throwablePool.push(iceGas);
     }
 
