@@ -58,12 +58,16 @@ namespace Btd
         int nextTime;
     };
 
-    enum DamageType
+
+    namespace DamageType
     {
-        Normal,
-        Boom,
-        Ice,
-    };
+        enum DamageType
+        {
+            Normal,
+            Boom,
+            Ice,
+        };
+    }
 
     enum GameFlow
     {
@@ -83,5 +87,5 @@ namespace Btd
     float Vector2Distance(Vector2 a, Vector2 b);
     Vector2 Spin45(Vector2 a);
     Vector2 Spin90(Vector2 a);
-	int GetFrameIndexByVector2(Vector2 dir);
+    int GetFrameIndexByVector2(Vector2 dir);
 }

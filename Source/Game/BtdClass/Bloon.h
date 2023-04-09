@@ -16,6 +16,7 @@ namespace Btd
         bool _isGoaled = false;
         BloonType::BloonType type = BloonType::normal;
         int _freezeTime;
+        int route = 0;
 
     public:
         Bloon()
@@ -41,13 +42,14 @@ namespace Btd
         }
 
         void Update() override;
-
+        void SetRoute(int n);
+        int Getroute();
         float GetSpeed();
         BloonType::BloonType GetType();
 
         void Move(vector<Vector2> route);
 
-        void Pop(int damage, DamageType damageType);
+        void Pop(int damage, DamageType::DamageType damageType);
 
         int GetNowRouteTarget()
         {

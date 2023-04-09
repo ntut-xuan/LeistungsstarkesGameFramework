@@ -26,18 +26,15 @@ namespace Btd
         GameObject GetBackground();
         vector<vector<UnitRound>> GetRounds();
         void SetRounds(vector<vector<UnitRound>> round);
-        static vector<Vector2> GetRoute();
-        static Vector2 GetStartPosition();
-        static void SetStartPosition(Vector2);
-        static void SetRoute(vector<Vector2>);
+        static vector<vector<Vector2>> GetRoute();
+        static void SetRoute(vector<vector<Vector2>>);
         bool IsOverLapRoad(GameObject target);
 
     protected:
         std::vector<GameObject> _road;
         GameObject _background;
         FactoryButton _factoryButton[5];
-        static vector<Vector2> _route;
-        static Vector2 _startPosition;
+        static vector<vector<Vector2>> _route;
         vector<vector<UnitRound>> _rounds;
         GameObject _sidebar;
     };
