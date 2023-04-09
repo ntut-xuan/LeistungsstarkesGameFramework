@@ -10,9 +10,9 @@ namespace Btd
 {
     void Throwable::Update()
     {
-        if ((int)_maxExistTime != -1) // only bomb need
+        if (static_cast<int>(_maxExistTime) != -1) // only bomb need
         {
-            _existTime += (float)deltaTime;
+            _existTime += static_cast<float>(deltaTime);
             if (_existTime > _maxExistTime)
             {
                 SetActive(false);
@@ -31,6 +31,11 @@ namespace Btd
         _existTime = 0;
         _position = position;
         SetTopLeft(static_cast<int>(position.X) - GetWidth() / 2, static_cast<int>(position.Y) - GetHeight() / 2);
+    }
+
+    void Throwable::SetDamageType(DamageType::DamageType damageType)
+    {
+        _damageType = damageType;
     }
 
     void Throwable::SetMaxExistTime(float t)
@@ -72,7 +77,7 @@ namespace Btd
             if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i]) &&
                 !isHited) //not in cant hit bloon)
             {
-                BloonFactory::BloonVector[i].Pop(1, Normal);
+                BloonFactory::BloonVector[i].Pop(1, DamageType::Normal);
                 cantHitBloons.push_back({&BloonFactory::BloonVector[i], 0});
                 if (_canPenetrate == false)
                 {
