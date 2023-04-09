@@ -10,5 +10,10 @@ namespace Btd
         IceGas();
         ~IceGas() =default;
         void DetectHitBalloon() override;
+        void SetRealCenter(Vector2 center);
+        void SetRange(int range);
+    private:
+        Vector2 _realCenter;
+        int _range;
     };
 }

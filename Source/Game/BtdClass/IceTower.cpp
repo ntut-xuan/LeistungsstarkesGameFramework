@@ -7,8 +7,7 @@ namespace Btd
 {
     IceTower::IceTower()
     {
-        _range = 300;
-        _iceScale = 1;
+        _range = 150;
         ThrowablePath = {"resources/towers/ice/ice.bmp"};
     }
 
@@ -19,6 +18,8 @@ namespace Btd
         iceGas->SetSpeed(0);
         iceGas->SetMaxExistTime(150);
         iceGas->SetPenetrate(true);
+        iceGas->SetRealCenter(GetCenter());
+        iceGas->SetRange(_range);
         throwablePool.push(iceGas);
     }
 
@@ -30,9 +31,9 @@ namespace Btd
         }
         for (int i=0; i<(int)throwables.size(); i++)
         {
-            throwables[i]->SetCenter((int)GetCenter().X - static_cast<int>(75 * (_iceScale - 1)),
-                (int)GetCenter().Y - static_cast<int>(75 * (_iceScale - 1)));
-            throwables[i]->ShowBitmap(_iceScale);
+            throwables[i]->SetCenter((int)GetCenter().X - (_range - 75),
+                (int)GetCenter().Y - (_range - 75));
+            throwables[i]->ShowBitmap(_range / 75);
         }
         this->ShowBitmap();
     }

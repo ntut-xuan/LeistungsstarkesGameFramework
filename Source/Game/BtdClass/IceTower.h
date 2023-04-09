@@ -10,7 +10,6 @@ namespace Btd
         void PushThrowablePool() override;
         void TowerShow() override;
     private:
-        double _iceScale;
     };
     
 }

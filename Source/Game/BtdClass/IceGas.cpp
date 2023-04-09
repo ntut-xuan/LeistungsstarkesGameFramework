@@ -21,7 +21,7 @@ namespace Btd
                     break;
                 }
             }
-            if (Btd::IsOverlap(*this, BloonFactory::BloonVector[i]) &&
+            if (Vector2Distance(_realCenter, BloonFactory::BloonVector[i].GetCenter()) <= _range &&
                 !isHited) //not in cant hit bloon)
             {
                 // BloonFactory::BloonVector[i].Pop(0, DamageType::Ice);
@@ -38,4 +38,15 @@ namespace Btd
             }
         }
     }
+
+    void IceGas::SetRealCenter(Vector2 center)
+    {
+        _realCenter = center;
+    }
+
+    void IceGas::SetRange(int range)
+    {
+        _range = range;
+    }
+
 }
