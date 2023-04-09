@@ -19,6 +19,8 @@ namespace Btd
         float _slowerSpeed;
         float _originSpeed;
         int route = 0;
+        bool _isFreeze;
+        GameObject _frost;
 
     public:
         Bloon()
@@ -26,6 +28,8 @@ namespace Btd
             _layer = 0;
             _isPoped = false;
             _slowerTime = 0;
+            _isFreeze = false;
+            _frost.LoadBitmapByString({"resources/bloon/frost.bmp"}, RGB(0, 0, 0));
         };
 
         Bloon(int layer): _layer(layer)
@@ -65,5 +69,6 @@ namespace Btd
         void SetLayer(int layer);
         void SlowerInPeriod(float subSpeed, int time);
         int GetLayer();
+        void BloonShow();
     };
 }

@@ -37,6 +37,7 @@ namespace Btd
         else
         {
             _speed = _originSpeed;
+            _isFreeze = false;
         }
         if (GetActive())
         {
@@ -103,6 +104,7 @@ namespace Btd
             {
                 // if damageType == ice, damage = slowerTime
                 SlowerInPeriod(_speed, damage);
+                _isFreeze = true;
             }
             else
             {
@@ -152,5 +154,16 @@ namespace Btd
     int Bloon::GetLayer()
     {
         return _layer;
+    }
+
+    void Bloon::BloonShow()
+    {
+        ShowBitmap();
+        if (_isFreeze)
+        {
+            // _frost.SetCenter(static_cast<int>(GetCenter().X), static_cast<int>(GetCenter().Y));
+            //_frost.SetTopLeft(GetLeft(), GetTop());
+            //_frost.ShowBitmap();
+        }
     }
 }

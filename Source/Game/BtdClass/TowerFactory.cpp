@@ -56,7 +56,6 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
             ice->LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
             ice->SetCenter(GetCursorPosX(), GetCursorPosY());
             ice->SetIsMove(true);
-            ice->SetShootDeltaTime(3);
             ice->SetActive(false);
             ice->SetShootDeltaTime(3);
             ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
