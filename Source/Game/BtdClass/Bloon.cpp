@@ -30,12 +30,22 @@ namespace Btd
     {
         if (GetActive() && _freezeTime <= 0)
         {
-            Move(Map::GetRoute());
+            Move(Map::GetRoute()[route]);
         }
         else if (_freezeTime > 0)
         {
             _freezeTime -= deltaTime;
         }
+    }
+
+    void Bloon::SetRoute(int n)
+    {
+        route = n;
+    }
+
+    int Bloon::Getroute()
+    {
+        return route;
     }
 
     float Bloon::GetSpeed()
