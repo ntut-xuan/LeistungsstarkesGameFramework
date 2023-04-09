@@ -109,13 +109,13 @@ namespace Btd
             else
             {
                 _layer -= damage;
+                if (_layer < 0)
+                {
+                    _isPoped = true;
+                    return;
+                }
                 SetFrameIndexOfBitmap(_layer);
                 Setspeed(static_cast<float>(0.5 * _layer * _layer + _layer + 3));
-            }
-            if (_layer < 0)
-            {
-                _isPoped = true;
-                return;
             }
         }
     }
