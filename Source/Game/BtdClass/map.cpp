@@ -199,13 +199,14 @@ namespace Btd
         }
     }
 
-    void Map::HandleButtonClicked()
+    void Map::HandleButtonClicked(int *money)
     {
         for (int i = 0; i < 5; i++)
         {
-            if (_factoryButton[i].IsCursorFocus())
+            if (_factoryButton[i].IsCursorFocus() && priceTable[i]<*money)
             {
                 _factoryButton[i].SetClicked(true);
+                *money -= priceTable[i];
             }
         }
     }
