@@ -52,15 +52,15 @@ void Btd::TowerFactory::MakeTower(TowerType attribute)
         }
     case ice:
         {
-            // shared_ptr<IceTower> ice = make_shared<IceTower>(IceTower());
-            // ice->LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
-            // ice->SetCenter(GetCursorPosX(), GetCursorPosY());
-            // ice->SetIsMove(true);
-            // ice->SetShootDeltaTime(3);
-            // ice->SetActive(false);
-            // ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
-            // ice->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
-            // TowerVector.push_back(ice);
+            shared_ptr<IceTower> ice = make_shared<IceTower>(IceTower());
+            ice->LoadBitmapByString({"resources/towers/ice/tower_ice.bmp"}, RGB(0, 0, 0));
+            ice->SetCenter(GetCursorPosX(), GetCursorPosY());
+            ice->SetIsMove(true);
+            ice->SetActive(false);
+            ice->SetShootDeltaTime(3);
+            ice->RangeCircle.LoadBitmapByString({"resources/towers/range.bmp", "resources/towers/range_red.bmp"}, RGB(0, 0, 0));
+            ice->RangeCircle.SetCenter(GetCursorPosX(), GetCursorPosY());
+            TowerVector.push_back(ice);
         }
     default:
         break;

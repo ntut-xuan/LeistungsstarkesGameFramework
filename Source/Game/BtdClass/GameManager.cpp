@@ -169,7 +169,7 @@ namespace Btd
         }
         for (auto& bloon : BloonFactory::BloonVector)
         {
-            bloon.ShowBitmap();
+            bloon.BloonShow();
         }
         switch (GameFlow)
         {

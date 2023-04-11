@@ -29,7 +29,7 @@ namespace Btd
 
         void SetThrowableLocal(Vector2 local);
 
-        void TowerShow();
+        virtual void TowerShow();
 
         float GetShootDeltaTime();
         void SetShootDeltaTime(float time);

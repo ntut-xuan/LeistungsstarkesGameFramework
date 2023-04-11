@@ -124,6 +124,6 @@ namespace Btd
         float speed = GetSpeed();
         Vector2 deltaMove = {moveDirection.X * speed, moveDirection.Y * speed};
         _position = Vector2Add(_position, deltaMove);
-        SetTopLeft(static_cast<int>(_position.X), static_cast<int>(_position.Y));
+        SetCenter(static_cast<int>(_position.X), static_cast<int>(_position.Y));
     }
 }
