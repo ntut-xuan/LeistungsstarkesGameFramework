@@ -114,7 +114,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -248,9 +247,7 @@
     <ClCompile Include="Source\Game\mygame_run.cpp" />
     <ClCompile Include="Source\Library\audio.cpp" />
     <ClCompile Include="Source\Library\gamecore.cpp" />
-    <ClCompile Include="Source\Library\gameutil.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
+    <ClCompile Include="Source\Library\gameutil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Game.h" />

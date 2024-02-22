@@ -111,14 +111,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//  be dockable
 
 	//
-	// ç¢ºå®šToolBarçš„ä½ç½®ç‚ºå›ºå®šçš„ï¼Œä»¥ä¾¿è¨ˆç®—window size
+	// ½T©wToolBarªº¦ì¸m¬°©T©wªº¡A¥H«K­pºâwindow size
 	//
 	// m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	// EnableDocking(CBRS_ALIGN_ANY);
 	// DockControlBar(&m_wndToolBar);
 
 	//
-	// å„²å­˜Menuçš„pointer
+	// Àx¦sMenuªºpointer
 	//
 	pMenu = GetMenu();
 	//
@@ -130,7 +130,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	SetWindowText(_T(GAME_TITLE));
 
-	// å¦‚æœæ˜¯Full Screençš„è©±ï¼Œéš±è—ToolBar, StatusBar, Menu
+	// ¦pªG¬OFull Screenªº¸Ü¡AÁôÂÃToolBar, StatusBar, Menu
 	//
 	if (isFullScreen) {
 		m_wndToolBar.ShowWindow(SW_HIDE);

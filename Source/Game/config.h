@@ -1,33 +1,33 @@
 /////////////////////////////////////////////////////////////////////////////
-// å®šç¾©éŠæˆ²å¯è¨­å®šçš„ç’°å¢ƒèˆ‡æ¢ä»¶
+// ©w¸q¹CÀ¸¥i³]©wªºÀô¹Ò»P±ø¥ó
 /////////////////////////////////////////////////////////////////////////////
 
 #define GAME_TITLE           "Game"
-//! è¨­å®šéŠæˆ²ç•«é¢çš„è§£æžåº¦ï¼ˆå¯¬åº¦ï¼‰
+//! ³]©w¹CÀ¸µe­±ªº¸ÑªR«×¡]¼e«×¡^
 #define SIZE_X				 1400	
-//! è¨­å®šéŠæˆ²ç•«é¢çš„è§£æžåº¦ï¼ˆé«˜åº¦ï¼‰
+//! ³]©w¹CÀ¸µe­±ªº¸ÑªR«×¡]°ª«×¡^
 #define SIZE_Y				 900
-//! æ˜¯å¦ä»¥å…¨èž¢å¹•æ–¹å¼é–‹å•ŸéŠæˆ²
+//! ¬O§_¥H¥þ¿Ã¹õ¤è¦¡¶}±Ò¹CÀ¸
 #define OPEN_AS_FULLSCREEN	 false		
-//! æ˜¯å¦é¡¯ç¤ºloading(OnInit)çš„é€²åº¦
+//! ¬O§_Åã¥Üloading(OnInit)ªº¶i«×
 #define SHOW_LOAD_PROGRESS   true		
-// éŠæˆ²ç•«é¢é è¨­çš„èƒŒæ™¯é¡è‰²(é»‘è‰²)
+// ¹CÀ¸µe­±¹w³]ªº­I´ºÃC¦â(¶Â¦â)
 #define DEFAULT_BG_COLOR	 RGB(0, 0, 0)	
-//! æ¯33msè·‘ä¸€æ¬¡MoveåŠShow(æ¯ç§’30æ¬¡)
+//! ¨C33ms¶]¤@¦¸Move¤ÎShow(¨C¬í30¦¸)
 #define GAME_CYCLE_TIME		 15		    
-//! æ˜¯å¦åœ¨debug modeé¡¯ç¤ºcycle time
+//! ¬O§_¦bdebug modeÅã¥Ücycle time
 #define SHOW_GAME_CYCLE_TIME false		
-//! æ˜¯å¦å…è¨±ä»¥ Ctrl-Q æš«åœéŠæˆ²
+//! ¬O§_¤¹³\¥H Ctrl-Q ¼È°±¹CÀ¸
 #define ENABLE_GAME_PAUSE	 false		
-//! å•Ÿå‹•éŸ³æ•ˆä»‹é¢
+//! ±Ò°Ê­µ®Ä¤¶­±
 #define ENABLE_AUDIO		 true		
- //! æ˜¯å¦é—œé–‰ toolbar
+ //! ¬O§_Ãö³¬ toolbar
 #define ENABLE_TOOLBAR       false     
-//! æ˜¯å¦é—œé–‰ menu
+//! ¬O§_Ãö³¬ menu
 #define ENABLE_MENU          false      
-//! æ˜¯å¦é—œé–‰ statusbar
+//! ¬O§_Ãö³¬ statusbar
 #define ENABLE_STATUSBAR     false      
-//! å…¨èž¢å¹•ç”¨ï¼Œè«‹è¨­å®šæˆç›®å‰è¦–çª—çš„è§£æžåº¦ (width)ã€‚
+//! ¥þ¿Ã¹õ¥Î¡A½Ð³]©w¦¨¥Ø«eµøµ¡ªº¸ÑªR«× (width)¡C
 #define RESOLUTION_X     1920           
-//! å…¨èž¢å¹•ç”¨ï¼Œè«‹è¨­å®šæˆç›®å‰è¦–çª—çš„è§£æžåº¦ (height)ã€‚
+//! ¥þ¿Ã¹õ¥Î¡A½Ð³]©w¦¨¥Ø«eµøµ¡ªº¸ÑªR«× (height)¡C
 #define RESOLUTION_Y     1080          
