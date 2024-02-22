@@ -21,23 +21,23 @@ namespace game_framework {
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CMovingBitmap: Moving Bitmap class
-	// é€™å€‹ class æä¾›å¯ä»¥ç§»å‹•çš„åœ–å½¢
-	// è¦æ‡‚å¾—æ€éº¼å‘¼å«(é‹ç”¨)å…¶å„ç¨®èƒ½åŠ›ï¼Œä½†æ˜¯å¯ä»¥ä¸æ‡‚ä¸‹åˆ—çš„ç¨‹å¼æ˜¯ä»€éº¼æ„æ€
+	// ³o­Ó class ´£¨Ñ¥i¥H²¾°Êªº¹Ï§Î
+	// ­nÀ´±o«ç»ò©I¥s(¹B¥Î)¨ä¦UºØ¯à¤O¡A¦ı¬O¥i¥H¤£À´¤U¦Cªºµ{¦¡¬O¤°»ò·N«ä
 	/////////////////////////////////////////////////////////////////////////////
 
-	//! CMovingBitmap å»ºæ§‹å­
+	//! CMovingBitmap «Øºc¤l
 	/*! 
-		ç”¨æ–¼å‰µç«‹ä¸€å€‹å°šæœªè®€å–åœ–ç‰‡çš„ç‰©ä»¶ã€‚
+		¥Î©ó³Ğ¥ß¤@­Ó©|¥¼Åª¨ú¹Ï¤ùªºª«¥ó¡C
 	*/
 	CMovingBitmap::CMovingBitmap()
 	{
 		isBitmapLoaded = false;
 	}
 
-	//! å–å¾— CMovingBitmap ç‰©ä»¶çš„åœ–ç‰‡é«˜åº¦ã€‚
+	//! ¨ú±o CMovingBitmap ª«¥óªº¹Ï¤ù°ª«×¡C
 	/*!
-		éœ€è¦å…ˆè¼‰å…¥åœ–ç‰‡ã€‚
-		\return åœ–ç‰‡é«˜åº¦ï¼Œä»¥åƒç´ ç‚ºå–®ä½ã€‚
+		»İ­n¥ı¸ü¤J¹Ï¤ù¡C
+		\return ¹Ï¤ù°ª«×¡A¥H¹³¯À¬°³æ¦ì¡C
 	*/
 	int CMovingBitmap::GetHeight()
 	{
@@ -45,10 +45,10 @@ namespace game_framework {
 		return locations[frameIndex].bottom - locations[frameIndex].top;
 	}
 
-	//! å–å¾— CMovingBitmap ç‰©ä»¶çš„å·¦ä¸Šè§’çš„ x è»¸åº§æ¨™å€¼ã€‚
+	//! ¨ú±o CMovingBitmap ª«¥óªº¥ª¤W¨¤ªº x ¶b®y¼Ğ­È¡C
 	/*!
-		éœ€è¦å…ˆè¼‰å…¥åœ–ç‰‡ã€‚
-		\return åœ–ç‰‡å·¦ä¸Šè§’çš„ x è»¸åº§æ¨™å€¼ã€‚
+		»İ­n¥ı¸ü¤J¹Ï¤ù¡C
+		\return ¹Ï¤ù¥ª¤W¨¤ªº x ¶b®y¼Ğ­È¡C
 	*/
 	int CMovingBitmap::GetLeft()
 	{
@@ -56,11 +56,11 @@ namespace game_framework {
 		return locations[frameIndex].left;
 	}
 
-	//! è®€å–åœ–ç‰‡è³‡æºã€‚
+	//! Åª¨ú¹Ï¤ù¸ê·½¡C
 	/*!
-		é€éè³‡æºç·¨è™Ÿ `IDB_BITMAP` ä¾†è®€å–å°æ‡‰çš„åœ–ç‰‡ï¼Œä¸¦ä¸”éæ¿¾ç‰¹å®šé¡è‰² `color`ã€‚
-		\param IDB_BITMAP åœ–ç‰‡è³‡æºç·¨è™Ÿ
-		\param color æ¬²éæ¿¾çš„é¡è‰²ï¼ˆé è¨­ç‚º `CLR_INVALID`ï¼Œå¯åˆ©ç”¨ `RGB(<R>, <G>, <B>`) ä¾†è¨­ç½®é¡è‰²ï¼‰
+		³z¹L¸ê·½½s¸¹ `IDB_BITMAP` ¨ÓÅª¨ú¹ïÀ³ªº¹Ï¤ù¡A¨Ã¥B¹LÂo¯S©wÃC¦â `color`¡C
+		\param IDB_BITMAP ¹Ï¤ù¸ê·½½s¸¹
+		\param color ±ı¹LÂoªºÃC¦â¡]¹w³]¬° `CLR_INVALID`¡A¥i§Q¥Î `RGB(<R>, <G>, <B>`) ¨Ó³]¸mÃC¦â¡^
 	*/
 	void CMovingBitmap::LoadBitmap(int IDB_BITMAP, COLORREF color)
 	{
@@ -77,11 +77,11 @@ namespace game_framework {
 		isBitmapLoaded = true;
 	}
 
-	//! è®€å–åœ–ç‰‡è³‡æºã€‚
+	//! Åª¨ú¹Ï¤ù¸ê·½¡C
 	/*!
-		é€éåœ–ç‰‡ç›¸å°è·¯å¾‘ `filepath` ä¾†è®€å–å°æ‡‰çš„åœ–ç‰‡ï¼Œä¸¦ä¸”éæ¿¾ç‰¹å®šé¡è‰² `color`ã€‚
-		\param filepath åœ–ç‰‡ç›¸å°è·¯å¾‘
-		\param color æ¬²éæ¿¾çš„é¡è‰²ï¼ˆé è¨­ç‚º `CLR_INVALID`ï¼Œå¯åˆ©ç”¨ `RGB(<R>, <G>, <B>`) ä¾†è¨­ç½®éæ¿¾é¡è‰²ï¼‰
+		³z¹L¹Ï¤ù¬Û¹ï¸ô®| `filepath` ¨ÓÅª¨ú¹ïÀ³ªº¹Ï¤ù¡A¨Ã¥B¹LÂo¯S©wÃC¦â `color`¡C
+		\param filepath ¹Ï¤ù¬Û¹ï¸ô®|
+		\param color ±ı¹LÂoªºÃC¦â¡]¹w³]¬° `CLR_INVALID`¡A¥i§Q¥Î `RGB(<R>, <G>, <B>`) ¨Ó³]¸m¹LÂoÃC¦â¡^
 	*/
 	void CMovingBitmap::LoadBitmap(char *filepath, COLORREF color)
 	{
@@ -107,11 +107,11 @@ namespace game_framework {
 		bmp->DeleteObject();
 	}
 
-	//! è®€å–åœ–ç‰‡è³‡æºã€‚
+	//! Åª¨ú¹Ï¤ù¸ê·½¡C
 	/*!
-		é€éåœ–ç‰‡ç›¸å°è·¯å¾‘é›† `filepaths` ä¾†è®€å–å¤šå€‹åœ–ç‰‡ï¼Œä¸¦ä¸”éæ¿¾ç‰¹å®šé¡è‰² `color`ã€‚
-		\param filepaths åœ–ç‰‡ç›¸å°è·¯å¾‘é›†
-		\param color æ¬²éæ¿¾çš„é¡è‰²ï¼ˆé è¨­ç‚º `CLR_INVALID`ï¼Œå¯åˆ©ç”¨ `RGB(<R>, <G>, <B>`) ä¾†è¨­ç½®éæ¿¾é¡è‰²ï¼‰
+		³z¹L¹Ï¤ù¬Û¹ï¸ô®|¶° `filepaths` ¨ÓÅª¨ú¦h­Ó¹Ï¤ù¡A¨Ã¥B¹LÂo¯S©wÃC¦â `color`¡C
+		\param filepaths ¹Ï¤ù¬Û¹ï¸ô®|¶°
+		\param color ±ı¹LÂoªºÃC¦â¡]¹w³]¬° `CLR_INVALID`¡A¥i§Q¥Î `RGB(<R>, <G>, <B>`) ¨Ó³]¸m¹LÂoÃC¦â¡^
 		\sa https://en.cppreference.com/w/cpp/container/vector
 	*/
 	void CMovingBitmap::LoadBitmap(vector<char*> filepaths, COLORREF color)
@@ -121,11 +121,11 @@ namespace game_framework {
 		}
 	}
 
-	//! è®€å–åœ–ç‰‡è³‡æºã€‚
+	//! Åª¨ú¹Ï¤ù¸ê·½¡C
 	/*!
-		é€éåœ–ç‰‡ç›¸å°è·¯å¾‘é›† `filepaths` ä¾†è®€å–å¤šå€‹åœ–ç‰‡ï¼Œä¸¦ä¸”éæ¿¾ç‰¹å®šé¡è‰² `color`ã€‚
-		\param filepaths åœ–ç‰‡ç›¸å°è·¯å¾‘é›†
-		\param color æ¬²éæ¿¾çš„é¡è‰²ï¼ˆé è¨­ç‚º `CLR_INVALID`ï¼Œå¯åˆ©ç”¨ `RGB(<R>, <G>, <B>`) ä¾†è¨­ç½®éæ¿¾é¡è‰²ï¼‰
+		³z¹L¹Ï¤ù¬Û¹ï¸ô®|¶° `filepaths` ¨ÓÅª¨ú¦h­Ó¹Ï¤ù¡A¨Ã¥B¹LÂo¯S©wÃC¦â `color`¡C
+		\param filepaths ¹Ï¤ù¬Û¹ï¸ô®|¶°
+		\param color ±ı¹LÂoªºÃC¦â¡]¹w³]¬° `CLR_INVALID`¡A¥i§Q¥Î `RGB(<R>, <G>, <B>`) ¨Ó³]¸m¹LÂoÃC¦â¡^
 		\sa https://en.cppreference.com/w/cpp/container/vector
 	*/
 	void CMovingBitmap::LoadBitmapByString(vector<string> filepaths, COLORREF color)
@@ -136,11 +136,11 @@ namespace game_framework {
 		}
 	}
 	
-	//! è®€å–ç©ºç™½åœ–ç‰‡è³‡æºã€‚
+	//! Åª¨úªÅ¥Õ¹Ï¤ù¸ê·½¡C
 	/*!
-		è®€å–ä¸€å€‹ç‰¹å®šå¤§å°çš„ç™½è‰²é»é™£åœ–ã€‚
-		\param height åœ–ç‰‡é•·åº¦
-		\param width åœ–ç‰‡å¯¬åº¦
+		Åª¨ú¤@­Ó¯S©w¤j¤pªº¥Õ¦âÂI°}¹Ï¡C
+		\param height ¹Ï¤ùªø«×
+		\param width ¹Ï¤ù¼e«×
 	*/
 	void CMovingBitmap::LoadEmptyBitmap(int height, int width) {
 		HBITMAP hbitmap = CreateBitmap(width, height, 1, 32, NULL);
@@ -164,9 +164,9 @@ namespace game_framework {
 		bmp->DeleteObject();
 	}
 	
-	//! åœæ­¢é¡¯ç¤ºåœ–ç‰‡ã€‚
+	//! °±¤îÅã¥Ü¹Ï¤ù¡C
 	/*!
-		@deprecated å¾ v1.0.0 ç‰ˆæœ¬å¾Œæ£„ç”¨ï¼Œåœæ­¢é¡¯ç¤ºåœ–ç‰‡è«‹åœ¨ `OnShow()` æ™‚ä¸å‘¼å« `ShowBitmap()` å³å¯
+		@deprecated ±q v1.0.0 ª©¥»«á±ó¥Î¡A°±¤îÅã¥Ü¹Ï¤ù½Ğ¦b `OnShow()` ®É¤£©I¥s `ShowBitmap()` §Y¥i
 		\sa ShowBitmap()
 	*/
 	void CMovingBitmap::UnshowBitmap()
@@ -176,11 +176,11 @@ namespace game_framework {
 		this->ShowBitmap(0);
 	}
 
-	//! è¨­ç½®åœ–ç‰‡è‡³ç•«å¸ƒæŒ‡å®šåº§æ¨™ä¸Šã€‚
+	//! ³]¸m¹Ï¤ù¦Üµe¥¬«ü©w®y¼Ğ¤W¡C
 	/*!
-		å°‡æœƒæŠŠåœ–ç‰‡å·¦ä¸Šè§’è¨­ç½®è‡³æŒ‡å®šåº§æ¨™ä¸Šã€‚
-		\param x å·¦ä¸Šè§’ x åº§æ¨™
-		\param y å·¦ä¸Šè§’ y åº§æ¨™
+		±N·|§â¹Ï¤ù¥ª¤W¨¤³]¸m¦Ü«ü©w®y¼Ğ¤W¡C
+		\param x ¥ª¤W¨¤ x ®y¼Ğ
+		\param y ¥ª¤W¨¤ y ®y¼Ğ
 	*/
 	void CMovingBitmap::SetTopLeft(int x, int y)
 	{
@@ -196,11 +196,11 @@ namespace game_framework {
 		}
 	}
 
-	//! è¨­ç½®åœ–ç‰‡æ˜¯å¦ç‚ºå‹•ç•«ã€‚
+	//! ³]¸m¹Ï¤ù¬O§_¬°°Êµe¡C
 	/*!
-		è‹¥ CMovingBitmap è®€å…¥å¤šå€‹åœ–ç‰‡ï¼Œå‰‡å¯ä»¥ä½¿ç”¨æ­¤å‡½æ•¸ä¾†è¨­å®šç‰©ä»¶ç‚ºå‹•ç•«ã€‚
-		\param delay å‹•ç•«åˆ‡æ›å»¶é²ï¼ˆä»¥æ¯«ç§’ç‚ºå–®ä½ï¼‰
-		\param once å‹•ç•«æ˜¯å¦ç‚ºä¸€æ¬¡æ€§å‹•ç•«ï¼Œè‹¥æ˜¯å‰‡éœ€è¦ä»¥ `ToggleAnimation()` ä¾†å‘¼å«å‹•ç•«å•Ÿå‹•ã€‚
+		­Y CMovingBitmap Åª¤J¦h­Ó¹Ï¤ù¡A«h¥i¥H¨Ï¥Î¦¹¨ç¼Æ¨Ó³]©wª«¥ó¬°°Êµe¡C
+		\param delay °Êµe¤Á´«©µ¿ğ¡]¥H²@¬í¬°³æ¦ì¡^
+		\param once °Êµe¬O§_¬°¤@¦¸©Ê°Êµe¡A­Y¬O«h»İ­n¥H `ToggleAnimation()` ¨Ó©I¥s°Êµe±Ò°Ê¡C
 		\sa ToggleAnimation()
 	*/
 	void CMovingBitmap::SetAnimation(int delay, bool once) {
@@ -209,9 +209,9 @@ namespace game_framework {
 		delayCount = delay;
 	}
 	
-	//! é¡¯ç¤ºåœ–ç‰‡ã€‚
+	//! Åã¥Ü¹Ï¤ù¡C
 	/*!
-		åƒ…èƒ½åœ¨ `onShow()` æ™‚å‘¼å«ï¼Œä¸”åœ–ç‰‡éœ€è¦è¢«è®€å–ã€‚
+		¶È¯à¦b `onShow()` ®É©I¥s¡A¥B¹Ï¤ù»İ­n³QÅª¨ú¡C
 	*/
 	void CMovingBitmap::ShowBitmap()
 	{
@@ -220,10 +220,10 @@ namespace game_framework {
 		ShowBitmapBySetting();
 	}
 
-	//! é¡¯ç¤ºåœ–ç‰‡ã€‚
+	//! Åã¥Ü¹Ï¤ù¡C
 	/*!
-		åƒ…èƒ½åœ¨ `onShow()` æ™‚å‘¼å«ï¼Œä¸”åœ–ç‰‡éœ€è¦è¢«è®€å–ã€‚
-		\param factor æ”¾å¤§å€ç‡ï¼Œéœ€è¦ VGA é¡¯å¡çš„æ”¯æ´ï¼Œå¦å‰‡æœƒè®Šå¾—ç•°å¸¸æ…¢ã€‚
+		¶È¯à¦b `onShow()` ®É©I¥s¡A¥B¹Ï¤ù»İ­n³QÅª¨ú¡C
+		\param factor ©ñ¤j­¿²v¡A»İ­n VGA Åã¥dªº¤ä´©¡A§_«h·|ÅÜ±o²§±`ºC¡C
 	*/
 	void CMovingBitmap::ShowBitmap(double factor)
 	{
@@ -232,27 +232,27 @@ namespace game_framework {
 		ShowBitmapBySetting();
 	}
 
-	//! è¨­ç½®ç•¶å‰åœ–ç‰‡é¡¯ç¤ºå¹€çš„ç´¢å¼•å€¼ã€‚
+	//! ³]¸m·í«e¹Ï¤ùÅã¥Ü´Vªº¯Á¤Ş­È¡C
 	/*!
-		åœ–ç‰‡é¡¯ç¤ºå¹€çš„ç´¢å¼•å€¼ä»¥ 0 é–‹å§‹ã€‚
-		\param frameIndex åœ–ç‰‡é¡¯ç¤ºå¹€çš„ç´¢å¼•å€¼ã€‚
+		¹Ï¤ùÅã¥Ü´Vªº¯Á¤Ş­È¥H 0 ¶}©l¡C
+		\param frameIndex ¹Ï¤ùÅã¥Ü´Vªº¯Á¤Ş­È¡C
 	*/
 	void CMovingBitmap::SetFrameIndexOfBitmap(int frameIndex) {
-		GAME_ASSERT(frameIndex < (int) surfaceID.size(), "é¸æ“‡åœ–ç‰‡æ™‚ç´¢å¼•å‡ºç•Œ");
+		GAME_ASSERT(frameIndex < (int) surfaceID.size(), "¿ï¾Ü¹Ï¤ù®É¯Á¤Ş¥X¬É");
 		this->frameIndex = frameIndex;
 	}
 
-	//! å–å¾—ç•¶å‰åœ–ç‰‡é¡¯ç¤ºå¹€çš„ç´¢å¼•å€¼ã€‚
+	//! ¨ú±o·í«e¹Ï¤ùÅã¥Ü´Vªº¯Á¤Ş­È¡C
 	/*!
-		\return åœ–ç‰‡é¡¯ç¤ºå¹€çš„ç´¢å¼•å€¼ã€‚
+		\return ¹Ï¤ùÅã¥Ü´Vªº¯Á¤Ş­È¡C
 	*/
 	int CMovingBitmap::GetFrameIndexOfBitmap() {
 		return frameIndex;
 	}
 
-	//! å–å¾—ç•¶å‰åœ–ç‰‡å·¦ä¸Šè§’ y è»¸çš„åº§æ¨™å€¼ã€‚
+	//! ¨ú±o·í«e¹Ï¤ù¥ª¤W¨¤ y ¶bªº®y¼Ğ­È¡C
 	/*!
-		\return åœ–ç‰‡å·¦ä¸Šè§’ y è»¸çš„åº§æ¨™å€¼ã€‚
+		\return ¹Ï¤ù¥ª¤W¨¤ y ¶bªº®y¼Ğ­È¡C
 	*/
 	int CMovingBitmap::GetTop()
 	{
@@ -260,9 +260,9 @@ namespace game_framework {
 		return locations[frameIndex].top;
 	}
 
-	//! å–å¾—ç•¶å‰åœ–ç‰‡å¯¬åº¦ã€‚
+	//! ¨ú±o·í«e¹Ï¤ù¼e«×¡C
 	/*!
-		\return å–å¾—ç•¶å‰åœ–ç‰‡å¯¬åº¦ã€‚
+		\return ¨ú±o·í«e¹Ï¤ù¼e«×¡C
 	*/
 	int CMovingBitmap::GetWidth()
 	{
@@ -270,9 +270,9 @@ namespace game_framework {
 		return locations[frameIndex].right - locations[frameIndex].left;
 	}
 	
-	//! å•Ÿå‹•å–®æ¬¡å‹•ç•«ã€‚
+	//! ±Ò°Ê³æ¦¸°Êµe¡C
 	/*!
-		å°‡å‹•ç•«è¨­ç‚ºåˆå§‹å¹€ï¼Œä¸¦ä¸”åˆå§‹åŒ–å–®æ¬¡å‹•ç•«çš„åƒæ•¸å€¼ã€‚
+		±N°Êµe³]¬°ªì©l´V¡A¨Ã¥Bªì©l¤Æ³æ¦¸°Êµeªº°Ñ¼Æ­È¡C
 	*/
 	void CMovingBitmap::ToggleAnimation() {
 		frameIndex = 0;
@@ -280,49 +280,49 @@ namespace game_framework {
 		isAnimationDone = false;
 	}
 
-	//! ç‰©ä»¶æ˜¯å¦ç‚ºå‹•ç•«ç‰©ä»¶ã€‚
+	//! ª«¥ó¬O§_¬°°Êµeª«¥ó¡C
 	/*!
-		\return å¸ƒæ—å€¼ï¼Œè¡¨ç¤ºç‰©ä»¶æ˜¯å¦ç‚ºå‹•ç•«ç‰©ä»¶ã€‚
+		\return ¥¬ªL­È¡Aªí¥Üª«¥ó¬O§_¬°°Êµeª«¥ó¡C
 	*/
 	bool CMovingBitmap::IsAnimation() {
 		return isAnimation;
 	}
 
-	//! å‹•ç•«ç‰©ä»¶æ˜¯å¦å·²åŸ·è¡Œå®Œå‹•ç•«ã€‚
+	//! °Êµeª«¥ó¬O§_¤w°õ¦æ§¹°Êµe¡C
 	/*!
-		\return å¸ƒæ—å€¼ï¼Œè¡¨ç¤ºå‹•ç•«ç‰©ä»¶æ˜¯å¦å·²åŸ·è¡Œå®Œå‹•ç•«ã€‚
+		\return ¥¬ªL­È¡Aªí¥Ü°Êµeª«¥ó¬O§_¤w°õ¦æ§¹°Êµe¡C
 	*/
 	bool CMovingBitmap::IsAnimationDone() {
 		return isAnimationDone;
 	}
 
-	//! å‹•ç•«ç‰©ä»¶æ˜¯å¦ç‚ºå–®æ¬¡å‹•ç•«ç‰©ä»¶ã€‚
+	//! °Êµeª«¥ó¬O§_¬°³æ¦¸°Êµeª«¥ó¡C
 	/*!
-		\return å¸ƒæ—å€¼ï¼Œè¡¨ç¤ºå‹•ç•«ç‰©ä»¶æ˜¯å¦ç‚ºå–®æ¬¡å‹•ç•«ç‰©ä»¶ã€‚
+		\return ¥¬ªL­È¡Aªí¥Ü°Êµeª«¥ó¬O§_¬°³æ¦¸°Êµeª«¥ó¡C
 	*/
 	bool CMovingBitmap::IsOnceAnimation() {
 		return isOnce;
 	}
 
-	//! ç‰©ä»¶æ˜¯å¦å·²è®€å–é»é™£åœ–ã€‚
+	//! ª«¥ó¬O§_¤wÅª¨úÂI°}¹Ï¡C
 	/*!
-		\return å¸ƒæ—å€¼ï¼Œè¡¨ç¤ºç‰©ä»¶æ˜¯å¦å·²è®€å–é»é™£åœ–ã€‚
+		\return ¥¬ªL­È¡Aªí¥Üª«¥ó¬O§_¤wÅª¨úÂI°}¹Ï¡C
 	*/
 	bool CMovingBitmap::IsBitmapLoaded() {
 		return isBitmapLoaded;
 	}
 
-	//! å›å‚³ç‰©ä»¶çš„å¹€æ•¸ã€‚
+	//! ¦^¶Çª«¥óªº´V¼Æ¡C
 	/*!
-		\return å›å‚³ç‰©ä»¶çš„å¹€æ•¸ã€‚
+		\return ¦^¶Çª«¥óªº´V¼Æ¡C
 	*/
 	int CMovingBitmap::GetFrameSizeOfBitmap() {
 		return (int) surfaceID.size();
 	}
 
-	//! æ ¹æ“š BITMAP ä¾†åˆå§‹åŒ– CMovingBitmap å…§çš„ location ç‰©ä»¶ã€‚
+	//! ®Ú¾Ú BITMAP ¨Óªì©l¤Æ CMovingBitmap ¤ºªº location ª«¥ó¡C
 	/*!
-		\param bitmapSize å·²åˆå§‹åŒ–éçš„ BITMAP ç‰©ä»¶ï¼Œå¸¶æœ‰é»é™£åœ–çš„é«˜èˆ‡å¯¬
+		\param bitmapSize ¤wªì©l¤Æ¹Lªº BITMAP ª«¥ó¡A±a¦³ÂI°}¹Ïªº°ª»P¼e
 	*/
 	void CMovingBitmap::InitializeRectByBITMAP(BITMAP bitmapSize) {
 		const unsigned NX = 0;
@@ -335,7 +335,7 @@ namespace game_framework {
 		locations.push_back(newCrect);
 	}
 
-	//! æ ¹æ“šä½¿ç”¨è€…è¨­å®šçš„åƒæ•¸ä¾†é¡¯ç¤ºåœ–ç‰‡ã€‚
+	//! ®Ú¾Ú¨Ï¥ÎªÌ³]©wªº°Ñ¼Æ¨ÓÅã¥Ü¹Ï¤ù¡C
 	void CMovingBitmap::ShowBitmapBySetting() {
 		if (isAnimation == true && clock() - last_time >= delayCount) {
 			frameIndex += 1;
@@ -353,27 +353,27 @@ namespace game_framework {
 		}
 	}
 
-	//! å–å¾—ç‰©ä»¶è¼‰å…¥åœ–ç‰‡åç¨±ã€‚
+	//! ¨ú±oª«¥ó¸ü¤J¹Ï¤ù¦WºÙ¡C
 	/*!
-		\return å›å‚³åœ–ç‰‡åç¨±ï¼Œè‹¥åœ–ç‰‡å°šæœªè¼‰å…¥ï¼Œå‰‡å›å‚³ä¸€ç©ºå­—ä¸²ã€‚
+		\return ¦^¶Ç¹Ï¤ù¦WºÙ¡A­Y¹Ï¤ù©|¥¼¸ü¤J¡A«h¦^¶Ç¤@ªÅ¦r¦ê¡C
 	*/
 	string CMovingBitmap::GetImageFileName() {
 		return imageFileName;
 	}
 
-	//! å–å¾—ç‰©ä»¶éæ¿¾é¡è‰²ã€‚
+	//! ¨ú±oª«¥ó¹LÂoÃC¦â¡C
 	/*!
-		\return å›å‚³éæ¿¾é¡è‰²ï¼Œè‹¥ç‰©ä»¶æœªè¨­å®šéæ¿¾é¡è‰²ï¼Œå›å‚³ `CLR_INVALID`ã€‚
+		\return ¦^¶Ç¹LÂoÃC¦â¡A­Yª«¥ó¥¼³]©w¹LÂoÃC¦â¡A¦^¶Ç `CLR_INVALID`¡C
 	*/
 	COLORREF CMovingBitmap::GetFilterColor() {
 		return filterColor;
 	}
 
-	//! å…©ç‰©ä»¶æ˜¯å¦äº¤ç–Šã€‚
+	//! ¨âª«¥ó¬O§_¥æÅ|¡C
 	/*!
-		\param bmp1 ç¬¬ä¸€å€‹ CMovingBitmap ç‰©ä»¶
-		\param bmp2 ç¬¬äºŒå€‹ CMovingBitmap ç‰©ä»¶
-		\return å›å‚³å¸ƒæ—å€¼ï¼Œä»£è¡¨å…©ç‰©ä»¶æ˜¯å¦äº¤ç–Šã€‚
+		\param bmp1 ²Ä¤@­Ó CMovingBitmap ª«¥ó
+		\param bmp2 ²Ä¤G­Ó CMovingBitmap ª«¥ó
+		\return ¦^¶Ç¥¬ªL­È¡A¥Nªí¨âª«¥ó¬O§_¥æÅ|¡C
 	*/
 	bool CMovingBitmap::IsOverlap(CMovingBitmap bmp1, CMovingBitmap bmp2) {
 		CRect rect;
@@ -383,17 +383,17 @@ namespace game_framework {
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CTextDraw: The class provide the ability to draw the text.
-	// é€™å€‹ class æä¾›æ–‡å­—çš„å‘ˆç¾
-	// è¦æ‡‚å¾—æ€éº¼å‘¼å«(é‹ç”¨)å…¶å„ç¨®èƒ½åŠ›ï¼Œä½†æ˜¯å¯ä»¥ä¸æ‡‚ä¸‹åˆ—çš„ç¨‹å¼æ˜¯ä»€éº¼æ„æ€
+	// ³o­Ó class ´£¨Ñ¤å¦rªº§e²{
+	// ­nÀ´±o«ç»ò©I¥s(¹B¥Î)¨ä¦UºØ¯à¤O¡A¦ı¬O¥i¥H¤£À´¤U¦Cªºµ{¦¡¬O¤°»ò·N«ä
 	/////////////////////////////////////////////////////////////////////////////
 
-	//! åœ¨ç•«é¢ä¸Šå°å‡ºæ–‡å­—ã€‚
+	//! ¦bµe­±¤W¦L¥X¤å¦r¡C
 	/*!
-		æˆ‘å€‘å°‡ pDC å–å¾—çš„è²¬ä»»äº¤çµ¦ callerï¼Œä½ å¿…é ˆè¦å–å¾—ç•¶å‰çš„ pDC æŒ‡æ¨™ï¼Œç„¶å¾Œè¨˜å¾—é‡‹æ”¾ã€‚
-		\param pDCï¼Œä¸€å€‹ CDC æŒ‡æ¨™ï¼Œå¯ä½¿ç”¨ `CDDraw::GetBackCDC()` å–å¾—ã€‚
-		\param x æ–‡å­—é¡¯ç¤ºçš„å·¦ä¸Šè§’ x åº§æ¨™
-		\param y æ–‡å­—é¡¯ç¤ºçš„å·¦ä¸Šè§’ y åº§æ¨™
-		\param str æ¬²é¡¯ç¤ºçš„æ–‡å­—
+		§Ú­Ì±N pDC ¨ú±oªº³d¥ô¥æµ¹ caller¡A§A¥²¶·­n¨ú±o·í«eªº pDC «ü¼Ğ¡AµM«á°O±oÄÀ©ñ¡C
+		\param pDC¡A¤@­Ó CDC «ü¼Ğ¡A¥i¨Ï¥Î `CDDraw::GetBackCDC()` ¨ú±o¡C
+		\param x ¤å¦rÅã¥Üªº¥ª¤W¨¤ x ®y¼Ğ
+		\param y ¤å¦rÅã¥Üªº¥ª¤W¨¤ y ®y¼Ğ
+		\param str ±ıÅã¥Üªº¤å¦r
 	*/
 	void CTextDraw::Print(CDC *pDC, int x, int y, string str) {
 		x = CDDraw::IsFullScreen() ? x + (RESOLUTION_X - SIZE_X) / 2 : x;
@@ -401,15 +401,15 @@ namespace game_framework {
 		pDC->TextOut(x, y, str.c_str());
 	}
 
-	//! è¨­å®šç•¶å‰æ–‡å­—çš„å±¬æ€§ã€‚
+	//! ³]©w·í«e¤å¦rªºÄİ©Ê¡C
 	/*!
-		æˆ‘å€‘å°‡ pDC å–å¾—çš„è²¬ä»»äº¤çµ¦ callerï¼Œä½ å¿…é ˆè¦å–å¾—ç•¶å‰çš„ pDC æŒ‡æ¨™ï¼Œç„¶å¾Œè¨˜å¾—é‡‹æ”¾ã€‚
-		æ­¤è¨­å®šæœƒåœ¨è¨­å®šçš„ pDC æŒ‡æ¨™è¢«é‡‹æ”¾æ™‚å¤±å»è¨­å®šå€¼ã€‚
-		\param pDCï¼Œä¸€å€‹ CDC æŒ‡æ¨™ï¼Œå¯ä½¿ç”¨ `CDDraw::GetBackCDC()` å–å¾—ã€‚
-		\param size æ–‡å­—çš„å¤§å°ï¼ˆä»¥ pt ç‚ºå–®ä½ï¼Œä½†å› æŠ€è¡“æœ‰é™ï¼Œä¸¦ä¸ä¸€å®šæœƒå®Œå…¨ç¬¦åˆ pt ç‚ºå–®ä½çš„å¤§å°ï¼‰
-		\param fontName å­—é«”åç¨±
-		\param fontColor å­—é«”é¡è‰²
-		\param weight å­—é«”ç²—åº¦ï¼ˆé è¨­ç‚º 500ï¼‰
+		§Ú­Ì±N pDC ¨ú±oªº³d¥ô¥æµ¹ caller¡A§A¥²¶·­n¨ú±o·í«eªº pDC «ü¼Ğ¡AµM«á°O±oÄÀ©ñ¡C
+		¦¹³]©w·|¦b³]©wªº pDC «ü¼Ğ³QÄÀ©ñ®É¥¢¥h³]©w­È¡C
+		\param pDC¡A¤@­Ó CDC «ü¼Ğ¡A¥i¨Ï¥Î `CDDraw::GetBackCDC()` ¨ú±o¡C
+		\param size ¤å¦rªº¤j¤p¡]¥H pt ¬°³æ¦ì¡A¦ı¦]§Ş³N¦³­­¡A¨Ã¤£¤@©w·|§¹¥ş²Å¦X pt ¬°³æ¦ìªº¤j¤p¡^
+		\param fontName ¦rÅé¦WºÙ
+		\param fontColor ¦rÅéÃC¦â
+		\param weight ¦rÅé²Ê«×¡]¹w³]¬° 500¡^
 	*/
 	void CTextDraw::ChangeFontLog(CDC *pDC, int size, string fontName, COLORREF fontColor, int weight) {
 		CFont* fp;
