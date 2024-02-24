@@ -52,6 +52,7 @@ static char THIS_FILE[] = __FILE__;
 BEGIN_MESSAGE_MAP(CGameApp, CWinApp)
 	//{{AFX_MSG_MAP(CGameApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
+	ON_COMMAND(ID_APP_FRAMEWORK, OnAppAboutFramework)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
 		//    DO NOT EDIT what you see in these blocks of generated code!
 	//}}AFX_MSG_MAP
@@ -161,7 +162,7 @@ protected:
 	//{{AFX_MSG(CAboutDlg)
 	afx_msg void OnReadme();
 	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+	DECLARE_MESSAGE_MAP();
 };
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -196,16 +197,82 @@ void CGameApp::OnAppAbout()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+// CAboutDlg dialog used for App About
+
+class CAboutFrameworkDlg : public CDialog
+{
+public:
+	CAboutFrameworkDlg();
+
+	// Dialog Data
+		//{{AFX_DATA(CAboutDlg)
+	enum { IDD = IDD_FRAMEWORK };
+	//}}AFX_DATA
+
+	// ClassWizard generated virtual function overrides
+	//{{AFX_VIRTUAL(CAboutDlg)
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	//}}AFX_VIRTUAL
+
+// Implementation
+protected:
+	//{{AFX_MSG(CAboutDlg)
+	afx_msg void OnReadme();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP();
+};
+
+CAboutFrameworkDlg::CAboutFrameworkDlg() : CDialog(CAboutFrameworkDlg::IDD)
+{
+	//{{AFX_DATA_INIT(CAboutDlg)
+	//}}AFX_DATA_INIT
+}
+
+void CAboutFrameworkDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CDialog::DoDataExchange(pDX);
+	//{{AFX_DATA_MAP(CAboutDlg)
+	//}}AFX_DATA_MAP
+}
+
+
+BEGIN_MESSAGE_MAP(CAboutFrameworkDlg, CDialog)
+	//{{AFX_MSG_MAP(CAboutFrameworkDlg)
+	ON_BN_CLICKED(IDC_README, OnReadme)
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+
+// App command to run the dialog
+void CGameApp::OnAppAboutFramework()
+{
+	//
+	// To force display of CTRL-Q
+	// 
+	AfxGetMainWnd()->Invalidate();
+
+	CAboutFrameworkDlg aboutDlg;
+	aboutDlg.DoModal();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 // CGameApp commands
 
-BOOL CGameApp::OnIdle(LONG lCount) 
+BOOL CGameApp::OnIdle(LONG lCount)
 {
 	// TODO: Add your specialized code here and/or call the base class
 	return game_framework::CGame::Instance()->OnIdle();
 	//return CWinApp::OnIdle(lCount);
 }
 
-void CAboutDlg::OnReadme() 
+void CAboutDlg::OnReadme()
+{
+	// TODO: Add your control notification handler code here
+	system("notepad.exe ReadMe.txt");
+}
+
+void CAboutFrameworkDlg::OnReadme()
 {
 	// TODO: Add your control notification handler code here
 	system("notepad.exe ReadMe.txt");
