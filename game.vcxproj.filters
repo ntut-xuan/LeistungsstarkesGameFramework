@@ -16,7 +16,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="RES\GAME.RC2">
+    <None Include="Resources\gamecurs.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\GAME.RC2">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
@@ -94,5 +97,29 @@
     <ResourceCompile Include="Source\Core\game.rc">
       <Filter>MFC</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\game.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\gameDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Game Framework.png" />
+    <Image Include="Resources\GAME_FRAMEWORK.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\GAME_FRAMEWORK.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
